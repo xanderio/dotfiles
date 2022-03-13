@@ -29,11 +29,15 @@
     LESS = "-qR";
 
     WLR_DRM_NO_MODIFIERS = "1";
+    MOZ_ENABLE_WAYLAND = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
     XCURSOR_THEME = "Bibata-Modern-Classic";
   };
 
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox-wayland;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
