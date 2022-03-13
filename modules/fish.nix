@@ -53,6 +53,14 @@
             command ls --color=auto $argv
           end'';
       };
+      cat = {
+        body = ''
+          if type --quiet bat
+            bat $argv
+          else
+            command cat $argv
+          end'';
+      };
       fish_title = {
         body = ''
           if [ $_ = fish ]
