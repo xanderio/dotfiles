@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    any-nix-shell
+  ];
+
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -39,6 +43,7 @@
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
+      any-nix-shell fish | source
     '';
 
     functions = {
