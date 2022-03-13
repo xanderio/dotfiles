@@ -1,0 +1,98 @@
+@import "base16-dracula.css";
+
+@define-color background rgba(40, 42, 54, 0.95);
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: Jetbrains Mono;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+  background: rgba(0,0,0,0);
+    color: #ffffff;
+}
+
+window#waybar.hidden {
+    opacity: 0.0;
+}
+
+#workspaces button {
+    background: transparent;
+    color: #ffffff;
+    border-bottom: 2px solid transparent;
+}
+
+#workspaces button.focused {
+    border-bottom: 2px solid @base0A;
+    color: @base0A;
+}
+
+#workspaces button.urgent {
+    color: #ff5555;
+}
+
+#workspaces button:hover {
+    box-shadow: none;
+    text-shadow: none;
+    border-bottom: 2px solid @base0A;
+}
+
+#window {
+    margin: 0 10px 0 0;
+}
+
+#clock, #pulseaudio, #tray, #mode, #idle_inhibitor, #battery, #custom-spt {
+    padding: 0 10px;
+    margin: 0 5px;
+    color: #ffffff;
+}
+
+#mode {
+  color: @base08;
+  border-bottom: 2px solid @base08;
+}
+
+#pulseaudio.muted {
+  color: @base0B;
+  border-bottom: 2px solid @base0B;
+}
+
+#idle_inhibitor.activated {
+  color: @base0B;
+  border-bottom: 2px solid @base0B;
+}
+
+#idle_inhibitor.deactivated {
+}
+
+@keyframes blink {
+  to {
+    background-color: @base08;
+    color: @base05;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: @back;
+  color: @base05;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#battery.good {
+  /* border-bottom: 2px solid @base0A; */
+}
+
+#battery.warning {
+  border-bottom: 2px solid @base0B;
+}
+
+#battery.charging {
+  border-bottom: 2px solid #ffb86c;
+}

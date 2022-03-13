@@ -8,6 +8,7 @@
     ./modules/git.nix
     ./modules/misc.nix
     ./modules/nix.nix
+    ./modules/sway.nix
   ];
 
   # Whether to enable settings that make Home Manager work better on GNU/Linux
