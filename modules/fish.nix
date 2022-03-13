@@ -4,6 +4,9 @@
     enable = true;
     shellAliases = {
       hm = "home-manager";
+      ll = "ls -l";
+      la = "ls -la";
+      ssh = "TERM=xterm-256color command ssh";
     };
     shellInit = ''
       set fish_color_normal normal
@@ -37,9 +40,29 @@
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
     '';
+
+    functions = {
+      fish_greeting = {
+        body = "";
+      };
+      ls = {
+        body = ''
+          if type --quiet exa
+            exa --group-directories-first --git $argv
+          else
+            command ls --color=auto $argv
+          end'';
+      };
+      fish_title = {
+        body = ''
+          if [ $_ = fish ]
+              echo (pwd)
+          else
+              echo (status current-command)
+          end'';
+      };
+    };
   };
-  xdg.configFile."fish/functions/fish_title.fish".source = ../configs/fish/functions/fish_title.fish;
-  xdg.configFile."fish/functions/fish_greeting.fish".source = ../configs/fish/functions/fish_title.fish;
 
   programs.starship = {
     enable = true;
