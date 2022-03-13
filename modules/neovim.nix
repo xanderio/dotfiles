@@ -1,6 +1,10 @@
 { config, pkgs, libs, ... }:
 
 {
+  home.sessionVariables = {
+    EDITOR = "nvim";
+  };
+
   home.packages = with pkgs; [
     neovim
 
