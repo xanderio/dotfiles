@@ -1,9 +1,5 @@
 { config, pkgs, ... }:
 {
-  home.packages = with pkgs; [
-    any-nix-shell
-  ];
-
   programs.fish = {
     enable = true;
     shellAliases = {
