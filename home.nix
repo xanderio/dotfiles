@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./modules/neovim.nix
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "xanderio";
@@ -24,6 +28,9 @@
 
   programs.fish = {
     enable = true;
+    shellAliases = {
+      hm = "home-manager";
+    };
     shellInit = ''
       set fish_color_normal normal
       set fish_color_command cyan
