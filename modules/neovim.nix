@@ -11,6 +11,8 @@
     rnix-lsp
     nixpkgs-fmt
     rust-analyzer
+    taplo-lsp
+    shellcheck
   ];
 
   home.shellAliases = {

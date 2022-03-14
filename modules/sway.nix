@@ -13,10 +13,14 @@ in
   home.packages = with pkgs; [
     swaylock
     wl-clipboard
+
+    bibata-cursors
   ];
 
   wayland.windowManager.sway = {
     enable = true;
+    # use system provided sway version, nixpkgs version is unable to create egl context
+    package = null;
     systemdIntegration = true;
     wrapperFeatures.gtk = true;
     config = {
@@ -96,7 +100,7 @@ in
         };
       keybindings =
         let
-          modifier = config.wayland.windowManager.sway.config.modifier;
+          mod = config.wayland.windowManager.sway.config.modifier;
           cfg = config.wayland.windowManager.sway.config;
 
           makoctl = "${pkgs.mako}/bin/makoctl";
@@ -110,6 +114,18 @@ in
           wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
         in
         lib.mkOptionDefault {
+          "${mod}+asciicircum" = "workspace back_and_forth";
+
+          "${mod}+Control+Shift+${cfg.left}" = "move container to output left";
+          "${mod}+Control+Shift+${cfg.right}" = "move container to output right";
+          "${mod}+Control+Shift+${cfg.up}" = "move container to output up";
+          "${mod}+Control+Shift+${cfg.down}" = "move container to output down";
+
+          "${mod}+Control+Shift+Left" = "move container to output left";
+          "${mod}+Control+Shift+Right" = "move container to output right";
+          "${mod}+Control+Shift+Up" = "move container to output up";
+          "${mod}+Control+Shift+Down" = "move container to output down";
+
           "Alt+Backspace" = "exec ${makoctl} dismiss";
           XF86AudioLowerVolume = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
           XF86AudioRaiseVolume = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
@@ -120,7 +136,7 @@ in
           XF86AudioStop = "exec ${playerctl} stop";
           XF86MonBrightnessUp = "exec ${brightnessctl} set +5%";
           XF86MonBrightnessDown = "exec ${brightnessctl} set 5%-";
-          "${modifier}+Shift+s" = ''exec ${grim} -g "$(${slurp})" - | ${pngquant} - | ${wl-copy} '';
+          "${mod}+Shift+s" = ''exec ${grim} -g "$(${slurp})" - | ${pngquant} - | ${wl-copy} '';
         };
     };
     extraConfig = ''
@@ -204,5 +220,19 @@ in
   xdg.configFile."waybar/base16-dracula.css".source = ../configs/waybar/base16-dracula.css;
 
   services.blueman-applet.enable = true;
-  services.network-manager-applet.enable = true;
+
+  systemd.user.services.network-manager-applet = {
+    Unit = {
+      Description = "Network Manager applet";
+      Requires = [ "tray.target" ];
+      After = [ "graphical-session-pre.target" "tray.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Install = { WantedBy = [ "graphical-session.target" ]; };
+
+    Service = {
+      ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+    };
+  };
 }

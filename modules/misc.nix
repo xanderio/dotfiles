@@ -2,6 +2,15 @@
 {
   home.packages = with pkgs; [
     ripgrep
+    ansible
+    bacon
+    fd
+    terraform
+    taplo-cli
+    htop
+
+    yarn
+    sccache
   ];
 
   programs.direnv.enable = true;

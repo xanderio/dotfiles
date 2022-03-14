@@ -9,6 +9,7 @@
     ./modules/misc.nix
     ./modules/nix.nix
     ./modules/sway.nix
+    ./modules/work.nix
   ];
 
   # Whether to enable settings that make Home Manager work better on GNU/Linux
@@ -53,4 +54,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  nixpkgs.config.allowUnfree = true;
 }
