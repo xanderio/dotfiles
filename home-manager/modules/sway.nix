@@ -15,6 +15,7 @@ in
     wl-clipboard
 
     bibata-cursors
+    font-awesome
   ];
 
   wayland.windowManager.sway = {
@@ -233,6 +234,40 @@ in
 
     Service = {
       ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet --indicator";
+    };
+  };
+
+  services.kanshi = {
+    enable = true;
+    
+    profiles = {
+      undocked = {
+        outputs = [ 
+          {
+      	    criteria = "eDP-1";
+    	  } 
+        ];
+      };
+      docked = {
+        outputs = [ 
+          {
+      	    criteria = "eDP-1";
+            status = "disable";
+    	  } 
+          {
+      	    criteria = "Lenovo Group Limited P27h-20 V906K7HR";
+            status = "enable";
+            mode = "2560x1440";
+            position = "0,0";
+    	  } 
+          {
+      	    criteria = "Lenovo Group Limited P27q-20 V9064YE0";
+            status = "enable";
+            mode = "2560x1440";
+            position = "2560,0";
+    	  } 
+        ];
+      };
     };
   };
 }

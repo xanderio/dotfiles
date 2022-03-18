@@ -33,7 +33,7 @@
       set fish_color_history_current white
 
       set fish_cursor_unknown block
-      set -ax NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
+      #set -ax NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
       # nix
       set fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d $fish_function_path
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh

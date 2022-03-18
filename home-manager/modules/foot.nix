@@ -1,5 +1,9 @@
 { config, pkgs, ... }:
 {
+  home.packages = with pkgs; [
+    jetbrains-mono
+    xdg-utils
+  ];
   programs.foot = {
     enable = true;
     settings = {

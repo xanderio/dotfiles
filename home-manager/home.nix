@@ -1,20 +1,19 @@
 { config, pkgs, ... }:
-
 {
   imports = [
-    ./modules/neovim.nix
+    ./modules/git.nix
     ./modules/fish.nix
     ./modules/foot.nix
-    ./modules/git.nix
     ./modules/misc.nix
-    ./modules/nix.nix
     ./modules/sway.nix
+    ./modules/neovim.nix
+    ./modules/nix-utilities.nix
+
     ./modules/work.nix
   ];
-
   # Whether to enable settings that make Home Manager work better on GNU/Linux
   # distributions other than NixOS. 
-  targets.genericLinux.enable = true;
+  #targets.genericLinux.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -41,6 +40,8 @@
     enable = true;
     package = pkgs.firefox-wayland;
   };
+
+  fonts.fontconfig.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
