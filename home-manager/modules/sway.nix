@@ -158,8 +158,6 @@ in
         height = 25;
         width = 2560;
         spacing = 0;
-        id = "waybar";
-        ipc = true;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
         modules-right = [ "custom/spt" "pulseaudio" "battery" "clock" "tray" ];
@@ -195,7 +193,7 @@ in
         "custom/spt" =
           let
             spt = "${pkgs.spotify-tui}/bin/spt";
-            pgrep = "${pkgs.coreutils}/bin/pgrep";
+            pgrep = "${pkgs.busybox}/bin/pgrep";
           in
           {
             format = "{}";
@@ -268,6 +266,45 @@ in
     	  } 
         ];
       };
+    };
+  };
+
+  programs.mako = {
+    enable = true;
+    
+    margin = "17,5";
+    font = "JetBrains Mono";
+    defaultTimeout = 20000;
+    backgroundColor = "#282a36";
+    textColor = "#f8f8f2";
+    borderColor = "#282a36";
+
+    extraConfig = ''
+      [urgency=low]
+      border-color=#282a36
+
+      [urgency=normal]
+      border-color=#f1fa8c
+
+      [urgency=high]
+      border-color=#ff5555
+
+      [mode=do-not-disturb]
+      invisible=1
+    '';
+  };
+
+  systemd.user.services.mako = {
+    Unit = {
+      Description = "Mako Notification daemon";
+      After = [ "graphical-session-pre.target" "tray.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Install = { WantedBy = [ "graphical-session.target" ]; };
+
+    Service = {
+      ExecStart = "${pkgs.mako}/bin/mako";
     };
   };
 }
