@@ -6,24 +6,25 @@
 
 {
   imports =
-    [ 
+    [
       <nixos-hardware/lenovo/thinkpad/t480s>
       ./hardware-configuration.nix
+      ./fonts.nix
+      ./desktop.nix
     ];
 
-  fonts.fonts = with pkgs; [
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
- 
   hardware.bluetooth.enable = true;
-  
+
   security.sudo.wheelNeedsPassword = false;
 
   # Use the systemd-boot EFI boot loader.
+  boot.cleanTmpDir = true;
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.availableKernelModules = [
+    "aesni_intel"
+    "cryptd"
+  ];
 
   networking = {
     hostName = "vger"; # Define your hostname.
@@ -56,7 +57,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xanderio = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "networkmanager" "audio" "docker" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.fish;
   };
   #home-manager.users.xanderio = import /home/xanderio/Projects/nix-dotfiles/home.nix;
@@ -65,17 +66,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    swaylock
-    gnome-icon-theme
-    gnome3.adwaita-icon-theme
-    gnomeExtensions.appindicator
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.sway.enable = true;
-  programs.fish.enable = true;
-  programs.dconf.enable = true;
   # programs.mtr.enable = true;
   # programs.gnupg.agent = {
   #   enable = true;
@@ -83,19 +77,14 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
   services.blueman.enable = true;
   security.rtkit.enable = true;
-  services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
 
-  services.pipewire = { 
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-  };
+  virtualisation.docker.enable = true;
+  virtualisation.podman.enable = true;
+
+  services.logind.lidSwitchExternalPower = "ignore";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
