@@ -66,6 +66,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    nixos-shell
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -83,6 +84,7 @@
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   services.logind.lidSwitchExternalPower = "ignore";
 

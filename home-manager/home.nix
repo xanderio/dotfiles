@@ -8,6 +8,7 @@
     ./modules/sway.nix
     ./modules/neovim.nix
     ./modules/nix-utilities.nix
+    ./modules/games.nix
 
     ./modules/work.nix
   ];

@@ -11,7 +11,6 @@ let
 in
 {
   home.packages = with pkgs; [
-    swaylock
     wl-clipboard
 
     bibata-cursors
@@ -116,16 +115,17 @@ in
         in
         lib.mkOptionDefault {
           "${mod}+asciicircum" = "workspace back_and_forth";
+          "${mod}+Backspace" = "exec swaylock";
 
-          "${mod}+Control+Shift+${cfg.left}" = "move container to output left";
-          "${mod}+Control+Shift+${cfg.right}" = "move container to output right";
-          "${mod}+Control+Shift+${cfg.up}" = "move container to output up";
-          "${mod}+Control+Shift+${cfg.down}" = "move container to output down";
+          "${mod}+Control+Shift+${cfg.left}" = "move workspace to output left";
+          "${mod}+Control+Shift+${cfg.right}" = "move workspace to output right";
+          "${mod}+Control+Shift+${cfg.up}" = "move workspace to output up";
+          "${mod}+Control+Shift+${cfg.down}" = "move workspace to output down";
 
-          "${mod}+Control+Shift+Left" = "move container to output left";
-          "${mod}+Control+Shift+Right" = "move container to output right";
-          "${mod}+Control+Shift+Up" = "move container to output up";
-          "${mod}+Control+Shift+Down" = "move container to output down";
+          "${mod}+Control+Shift+Left" = "move workspace to output left";
+          "${mod}+Control+Shift+Right" = "move workspace to output right";
+          "${mod}+Control+Shift+Up" = "move workspace to output up";
+          "${mod}+Control+Shift+Down" = "move workspace to output down";
 
           "Alt+Backspace" = "exec ${makoctl} dismiss";
           XF86AudioLowerVolume = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
