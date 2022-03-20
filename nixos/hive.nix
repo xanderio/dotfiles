@@ -6,5 +6,5 @@
     };
   };
 
-  vger = import ./hosts/vger;
+  delenn = import ./hosts/delenn;
 } 
