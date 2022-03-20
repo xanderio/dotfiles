@@ -9,25 +9,19 @@
     [
       <nixos-hardware/lenovo/thinkpad/t480s>
       ./hardware-configuration.nix
-      ./fonts.nix
+      ./boot.nix
+      ./firewall.nix
+      ./services.nix
       ./desktop.nix
+      ./fonts.nix
+      ./users.nix
     ];
 
   hardware.bluetooth.enable = true;
 
   security.sudo.wheelNeedsPassword = false;
 
-  # Use the systemd-boot EFI boot loader.
-  boot.cleanTmpDir = true;
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.availableKernelModules = [
-    "aesni_intel"
-    "cryptd"
-  ];
-
   networking = {
-    hostName = "vger"; # Define your hostname.
     useDHCP = false;
     wireless.enable = false;
     networkmanager.enable = true;
@@ -48,20 +42,6 @@
     keyMap = "de";
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.xanderio = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" "audio" "docker" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.fish;
-  };
-  #home-manager.users.xanderio = import /home/xanderio/Projects/nix-dotfiles/home.nix;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -76,23 +56,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  # List services that you want to enable:
-  # services.openssh.enable = true;
-  services.blueman.enable = true;
-  security.rtkit.enable = true;
-
-  virtualisation.docker.enable = true;
-  virtualisation.podman.enable = true;
-  virtualisation.libvirtd.enable = true;
-
-  services.logind.lidSwitchExternalPower = "ignore";
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
