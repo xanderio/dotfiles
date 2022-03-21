@@ -1,4 +1,4 @@
-{ ... }: {
+{ name, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./miniflux.nix
@@ -38,4 +38,19 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+
+  services.borgbackup.jobs = {
+    backup = {
+      paths = [ "/" ];
+      exclude = [ "/nix" "'**/.cache'" "/proc" "/sys" ];
+      repo = "u289342@u289342.your-storagebox.de:backup/${name}";
+      encryption = {
+        mode = "repokey-blake2";
+        passCommand = "cat /var/borg/passphrase";
+      };
+      environment = { BORG_RSH = "ssh -p 23 -i /var/borg/id_ed25519"; };
+      compression = "auto,zstd,10";
+      startAt = "daily";
+    };
+  };
 }
