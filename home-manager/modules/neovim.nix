@@ -1,4 +1,4 @@
-{ config, pkgs, libs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   home.sessionVariables = {
@@ -6,15 +6,28 @@
   };
 
   home.packages = with pkgs; [
-    neovim
-    clang
+    neovim-nightly
     lua51Packages.mpack
 
     rnix-lsp
-    nixpkgs-fmt
     rust-analyzer
+    terraform-ls
     taplo-lsp
     shellcheck
+
+    nodePackages.bash-language-server
+    nodePackages.dockerfile-language-server-nodejs
+    nodePackages.pyright
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.vim-language-server
+    nodePackages.yaml-language-server
+
+    # Formatter
+    nodePackages.prettier
+    nixpkgs-fmt
+    rustfmt
+    terraform
   ];
 
   home.shellAliases = {
@@ -22,13 +35,13 @@
     vim = "nvim";
   };
 
-  xdg.configFile."nvim" = {
-    recursive = true;
-    source = ../configs/nvim;
-  };
-  
-  xdg.configFile."nvim/parser" = {
-    recursive = true;
-    source = pkgs.tree-sitter.withPlugins(_: pkgs.tree-sitter.allGrammars);
-  };
+  xdg.configFile = {
+    "nvim" = {
+      recursive = true;
+      source = ../configs/nvim;
+    };
+  } // lib.attrsets.mapAttrs' (name: drv:
+      lib.attrsets.nameValuePair ("nvim/parser/"
+        + (lib.strings.removePrefix "tree-sitter-" name)
+        + ".so") { source = "${drv}/parser.so"; }) pkgs.nvim-ts-grammars.builtGrammars; 
 }

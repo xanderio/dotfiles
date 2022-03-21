@@ -8,6 +8,7 @@
     swaylock
     gnome-icon-theme
     gnome3.adwaita-icon-theme
+    gnome.gnome-themes-extra
     gnomeExtensions.appindicator
   ];
 

@@ -15,6 +15,7 @@
       ./desktop.nix
       ./fonts.nix
       ./users.nix
+      ./cachix.nix
     ];
 
   hardware.bluetooth.enable = true;
@@ -68,5 +69,6 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
+  nix.trustedUsers = [ "root" "xanderio" ];
 }
 

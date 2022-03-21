@@ -9,6 +9,8 @@
     taplo-cli
     htop
 
+    thunderbird
+
     yarn
     sccache
   ];
