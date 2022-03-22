@@ -15,6 +15,7 @@
       ./desktop.nix
       ./fonts.nix
       ./users.nix
+      ./borg.nix
       ./cachix.nix
     ];
 
@@ -69,6 +70,6 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.trustedUsers = [ "root" "xanderio" ];
+  nix.settings.trusted-users = [ "root" "xanderio" ];
 }
 
