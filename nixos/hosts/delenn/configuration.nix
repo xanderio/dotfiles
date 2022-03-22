@@ -2,6 +2,7 @@
   imports = [
     ./hardware-configuration.nix
     ./miniflux.nix
+    ./nextcloud.nix
   ];
 
   boot.cleanTmpDir = true;
