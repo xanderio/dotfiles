@@ -11,7 +11,7 @@
 
     rnix-lsp
     rust-analyzer
-    terraform-ls
+    terraform-lsp
     taplo-lsp
     shellcheck
 
@@ -20,8 +20,8 @@
     nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
-    nodePackages.vim-language-server
     nodePackages.yaml-language-server
+    nodePackages.vscode-css-languageserver-bin
 
     # Formatter
     nodePackages.prettier

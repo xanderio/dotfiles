@@ -15,6 +15,23 @@ return require('packer').startup(function()
   use {
     'neovim/nvim-lspconfig',
     config = function() 
+      local servers = { 
+        'bashls',
+        'terraform_lsp',
+        'rnix',
+        'taplo',
+        'dockerls',
+        'pyright',
+        'yamlls',
+        'cssls'
+      };
+      for _, lsp in ipairs(servers) do
+        require('lspconfig')[lsp].setup({
+          capabilities = require('lsp').capabilities(),
+          on_attach = require('lsp').on_attach,
+        })
+      end
+
       require'lspconfig'.tsserver.setup({
         init_options = require("nvim-lsp-ts-utils").init_options,
         capabilities = require('lsp').capabilities(),
@@ -47,7 +64,6 @@ return require('packer').startup(function()
       null_ls.setup({
         sources = {
           null_ls.builtins.formatting.prettierd,
-          null_ls.builtins.formatting.taplo,
           null_ls.builtins.formatting.fish_indent,
           null_ls.builtins.diagnostics.eslint_d,
           null_ls.builtins.diagnostics.ansiblelint,
@@ -159,10 +175,16 @@ return require('packer').startup(function()
   -- Treesitter {{{
   use { 
     'nvim-treesitter/nvim-treesitter', 
-    run = ':TSUpdate',
     after = 'dracula.nvim',
     config = function()
       require('config/treesitter')
+    end
+  }
+  use {
+	  "SmiteshP/nvim-gps",
+	  requires = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-gps").setup()
     end
   }
   

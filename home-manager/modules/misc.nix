@@ -10,6 +10,7 @@
     htop
 
     thunderbird
+    mumble
 
     yarn
     sccache
