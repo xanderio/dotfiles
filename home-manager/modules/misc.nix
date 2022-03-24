@@ -13,6 +13,7 @@
     mumble
 
     yarn
+    rustup
     sccache
   ];
 

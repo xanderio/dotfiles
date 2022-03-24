@@ -26,7 +26,6 @@
     # Formatter
     nodePackages.prettier
     nixpkgs-fmt
-    rustfmt
     terraform
   ];
 
@@ -40,8 +39,12 @@
       recursive = true;
       source = ../configs/nvim;
     };
-  } // lib.attrsets.mapAttrs' (name: drv:
-      lib.attrsets.nameValuePair ("nvim/parser/"
-        + (lib.strings.removePrefix "tree-sitter-" name)
-        + ".so") { source = "${drv}/parser.so"; }) pkgs.nvim-ts-grammars.builtGrammars; 
+  } // lib.attrsets.mapAttrs'
+    (name: drv:
+      lib.attrsets.nameValuePair
+        ("nvim/parser/"
+          + (lib.strings.removePrefix "tree-sitter-" name)
+          + ".so")
+        { source = "${drv}/parser.so"; })
+    pkgs.nvim-ts-grammars.builtGrammars;
 }
