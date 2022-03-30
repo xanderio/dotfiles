@@ -70,6 +70,12 @@
               echo (status current-command)
           end'';
       };
+      woi_login = {
+        description = "Wifi@DB / WifiOnICE login script";
+        body = ''
+          curl -vk 'https://10.101.64.10/en/' -H 'Host: wifi.bahn.de' -H 'Cookie: csrf=asdf' --data 'login=true&CSRFToken=asdf'
+        '';
+      };
     };
   };
 

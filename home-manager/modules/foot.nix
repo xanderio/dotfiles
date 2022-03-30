@@ -7,7 +7,7 @@
     enable = true;
     settings = {
       main = {
-        font = "JetBrains Mono:size=10:weight=bold,Iosevka Term:size=12,TwitterColorEmoji";
+        font = "JetBrains Mono:size=10:weight=bold,TwitterColorEmoji";
         dpi-aware = "off";
       };
       bell.urgent = "yes";

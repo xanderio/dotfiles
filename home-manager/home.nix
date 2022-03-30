@@ -9,8 +9,7 @@
     ./modules/neovim.nix
     ./modules/nix-utilities.nix
     ./modules/games.nix
-
-    ./modules/work.nix
+    ./modules/gtk.nix
   ];
   # Whether to enable settings that make Home Manager work better on GNU/Linux
   # distributions other than NixOS. 
@@ -41,6 +40,11 @@
     enable = true;
     package = pkgs.firefox-wayland;
   };
+
+  programs.chromium = {
+    enable = true;
+  };
+  nixpkgs.config.chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
 
   fonts.fontconfig.enable = true;
 

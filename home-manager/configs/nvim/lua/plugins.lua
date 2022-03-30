@@ -23,7 +23,8 @@ return require('packer').startup(function()
         'dockerls',
         'pyright',
         'yamlls',
-        'cssls'
+        'cssls',
+        'dartls'
       };
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup({
@@ -105,7 +106,10 @@ return require('packer').startup(function()
 
   use {
     'weilbith/nvim-code-action-menu',
-    cmd = 'CodeActionMenu'
+    cmd = 'CodeActionMenu',
+    config = function ()
+      vim.g.code_action_menu_show_diff = false
+    end
   }
 
   use {

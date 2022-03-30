@@ -12,9 +12,14 @@
     thunderbird
     mumble
 
+    cura
+    freecad
+
     yarn
     rustup
     sccache
+
+    android-studio
   ];
 
   programs.direnv.enable = true;

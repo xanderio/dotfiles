@@ -2,7 +2,7 @@ require('nvim-treesitter.configs').setup({
   highlight = { enable = true },
   incremental_selection = { enable = true },
   textobjects = { enable = true },
-  indent = { enable = false }
+  indent = { enable = true }
 })
 
 vim.api.nvim_set_keymap('o', 'm', '<cmd>lua require("tsht").nodes()<CR>', {silent=true})
