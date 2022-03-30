@@ -1,8 +1,12 @@
 { pkgs, ... }:
 {
-  programs.sway.enable = true;
-  programs.fish.enable = true;
-  programs.dconf.enable = true;
+  programs = {
+    sway.enable = true;
+    fish.enable = true;
+    dconf.enable = true;
+    file-roller.enable = true;
+    gnome-disks.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     swaylock
@@ -14,19 +18,22 @@
 
     gnome.gnome-system-monitor
     gnome.nautilus
-    gnome.file-roller
-    gnome.sushi
-    gnome.seahorse
   ];
 
-  services.udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
-  services.gvfs.enable = true;
+  services = {
+    udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+    gvfs.enable = true;
+    gnome = {
+      gnome-keyring.enable = true;
+      sushi.enable = true;
+    };
 
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
+    pipewire = {
+      enable = true;
+      pulse.enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+    };
   };
 
   xdg.portal.wlr = {
