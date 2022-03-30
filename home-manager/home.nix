@@ -3,6 +3,7 @@
   imports = [
     ./modules/git.nix
     ./modules/fish.nix
+    ./modules/starship.nix
     ./modules/foot.nix
     ./modules/misc.nix
     ./modules/sway.nix

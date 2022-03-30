@@ -78,12 +78,4 @@
       };
     };
   };
-
-  programs.starship = {
-    enable = true;
-    settings = {
-      command_timeout = 100;
-      add_newline = false;
-    };
-  };
 }
