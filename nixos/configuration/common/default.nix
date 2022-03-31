@@ -7,12 +7,15 @@
 
   deployment.targetHost = "${config.networking.hostName}.${config.networking.domain}";
 
+  boot.cleanTmpDir = true;
+
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
     challengeResponseAuthentication = false;
     permitRootLogin = "without-password";
   };
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   environment.systemPackages = with pkgs; [
     neovim

@@ -7,4 +7,5 @@
   };
 
   delenn = import ./hosts/delenn;
+  valen = import ./hosts/valen;
 } 
