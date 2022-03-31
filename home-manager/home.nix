@@ -65,6 +65,20 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [
+    (self: super:
+      let
+        nixpkgs-master = import
+          (super.fetchFromGitHub {
+            owner = "NixOS";
+            repo = "nixpkgs";
+            rev = "e01c41205234a68a55903e05800e62d0de302e1a";
+            sha256 = "070n3vjz7srfwf2x7k1x3gnjfldwsj9zw4w9vr1x3my2wyq16qa3";
+          })
+          { };
+      in
+      {
+        fuzzel = nixpkgs-master.fuzzel;
+      })
     (import ./pkgs)
     (import (builtins.fetchTarball {
       url = https://github.com/nix-community/neovim-nightly-overlay/archive/master.tar.gz;
