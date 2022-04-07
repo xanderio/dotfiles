@@ -11,6 +11,7 @@
   environment.systemPackages = with pkgs; [
     swaylock
     gnome-icon-theme
+    hicolor-icon-theme # default fallback for icons
     gnome3.adwaita-icon-theme
     gnome.gnome-themes-extra
 
@@ -19,6 +20,8 @@
     gnome.gnome-system-monitor
     gnome.nautilus
   ];
+
+  gtk.iconCache.enable = true;
 
   services = {
     udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
