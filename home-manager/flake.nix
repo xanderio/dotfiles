@@ -51,6 +51,7 @@
           system = "x86_64-linux";
           homeDirectory = "/home/xanderio";
           username = "xanderio";
+          stateVersion = "22.05";
         };
       };
       vger = self.homeConfigurations.vger.activationPackage;
