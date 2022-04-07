@@ -8,6 +8,7 @@
   deployment.targetHost = "${config.networking.hostName}.${config.networking.domain}";
 
   boot.cleanTmpDir = true;
+  zramSwap.enable = true;
 
   services.openssh = {
     enable = true;
