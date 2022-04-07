@@ -43,16 +43,7 @@ cmd [[   au TermOpen * setlocal nonumber norelativenumber ]]
 cmd [[   au FileType mail setlocal fo+=aw ]]
 cmd [[   au FileType gitcommit setlocal spell spelllang=en ]]
 cmd [[   au FileType make setlocal tabstop=8 ]]
-local fts = {
-  "javascript", 
-  "javascriptreact",
-  "typescript",
-  "typescriptreact"
- }
-
-for _, ft in ipairs(fts) do
-  cmd("au FileType " .. ft .. " setlocal shiftwidth=2")
-end
+cmd[[    au FileType * setlocal shiftwidth=2 ]]
 
 cmd [[ augroup end ]]
 

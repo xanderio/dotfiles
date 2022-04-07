@@ -23,8 +23,13 @@
       ".env"
     ];
 
-    delta = {
+    difftastic = {
       enable = true;
+      background = "dark";
+    };
+
+    delta = {
+      enable = false;
       options = {
         syntax-theme = "Dracula";
         features = "side-by-side line-numbers decorations";
