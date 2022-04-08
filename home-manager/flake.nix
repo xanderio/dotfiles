@@ -19,6 +19,7 @@
         inputs.neovim-nightly-overlay.overlay
         (self: super: {
           nvim-ts-grammars = super.callPackage ./pkgs/nvim-ts-grammars { };
+          timewarrior-hook = super.callPackage ./pkgs/timewarrior-hook.nix { };
         })
       ];
     in
@@ -31,6 +32,7 @@
             nixpkgs.config = import ./configs/nix/config.nix;
             nixpkgs.overlays = overlays;
             imports = [
+              ./modules/taskwarrior.nix
               ./modules/firefox.nix
               ./modules/chromium.nix
               ./modules/git.nix
