@@ -3,7 +3,6 @@
   home.packages = with pkgs; [
     ripgrep
     ansible
-    bacon
     fd
     terraform
     taplo-cli
@@ -16,8 +15,6 @@
     freecad
 
     yarn
-    rustup
-    sccache
 
     android-studio
   ];

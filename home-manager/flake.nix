@@ -39,6 +39,7 @@
             nixpkgs.config = import ./configs/nix/config.nix;
             nixpkgs.overlays = overlays;
             imports = [
+              ./modules/rust.nix
               ./modules/taskwarrior.nix
               ./modules/firefox.nix
               ./modules/chromium.nix
