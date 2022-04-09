@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-21.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -15,11 +16,17 @@
 
   outputs = { self, home-manager, ... }@inputs:
     let
+      nixos-stable-overlay = final: prev: {
+        nixos-stable = import inputs.nixpkgs-stable {
+          system = prev.system;
+        };
+      };
       overlays = [
         inputs.neovim-nightly-overlay.overlay
-        (self: super: {
-          nvim-ts-grammars = super.callPackage ./pkgs/nvim-ts-grammars { };
-          timewarrior-hook = super.callPackage ./pkgs/timewarrior-hook.nix { };
+        nixos-stable-overlay
+        (final: prev: {
+          nvim-ts-grammars = prev.callPackage ./pkgs/nvim-ts-grammars { };
+          timewarrior-hook = prev.callPackage ./pkgs/timewarrior-hook.nix { };
         })
       ];
     in
