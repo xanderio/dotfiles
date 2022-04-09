@@ -1,5 +1,10 @@
 { config, pkgs, lib, name, ... }:
 {
+  imports = [
+    ./node_exporter.nix
+    ./nginx.nix
+  ];
+
   networking = {
     hostName = name;
     domain = "xanderio.de";
@@ -19,6 +24,7 @@
   networking.firewall.allowedTCPPorts = [ 22 ];
 
   environment.systemPackages = with pkgs; [
+    htop
     neovim
   ];
 
@@ -26,6 +32,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDvsq3ecdR4xigCpOQVfmWZYY74KnNJIJ5Fo0FsZMGW"
   ];
 
-  security.acme.email = "security@xanderio.de";
-  security.acme.acceptTerms = true;
+  security.acme = {
+    email = "security@xanderio.de";
+    acceptTerms = true;
+  };
 }
