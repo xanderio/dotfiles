@@ -3,6 +3,7 @@
   imports = [
     ./node_exporter.nix
     ./nginx.nix
+    ./nix.nix
   ];
 
   networking = {

@@ -3,9 +3,8 @@
   services.prometheus = {
     enable = true;
     enableReload = true;
-    extraFlags = [ "--web.enable-admin-api" ];
 
-
+    globalConfig.scrape_interval = "15s";
     scrapeConfigs = [
       {
         job_name = "prometheus";
