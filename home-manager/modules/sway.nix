@@ -10,12 +10,17 @@ let
   ];
 in
 {
-  home.packages = with pkgs; [
-    wl-clipboard
+  home = {
+    packages = with pkgs; [
+      wl-clipboard
 
-    bibata-cursors
-    font-awesome
-  ];
+      font-awesome
+    ];
+    sessionVariables = {
+      WLR_DRM_NO_MODIFIERS = "1";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+    };
+  };
 
   wayland.windowManager.sway = {
     enable = true;

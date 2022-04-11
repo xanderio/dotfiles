@@ -26,8 +26,8 @@ wo.cursorline = false
 bo.expandtab = true
 bo.modeline = true 
 bo.swapfile = false
-bo.shiftwidth=2
-bo.tabstop=2
+-- bo.shiftwidth=2
+-- bo.tabstop=2
 bo.undofile = true
 
 if vim.fn.executable('rg') then
@@ -43,7 +43,7 @@ cmd [[   au TermOpen * setlocal nonumber norelativenumber ]]
 cmd [[   au FileType mail setlocal fo+=aw ]]
 cmd [[   au FileType gitcommit setlocal spell spelllang=en ]]
 cmd [[   au FileType make setlocal tabstop=8 ]]
-cmd[[    au FileType * setlocal shiftwidth=2 ]]
+-- cmd[[    au FileType * setlocal shiftwidth=2 ]]
 
 cmd [[ augroup end ]]
 

@@ -40,6 +40,7 @@
             nixpkgs.overlays = overlays;
             imports = [
               ./modules/rust.nix
+              ./modules/darcs.nix
               ./modules/taskwarrior.nix
               ./modules/firefox.nix
               ./modules/chromium.nix

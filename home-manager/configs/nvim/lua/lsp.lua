@@ -16,7 +16,7 @@ function M.on_attach(client, bufnr)
 
     cmd [[augroup Lsp]]
     if vim.bo.filetype == "rust" then
-    cmd [[au BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
+      cmd [[au BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
     end
     if client.resolved_capabilities.document_formatting then
       cmd [[au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000) ]]
@@ -93,11 +93,10 @@ function M.lsp_keybinding(bufnr)
   buf_set_keymap('n', '<leader>m', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
 
   if vim.bo.filetype == "rust" then
-    buf_set_keymap('n', 'ga', '<cmd>RustCodeAction<CR>', opts)
+    -- buf_set_keymap('n', 'ga', '<cmd>RustCodeAction<CR>', opts)
     buf_set_keymap('n', 'J', '<cmd>RustJoinLines<CR>', opts)
-  else
-   buf_set_keymap('n', 'ga', '<cmd>CodeActionMenu<CR>', opts)
   end
+  buf_set_keymap('n', 'ga', '<cmd>CodeActionMenu<CR>', opts)
 
 end
 

@@ -1,8 +1,8 @@
 { config, pkgs, lib, ... }:
-
 {
   home.sessionVariables = {
     EDITOR = "nvim";
+    MANPAGER = "nvim +Man!";
   };
 
   home.packages = with pkgs; [
