@@ -7,7 +7,7 @@
   programs = {
     firefox = {
       enable = true;
-      package = pkgs.nixos-stable.firefox-wayland;
+      package = pkgs.firefox-wayland;
     };
   };
 }
