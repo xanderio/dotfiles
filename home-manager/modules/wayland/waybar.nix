@@ -13,7 +13,7 @@
         spacing = 0;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "custom/spt" "pulseaudio" "battery" "clock" "tray" ];
+        modules-right = [ "custom/spt" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
         "sway/workspaces" = {
           disable-scroll = true;
           disable-markup = false;
