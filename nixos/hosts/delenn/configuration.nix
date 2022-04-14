@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./miniflux.nix
     ./nextcloud.nix
+    ./taskserver.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
