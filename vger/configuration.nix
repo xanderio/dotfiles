@@ -1,23 +1,23 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      <nixos-hardware/lenovo/thinkpad/t480s>
-      ./hardware-configuration.nix
-      ./boot.nix
-      ./firewall.nix
-      ./services.nix
-      ./desktop.nix
-      ./fonts.nix
-      ./users.nix
-      ./borg.nix
-      ./cachix.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    <nixos-hardware/lenovo/thinkpad/t480s>
+    ./hardware-configuration.nix
+    ./boot.nix
+    ./firewall.nix
+    ./services.nix
+    ./desktop.nix
+    ./fonts.nix
+    ./users.nix
+    ./borg.nix
+    ./cachix.nix
+  ];
 
   hardware.bluetooth.enable = true;
 
@@ -73,6 +73,5 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.settings.trusted-users = [ "root" "xanderio" ];
+  nix.settings.trusted-users = ["root" "xanderio"];
 }
-

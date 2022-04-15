@@ -1,5 +1,9 @@
-{ name, nodes, pkgs, ... }:
 {
+  name,
+  nodes,
+  pkgs,
+  ...
+}: {
   imports = [
     ../../configuration/common
     ./configuration.nix

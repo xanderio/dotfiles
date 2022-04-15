@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -11,9 +10,9 @@
         height = 25;
         width = 2560;
         spacing = 0;
-        modules-left = [ "sway/workspaces" "sway/mode" ];
-        modules-center = [ "sway/window" ];
-        modules-right = [ "custom/spt" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
+        modules-left = ["sway/workspaces" "sway/mode"];
+        modules-center = ["sway/window"];
+        modules-right = ["custom/spt" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray"];
         "sway/workspaces" = {
           disable-scroll = true;
           disable-markup = false;
@@ -35,28 +34,24 @@
             deactivated = "";
           };
         };
-        pulseaudio =
-          let
-            pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-          in
-          {
-            format = "{icon} {volume}%";
-            on-click = "${pavucontrol}";
-          };
-        "custom/spt" =
-          let
-            spt = "${pkgs.spotify-tui}/bin/spt";
-            pgrep = "${pkgs.busybox}/bin/pgrep";
-          in
-          {
-            format = "{}";
-            max-length = 40;
-            interval = 10;
-            exec = "${spt} pb --status";
-            exec-if = "${pgrep} spt";
-            on-click = "${spt} pb --toggle";
-            escape = true;
-          };
+        pulseaudio = let
+          pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
+        in {
+          format = "{icon} {volume}%";
+          on-click = "${pavucontrol}";
+        };
+        "custom/spt" = let
+          spt = "${pkgs.spotify-tui}/bin/spt";
+          pgrep = "${pkgs.busybox}/bin/pgrep";
+        in {
+          format = "{}";
+          max-length = 40;
+          interval = 10;
+          exec = "${spt} pb --status";
+          exec-if = "${pgrep} spt";
+          on-click = "${spt} pb --toggle";
+          escape = true;
+        };
         battery = {
           states = {
             good = 95;
@@ -64,7 +59,7 @@
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = ["" "" "" "" ""];
         };
       };
     };

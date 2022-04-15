@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   services = {
     grafana = {
       enable = true;
@@ -9,9 +8,11 @@
     prometheus.scrapeConfigs = [
       {
         job_name = "grafana";
-        static_configs = [{
-          targets = [ "localhost:${toString config.services.grafana.port}" ];
-        }];
+        static_configs = [
+          {
+            targets = ["localhost:${toString config.services.grafana.port}"];
+          }
+        ];
       }
     ];
 

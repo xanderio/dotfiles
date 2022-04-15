@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -72,14 +75,12 @@
       };
       vcam = {
         description = "gphoto2 based virtual webcam";
-        body =
-          let
-            gphoto2 = "${pkgs.gphoto2}/bin/gphoto2";
-            gst-launch = "${pkgs.gst_all_1.gstreamer}/bin/gst-launch-1.0";
-          in
-          ''
-            ${gphoto2} --stdout --capture-movie | ${gst-launch} fdsrc fd=0 ! decodebin name=dec ! queue ! videoconvert ! tee ! v4l2sink device=/dev/video0 
-          '';
+        body = let
+          gphoto2 = "${pkgs.gphoto2}/bin/gphoto2";
+          gst-launch = "${pkgs.gst_all_1.gstreamer}/bin/gst-launch-1.0";
+        in ''
+          ${gphoto2} --stdout --capture-movie | ${gst-launch} fdsrc fd=0 ! decodebin name=dec ! queue ! videoconvert ! tee ! v4l2sink device=/dev/video0
+        '';
       };
       woi_login = {
         description = "Wifi@DB / WifiOnICE login script";

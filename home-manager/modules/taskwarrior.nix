@@ -1,12 +1,13 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs = {
     taskwarrior = {
       enable = true;
       colorTheme = "dark-256";
-      extraConfig = ''
-        include ~/.config/task/localrc
-      '';
+      config = {
+        color = {
+          error = "white on red";
+        };
+      };
     };
   };
 
@@ -29,13 +30,13 @@
 
       Timer = {
         Unit = "task-sync.service";
-        OnActiveSec = "10m";
+        OnCalendar = "*:0/10";
       };
     };
   };
 
   home = {
-    file.".task/hooks/on-modify.timewarrior" = {
+    file.".local/share/task/hooks/on-modify.timewarrior" = {
       executable = true;
       source = pkgs.timewarrior-hook;
     };

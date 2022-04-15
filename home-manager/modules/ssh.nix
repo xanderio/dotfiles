@@ -1,8 +1,8 @@
-{ ... }: {
+{...}: {
   programs.ssh = {
     enable = true;
 
-    includes = [ "~/.ssh/private_ssh_config" ];
+    includes = ["~/.ssh/private_ssh_config"];
 
     matchBlocks = {
       all = {

@@ -1,7 +1,7 @@
-{ pkgs ? import <nixpkgs> { } }:
+{pkgs ? import <nixpkgs> {}}:
 with pkgs;
-mkShellNoCC {
-  buildInputs = [
-    colmena
-  ];
-}
+  mkShellNoCC {
+    buildInputs = [
+      colmena
+    ];
+  }

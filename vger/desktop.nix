@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   programs = {
     sway.enable = true;
     fish.enable = true;
@@ -24,7 +23,7 @@
   gtk.iconCache.enable = true;
 
   services = {
-    udev.packages = with pkgs; [ gnome3.gnome-settings-daemon ];
+    udev.packages = with pkgs; [gnome3.gnome-settings-daemon];
     gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;

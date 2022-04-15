@@ -1,5 +1,4 @@
-{ ... }:
-{
+{...}: {
   imports = [
     ./kanshi.nix
     ./mako.nix

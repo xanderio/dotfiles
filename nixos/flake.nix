@@ -6,13 +6,14 @@
 
   outputs = inputs:
     inputs.flake-utils.lib.eachDefaultSystem
-      (system:
-        let pkgs = inputs.nixpkgs.legacyPackages.${system}; in
-        {
-          devShell = pkgs.mkShellNoCC {
-            buildInputs = with pkgs; [ colmena ];
-          };
-        }) // {
-      colmena = import ./hive.nix { inherit inputs; };
+    (system: let
+      pkgs = inputs.nixpkgs.legacyPackages.${system};
+    in {
+      devShell = pkgs.mkShellNoCC {
+        buildInputs = with pkgs; [colmena];
+      };
+    })
+    // {
+      colmena = import ./hive.nix {inherit inputs;};
     };
 }
