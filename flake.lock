@@ -139,11 +139,11 @@
     },
     "taplo-update": {
       "locked": {
-        "lastModified": 1650125537,
+        "lastModified": 1650491458,
         "narHash": "sha256-GHaj7XSCPOn0NC86rlYBQwSrmFBfdCRKWpNZqX0Tf4s=",
         "owner": "xanderio",
         "repo": "nixpkgs",
-        "rev": "458cb41c573cf7ee80ab38364ee50c653a2e45a3",
+        "rev": "2c848dca195b333d40bb7c2bce4e82bcff2f9b00",
         "type": "github"
       },
       "original": {
