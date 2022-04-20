@@ -15,21 +15,12 @@
 
   outputs = { self, nixpkgs, nixos-hardware, home-manager, ... }@inputs:
     let
-      overlays = [
-        inputs.neovim-nightly-overlay.overlay
-        (final: prev:
-          let
-            nixpkgs = import inputs.taplo-update { system = prev.system; };
-          in
-          {
-            taplo-cli = nixpkgs.taplo-cli;
-          })
-        (final: prev: {
-          nvim-ts-grammars = prev.callPackage ./home/pkgs/nvim-ts-grammars { };
-          timewarrior-hook = prev.callPackage ./home/pkgs/timewarrior-hook { };
-        })
-      ];
       system = "x86_64-linux";
+
+      overlays = import ./overlays {
+        inherit pkgs inputs;
+      };
+
       pkgs = import nixpkgs {
         inherit system overlays;
         config.allowUnfree = true;
