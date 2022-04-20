@@ -1,13 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, inputs
+, ...
 }: {
   imports = [
-    <nixos-hardware/lenovo/thinkpad/t480s>
     ./hardware-configuration.nix
     ./boot.nix
     ./firewall.nix
@@ -24,6 +23,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   networking = {
+    hostName = "vger";
     useDHCP = false;
     wireless.enable = false;
     networkmanager.enable = true;
@@ -73,5 +73,5 @@
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
-  nix.settings.trusted-users = ["root" "xanderio"];
+  nix.settings.trusted-users = [ "root" "xanderio" ];
 }

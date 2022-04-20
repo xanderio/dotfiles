@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -16,16 +15,20 @@
     rnix-lsp
     rust-analyzer
     terraform-lsp
-    taplo-lsp
+    taplo-cli
     shellcheck
 
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
-    nodePackages.pyright
     nodePackages.typescript
     nodePackages.typescript-language-server
     nodePackages.yaml-language-server
     nodePackages.vscode-css-languageserver-bin
+
+    nodePackages.pyright
+    black
+    python3Packages.isort
+    python3Packages.flake8
 
     # Formatter
     nodePackages.prettier
@@ -46,11 +49,11 @@
       };
     }
     // lib.attrsets.mapAttrs'
-    (name: drv:
-      lib.attrsets.nameValuePair
-      ("nvim/parser/"
-        + (lib.strings.removePrefix "tree-sitter-" name)
-        + ".so")
-      {source = "${drv}/parser.so";})
-    pkgs.nvim-ts-grammars.builtGrammars;
+      (name: drv:
+        lib.attrsets.nameValuePair
+          ("nvim/parser/"
+          + (lib.strings.removePrefix "tree-sitter-" name)
+          + ".so")
+          { source = "${drv}/parser.so"; })
+      pkgs.nvim-ts-grammars.builtGrammars;
 }

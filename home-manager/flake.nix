@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-staging-next.url = "github:nixos/nixpkgs/staging-next";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -12,6 +11,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    taplo-update.url = "github:xanderio/nixpkgs/taplo-cli-0.6.1";
   };
 
   outputs =
@@ -22,6 +22,13 @@
     let
       overlays = [
         inputs.neovim-nightly-overlay.overlay
+        (final: prev:
+          let
+            nixpkgs = import inputs.taplo-update { system = prev.system; };
+          in
+          {
+            taplo-cli = nixpkgs.taplo-cli;
+          })
         (final: prev: {
           nvim-ts-grammars = prev.callPackage ./pkgs/nvim-ts-grammars { };
           timewarrior-hook = prev.callPackage ./pkgs/timewarrior-hook { };
@@ -43,12 +50,14 @@
               imports = [
                 ./modules/chromium.nix
                 ./modules/darcs.nix
+                ./modules/easyeffects.nix
                 ./modules/firefox.nix
                 ./modules/fish.nix
                 ./modules/fonts.nix
                 ./modules/foot.nix
                 ./modules/games.nix
                 ./modules/git.nix
+                ./modules/gpg.nix
                 ./modules/gtk.nix
                 ./modules/home-manager.nix
                 ./modules/misc.nix

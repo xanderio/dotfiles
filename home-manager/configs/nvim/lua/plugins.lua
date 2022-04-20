@@ -17,14 +17,13 @@ return require('packer').startup(function()
     config = function() 
       local servers = { 
         'bashls',
-        'terraform_lsp',
+        'cssls',
+        'dartls',
+        'dockerls',
         'rnix',
         'taplo',
-        'dockerls',
-        'pyright',
+        'terraform_lsp',
         'yamlls',
-        'cssls',
-        'dartls'
       };
       for _, lsp in ipairs(servers) do
         require('lspconfig')[lsp].setup({
@@ -32,6 +31,21 @@ return require('packer').startup(function()
           on_attach = require('lsp').on_attach,
         })
       end
+
+      require('lspconfig').pyright.setup({
+        capabilities = require('lsp').capabilities(),
+        on_attach = require('lsp').on_attach,
+        settings = {
+          python = {
+            analysis = {
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly",
+              typeCheckingMode = "off",
+              useLibraryCodeForTypes = true,
+            },
+          },
+        }
+      })
 
       require'lspconfig'.tsserver.setup({
         init_options = require("nvim-lsp-ts-utils").init_options,
@@ -66,9 +80,12 @@ return require('packer').startup(function()
         sources = {
           null_ls.builtins.formatting.prettierd,
           null_ls.builtins.formatting.fish_indent,
+          null_ls.builtins.formatting.black,
+          null_ls.builtins.formatting.isort,
           null_ls.builtins.diagnostics.eslint_d,
           null_ls.builtins.diagnostics.ansiblelint,
           null_ls.builtins.diagnostics.shellcheck,
+          null_ls.builtins.diagnostics.flake8,
           null_ls.builtins.code_actions.eslint_d,
           null_ls.builtins.code_actions.shellcheck,
         },

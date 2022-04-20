@@ -1,7 +1,6 @@
-{
-  config,
-  pkgs,
-  ...
+{ config
+, pkgs
+, ...
 }: {
   programs.git = {
     enable = true;
@@ -15,7 +14,7 @@
     includes = [
       {
         path = "~/Work/.gitconfig";
-        condition = "gitdir:~/Work";
+        condition = "gitdir:~/Work/";
       }
     ];
 
@@ -23,6 +22,7 @@
       ".direnv"
       ".envrc"
       ".env"
+      "env"
     ];
 
     difftastic = {

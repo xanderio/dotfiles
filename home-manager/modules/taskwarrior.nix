@@ -2,7 +2,7 @@
   programs = {
     taskwarrior = {
       enable = true;
-      colorTheme = "dark-256";
+      #colorTheme = "dark-256";
       config = {
         color = {
           error = "white on red";
@@ -11,30 +11,42 @@
     };
   };
 
+  services.taskwarrior-sync = {
+    enable = true;
+  };
+
   systemd.user = {
-    services.task-sync = {
-      Unit = {
-        Description = "sync taskwarrior";
+    services =
+      {
+        bugwarrior-pull = {
+          Unit = {
+            Description = "Bugwarrior pull";
+          };
+          Service = {
+            CPUSchedulingPolicy = "idle";
+            IOSchedulingClass = "idle";
+            ExecStart = "${pkgs.python39Packages.bugwarrior}/bin/bugwarrior-pull";
+          };
+        };
       };
-      Service = {
-        ExecStart = "${pkgs.taskwarrior}/bin/task sync";
-      };
-    };
 
-    timers.task-sync = {
-      Unit = {
-        Description = "sync taskwarrior";
-      };
+    timers = {
+      bugwarrior-pull = {
+        Unit = {
+          Description = "Bugwarrior pull";
+        };
 
-      Install.WantedBy = [ "timers.target" ];
+        Install.WantedBy = [ "timers.target" ];
 
-      Timer = {
-        Unit = "task-sync.service";
-        OnCalendar = "*:0/10";
+        Timer = {
+          Unit = "bugwarrior-pull.service";
+          OnCalendar = "*:0/5";
+        };
       };
     };
   };
 
+  xdg.configFile."bugwarrior/bugwarriorrc".source = ../configs/bugwarriorrc;
   home = {
     file.".local/share/task/hooks/on-modify.timewarrior" = {
       executable = true;
@@ -43,6 +55,7 @@
     packages = with pkgs; [
       timewarrior
       taskwarrior-tui
+      python39Packages.bugwarrior
     ];
   };
 }
