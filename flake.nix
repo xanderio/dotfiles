@@ -27,12 +27,15 @@
       };
     in
     {
+      devShells."${system}".default = pkgs.mkShellNoCC {
+        buildInputs = [ pkgs.colmena ];
+      };
       # replace 'joes-desktop' with your hostname here.
       nixosConfigurations.vger = nixpkgs.lib.nixosSystem {
         inherit system pkgs;
         specialArgs = inputs;
         modules = [
-          ./vger/configuration.nix
+          ./hosts/vger/configuration.nix
           nixos-hardware.nixosModules.lenovo-thinkpad-t480s
           home-manager.nixosModules.home-manager
           {
@@ -48,5 +51,6 @@
           }
         ];
       };
+      colmena = import ./hive.nix { inherit inputs; };
     };
 }
