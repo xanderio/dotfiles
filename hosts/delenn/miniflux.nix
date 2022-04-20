@@ -1,6 +1,6 @@
-{...}: {
+{ ... }: {
   services.miniflux = {
-    enable = true;
+    enable = false;
     config = {
       FETCH_YOUTUBE_WATCH_TIME = "on";
     };
