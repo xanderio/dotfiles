@@ -89,7 +89,7 @@ function M.lsp_keybinding(bufnr)
   buf_set_keymap('n', 'd,', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', 'd;', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
-  buf_set_keymap('n', '<C-t>', '<cmd>lua require("telescope.builtin").lsp_workspace_symbols()<CR>', opts)
+  buf_set_keymap('n', '<C-t>', '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>', opts)
   buf_set_keymap('n', '<leader>m', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
 
   if vim.bo.filetype == "rust" then
