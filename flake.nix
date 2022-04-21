@@ -51,6 +51,26 @@
           }
         ];
       };
+      nixosConfigurations.heracles = nixpkgs.lib.nixosSystem {
+        inherit system pkgs;
+        specialArgs = inputs;
+        modules = [
+          ./hosts/heracles/configuration.nix
+          nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen2
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.xanderio = import ./home;
+            };
+            nixpkgs = {
+              inherit overlays;
+              config.allowUnfree = true;
+            };
+          }
+        ];
+      };
       colmena = import ./hive.nix { inherit inputs; };
     };
 }
