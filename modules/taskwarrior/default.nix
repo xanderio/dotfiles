@@ -46,7 +46,7 @@
     };
   };
 
-  xdg.configFile."bugwarrior/bugwarriorrc".source = ../configs/bugwarriorrc;
+  xdg.configFile."bugwarrior/bugwarriorrc".source = ./bugwarriorrc;
   home = {
     file.".local/share/task/hooks/on-modify.timewarrior" = {
       executable = true;

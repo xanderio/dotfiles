@@ -25,52 +25,48 @@
         inherit system overlays;
         config.allowUnfree = true;
       };
+      lib = import ./lib { inherit nixpkgs home-manager pkgs overlays system inputs; };
     in
     {
       devShells."${system}".default = pkgs.mkShellNoCC {
         buildInputs = [ pkgs.colmena ];
       };
-      # replace 'joes-desktop' with your hostname here.
-      nixosConfigurations.vger = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        specialArgs = inputs;
-        modules = [
-          ./hosts/vger/configuration.nix
-          nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.xanderio = import ./home;
+      nixosConfigurations =
+        let
+        in
+        {
+          vger = lib.mkHost {
+            name = "vger";
+            modules = [
+              nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+              home-manager.nixosModules.home-manager
+              {
+                home-manager = {
+                  useGlobalPkgs = true;
+                  useUserPackages = true;
+                  users.xanderio = import ./home.nix;
+                };
+              }
+            ];
+          };
+          heracles = lib.mkHost
+            {
+              name = "heracles";
+              modules = [
+                nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen2
+                home-manager.nixosModules.home-manager
+                {
+                  home-manager = {
+                    useGlobalPkgs = true;
+                    useUserPackages = true;
+                    users.xanderio = import ./home.nix;
+                  };
+                }
+              ];
             };
-            nixpkgs = {
-              inherit overlays;
-              config.allowUnfree = true;
-            };
-          }
-        ];
-      };
-      nixosConfigurations.heracles = nixpkgs.lib.nixosSystem {
-        inherit system pkgs;
-        specialArgs = inputs;
-        modules = [
-          ./hosts/heracles/configuration.nix
-          nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen2
-          home-manager.nixosModules.home-manager
-          {
-            home-manager = {
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.xanderio = import ./home;
-            };
-            nixpkgs = {
-              inherit overlays;
-              config.allowUnfree = true;
-            };
-          }
-        ];
-      };
-      colmena = import ./hive.nix { inherit inputs; };
+        };
+      colmena = import
+        ./hive.nix
+        { inherit inputs; };
     };
 }

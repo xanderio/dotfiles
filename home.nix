@@ -3,8 +3,6 @@
 , ...
 }: {
   home.stateVersion = "22.05";
-  xdg.configFile."nix/nix.conf".source = ./configs/nix/nix.conf;
-  nixpkgs.config = import ./configs/nix/config.nix;
   imports = [
     ./modules/chromium.nix
     ./modules/darcs.nix
@@ -19,12 +17,13 @@
     ./modules/gtk.nix
     ./modules/home-manager.nix
     ./modules/misc.nix
-    ./modules/neovim.nix
+    ./modules/neovim
+    ./modules/nix
     ./modules/nix-utilities.nix
     ./modules/rust.nix
     ./modules/ssh.nix
     ./modules/starship.nix
-    ./modules/taskwarrior.nix
+    ./modules/taskwarrior
     ./modules/wayland
   ];
 }

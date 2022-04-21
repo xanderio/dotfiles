@@ -45,7 +45,7 @@
     {
       "nvim" = {
         recursive = true;
-        source = ../configs/nvim;
+        source = ./nvim;
       };
     }
     // lib.attrsets.mapAttrs'
