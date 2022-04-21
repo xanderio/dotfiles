@@ -8,14 +8,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ./boot.nix
-    ./firewall.nix
-    ./services.nix
-    ./desktop.nix
-    ./fonts.nix
-    ./users.nix
-    ./borg.nix
-    ./cachix.nix
   ];
 
   hardware.bluetooth.enable = true;

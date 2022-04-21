@@ -5,7 +5,7 @@
       inherit system pkgs;
       specialArgs = inputs;
       modules = [
-        (../hosts + "/${name}/configuration.nix")
+        (../hosts + "/${name}")
       ] ++ modules;
     };
 }
