@@ -3,6 +3,9 @@
 , ...
 }: {
   home.stateVersion = "22.05";
+  home.packages = with pkgs; [
+    bibata-cursors
+  ];
   imports = [
     ./modules/chromium.nix
     ./modules/darcs.nix

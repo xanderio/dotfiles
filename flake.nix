@@ -44,7 +44,11 @@
                 home-manager = {
                   useGlobalPkgs = true;
                   useUserPackages = true;
-                  users.xanderio = import ./home.nix;
+                  users.xanderio = {
+                    imports = [ ./home.nix ];
+                  } // {
+                    programs.git.signing.key = "alex@xanderio.de";
+                  };
                 };
               }
             ];
@@ -59,7 +63,18 @@
                   home-manager = {
                     useGlobalPkgs = true;
                     useUserPackages = true;
-                    users.xanderio = import ./home.nix;
+                    users.xanderio = {
+                      imports = [ ./home.nix ];
+                    } //
+                    {
+                      programs.git = nixpkgs.lib.mkForce {
+                        signing = {
+                          key = "0x3ABD985B2004F8E6";
+                          signByDefault = true;
+                        };
+                        userEmail = "alexander.sieg@binary-butterfly.de";
+                      };
+                    };
                   };
                 }
               ];

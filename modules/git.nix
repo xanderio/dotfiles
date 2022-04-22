@@ -44,9 +44,6 @@
       };
     };
     extraConfig = {
-      user = {
-        signingkey = "alex@xanderio.de";
-      };
       core = {
         editor = "nvim";
       };
