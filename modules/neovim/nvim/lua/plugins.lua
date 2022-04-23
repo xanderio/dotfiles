@@ -78,16 +78,33 @@ return require('packer').startup(function()
       local null_ls = require('null-ls')
       null_ls.setup({
         sources = {
+          -- js,ts,etc.
+          null_ls.builtins.code_actions.eslint_d,
           null_ls.builtins.formatting.prettierd,
+          null_ls.builtins.diagnostics.eslint_d,
+
+          -- shell
+          null_ls.builtins.code_actions.shellcheck,
           null_ls.builtins.formatting.fish_indent,
+          null_ls.builtins.diagnostics.shellcheck,
+
+          -- Nix
+          null_ls.builtins.code_actions.statix,
+          null_ls.builtins.formatting.alejandra,
+
+          -- python
           null_ls.builtins.formatting.black,
           null_ls.builtins.formatting.isort,
-          null_ls.builtins.diagnostics.eslint_d,
+          null_ls.builtins.diagnostics.pylama,
+          
+          -- ansible
           null_ls.builtins.diagnostics.ansiblelint,
-          null_ls.builtins.diagnostics.shellcheck,
-          null_ls.builtins.diagnostics.flake8,
-          null_ls.builtins.code_actions.eslint_d,
-          null_ls.builtins.code_actions.shellcheck,
+
+          -- docker 
+          null_ls.builtins.diagnostics.hadolint,
+
+          -- gitlint
+          null_ls.builtins.diagnostics.gitlint,
         },
         on_attach = require('lsp').on_attach
       })

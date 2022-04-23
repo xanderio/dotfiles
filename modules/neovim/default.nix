@@ -17,6 +17,11 @@
     terraform-lsp
     taplo-cli
     shellcheck
+    terraform
+
+    statix
+    alejandra
+    gitlint
 
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
@@ -24,16 +29,13 @@
     nodePackages.typescript-language-server
     nodePackages.yaml-language-server
     nodePackages.vscode-css-languageserver-bin
+    nodePackages.prettier
 
     nodePackages.pyright
     black
     python3Packages.isort
     python3Packages.flake8
-
-    # Formatter
-    nodePackages.prettier
-    nixpkgs-fmt
-    terraform
+    python3Packages.pylama
   ];
 
   home.shellAliases = {
