@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/alexlafroscia/tree-sitter-glimmer",
-  "rev": "7da694aacda35266e96421cf92f595a91669c1e3",
-  "date": "2022-04-15T10:11:18+00:00",
-  "path": "/nix/store/gs3qpga6ml75lznl9mkwam1rlcazqv6g-tree-sitter-glimmer-7da694a",
-  "sha256": "1nh617jfg3k5gy5pkh3wbpq4a1vjk4jn9sp2lnlnkdwd6vf6gg5k",
+  "rev": "b2f55e596af5a7d2c3d95076c6af91d8f023617c",
+  "date": "2022-04-21T10:12:41+00:00",
+  "path": "/nix/store/2q3g0c9x97zpkv1ccl29xqczszmm3pw7-tree-sitter-glimmer-b2f55e5",
+  "sha256": "03x93mly21cjyqylmb7yi1vbilnxky4zznbrwp1h9jsg8ql3q54z",
   "fetchLFS": false,
   "fetchSubmodules": false,
   "deepClone": false,

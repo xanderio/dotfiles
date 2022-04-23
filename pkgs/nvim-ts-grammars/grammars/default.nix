@@ -40,6 +40,7 @@
   tree-sitter-ocaml = builtins.fromJSON (builtins.readFile ./tree-sitter-ocaml.json);
   tree-sitter-ocaml_interface = builtins.fromJSON (builtins.readFile ./tree-sitter-ocaml_interface.json);
   tree-sitter-ocamllex = builtins.fromJSON (builtins.readFile ./tree-sitter-ocamllex.json);
+  tree-sitter-org = builtins.fromJSON (builtins.readFile ./tree-sitter-org.json);
   tree-sitter-c_sharp = builtins.fromJSON (builtins.readFile ./tree-sitter-c_sharp.json);
   tree-sitter-todotxt = builtins.fromJSON (builtins.readFile ./tree-sitter-todotxt.json);
   tree-sitter-typescript = builtins.fromJSON (builtins.readFile ./tree-sitter-typescript.json);

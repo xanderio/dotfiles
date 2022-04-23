@@ -2,7 +2,10 @@
 #! nix-shell -i python3
 #! nix-shell -p cacert python3 nix nix-prefetch-git
 
-import json, re, os, subprocess
+import json
+import os
+import re
+import subprocess
 from urllib.request import urlopen
 
 grammars_path = os.path.join(os.getcwd(), "grammars")
@@ -13,8 +16,7 @@ lockfile_body = urlopen(lockfile_url).read()
 lockfile_data = json.loads(lockfile_body.decode("utf-8"))
 
 parsers_url = "https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/lua/nvim-treesitter/parsers.lua"
-parsers_re = re.compile(r'list.(\w+)\s=.*\s.*\s*url\s=\s"([^,]+)",',
-                        re.MULTILINE)
+parsers_re = re.compile(r'list.(\w+)\s=.*\s.*\s*url\s=\s"([^,]+)",', re.MULTILINE)
 parsers_body = urlopen(parsers_url).read()
 parsers_code = parsers_body.decode("utf-8")
 
@@ -31,15 +33,15 @@ for data in parsers_data:
     parser_name, parser_repo = data
     if parser_name in problematic_parsers:
         continue
-    parser_rev = lockfile_data[parser_name]['revision']
-    parser_file_path = os.path.join(grammars_path,
-                                    f"tree-sitter-{parser_name}.json")
+    parser_rev = lockfile_data[parser_name]["revision"]
+    parser_file_path = os.path.join(grammars_path, f"tree-sitter-{parser_name}.json")
 
-    grammars_file.write(f"  tree-sitter-{parser_name} = "
-                        + "("
-                        + "builtins.fromJSON ("
-                        + f"builtins.readFile ./tree-sitter-{parser_name}.json"
-                        + "));\n")
+    grammars_file.write(
+        f"  tree-sitter-{parser_name} = "
+        + "builtins.fromJSON ("
+        + f"builtins.readFile ./tree-sitter-{parser_name}.json"
+        + ");\n"
+    )
 
     print(parser_name)
     nix_prefetch_args = ["--url", parser_repo, "--rev", parser_rev]
