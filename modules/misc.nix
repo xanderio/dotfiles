@@ -27,7 +27,10 @@ in {
       ++ optional cfg.android-studio.enable pkgs.android-studio
       ++ optional cfg.mumble.enable pkgs.mumble;
 
-    programs.direnv.enable = true;
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     programs.exa.enable = true;
     programs.jq.enable = true;
     programs.bat = {
