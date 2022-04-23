@@ -1,9 +1,10 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./kanshi.nix
     ./mako.nix
     ./sway
     ./swayidle.nix
+    ./swaylock
     ./tray-items.nix
     ./waybar
   ];

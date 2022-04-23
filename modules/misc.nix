@@ -1,33 +1,40 @@
-{ config
-, pkgs
-, ...
-}: {
-  home.packages = with pkgs; [
-    ripgrep
-    ansible
-    fd
-    terraform
-    taplo-cli
-    htop
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
+  cfg = config.xanderio;
+in {
+  options.xanderio = {
+    cura.enable = mkEnableOption "cura";
+    freecad.enable = mkEnableOption "freecad";
+    android-studio.enable = mkEnableOption "android-studio";
+    mumble.enable = mkEnableOption "mumble";
+  };
+  config = {
+    home.packages = with pkgs;
+      [
+        ripgrep
+        fd
+        htop
 
-    thunderbird
-    mumble
+        thunderbird
+      ]
+      ++ optional cfg.cura.enable pkgs.cura
+      ++ optional cfg.freecad.enable pkgs.freecad
+      ++ optional cfg.android-studio.enable pkgs.android-studio
+      ++ optional cfg.mumble.enable pkgs.mumble;
 
-    cura
-    freecad
-
-    yarn
-
-    android-studio
-  ];
-
-  programs.direnv.enable = true;
-  programs.exa.enable = true;
-  programs.jq.enable = true;
-  programs.bat = {
-    enable = true;
-    config = {
-      theme = "Dracula";
+    programs.direnv.enable = true;
+    programs.exa.enable = true;
+    programs.jq.enable = true;
+    programs.bat = {
+      enable = true;
+      config = {
+        theme = "Dracula";
+      };
     };
   };
 }

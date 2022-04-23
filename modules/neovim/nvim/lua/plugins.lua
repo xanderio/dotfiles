@@ -20,7 +20,6 @@ return require('packer').startup(function()
         'cssls',
         'dartls',
         'dockerls',
-        'rnix',
         'taplo',
         'terraform_lsp',
         'yamlls',
@@ -32,6 +31,14 @@ return require('packer').startup(function()
         })
       end
 
+      require('lspconfig').rnix.setup({
+        capabilities = require('lsp').capabilities(),
+        on_attach = function(client, bufnr)
+          client.resolved_capabilities.document_formatting = false
+          client.resolved_capabilities.document_range_formatting = false
+          require('lsp').on_attach(client, bufnr)
+        end,
+      })
       require('lspconfig').pyright.setup({
         capabilities = require('lsp').capabilities(),
         on_attach = require('lsp').on_attach,
