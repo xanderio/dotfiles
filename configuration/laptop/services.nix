@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -7,7 +7,7 @@
   services.logind.lidSwitchExternalPower = "ignore";
   services.pcscd = {
     enable = true;
-    plugins = [ pkgs.ifdnfc ];
+    plugins = [pkgs.ifdnfc];
   };
 
   virtualisation.docker.enable = true;

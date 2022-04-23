@@ -1,3 +1,3 @@
 super: self: {
-  nvim-ts-grammars = super.callPackage ./nvim-ts-grammars { };
+  nvim-ts-grammars = super.callPackage ./nvim-ts-grammars {};
 }

@@ -1,6 +1,7 @@
-{ pkgs
-, config
-, ...
+{
+  pkgs,
+  config,
+  ...
 }: {
   home.stateVersion = "22.05";
   home.packages = with pkgs; [

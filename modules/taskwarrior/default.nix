@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs = {
     taskwarrior = {
       enable = true;
@@ -16,19 +16,18 @@
   };
 
   systemd.user = {
-    services =
-      {
-        bugwarrior-pull = {
-          Unit = {
-            Description = "Bugwarrior pull";
-          };
-          Service = {
-            CPUSchedulingPolicy = "idle";
-            IOSchedulingClass = "idle";
-            ExecStart = "${pkgs.python39Packages.bugwarrior}/bin/bugwarrior-pull";
-          };
+    services = {
+      bugwarrior-pull = {
+        Unit = {
+          Description = "Bugwarrior pull";
+        };
+        Service = {
+          CPUSchedulingPolicy = "idle";
+          IOSchedulingClass = "idle";
+          ExecStart = "${pkgs.python39Packages.bugwarrior}/bin/bugwarrior-pull";
         };
       };
+    };
 
     timers = {
       bugwarrior-pull = {
@@ -36,7 +35,7 @@
           Description = "Bugwarrior pull";
         };
 
-        Install.WantedBy = [ "timers.target" ];
+        Install.WantedBy = ["timers.target"];
 
         Timer = {
           Unit = "bugwarrior-pull.service";

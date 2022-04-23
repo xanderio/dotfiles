@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   services.miniflux = {
     enable = false;
     config = {
