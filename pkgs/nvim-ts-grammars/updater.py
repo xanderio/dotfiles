@@ -2,19 +2,21 @@
 #! nix-shell -i python3
 #! nix-shell -p cacert python3 nix nix-prefetch-git
 
+import asyncio
 import json
 import os
 import re
-import subprocess
 from urllib.request import urlopen
 
 grammars_path = os.path.join(os.getcwd(), "grammars")
 nix_prefetch_cmd = ["nix-prefetch-git", "--quiet", "--no-deepClone"]
 
+print("Fetching lockfile")
 lockfile_url = "https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/lockfile.json"
 lockfile_body = urlopen(lockfile_url).read()
 lockfile_data = json.loads(lockfile_body.decode("utf-8"))
 
+print("Fetching parser list")
 parsers_url = "https://raw.githubusercontent.com/nvim-treesitter/nvim-treesitter/master/lua/nvim-treesitter/parsers.lua"
 parsers_re = re.compile(r'list.(\w+)\s=.*\s.*\s*url\s=\s"([^,]+)",', re.MULTILINE)
 parsers_body = urlopen(parsers_url).read()
@@ -28,6 +30,16 @@ grammars_file = open(grammars_file_path, "w")
 
 grammars_file.write("{\n")
 problematic_parsers = ["godotResource", "teal", "d", "swift"]
+
+tasks = []
+
+
+async def run_prefetch(cmd: str, parser_name: str, file_path: str):
+    with open(file_path, "w") as f:
+        process = await asyncio.create_subprocess_shell(cmd, stdout=f)
+        await process.wait()
+        print(" --> {}".format(parser_name))
+
 
 for data in parsers_data:
     parser_name, parser_repo = data
@@ -43,10 +55,24 @@ for data in parsers_data:
         + ");\n"
     )
 
-    print(parser_name)
     nix_prefetch_args = ["--url", parser_repo, "--rev", parser_rev]
-    with open(parser_file_path, "w") as f:
-        subprocess.run(nix_prefetch_cmd + nix_prefetch_args, stdout=f)
+    tasks.append(
+        run_prefetch(
+            " ".join(nix_prefetch_cmd + nix_prefetch_args),
+            parser_name,
+            parser_file_path,
+        )
+    )
 
 grammars_file.write("}")
 grammars_file.close()
+
+print("Running prefetch for {} parsers".format(len(tasks)))
+
+
+async def run():
+    await asyncio.gather(*tasks, return_exceptions=True)
+
+
+asyncio.run(run())
+print("Done")
