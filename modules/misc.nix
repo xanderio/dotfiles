@@ -19,6 +19,9 @@ in {
         ripgrep
         fd
         htop
+        file
+        unzip
+        ldns # drill
 
         thunderbird
       ]
