@@ -27,6 +27,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/paperless" = {
+    device = "/dev/disk/by-uuid/f840e9a5-e709-46be-9dec-338e1ceebf5a";
+    fsType = "ext4";
+  };
+
   swapDevices = [];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

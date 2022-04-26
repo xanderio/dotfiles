@@ -4,6 +4,7 @@
     ./miniflux.nix
     ./nextcloud.nix
     ./taskserver.nix
+    ./paperless.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
