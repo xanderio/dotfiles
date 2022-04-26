@@ -24,7 +24,7 @@
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
-    challengeResponseAuthentication = false;
+    kbdInteractiveAuthentication = false;
     permitRootLogin = "without-password";
   };
   networking.firewall.allowedTCPPorts = [22];
@@ -39,7 +39,7 @@
   ];
 
   security.acme = {
-    email = "security@xanderio.de";
+    defaults.email = "security@xanderio.de";
     acceptTerms = true;
   };
 }
