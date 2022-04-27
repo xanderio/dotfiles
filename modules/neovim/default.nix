@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -23,6 +22,7 @@
     statix
     alejandra
     gitlint
+    hadolint
 
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
@@ -52,11 +52,11 @@
       };
     }
     // lib.attrsets.mapAttrs'
-    (name: drv:
-      lib.attrsets.nameValuePair
-      ("nvim/parser/"
-        + (lib.strings.removePrefix "tree-sitter-" name)
-        + ".so")
-      {source = "${drv}/parser.so";})
-    pkgs.nvim-ts-grammars.builtGrammars;
+      (name: drv:
+        lib.attrsets.nameValuePair
+          ("nvim/parser/"
+          + (lib.strings.removePrefix "tree-sitter-" name)
+          + ".so")
+          { source = "${drv}/parser.so"; })
+      pkgs.nvim-ts-grammars.builtGrammars;
 }
