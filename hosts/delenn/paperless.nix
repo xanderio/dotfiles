@@ -17,6 +17,7 @@
       enableACME = true;
       forceSSL = true;
       locations."/" = {
+        proxyWebsockets = true;
         proxyPass = "http://localhost:${toString config.services.paperless.port}/";
       };
       extraConfig = ''

@@ -1,7 +1,9 @@
-{...}: {
+{lib, ...}: {
   services.miniflux = {
-    enable = false;
+    enable = true;
+    adminCredentialsFile = "/dev/null";
     config = {
+      CREATE_ADMIN = lib.mkForce "0";
       FETCH_YOUTUBE_WATCH_TIME = "on";
     };
   };
