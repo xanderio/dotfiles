@@ -6,6 +6,7 @@
     ./taskserver.nix
     ./paperless.nix
     ./hass.nix
+    ./website.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
