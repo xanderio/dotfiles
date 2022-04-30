@@ -5,6 +5,7 @@
     ./nextcloud.nix
     ./taskserver.nix
     ./paperless.nix
+    ./hass.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
