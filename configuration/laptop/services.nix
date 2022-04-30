@@ -5,6 +5,10 @@
   services.blueman.enable = true;
   security.rtkit.enable = true;
   services.logind.lidSwitchExternalPower = "ignore";
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+  };
   services.pcscd = {
     enable = true;
     plugins = [pkgs.ifdnfc];
