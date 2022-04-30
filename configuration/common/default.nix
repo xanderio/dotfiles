@@ -9,6 +9,7 @@
     ./node_exporter.nix
     ./nginx.nix
     ./nix.nix
+    ./wireguard.nix
   ];
 
   networking = {

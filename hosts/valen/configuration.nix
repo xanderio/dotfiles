@@ -24,5 +24,11 @@
       interface = "ens3";
     };
     nameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2"];
+    firewall.interfaces.ens10.allowedTCPPortRanges = [
+      {
+        from = 0;
+        to = 65535;
+      }
+    ];
   };
 }

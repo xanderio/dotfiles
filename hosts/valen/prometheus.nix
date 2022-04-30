@@ -18,6 +18,14 @@
         ];
       }
       {
+        job_name = "wireguard";
+        static_configs = [
+          {
+            targets = ["10.0.1.2:${toString config.services.prometheus.exporters.wireguard.port}"];
+          }
+        ];
+      }
+      {
         job_name = "node";
         hetzner_sd_configs = [
           {
