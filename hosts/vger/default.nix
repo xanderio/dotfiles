@@ -14,5 +14,6 @@
     prusa-slicer.enable = true;
     freecad.enable = true;
     mumble.enable = true;
+    darktable.enable = true;
   };
 }

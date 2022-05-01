@@ -12,6 +12,7 @@ in {
     freecad.enable = mkEnableOption "freecad";
     android-studio.enable = mkEnableOption "android-studio";
     mumble.enable = mkEnableOption "mumble";
+    darktable.enable = mkEnableOption "darktable";
   };
   config = {
     home.packages = with pkgs;
@@ -24,11 +25,13 @@ in {
         ldns # drill
 
         thunderbird
+        imv
       ]
       ++ optional cfg.prusa-slicer.enable pkgs.prusa-slicer
       ++ optional cfg.freecad.enable pkgs.freecad
       ++ optional cfg.android-studio.enable pkgs.android-studio
-      ++ optional cfg.mumble.enable pkgs.mumble;
+      ++ optional cfg.mumble.enable pkgs.mumble
+      ++ optional cfg.darktable.enable pkgs.darktable;
 
     programs.direnv = {
       enable = true;
