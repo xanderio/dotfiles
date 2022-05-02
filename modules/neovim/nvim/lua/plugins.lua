@@ -47,7 +47,7 @@ return require('packer').startup(function()
             analysis = {
               autoSearchPaths = true,
               diagnosticMode = "openFilesOnly",
-              typeCheckingMode = "off",
+              typeCheckingMode = "basic",
               useLibraryCodeForTypes = true,
             },
           },

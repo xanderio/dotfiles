@@ -22,6 +22,7 @@ in {
         file
         unzip
         ldns # drill
+        httpie
 
         thunderbird
       ]
