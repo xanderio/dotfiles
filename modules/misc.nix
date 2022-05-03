@@ -23,6 +23,7 @@ in {
         unzip
         ldns # drill
         httpie
+        pre-commit
 
         thunderbird
       ]
