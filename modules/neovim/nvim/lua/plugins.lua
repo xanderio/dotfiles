@@ -329,6 +329,7 @@ return require('packer').startup(function()
   use { 'hrsh7th/cmp-calc' }
   use { 'hrsh7th/cmp-buffer' }
   use { 'hrsh7th/cmp-cmdline' }
+  use { 'hrsh7th/cmp-nvim-lsp-signature-help' }
 
   use {
     'hrsh7th/nvim-cmp',
