@@ -1,21 +1,5 @@
 {
   "nodes": {
-    "colmena": {
-      "locked": {
-        "lastModified": 1651106730,
-        "narHash": "sha256-luMHaB8H3+Ap9VK/HYgBfQqSzrAfNOqEfZ2Njmsb2NY=",
-        "owner": "zhaofengli",
-        "repo": "nixpkgs",
-        "rev": "c694b05164a5de10acfcfcdf8b647373be43a5a9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zhaofengli",
-        "ref": "colmena-0.3.0",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -146,7 +130,6 @@
     },
     "root": {
       "inputs": {
-        "colmena": "colmena",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",

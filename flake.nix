@@ -11,9 +11,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     taplo-update.url = github:xanderio/nixpkgs/taplo-cli-0.6.1;
-    colmena = {
-      url = "github:zhaofengli/nixpkgs/colmena-0.3.0";
-    };
   };
 
   outputs = {
