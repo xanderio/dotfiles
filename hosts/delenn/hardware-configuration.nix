@@ -32,6 +32,11 @@
     fsType = "ext4";
   };
 
+  fileSystems."/mnt/pixelfed" = {
+    device = "/dev/disk/by-uuid/81cbe187-f303-4af3-a1c8-081b2555b35f";
+    fsType = "ext4";
+  };
+
   swapDevices = [];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

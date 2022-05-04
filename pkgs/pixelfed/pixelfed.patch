@@ -1,0 +1,7 @@
+diff --git a/bootstrap/app.php b/bootstrap/app.php
+index f2801adf..b88d9f44 100644
+--- a/bootstrap/app.php
++++ b/bootstrap/app.php
+@@ -43,0 +44,2 @@ $app->singleton(
++$app->useStoragePath( env( 'APP_STORAGE_PATH', '/mnt/pixelfed/storage' ) );
++

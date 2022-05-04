@@ -7,6 +7,7 @@
     ./paperless.nix
     ./hass.nix
     ./website.nix
+    ./pixelfed.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
