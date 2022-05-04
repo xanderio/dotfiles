@@ -6,6 +6,7 @@
   dataDir ? "/var/lib/pixelfed",
   ...
 }: let
+  composerLock = ./composer.lock;
   package =
     (import ./composition.nix
       {
@@ -15,7 +16,13 @@
       })
     .overrideAttrs (attrs: rec {
       installPhase =
-        attrs.installPhase
+        ''
+          # hack for missing lock file upstream
+          cp -av $src $out
+          chmod -R u+w $out
+          cp -v ${composerLock} $out/composer.lock
+        ''
+        + attrs.installPhase
         + ''
           ${pkgs.php}/bin/php $out/artisan horizon:publish
           ${pkgs.php}/bin/php $out/artisan horizon:install
@@ -34,7 +41,7 @@ in
     src = fetchFromGitHub {
       owner = pname;
       repo = pname;
-      rev = "v${version}";
-      sha256 = "uk06OERuNIqMsYJBa7BosgP0v3Li9FqhZ6SDDnmttyk=";
+      rev = "7a0acebffb7ca0531d7e0f8b63d164d7d341a034";
+      sha256 = "mBX3JJSJaPywe1MxGmapLLOklBhuhR3AautA5VJ3MEU=";
     };
   }

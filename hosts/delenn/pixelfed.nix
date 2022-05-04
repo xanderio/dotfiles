@@ -64,10 +64,12 @@ with lib; let
     MAIL_FROM_NAME = "Pixelfed";
     MAIL_FROM = "pixelfed@bitflip.jetzt";
     MAIL_HOST = "smtp.mailbox.org";
-    MAIL_PORT = 465;
+    MAIL_PORT = 587;
     MAIL_USERNAME = "alex@xanderio.de";
     MAIL_PASSWORD._secret = "/var/pixelfed-mail";
     MAIL_ENCRYPTION = "tls";
+
+    LOG_CHANNEL = "daily";
 
     #DB_PASSWORD._secret = db.passwordFile;
 
@@ -87,7 +89,7 @@ with lib; let
     ACTIVITY_PUB = true;
     AP_REMOTE_FOLLOW = true;
 
-    OAUTH_ENABLED = false;
+    OAUTH_ENABLED = true;
 
     IMPORT_INSTAGRAM = true;
     STORIES_ENABLED = true;
@@ -95,6 +97,7 @@ with lib; let
     ENABLE_CONFIG_CACHE = true;
     QUEUE_DRIVER = "redis";
     BROADCAST_DRIVER = "redis";
+    CUSTOM_EMOJI = true;
   };
 
   # shell script for local administration
@@ -249,7 +252,9 @@ in {
 
         for path in avatars emoji headers textimg; do
             for p in ${pixelfed}/storage_dist/app/public/$path/*; do
-              rm ${dataDir}/storage/app/public/$path/$(basename $p)
+              if [ -e ${dataDir}/storage/app/public/$path/$(basename $p) ]; then
+                rm ${dataDir}/storage/app/public/$path/$(basename $p)
+              fi
               ln -s $p ${dataDir}/storage/app/public/$path
             done
         done
@@ -277,7 +282,7 @@ in {
     pixelfed-horizon = {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
-      requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service"];
+      requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service" "pixelfed-setup.service"];
       serviceConfig = {
         Type = "simple";
         User = user;
@@ -300,7 +305,7 @@ in {
     pixelfed-cron = {
       wantedBy = ["timers.target"];
       after = ["network.target"];
-      requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service"];
+      requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service" "pixelfed-setup.service"];
       timerConfig.OnBootSec = "1m";
       timerConfig.OnUnitActiveSec = "1m";
       timerConfig.Unit = "pixelfed-schedule.service";
