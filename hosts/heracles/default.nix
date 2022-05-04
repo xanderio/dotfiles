@@ -4,6 +4,7 @@
     ../../configuration/laptop
   ];
 
+  hardware.opengl.extraPackages = with pkgs; [mesa.drivers];
   home-manager.users.xanderio = {
     home.packages = with pkgs; [glab];
     xanderio = {

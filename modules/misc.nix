@@ -23,6 +23,8 @@ in {
         file
         unzip
         ldns # drill
+        httpie
+        pre-commit
 
         thunderbird
         imv

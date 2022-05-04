@@ -7,6 +7,7 @@ function M.on_attach(client, bufnr)
     require('cmp').setup.buffer({
       sources = {
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'luasnip' },
         { name = 'crates' },
         { name = 'emoji' },
@@ -30,8 +31,6 @@ function M.on_attach(client, bufnr)
 
     -- lsp trouble
     require("trouble").setup({})
-
-    require('lsp_signature').on_attach()
 
     -- lsputils
     -- vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
