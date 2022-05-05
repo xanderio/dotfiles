@@ -194,7 +194,7 @@ in {
     };
   };
 
-  systemd.services = {
+  systemd.services = rec {
     pixelfed-setup = {
       description = "Preperation tasks for pixelfed";
       before = ["phpfpm-pixelfed.service" "nginx.service"];
@@ -300,15 +300,31 @@ in {
         ExecStart = "${php}/bin/php artisan schedule:run";
       };
     };
+    pixelfed-cache-clean = {
+      serviceConfig = {
+        Type = "oneshot";
+        User = user;
+        WorkingDirectory = "${pixelfed}/";
+        ExecStart = "${php}/bin/php artisan cache:clear";
+      };
+    };
   };
   systemd.timers = {
-    pixelfed-cron = {
+    pixelfed-schedule = {
       wantedBy = ["timers.target"];
       after = ["network.target"];
       requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service" "pixelfed-setup.service"];
       timerConfig.OnBootSec = "1m";
       timerConfig.OnUnitActiveSec = "1m";
       timerConfig.Unit = "pixelfed-schedule.service";
+    };
+    pixelfed-cache-clean = {
+      wantedBy = ["timers.target"];
+      after = ["network.target"];
+      requires = ["phpfpm-pixelfed.service" "postgresql.service" "redis-pixelfed.service" "nginx.service" "pixelfed-setup.service"];
+      timerConfig.OnBootSec = "1m";
+      timerConfig.OnUnitActiveSec = "1m";
+      timerConfig.Unit = "pixelfed-cache-clean.service";
     };
   };
   systemd.tmpfiles.rules = [
