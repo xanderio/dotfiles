@@ -9,7 +9,7 @@
   };
 
   home.packages = with pkgs; [
-    neovim-nightly
+    neovim
     lua51Packages.mpack
 
     rnix-lsp

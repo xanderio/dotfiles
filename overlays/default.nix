@@ -2,7 +2,7 @@
   pkgs,
   inputs,
 }: [
-  inputs.neovim-nightly-overlay.overlay
+  #inputs.neovim-nightly-overlay.overlay
   (final: prev: let
     nixpkgs = import inputs.taplo-update {system = prev.system;};
   in {
