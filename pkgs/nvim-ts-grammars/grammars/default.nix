@@ -3,6 +3,7 @@
   tree-sitter-javascript = builtins.fromJSON (builtins.readFile ./tree-sitter-javascript.json);
   tree-sitter-rego = builtins.fromJSON (builtins.readFile ./tree-sitter-rego.json);
   tree-sitter-c = builtins.fromJSON (builtins.readFile ./tree-sitter-c.json);
+  tree-sitter-embedded_template = builtins.fromJSON (builtins.readFile ./tree-sitter-embedded_template.json);
   tree-sitter-clojure = builtins.fromJSON (builtins.readFile ./tree-sitter-clojure.json);
   tree-sitter-commonlisp = builtins.fromJSON (builtins.readFile ./tree-sitter-commonlisp.json);
   tree-sitter-cpp = builtins.fromJSON (builtins.readFile ./tree-sitter-cpp.json);
