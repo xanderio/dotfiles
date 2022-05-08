@@ -9,6 +9,139 @@ end
 vim.g.mapleader = " "
 
 require('plugins')
+require('config.notify')
+require("config.lualine")
+require('config.telescope')
+require('config.gitsigns')
+require('config.cmp')
+require('config.colorschema')
+require('config.floatterm')
+require('config.treesitter')
+require("nvim-gps").setup()
+require('config.dap')
+require('dapui').setup()
+require('config/rust-tools')
+
+vim.g.code_action_menu_show_diff = false
+
+local lsp_status = require('lsp-status')
+lsp_status.register_progress() 
+lsp_status.config({
+  diagnostics = false,
+  current_function = false,
+  status_symbol = ''
+}) 
+
+local neogit = require('neogit')
+neogit.setup({})
+
+require("indent_blankline").setup {
+  show_current_context = true,
+  show_current_context_start = false,
+}
+
+vim.cmd [[ xmap <leader>a <Plug>(EasyAlign) ]]
+vim.cmd [[ nmap <leader>a <Plug>(EasyAlign) ]]
+
+require('crates').setup()
+
+-- luasnip
+vim.api.nvim_set_keymap("i", "<C-E>", "<Plug>luasnip-next-choice", {})
+vim.api.nvim_set_keymap("s", "<C-E>", "<Plug>luasnip-next-choice", {})
+
+local null_ls = require('null-ls')
+null_ls.setup({
+  sources = {
+    -- js,ts,etc.
+    null_ls.builtins.code_actions.eslint_d,
+    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.diagnostics.eslint_d,
+
+    -- shell
+    null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.formatting.fish_indent,
+    null_ls.builtins.diagnostics.shellcheck,
+
+    -- Nix
+    null_ls.builtins.code_actions.statix,
+    null_ls.builtins.formatting.alejandra,
+
+    -- python
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.isort,
+    null_ls.builtins.diagnostics.pylama,
+
+    -- ansible
+    null_ls.builtins.diagnostics.ansiblelint,
+
+    -- docker 
+    null_ls.builtins.diagnostics.hadolint,
+
+    -- gitlint
+    null_ls.builtins.diagnostics.gitlint,
+  },
+  on_attach = require('lsp').on_attach
+})
+
+local servers = { 
+  'bashls',
+  'cssls',
+  'dartls',
+  'dockerls',
+  'taplo',
+  'terraform_lsp',
+  'yamlls',
+};
+for _, lsp in ipairs(servers) do
+  require('lspconfig')[lsp].setup({
+    capabilities = require('lsp').capabilities(),
+    on_attach = require('lsp').on_attach,
+  })
+end
+
+require('lspconfig').rnix.setup({
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
+require('lspconfig').pyright.setup({
+  capabilities = require('lsp').capabilities(),
+  on_attach = require('lsp').on_attach,
+  settings = {
+    python = {
+      analysis = {
+        autoSearchPaths = true,
+        diagnosticMode = "openFilesOnly",
+        typeCheckingMode = "basic",
+        useLibraryCodeForTypes = true,
+      },
+    },
+  }
+})
+
+require'lspconfig'.tsserver.setup({
+  init_options = require("nvim-lsp-ts-utils").init_options,
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+
+    local ts_utils = require("nvim-lsp-ts-utils")
+    ts_utils.setup({})
+    ts_utils.setup_client(client)
+
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap("n", "gs", ":TSLspOrganize<CR>", opts)
+    buf_set_keymap("n", "gi", ":TSLspRenameFile<CR>", opts)
+    buf_set_keymap("n", "go", ":TSLspImportAll<CR>", opts)
+
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
 
 -- generate help tags for all plugins
 cmd 'silent! helptags ALL'
