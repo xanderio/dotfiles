@@ -1,6 +1,9 @@
 if pcall(require, 'impatient') then
   require('impatient')
 end
+
+vim.g.do_filetype_lua = 1
+
 local cmd, g, b, w = vim.cmd, vim.g, vim.b, vim.w
 local function map(lhs, rhs)
     vim.api.nvim_set_keymap('n', '<leader>' .. lhs, rhs, {noremap=true, silent=true})
@@ -40,8 +43,8 @@ require("indent_blankline").setup {
   show_current_context_start = false,
 }
 
-vim.cmd [[ xmap <leader>a <Plug>(EasyAlign) ]]
-vim.cmd [[ nmap <leader>a <Plug>(EasyAlign) ]]
+vim.api.nvim_set_keymap("x", "<leader>a", "<Plug>(EasyAlign)", {})
+vim.api.nvim_set_keymap("n", "<leader>a", "<Plug>(EasyAlign)", {})
 
 require('crates').setup()
 
@@ -149,7 +152,11 @@ cmd 'unmap Y'
 
 -- Spelling
 -- Correct current word
-vim.api.nvim_set_keymap('n', 'z=', ':lua require("telescope.builtin").spell_suggest()<cr>', {silent=true}) 
+vim.keymap.set('n', 'z=',
+  function()
+    require("telescope.builtin").spell_suggest()
+  end
+) 
 map('sl', ':lua cyclelang()<cr>') --Change spelling language
 do
     local i = 1

@@ -84,7 +84,6 @@ return require('packer').startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
   -- use 'tpope/vim-fugitive' 
-  use 'nathom/filetype.nvim'
   use 'valloric/MatchTagAlways' 
   use 'dag/vim-fish' 
   use 'kyazdani42/nvim-web-devicons'
