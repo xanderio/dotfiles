@@ -15,7 +15,7 @@ cmp.setup({
       require('luasnip').lsp_expand(args.body)
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -39,7 +39,7 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({
       select = true,
     })
-  },
+  }),
   sources = {
     { name = 'luasnip' },
     { name = 'emoji' },
