@@ -10,7 +10,7 @@
       url = github:nix-community/neovim-nightly-overlay;
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    taplo-update.url = github:xanderio/nixpkgs/taplo-cli-0.6.1;
+    nixpkgs-unstable.url = github:NixOs/nixpkgs/nixpkgs-unstable;
   };
 
   outputs = {

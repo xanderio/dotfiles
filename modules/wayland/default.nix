@@ -8,7 +8,7 @@
     ./tray-items.nix
     ./waybar
   ];
-  xsession.pointerCursor = {
+  home.pointerCursor = {
     package = pkgs.bibata-cursors;
     name = "Bibata-Modern-Classic";
   };

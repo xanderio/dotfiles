@@ -38,11 +38,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651652192,
-        "narHash": "sha256-3FUsIJ81p57rOxODRVZ+anhnVav96VWbgNA1H3Np+TY=",
+        "lastModified": 1651886851,
+        "narHash": "sha256-kbXOJSf1uho0/7P54nZkJdJY3oAelIjyc6tfiRhaXJI=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "267462dfb36d447421c789a3adf9d460cd09c147",
+        "rev": "882bd8118bdbff3a6e53e5ced393932b351ce2f6",
         "type": "github"
       },
       "original": {
@@ -61,11 +61,11 @@
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1651646287,
-        "narHash": "sha256-xWQxM3buv/6qHIGueSeiX+rxyyPwD2GjW3xx1PznvJU=",
+        "lastModified": 1651967472,
+        "narHash": "sha256-IWS9TZM069Vx5zfoome6DQtksrTQH+hYE/6SMbqeiqI=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "95b7851f620928b6a93dc0198be31959b16c53d9",
+        "rev": "1b1cc4d864b4b15e705c1a500e64c7bfbacedae7",
         "type": "github"
       },
       "original": {
@@ -84,11 +84,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1651652222,
-        "narHash": "sha256-j1CB3qIQAAeeEWneXgTPeLQn6AGpJ+ncwGjdtaPZKh8=",
+        "lastModified": 1651997771,
+        "narHash": "sha256-HMSasQdb+AwUWPuW6cjMdpuCiBv0rc8WPJujgviX8gQ=",
         "owner": "nix-community",
         "repo": "neovim-nightly-overlay",
-        "rev": "955a1284b13683f46f949efa3fff52d9b9cc50f8",
+        "rev": "2d78158598b480007e8655bb94634ebc21e990c9",
         "type": "github"
       },
       "original": {
@@ -114,16 +114,32 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1651558728,
-        "narHash": "sha256-8HzyRnWlgZluUrVFNOfZAOlA1fghpOSezXvxhalGMUo=",
+        "lastModified": 1651726670,
+        "narHash": "sha256-dSGdzB49SEvdOJvrQWfQYkAefewXraHIV08Vz6iDXWQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "cbe587c735b734405f56803e267820ee1559e6c1",
+        "rev": "c777cdf5c564015d5f63b09cc93bef4178b19b01",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1651927509,
+        "narHash": "sha256-fGVGUdEsriuAL1vkUh29FlOQmEkPRnSfRGImWYaVjos=",
+        "owner": "NixOs",
+        "repo": "nixpkgs",
+        "rev": "2fdb6f2e08e7989b03a2a1aa8538d99e3eeea881",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOs",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -134,23 +150,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
-        "taplo-update": "taplo-update"
-      }
-    },
-    "taplo-update": {
-      "locked": {
-        "lastModified": 1650491458,
-        "narHash": "sha256-GHaj7XSCPOn0NC86rlYBQwSrmFBfdCRKWpNZqX0Tf4s=",
-        "owner": "xanderio",
-        "repo": "nixpkgs",
-        "rev": "2c848dca195b333d40bb7c2bce4e82bcff2f9b00",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xanderio",
-        "ref": "taplo-cli-0.6.1",
-        "repo": "nixpkgs",
-        "type": "github"
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },
