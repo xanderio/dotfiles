@@ -10,10 +10,12 @@
       ${swaymsg} workspace 4, move workspace to output '"Lenovo Group Limited P27q-20 V9064YE0"'
 
       ${swaymsg} workspace 1
+      systemctl --user restart waybar.service
       ${notify-send} -u low "switched to docked display mode"
     '';
     undocked-script = pkgs.writeScript "kanshi-undocked" ''
       #! ${pkgs.runtimeShell}
+      systemctl --user restart waybar.service
       ${notify-send} -u low "switched to undocked display mode"
     '';
   in {
