@@ -8,6 +8,7 @@
   home-manager.users.xanderio = {
     home.packages = with pkgs; [glab];
     xanderio = {
+      sway.scale = "1.4";
       git = {
         enable = true;
         email = "alexander.sieg@binary-butterfly.de";
