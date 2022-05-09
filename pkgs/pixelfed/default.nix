@@ -36,12 +36,12 @@
 in
   package.override rec {
     pname = "pixelfed";
-    version = "0.11.2";
+    version = "0.11.3";
 
     src = fetchFromGitHub {
       owner = pname;
       repo = pname;
-      rev = "7a0acebffb7ca0531d7e0f8b63d164d7d341a034";
-      sha256 = "mBX3JJSJaPywe1MxGmapLLOklBhuhR3AautA5VJ3MEU=";
+      rev = "8c21934842a0ade80d0b55eee23e6815f026ee92";
+      sha256 = "czjFk/yrFKnwdfwZomce2ZKPmcZMxO1c7rrm0U+Ug4I=";
     };
   }
