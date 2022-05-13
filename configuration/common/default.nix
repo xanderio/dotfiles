@@ -6,21 +6,10 @@
   ...
 }: {
   imports = [
-    ./node_exporter.nix
-    ./nginx.nix
     ./nix.nix
-    ./wireguard.nix
   ];
 
-  networking = {
-    hostName = name;
-    domain = "xanderio.de";
-  };
-
-  deployment.targetHost = "${config.networking.hostName}.${config.networking.domain}";
-
   boot.cleanTmpDir = true;
-  zramSwap.enable = true;
 
   services.openssh = {
     enable = true;

@@ -1,5 +1,6 @@
 {...}: {
   imports = [
+    ../common
     ./boot.nix
     ./cachix.nix
     ./desktop.nix
@@ -41,10 +42,5 @@
     keyMap = "de";
   };
 
-  nixpkgs.config.allowUnfree = true;
-
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
   nix.settings.trusted-users = ["root" "xanderio"];
 }

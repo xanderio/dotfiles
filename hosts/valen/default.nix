@@ -1,6 +1,6 @@
 {...}: {
   imports = [
-    ../../configuration/common
+    ../../configuration/server
     ./configuration.nix
   ];
 }
