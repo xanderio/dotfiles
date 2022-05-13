@@ -21,6 +21,7 @@
     plugins = [pkgs.ifdnfc];
   };
 
+  services.fwupd.enable = true;
   services.openssh = {
     enable = true;
     passwordAuthentication = false;
