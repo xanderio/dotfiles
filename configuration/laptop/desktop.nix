@@ -15,6 +15,7 @@
     gnome.gnome-themes-extra
 
     gnomeExtensions.appindicator
+    networkmanagerapplet # needed for icons to work
 
     gnome.gnome-system-monitor
     gnome.nautilus
