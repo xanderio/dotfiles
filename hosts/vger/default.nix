@@ -15,5 +15,6 @@
     freecad.enable = true;
     mumble.enable = true;
     darktable.enable = true;
+    digikam.enable = true;
   };
 }
