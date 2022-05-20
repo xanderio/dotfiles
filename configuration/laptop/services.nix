@@ -4,7 +4,7 @@
 
   services.blueman.enable = true;
   security.rtkit.enable = true;
-  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.lidSwitchDocked = "ignore";
   services.avahi = {
     enable = true;
     nssmdns = true;

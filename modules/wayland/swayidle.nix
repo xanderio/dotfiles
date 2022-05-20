@@ -8,7 +8,7 @@ in {
     events = [
       {
         event = "before-sleep";
-        command = "${swaylock}";
+        command = "${swaylock} -fF";
       }
     ];
     timeouts = [
