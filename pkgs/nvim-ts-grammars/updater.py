@@ -29,7 +29,7 @@ grammars_file_path = os.path.join(grammars_path, "default.nix")
 grammars_file = open(grammars_file_path, "w")
 
 grammars_file.write("{\n")
-problematic_parsers = ["godotResource", "teal", "d", "swift"]
+problematic_parsers = ["godotResource", "teal", "d", "swift", "v"]
 
 tasks = []
 
