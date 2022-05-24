@@ -16,13 +16,7 @@
       })
     .overrideAttrs (attrs: rec {
       installPhase =
-        ''
-          # hack for missing lock file upstream
-          cp -av $src $out
-          chmod -R u+w $out
-          cp -v ${composerLock} $out/composer.lock
-        ''
-        + attrs.installPhase
+        attrs.installPhase
         + ''
           ${pkgs.php}/bin/php $out/artisan horizon:publish
           ${pkgs.php}/bin/php $out/artisan horizon:install
@@ -41,7 +35,7 @@ in
     src = fetchFromGitHub {
       owner = pname;
       repo = pname;
-      rev = "8c21934842a0ade80d0b55eee23e6815f026ee92";
-      sha256 = "czjFk/yrFKnwdfwZomce2ZKPmcZMxO1c7rrm0U+Ug4I=";
+      rev = "a8100f14fcb7391ad8496bac88199993cedba3a6";
+      sha256 = "pikTdfIu+zPQSInR7zGdCPH12WkRym6/JyB1X9X1+j8=";
     };
   }

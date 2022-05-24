@@ -16,9 +16,13 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
-    initrd.availableKernelModules = [
-      "aesni_intel"
-      "cryptd"
-    ];
+    initrd = {
+      availableKernelModules = [
+        "aesni_intel"
+        "cryptd"
+      ];
+      supportedFilesystems = ["zfs"];
+    };
+    supportedFilesystems = ["zfs"];
   };
 }
