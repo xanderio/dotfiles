@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/r-lib/tree-sitter-r",
-  "rev": "cc04302e1bff76fa02e129f332f44636813b0c3c",
-  "date": "2022-03-28T10:31:51-04:00",
-  "path": "/nix/store/r9pszx9v93gsjnzxcik3k2vbdfvn60ky-tree-sitter-r-cc04302",
-  "sha256": "0adq1qng3ghb4wvglplj73q8c95hzpfiqb2q8bqnms81i7p2xma7",
+  "rev": "7768c3eefd8c3a07d05332e65a6856385360831b",
+  "date": "2022-05-24T11:25:20-04:00",
+  "path": "/nix/store/yg7mnfz1pdd2nkh982p4p8brdychx364-tree-sitter-r-7768c3e",
+  "sha256": "1fawpgazqc94j8c8wgva7ca8smfzahhyyf4hs4l68a9519j59yj8",
   "fetchLFS": false,
   "fetchSubmodules": false,
   "deepClone": false,
