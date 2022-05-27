@@ -6,6 +6,10 @@
 
   hardware.opengl.extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
   networking.hostId = "ce58a733";
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+  };
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
