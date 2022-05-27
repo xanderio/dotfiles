@@ -3,6 +3,9 @@
     packages = with pkgs; [
       rustup
       bacon
+      cargo-watch
+      cargo-edit
+      cargo-cache
     ];
 
     file.".cargo/config".text = ''

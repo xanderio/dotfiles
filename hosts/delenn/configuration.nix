@@ -8,6 +8,7 @@
     ./hass.nix
     ./website.nix
     ./pixelfed.nix
+    ./postgresql.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";
