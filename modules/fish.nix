@@ -44,6 +44,10 @@
       any-nix-shell fish | source
     '';
 
+    loginShellInit = ''
+      ssh-add
+    '';
+
     functions = {
       fish_greeting = {
         body = "";
