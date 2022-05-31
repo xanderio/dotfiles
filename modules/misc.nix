@@ -29,6 +29,8 @@ in {
 
         thunderbird
         imv
+        mpv
+        pdfarranger
       ]
       ++ optional cfg.prusa-slicer.enable pkgs.prusa-slicer
       ++ optional cfg.freecad.enable pkgs.freecad
