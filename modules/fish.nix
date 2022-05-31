@@ -9,6 +9,7 @@
       ll = "ls -l";
       la = "ls -la";
       ssh = "TERM=xterm-256color command ssh";
+      s = "${pkgs.git}/bin/git s";
     };
     shellInit = ''
       set fish_color_normal normal
