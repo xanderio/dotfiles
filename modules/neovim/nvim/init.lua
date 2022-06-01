@@ -105,8 +105,6 @@ end
 require('lspconfig').rnix.setup({
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
     require('lsp').on_attach(client, bufnr)
   end,
 })
@@ -129,9 +127,6 @@ require'lspconfig'.tsserver.setup({
   init_options = require("nvim-lsp-ts-utils").init_options,
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
-    client.server_capabilities.document_formatting = false
-    client.server_capabilities.document_range_formatting = false
-
     local ts_utils = require("nvim-lsp-ts-utils")
     ts_utils.setup({})
     ts_utils.setup_client(client)

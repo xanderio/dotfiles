@@ -1,51 +1,85 @@
 local cmd = vim.cmd
 local M = {}
 
-function M.on_attach(client, bufnr)
-    M.lsp_keybinding(bufnr)
+function lsp_formatting(bufnr) 
+  vim.lsp.buf.format({
+    filter = function(client)
+      -- filter out clients that you don't want to use
+      return client.name ~= "tsserver" 
+        or client.name ~= "rnix"
+    end,
+    bufnr = bufnr,
+})
+end
 
-    require('cmp').setup.buffer({
-      sources = {
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lsp_signature_help' },
-        { name = 'luasnip' },
-        { name = 'crates' },
-        { name = 'emoji' },
-        { name = 'buffer', keyword_length = 5, max_item_count = 2}
-      }
+function M.on_attach(client, bufnr)
+  M.lsp_keybinding(bufnr)
+
+  require('cmp').setup.buffer({
+    sources = {
+      { name = 'nvim_lsp' },
+      { name = 'nvim_lsp_signature_help' },
+      { name = 'luasnip' },
+      { name = 'crates' },
+      { name = 'emoji' },
+      { name = 'buffer', keyword_length = 5, max_item_count = 2}
+    }
+  })
+
+  local augroup = vim.api.nvim_create_augroup("Lsp", {})
+  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+
+  if vim.bo.filetype == "rust" then
+    vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"},
+    {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.codelens.refresh()
+      end,
+    })
+  end
+
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_create_autocmd("BufWritePre",
+    {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        lsp_formatting(bufnr)
+      end,
+    })
+  end
+  -- Lightbulb
+    vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"},
+    {
+      group = augroup,
+      buffer = bufnr,
+      callback = function()
+        require('nvim-lightbulb').update_lightbulb()
+      end,
     })
 
-    cmd [[augroup Lsp]]
-    if vim.bo.filetype == "rust" then
-      cmd [[au BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
-    end
-    if client.server_capabilities.document_formatting then
-      cmd [[au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000) ]]
-    end
-    -- Lightbulb
-    cmd [[au CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
-    cmd [[augroup END]]
+  -- lsp status
+  require('lsp-status').on_attach(client)
 
-    -- lsp status
-    require('lsp-status').on_attach(client)
+  -- lsp trouble
+  require("trouble").setup({})
 
-    -- lsp trouble
-    require("trouble").setup({})
+  -- lsputils
+  -- vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
+  vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+  vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+  vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+  vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+  vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+  vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+  vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
 
-    -- lsputils
-    -- vim.lsp.handlers['textDocument/codeAction'] = require'lsputil.codeAction'.code_action_handler
-    vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-    vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-    vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-    vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-    vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-    vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-    vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
-
-    -- lsp extensions
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    -- require('lsp_extensions.workspace.diagnostic').handler, {  }
-    -- )
+  -- lsp extensions
+  -- vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  -- require('lsp_extensions.workspace.diagnostic').handler, {  }
+  -- )
 end
 
 function M.capabilities()
