@@ -27,7 +27,6 @@
     ./modules/rust.nix
     ./modules/ssh.nix
     ./modules/starship.nix
-    ./modules/taskwarrior
     ./modules/wayland
   ];
 }

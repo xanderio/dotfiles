@@ -19,7 +19,7 @@ function M.on_attach(client, bufnr)
     if vim.bo.filetype == "rust" then
       cmd [[au BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()]]
     end
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
       cmd [[au BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000) ]]
     end
     -- Lightbulb
