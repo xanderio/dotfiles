@@ -1,10 +1,10 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../configuration/laptop
   ];
 
-  hardware.opengl.extraPackages = with pkgs; [vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl];
+  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
   networking.hostId = "ce58a733";
   programs.steam = {
     enable = true;
@@ -19,6 +19,7 @@
     prusa-slicer.enable = true;
     freecad.enable = true;
     mumble.enable = true;
+    minecraft.enable = true;
     darktable.enable = true;
     digikam.enable = true;
   };
