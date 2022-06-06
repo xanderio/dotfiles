@@ -24,7 +24,14 @@ require("nvim-gps").setup()
 require('config.dap')
 require('dapui').setup()
 require('config/rust-tools')
-require('fidget').setup({})
+require('fidget').setup({
+  text = {
+    spinner = "dots_negative",
+  },
+  window = {
+    blend = 0,
+  },
+})
 require('spellsitter').setup()
 require("docs-view").setup {
       position = "right",
