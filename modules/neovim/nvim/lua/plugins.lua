@@ -29,6 +29,8 @@ return require('packer').startup(function()
   use 'onsails/lspkind-nvim'
   use 'ray-x/lsp_signature.nvim' 
   use 'nvim-lua/lsp-status.nvim'
+  use 'amrbashir/nvim-docs-view'
+  use 'j-hui/fidget.nvim'
 
   use 'simrat39/rust-tools.nvim'
 
@@ -38,6 +40,7 @@ return require('packer').startup(function()
   use 'nvim-treesitter/nvim-treesitter'
   use 'SmiteshP/nvim-gps'
   use 'mfussenegger/nvim-ts-hint-textobject'
+  use 'lewis6991/spellsitter.nvim'
 
   use 'lukas-reineke/indent-blankline.nvim' 
   use 'junegunn/vim-easy-align'
@@ -84,7 +87,6 @@ return require('packer').startup(function()
   use 'tpope/vim-repeat'
   use 'tpope/vim-commentary'
   -- use 'tpope/vim-fugitive' 
-  use 'valloric/MatchTagAlways' 
   use 'dag/vim-fish' 
   use 'kyazdani42/nvim-web-devicons'
 end)

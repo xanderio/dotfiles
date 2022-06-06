@@ -11,7 +11,7 @@ require('lualine').setup({
     lualine_b = { {'b:gitsigns_head', icon = ''}, { 'diff', color_added = '#50fa7b' } },
     lualine_c = { {'filename', file_status = true }, { 'diagnostics', sources = {'nvim_diagnostic'}}, { gps.get_location, cond = gps.is_available }}, 
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
-    lualine_y = { 'progress', require'lsp'.status },
+    lualine_y = { 'progress' },
     lualine_z = { 'location' }
   },
   inactive_sections = {

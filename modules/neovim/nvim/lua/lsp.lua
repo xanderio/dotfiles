@@ -61,7 +61,8 @@ function M.on_attach(client, bufnr)
     })
 
   -- lsp status
-  require('lsp-status').on_attach(client)
+  --require('lsp-status').on_attach(client)
+  require("fidget").setup({})
 
   -- lsp trouble
   require("trouble").setup({})
