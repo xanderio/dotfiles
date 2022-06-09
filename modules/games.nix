@@ -11,7 +11,7 @@ in
 
   config = {
     home.packages =
-      [ pkgs.ferium ]
+      [ pkgs.ferium pkgs.polymc ]
       ++ optional cfg.minecraft.enable pkgs.minecraft;
   };
 }
