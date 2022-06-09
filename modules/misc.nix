@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.xanderio;
-in {
+in
+{
   options.xanderio = {
     prusa-slicer.enable = mkEnableOption "prusa-slicer";
     freecad.enable = mkEnableOption "freecad";
