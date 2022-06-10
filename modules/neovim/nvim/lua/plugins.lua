@@ -1,16 +1,7 @@
 require('packer').init({ luarocks = { python_cmd = "python3" }})
 return require('packer').startup(function()
-  use {
-    'wbthomason/packer.nvim', 
-    config = function() 
-      -- Auto rebuild packer cache 
-      vim.cmd [[augroup PackerCompile ]]
-      vim.cmd [[ au! ]]
-      vim.cmd [[autocmd BufWritePost plugins.lua PackerCompile]]
-      vim.cmd [[augroup end]]
-    end
-  }
-  use { 'lewis6991/impatient.nvim' }
+  use 'wbthomason/packer.nvim' 
+  use 'lewis6991/impatient.nvim' 
   use 'neovim/nvim-lspconfig' 
 
   use 'jose-elias-alvarez/nvim-lsp-ts-utils'
@@ -20,10 +11,11 @@ return require('packer').startup(function()
 
   use {
     'RishabhRD/nvim-lsputils',
-    requires = { { 'RishabhRD/popfix' }}
+    requires = {{ 'RishabhRD/popfix' }}
   }
 
   use 'kosayoda/nvim-lightbulb'
+  use 'antoinemadec/FixCursorHold.nvim'
   use 'folke/trouble.nvim'
   use 'weilbith/nvim-code-action-menu'
   use 'onsails/lspkind-nvim'

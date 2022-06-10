@@ -22,7 +22,7 @@ function M.on_attach(client, bufnr)
       { name = 'luasnip' },
       { name = 'crates' },
       { name = 'emoji' },
-      { name = 'buffer', keyword_length = 5, max_item_count = 2}
+      { name = 'buffer', keyword_length = 3, max_item_count = 4}
     }
   })
 
