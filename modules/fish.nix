@@ -5,8 +5,12 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      ll = "ls -l";
-      la = "ls -la";
+      /*
+        ll = "ls -l";
+      */
+      /*
+        la = "ls -la";
+      */
       ssh = "TERM=xterm-256color command ssh";
       s = "${pkgs.git}/bin/git s";
       d = "${pkgs.git}/bin/git diff";
@@ -54,14 +58,16 @@
       fish_greeting = {
         body = "";
       };
-      ls = {
+      /*
+        ls = {
         body = ''
-          if type --query exa
-            exa --group-directories-first --git $argv
-          else
-            command ls --color=auto $argv
-          end'';
-      };
+        if type --query exa
+        exa --group-directories-first --git $argv
+        else
+        command ls --color=auto $argv
+        end'';
+        };
+      */
       cat = {
         body = ''
           if type --query bat
