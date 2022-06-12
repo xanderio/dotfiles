@@ -17,6 +17,7 @@
     enableIPv6 = true;
 
     interfaces.enp1s0.useDHCP = true;
+    interfaces.enp7s0.useDHCP = true;
     interfaces.enp1s0.ipv6.addresses = [
       {
         address = "2a01:4f8:c2c:9da8::1";
@@ -28,6 +29,14 @@
       interface = "enp1s0";
     };
     nameservers = [ "2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2" ];
+  };
+
+  services.prometheus = {
+    exporters = {
+      node = {
+        firewallFilter = lib.mkForce "-i enp7s0 -p tcp -m tcp --dport 9100";
+      };
+    };
   };
 
   services.minecraft-servers = {
@@ -45,7 +54,7 @@
       };
       whitelist = {
         "xanderio" = "40470409-787b-494a-ada2-49f097e7cf50";
-	"MrKrisKrisu" = "09ad39cf-b231-4d2f-8efd-8deb1ebf52ab";
+        "MrKrisKrisu" = "09ad39cf-b231-4d2f-8efd-8deb1ebf52ab";
       };
       symlinks = {
         mods = pkgs.linkFarmFromDrvs "mods" (map pkgs.fetchModrinthMod (builtins.attrValues {
