@@ -26,8 +26,8 @@ function M.on_attach(client, bufnr)
     }
   })
 
-  local augroup = vim.api.nvim_create_augroup("Lsp", {})
-  vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+  local augroup = vim.api.nvim_create_augroup("Lsp", { clear = false })
+  --vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
 
   if vim.bo.filetype == "rust" then
     vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "InsertLeave"},
