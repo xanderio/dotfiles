@@ -10,6 +10,7 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    iwgtk-06.url = "github:xanderio/nixpkgs/feat/iwgtk-0.6";
     nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixpkgs-unstable";
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";

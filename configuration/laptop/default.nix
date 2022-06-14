@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   imports = [
     ../common
     ./boot.nix
@@ -21,7 +21,11 @@
   networking = {
     useDHCP = false;
     wireless.enable = false;
-    networkmanager.enable = true;
+    wireless.iwd.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
   };
 
   # Set your time zone.
@@ -34,5 +38,5 @@
     keyMap = "de";
   };
 
-  nix.settings.trusted-users = ["root" "xanderio"];
+  nix.settings.trusted-users = [ "root" "xanderio" ];
 }

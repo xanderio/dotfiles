@@ -245,6 +245,22 @@
         "type": "github"
       }
     },
+    "iwgtk-06": {
+      "locked": {
+        "lastModified": 1655225664,
+        "narHash": "sha256-AXn5rSCXpkjoLW1jBdSbLDP5aRF2n+ATLaH+ZeYBxkk=",
+        "owner": "xanderio",
+        "repo": "nixpkgs",
+        "rev": "ca3c595577acfef95b4b5263408fd064509696c3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xanderio",
+        "ref": "feat/iwgtk-0.6",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "latest": {
       "locked": {
         "lastModified": 1638198142,
@@ -427,6 +443,7 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "iwgtk-06": "iwgtk-06",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",

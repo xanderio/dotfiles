@@ -6,10 +6,10 @@
   inputs.nix-minecraft.overlay
   (final: prev:
     let
-      nixpkgs = import inputs.nixpkgs-unstable { system = prev.system; };
+      nixpkgs = import inputs.iwgtk-06 { system = prev.system; };
     in
     {
-      taplo-cli = nixpkgs.taplo-cli;
+      iwgtk = nixpkgs.iwgtk;
     })
   (import ../pkgs { })
 ]
