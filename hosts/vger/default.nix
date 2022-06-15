@@ -4,7 +4,16 @@
     ../../configuration/laptop
   ];
 
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel libvdpau-va-gl vaapiVdpau intel-ocl ];
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-media-driver
+    vaapiIntel
+    libvdpau-va-gl
+    vaapiVdpau
+    intel-ocl
+  ];
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "iHD";
+  };
   networking.hostId = "ce58a733";
   programs.steam = {
     enable = true;

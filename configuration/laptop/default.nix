@@ -20,13 +20,30 @@
 
   networking = {
     useDHCP = false;
+    useNetworkd = true;
+    usePredictableInterfaceNames = true;
     wireless.enable = false;
-    wireless.iwd.enable = true;
+    wireless.iwd = {
+      enable = true;
+      settings = {
+        Network = {
+          EnableIPv6 = true;
+          RoutePriorityOffset = 300;
+          NameResolvingService = "systemd";
+        };
+        Settings = {
+          AutoConnect = true;
+        };
+      };
+    };
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
+      dns = "systemd-resolved";
     };
   };
+  systemd.network.wait-online.anyInterface = true;
+  systemd.services."systemd-networkd-wait-online".enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
