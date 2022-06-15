@@ -110,4 +110,5 @@
   tree-sitter-wgsl = builtins.fromJSON (builtins.readFile ./tree-sitter-wgsl.json);
   tree-sitter-m68k = builtins.fromJSON (builtins.readFile ./tree-sitter-m68k.json);
   tree-sitter-proto = builtins.fromJSON (builtins.readFile ./tree-sitter-proto.json);
+  tree-sitter-tiger = builtins.fromJSON (builtins.readFile ./tree-sitter-tiger.json);
 }
