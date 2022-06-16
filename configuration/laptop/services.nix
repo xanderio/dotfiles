@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -6,7 +6,7 @@
   security.rtkit.enable = true;
   services.logind.lidSwitchDocked = "ignore";
   services.avahi = {
-    enable = true;
+    enable = false;
     nssmdns = true;
     ipv4 = true;
     publish = {
@@ -17,7 +17,7 @@
   };
   services.pcscd = {
     enable = true;
-    plugins = [pkgs.ifdnfc];
+    plugins = [ pkgs.ifdnfc ];
   };
 
   services.fwupd.enable = true;
@@ -27,7 +27,7 @@
     kbdInteractiveAuthentication = false;
     permitRootLogin = "without-password";
   };
-  networking.firewall.allowedTCPPorts = [22];
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   virtualisation.docker.enable = true;
   virtualisation.podman.enable = true;

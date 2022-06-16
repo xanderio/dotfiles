@@ -22,6 +22,10 @@
     useDHCP = false;
     useNetworkd = true;
     usePredictableInterfaceNames = true;
+    nat = {
+      enable = true;
+      internalInterfaces = [ "vt-+" ];
+    };
     wireless.enable = false;
     wireless.iwd = {
       enable = true;

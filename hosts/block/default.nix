@@ -55,6 +55,8 @@
       whitelist = {
         "xanderio" = "40470409-787b-494a-ada2-49f097e7cf50";
         "MrKrisKrisu" = "09ad39cf-b231-4d2f-8efd-8deb1ebf52ab";
+        "gim___" = "cac5d597-cd9a-43a4-9738-1f833b769ced";
+        "telegnom" = "7767ea2a-4c84-4fec-a165-37161ecdf428";
       };
       symlinks = {
         mods = pkgs.linkFarmFromDrvs "mods" (map pkgs.fetchModrinthMod (builtins.attrValues {
