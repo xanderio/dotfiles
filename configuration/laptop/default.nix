@@ -29,16 +29,7 @@
     wireless.enable = false;
     wireless.iwd = {
       enable = true;
-      settings = {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-          NameResolvingService = "systemd";
-        };
-        Settings = {
-          AutoConnect = true;
-        };
-      };
+      settings.Settings.AutoConnect = true;
     };
     networkmanager = {
       enable = true;
@@ -46,6 +37,36 @@
       dns = "systemd-resolved";
     };
   };
+  systemd.network.networks =
+    let
+      networkConfig = {
+        DHCP = "yes";
+        MulticastDNS = "yes";
+        DNSOverTLS = "opportunistic";
+        IPv6AcceptRA = "yes";
+        IPv6PrivacyExtensions = "yes";
+      };
+    in
+    {
+      "30-wireless" = {
+        enable = true;
+        name = "wl*";
+        inherit networkConfig;
+        dhcpV4Config.RouteMetric = 100;
+        ipv6AcceptRAConfig.RouteMetric = 100;
+        extraConfig = ''
+          [Network]
+          IgnoreCarrierLoss=3s
+        '';
+      };
+      "40-wired" = {
+        enable = true;
+        name = "en*";
+        inherit networkConfig;
+        dhcpV4Config.RouteMetric = 200; # prefer wired
+        ipv6AcceptRAConfig.RouteMetric = 200;
+      };
+    };
   systemd.network.wait-online.anyInterface = true;
   systemd.services."systemd-networkd-wait-online".enable = false;
 
