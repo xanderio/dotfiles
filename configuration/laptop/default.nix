@@ -59,12 +59,13 @@
         enable = true;
         name = "en*";
         inherit networkConfig;
+        linkConfig.RequiredForOnline = "no";
         dhcpV4Config.RouteMetric = 200; # prefer wired
         ipv6AcceptRAConfig.RouteMetric = 200;
       };
     };
   systemd.network.wait-online.anyInterface = true;
-  systemd.services."systemd-networkd-wait-online".enable = false;
+  #systemd.services."systemd-networkd-wait-online".enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
