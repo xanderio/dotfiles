@@ -61,8 +61,8 @@
       symlinks = {
         mods = pkgs.linkFarmFromDrvs "mods" (map pkgs.fetchModrinthMod (builtins.attrValues {
           Starlight = {
-            id = "zFqBnsxO";
-            hash = "a3e54ff84c70ec4c57345e02ae059e2428da59ea087b8aaa6a4278f8a8c798f1";
+            id = "qH1xCwoC";
+            hash = "44da28466e6560816d470b31c3a31a14524c3ebd3cda7a887dd1dede6e2f6031";
           };
           Lithium = {
             id = "pXdccFQf";
@@ -75,10 +75,6 @@
           Krypton = {
             id = "UJ6FlFnK";
             hash = "2383b86960752fef9f97d67f3619f7f022d824f13676bb8888db7fea4ad1f76a";
-          };
-          LazyDFU = {
-            id = "4SHylIO9";
-            hash = "8c7993348a12d607950266e7aad1040ac99dd8fe35bb43a96cc7ff3404e77c5d";
           };
         }));
       };
