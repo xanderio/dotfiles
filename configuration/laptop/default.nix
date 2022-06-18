@@ -31,12 +31,8 @@
       enable = true;
       settings.Settings.AutoConnect = true;
     };
-    networkmanager = {
-      enable = true;
-      wifi.backend = "iwd";
-      dns = "systemd-resolved";
-    };
   };
+
   systemd.network.networks =
     let
       networkConfig = {
