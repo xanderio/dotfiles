@@ -14,7 +14,6 @@
   environment.variables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
-  networking.hostId = "ce58a733";
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;

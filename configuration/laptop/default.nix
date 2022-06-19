@@ -22,10 +22,6 @@
     useDHCP = false;
     useNetworkd = true;
     usePredictableInterfaceNames = true;
-    nat = {
-      enable = true;
-      internalInterfaces = [ "vt-+" ];
-    };
     wireless.enable = false;
     wireless.iwd = {
       enable = true;
@@ -41,6 +37,7 @@
         DNSOverTLS = "opportunistic";
         IPv6AcceptRA = "yes";
         IPv6PrivacyExtensions = "yes";
+        LinkLocalAddressing = "yes";
       };
     in
     {
@@ -65,7 +62,6 @@
       };
     };
   systemd.network.wait-online.anyInterface = true;
-  #systemd.services."systemd-networkd-wait-online".enable = false;
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
