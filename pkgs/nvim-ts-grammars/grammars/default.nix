@@ -82,6 +82,7 @@
   tree-sitter-svelte = builtins.fromJSON (builtins.readFile ./tree-sitter-svelte.json);
   tree-sitter-r = builtins.fromJSON (builtins.readFile ./tree-sitter-r.json);
   tree-sitter-beancount = builtins.fromJSON (builtins.readFile ./tree-sitter-beancount.json);
+  tree-sitter-rnoweb = builtins.fromJSON (builtins.readFile ./tree-sitter-rnoweb.json);
   tree-sitter-latex = builtins.fromJSON (builtins.readFile ./tree-sitter-latex.json);
   tree-sitter-bibtex = builtins.fromJSON (builtins.readFile ./tree-sitter-bibtex.json);
   tree-sitter-zig = builtins.fromJSON (builtins.readFile ./tree-sitter-zig.json);
