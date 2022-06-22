@@ -8,8 +8,6 @@ with lib; let
 in
 {
   options.xanderio = {
-    prusa-slicer.enable = mkEnableOption "prusa-slicer";
-    freecad.enable = mkEnableOption "freecad";
     android-studio.enable = mkEnableOption "android-studio";
     mumble.enable = mkEnableOption "mumble";
     darktable.enable = mkEnableOption "darktable";
@@ -32,8 +30,6 @@ in
         mpv
         pdfarranger
       ]
-      ++ optional cfg.prusa-slicer.enable pkgs.prusa-slicer
-      ++ optional cfg.freecad.enable pkgs.freecad
       ++ optional cfg.android-studio.enable pkgs.android-studio
       ++ optional cfg.mumble.enable pkgs.mumble
       ++ optional cfg.digikam.enable pkgs.digikam

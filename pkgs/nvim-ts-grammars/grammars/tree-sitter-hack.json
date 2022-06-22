@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/slackhq/tree-sitter-hack",
-  "rev": "67bdb848ab3549c903632967c24c53054b22a366",
-  "date": "2022-06-06T11:50:53-07:00",
-  "path": "/nix/store/7aqmjrgsrs9xsinrb2igdrl101yrniln-tree-sitter-hack-67bdb84",
-  "sha256": "08n9fd4sxf1vlxlzz4q2xnavd92wd23yb31wb9pxbdl6458mc7p0",
+  "rev": "b7bd6928532ada34dddb1dece4a158ab62c6e783",
+  "date": "2022-06-21T17:38:28-07:00",
+  "path": "/nix/store/afqw0l7vj3jq98fpjw6rh5misrah2ljb-tree-sitter-hack-b7bd692",
+  "sha256": "0rsa82rd6vrm7xc45awzz9rv8x77r5bnhlw7p0q3n0izi7hf49jd",
   "fetchLFS": false,
   "fetchSubmodules": false,
   "deepClone": false,

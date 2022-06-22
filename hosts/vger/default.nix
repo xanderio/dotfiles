@@ -24,8 +24,6 @@
       gpgFormat = "ssh";
       signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDvsq3ecdR4xigCpOQVfmWZYY74KnNJIJ5Fo0FsZMGW";
     };
-    prusa-slicer.enable = true;
-    freecad.enable = true;
     mumble.enable = true;
     minecraft.enable = true;
     darktable.enable = true;
