@@ -1,11 +1,14 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home = {
     packages = with pkgs; [
-      rustup
       bacon
       cargo-watch
       cargo-edit
       cargo-cache
+      cargo-udeps
+      cargo-nextest
+      cargo-tarpaulin
+      cargo-spellcheck
     ];
 
     file.".cargo/config".text = ''
