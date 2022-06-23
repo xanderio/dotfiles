@@ -36,6 +36,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDvsq3ecdR4xigCpOQVfmWZYY74KnNJIJ5Fo0FsZMGW"
   ];
 
+  services.tailscale.enable = true;
+
   security.acme = {
     defaults.email = "security@xanderio.de";
     acceptTerms = true;
