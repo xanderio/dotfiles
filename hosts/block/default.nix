@@ -59,24 +59,33 @@
         "telegnom" = "7767ea2a-4c84-4fec-a165-37161ecdf428";
       };
       symlinks = {
-        mods = pkgs.linkFarmFromDrvs "mods" (map pkgs.fetchModrinthMod (builtins.attrValues {
-          Starlight = {
-            id = "qH1xCwoC";
-            hash = "44da28466e6560816d470b31c3a31a14524c3ebd3cda7a887dd1dede6e2f6031";
-          };
-          Lithium = {
-            id = "pXdccFQf";
-            hash = "859f5b05f48e6828c0697baa6555c8c370bfb351e4ee214494b13de4bf4e54e2";
-          };
-          FerriteCore = {
-            id = "7epbwkFg";
-            hash = "58ab281bc8efdb1a56dff38d6f143d2e53df335656d589adff8f07d082dbea77";
-          };
-          Krypton = {
-            id = "UJ6FlFnK";
-            hash = "2383b86960752fef9f97d67f3619f7f022d824f13676bb8888db7fea4ad1f76a";
-          };
-        }));
+        mods =
+          pkgs.linkFarmFromDrvs "mods"
+            ([
+              (pkgs.fetchurl
+                {
+                  url = "https://github.com/gnembon/fabric-carpet/releases/download/1.4.79/fabric-carpet-1.19-1.4.79+v220607.jar";
+                  sha256 = "0110xxxs17n17fb5d216fgycz458anvjkcqj9pr70ffy36d3qirx";
+                })
+            ]
+            ++ (map pkgs.fetchModrinthMod (builtins.attrValues {
+              Starlight = {
+                id = "qH1xCwoC";
+                hash = "44da28466e6560816d470b31c3a31a14524c3ebd3cda7a887dd1dede6e2f6031";
+              };
+              Lithium = {
+                id = "pXdccFQf";
+                hash = "859f5b05f48e6828c0697baa6555c8c370bfb351e4ee214494b13de4bf4e54e2";
+              };
+              FerriteCore = {
+                id = "7epbwkFg";
+                hash = "58ab281bc8efdb1a56dff38d6f143d2e53df335656d589adff8f07d082dbea77";
+              };
+              Krypton = {
+                id = "UJ6FlFnK";
+                hash = "2383b86960752fef9f97d67f3619f7f022d824f13676bb8888db7fea4ad1f76a";
+              };
+            })));
       };
     };
   };
