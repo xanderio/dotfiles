@@ -57,6 +57,7 @@
         "MrKrisKrisu" = "09ad39cf-b231-4d2f-8efd-8deb1ebf52ab";
         "gim___" = "cac5d597-cd9a-43a4-9738-1f833b769ced";
         "telegnom" = "7767ea2a-4c84-4fec-a165-37161ecdf428";
+        "zoneoftroll" = "2efb4d0b-6270-4038-8f01-4efa7ce7922c";
       };
       symlinks = {
         mods =
