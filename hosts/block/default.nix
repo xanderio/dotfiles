@@ -70,6 +70,18 @@
                 })
             ]
             ++ (map pkgs.fetchModrinthMod (builtins.attrValues {
+              ClothConfig = {
+                id = "wOP2dCdL";
+                hash = "b5419b46e27c7879e9eefdf9a4068e200808c492292a7615bf5f7f7988a8de57";
+              };
+              FabricAPI = {
+                id = "s9txaq7F";
+                hash = "6218e31286f157bda01b01e9ff014eebd54e372b811b9d4bfa859a99cb838e12";
+              };
+              TextileBackup = {
+                id = "uD4wiBTa";
+                hash = "a2095a7294484a0b7f968cb12771afcbe6e5f0f56c5e974815084a15ff3c82f0";
+              };
               Starlight = {
                 id = "qH1xCwoC";
                 hash = "44da28466e6560816d470b31c3a31a14524c3ebd3cda7a887dd1dede6e2f6031";
