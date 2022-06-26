@@ -52,6 +52,7 @@
   tree-sitter-haskell = builtins.fromJSON (builtins.readFile ./tree-sitter-haskell.json);
   tree-sitter-hcl = builtins.fromJSON (builtins.readFile ./tree-sitter-hcl.json);
   tree-sitter-markdown = builtins.fromJSON (builtins.readFile ./tree-sitter-markdown.json);
+  tree-sitter-markdown_inline = builtins.fromJSON (builtins.readFile ./tree-sitter-markdown_inline.json);
   tree-sitter-tlaplus = builtins.fromJSON (builtins.readFile ./tree-sitter-tlaplus.json);
   tree-sitter-toml = builtins.fromJSON (builtins.readFile ./tree-sitter-toml.json);
   tree-sitter-glimmer = builtins.fromJSON (builtins.readFile ./tree-sitter-glimmer.json);

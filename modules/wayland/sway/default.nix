@@ -122,6 +122,10 @@ in
               text = white;
             };
           };
+        gaps = {
+          outer = 5;
+          smartGaps = true;
+        };
         keybindings =
           let
             cfg = config.wayland.windowManager.sway.config;
