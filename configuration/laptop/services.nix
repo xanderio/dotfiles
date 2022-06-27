@@ -29,6 +29,12 @@
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
 
-  virtualisation.docker.enable = true;
-  virtualisation.podman.enable = true;
+  virtualisation = {
+    docker.enable = false;
+    podman = {
+      enable = true;
+      dockerSocket.enable = true;
+      defaultNetwork.dnsname.enable = true;
+    };
+  };
 }
