@@ -61,7 +61,7 @@ in
         bars = [ ];
         input = {
           "type:keyboard" = {
-            xkb_layout = "de(nodeadkeys)";
+            xkb_layout = "us-german-umlaut";
             xkb_rules = "evdev";
             xkb_options = "caps:escape";
           };
@@ -69,14 +69,6 @@ in
             pointer_accel = "0.4";
             tap = "enabled";
             dwt = "enabled";
-          };
-          "1452:591:Keychron_Keychron_K7" = {
-            xkb_layout = "us-german-umlaut";
-            xkb_options = "caps:escape";
-          };
-          "1452:591:Keychron_K7" = {
-            xkb_layout = "us-german-umlaut";
-            xkb_options = "caps:escape";
           };
           "Elan Touchpad" = {
             events = "disabled";
