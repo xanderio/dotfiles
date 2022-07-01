@@ -12,7 +12,19 @@
   ];
 
   hardware = {
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      settings = {
+        General = {
+          JustWorksRepairing = "always";
+          FastConnectable = true;
+          Class = "0x000100";
+        };
+        Policy = {
+          AutoEnable = true;
+        };
+      };
+    };
     enableRedistributableFirmware = true;
   };
 
