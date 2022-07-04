@@ -25,7 +25,7 @@ in
         httpie
         pre-commit
 
-        thunderbird
+        thunderbird-bin
         imv
         mpv
         pdfarranger

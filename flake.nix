@@ -12,6 +12,7 @@
     };
     iwgtk-06.url = "github:xanderio/nixpkgs/feat/iwgtk-0.6";
     nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:NixOs/nixpkgs/master";
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";

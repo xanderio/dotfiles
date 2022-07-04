@@ -9,6 +9,13 @@
   })
   (final: prev:
     let
+      nixpkgs = import inputs.nixpkgs-master { system = prev.system; };
+    in
+    {
+      thunderbird-bin = nixpkgs.thunderbird-bin;
+    })
+  (final: prev:
+    let
       nixpkgs = import inputs.iwgtk-06 { system = prev.system; };
     in
     {
