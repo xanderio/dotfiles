@@ -13,6 +13,11 @@ return require('packer').startup(function()
     'RishabhRD/nvim-lsputils',
     requires = {{ 'RishabhRD/popfix' }}
   }
+  
+  use { 
+    'anuvyklack/hydra.nvim', 
+    requires = 'anuvyklack/keymap-layer.nvim' -- needed only for pink hydras
+  }
 
   use 'kosayoda/nvim-lightbulb'
   use 'antoinemadec/FixCursorHold.nvim'
@@ -33,6 +38,7 @@ return require('packer').startup(function()
   use 'SmiteshP/nvim-gps'
   use 'mfussenegger/nvim-ts-hint-textobject'
   use 'lewis6991/spellsitter.nvim'
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use 'lukas-reineke/indent-blankline.nvim' 
   use 'junegunn/vim-easy-align'
