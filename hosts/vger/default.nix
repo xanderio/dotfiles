@@ -4,6 +4,7 @@
     ../../configuration/laptop
   ];
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
     vaapiIntel
