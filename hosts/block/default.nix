@@ -62,13 +62,18 @@
       symlinks = {
         mods =
           pkgs.linkFarmFromDrvs "mods"
-            ([
-              (pkgs.fetchurl
-                {
+            ((
+              map pkgs.fetchurl (builtins.attrValues {
+                Carpet = {
                   url = "https://github.com/gnembon/fabric-carpet/releases/download/1.4.79/fabric-carpet-1.19-1.4.79+v220607.jar";
                   sha256 = "0110xxxs17n17fb5d216fgycz458anvjkcqj9pr70ffy36d3qirx";
-                })
-            ]
+                };
+                ShulkerBoxTooltip = {
+                  url = "https://github.com/MisterPeModder/ShulkerBoxTooltip/releases/download/v3.0.9%2B1.19/shulkerboxtooltip-3.0.9+1.19.jar";
+                  sha256 = "1f8a96177wfp71h052104qkz6ksgq0ql5gbssv78sdiz6cwg67z1";
+                };
+              })
+            )
             ++ (map pkgs.fetchModrinthMod (builtins.attrValues {
               ClothConfig = {
                 id = "wOP2dCdL";

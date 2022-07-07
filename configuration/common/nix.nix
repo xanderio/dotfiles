@@ -1,11 +1,11 @@
-{...}: {
+{ ... }: {
   nix = {
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 10d";
     };
-    autoOptimiseStore = true;
+    settings.auto-optimise-store = true;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
