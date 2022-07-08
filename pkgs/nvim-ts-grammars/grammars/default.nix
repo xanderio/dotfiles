@@ -1,4 +1,5 @@
 {
+  tree-sitter-qmljs = builtins.fromJSON (builtins.readFile ./tree-sitter-qmljs.json);
   tree-sitter-scheme = builtins.fromJSON (builtins.readFile ./tree-sitter-scheme.json);
   tree-sitter-javascript = builtins.fromJSON (builtins.readFile ./tree-sitter-javascript.json);
   tree-sitter-rego = builtins.fromJSON (builtins.readFile ./tree-sitter-rego.json);
@@ -76,6 +77,7 @@
   tree-sitter-jsdoc = builtins.fromJSON (builtins.readFile ./tree-sitter-jsdoc.json);
   tree-sitter-query = builtins.fromJSON (builtins.readFile ./tree-sitter-query.json);
   tree-sitter-sparql = builtins.fromJSON (builtins.readFile ./tree-sitter-sparql.json);
+  tree-sitter-sql = builtins.fromJSON (builtins.readFile ./tree-sitter-sql.json);
   tree-sitter-gdscript = builtins.fromJSON (builtins.readFile ./tree-sitter-gdscript.json);
   tree-sitter-godot_resource = builtins.fromJSON (builtins.readFile ./tree-sitter-godot_resource.json);
   tree-sitter-turtle = builtins.fromJSON (builtins.readFile ./tree-sitter-turtle.json);
