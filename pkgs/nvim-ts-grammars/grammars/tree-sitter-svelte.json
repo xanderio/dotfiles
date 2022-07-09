@@ -1,9 +1,9 @@
 {
   "url": "https://github.com/Himujjal/tree-sitter-svelte",
-  "rev": "ed9fb880972ddcca1b9400e9e7e792fc83c22885",
-  "date": "2022-07-04T18:11:19+05:30",
-  "path": "/nix/store/1rm0bpdb7zm84p9295k2927yppblcsbx-tree-sitter-svelte-ed9fb88",
-  "sha256": "1z41zc0blr1r13lz6r4hcky9jsn4s1307jkg9n6f4z86rgdryswk",
+  "rev": "52e122ae68b316d3aa960a0a422d3645ba717f42",
+  "date": "2022-07-08T23:25:40+05:30",
+  "path": "/nix/store/fgl96w87jppw661jrav9j5580nxd1552-tree-sitter-svelte-52e122a",
+  "sha256": "1pbs508ly4dlppnpa5657j0zsi7fdd6azvxjk7dayxznbygnj900",
   "fetchLFS": false,
   "fetchSubmodules": false,
   "deepClone": false,
