@@ -2,6 +2,7 @@
   home = {
     packages = with pkgs; [
       bacon
+      dioxus-cli
       cargo-watch
       cargo-edit
       cargo-cache
