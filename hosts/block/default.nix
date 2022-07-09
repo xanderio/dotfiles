@@ -68,6 +68,10 @@
                   url = "https://github.com/gnembon/fabric-carpet/releases/download/1.4.79/fabric-carpet-1.19-1.4.79+v220607.jar";
                   sha256 = "0110xxxs17n17fb5d216fgycz458anvjkcqj9pr70ffy36d3qirx";
                 };
+                Carpet-Extra = {
+                  url = "https://github.com/gnembon/carpet-extra/releases/download/1.4.79/carpet-extra-1.19-1.4.79.jar";
+                  sha256 = "05wakimih6b93pw0cmswj1glrrnjad754nzycz2w82idk9dy67lw";
+                };
                 ShulkerBoxTooltip = {
                   url = "https://github.com/MisterPeModder/ShulkerBoxTooltip/releases/download/v3.0.9%2B1.19/shulkerboxtooltip-3.0.9+1.19.jar";
                   sha256 = "1f8a96177wfp71h052104qkz6ksgq0ql5gbssv78sdiz6cwg67z1";
