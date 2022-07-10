@@ -1,8 +1,7 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }: {
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -14,7 +13,7 @@
     lua51Packages.mpack
 
     rnix-lsp
-    rust-analyzer
+    rust-analyzer-nightly
     terraform-lsp
     taplo-cli
     shellcheck
@@ -53,11 +52,11 @@
       };
     }
     // lib.attrsets.mapAttrs'
-    (name: drv:
-      lib.attrsets.nameValuePair
-      ("nvim/parser/"
-        + (lib.strings.removePrefix "tree-sitter-" name)
-        + ".so")
-      {source = "${drv}/parser.so";})
-    pkgs.nvim-ts-grammars.builtGrammars;
+      (name: drv:
+        lib.attrsets.nameValuePair
+          ("nvim/parser/"
+          + (lib.strings.removePrefix "tree-sitter-" name)
+          + ".so")
+          { source = "${drv}/parser.so"; })
+      pkgs.nvim-ts-grammars.builtGrammars;
 }

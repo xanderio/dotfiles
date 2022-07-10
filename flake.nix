@@ -6,13 +6,15 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     iwgtk-06.url = "github:xanderio/nixpkgs/feat/iwgtk-0.6";
-    nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:NixOs/nixpkgs/master";
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
