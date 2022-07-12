@@ -29,6 +29,7 @@ in
         imv
         mpv
         pdfarranger
+        freecad
       ]
       ++ optional cfg.android-studio.enable pkgs.android-studio
       ++ optional cfg.mumble.enable pkgs.mumble
