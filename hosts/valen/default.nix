@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   imports = [
     ../../configuration/server
     ./headscale.nix

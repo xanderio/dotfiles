@@ -1,4 +1,4 @@
-{ config, ... }: {
+{config, ...}: {
   services = {
     headscale = {
       enable = true;
@@ -13,7 +13,7 @@
       dns = {
         baseDomain = "hs.xanderio.de";
         magicDns = true;
-        domains = [ "xanderio.de" "home.hs.xanderio.de" ];
+        domains = ["xanderio.de" "home.hs.xanderio.de"];
         nameservers = [
           "9.9.9.9"
         ];
@@ -21,20 +21,18 @@
       port = 8085;
       serverUrl = "https://headscale.xanderio.de";
     };
-    nginx.virtualHosts =
-      let
-        location = "http://localhost:${toString config.services.headscale.port}";
-      in
-      {
-        "headscale.xanderio.de" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/".proxyPass = location;
-        };
+    nginx.virtualHosts = let
+      location = "http://localhost:${toString config.services.headscale.port}";
+    in {
+      "headscale.xanderio.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/".proxyPass = location;
       };
+    };
   };
   systemd.services."headscale".environment = {
     GIN_MODE = "release";
   };
-  environment.systemPackages = [ config.services.headscale.package ];
+  environment.systemPackages = [config.services.headscale.package];
 }

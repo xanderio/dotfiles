@@ -1,4 +1,4 @@
-{ name, ... }: {
+{name, ...}: {
   imports = [
     ./hardware-configuration.nix
     ./miniflux.nix
@@ -25,7 +25,7 @@
       address = "fe80::1";
       interface = "ens3";
     };
-    nameservers = [ "2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2" ];
+    nameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2"];
     firewall.interfaces.ens10.allowedTCPPortRanges = [
       {
         from = 0;
@@ -39,14 +39,14 @@
 
     borgbackup.jobs = {
       backup = {
-        paths = [ "/" ];
-        exclude = [ "/nix" "'**/.cache'" "/proc" "/sys" ];
+        paths = ["/"];
+        exclude = ["/nix" "'**/.cache'" "/proc" "/sys"];
         repo = "u289342@u289342.your-storagebox.de:backup/${name}";
         encryption = {
           mode = "repokey-blake2";
           passCommand = "cat /var/borg/passphrase";
         };
-        environment = { BORG_RSH = "ssh -p 23 -i /var/borg/id_ed25519"; };
+        environment = {BORG_RSH = "ssh -p 23 -i /var/borg/id_ed25519";};
         compression = "auto,zstd,10";
         startAt = "daily";
       };

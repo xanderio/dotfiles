@@ -1,6 +1,6 @@
-{ inputs
-, overlays
-,
+{
+  inputs,
+  overlays,
 }: {
   meta = {
     specialArgs = {

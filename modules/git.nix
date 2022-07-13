@@ -1,12 +1,12 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 with lib; let
   cfg = config.xanderio.git;
-in
-{
+in {
   options.xanderio.git = {
     enable = mkEnableOption "git";
     email = mkOption {

@@ -102,7 +102,6 @@ null_ls.setup({
 
 local servers = { 
   'bashls',
-  'cssls',
   'dartls',
   'dockerls',
   'taplo',
@@ -115,6 +114,14 @@ for _, lsp in ipairs(servers) do
     on_attach = require('lsp').on_attach,
   })
 end
+
+require('lspconfig').cssls.setup({
+  cmd = { "css-languageserver", "--stdio" }, 
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
 
 require('lspconfig').rnix.setup({
   capabilities = require('lsp').capabilities(),

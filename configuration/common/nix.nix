@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   nix = {
     gc = {
       automatic = true;

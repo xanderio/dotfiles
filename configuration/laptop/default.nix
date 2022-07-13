@@ -1,4 +1,4 @@
-{ ... }: {
+{...}: {
   imports = [
     ../common
     ./boot.nix
@@ -41,38 +41,36 @@
     };
   };
 
-  systemd.network.networks =
-    let
-      networkConfig = {
-        DHCP = "yes";
-        MulticastDNS = "yes";
-        DNSOverTLS = "opportunistic";
-        IPv6AcceptRA = "yes";
-        IPv6PrivacyExtensions = "yes";
-        LinkLocalAddressing = "yes";
-      };
-    in
-    {
-      "30-wireless" = {
-        enable = true;
-        name = "wl*";
-        inherit networkConfig;
-        dhcpV4Config.RouteMetric = 100;
-        ipv6AcceptRAConfig.RouteMetric = 100;
-        extraConfig = ''
-          [Network]
-          IgnoreCarrierLoss=3s
-        '';
-      };
-      "40-wired" = {
-        enable = true;
-        name = "en*";
-        inherit networkConfig;
-        linkConfig.RequiredForOnline = "no";
-        dhcpV4Config.RouteMetric = 200; # prefer wired
-        ipv6AcceptRAConfig.RouteMetric = 200;
-      };
+  systemd.network.networks = let
+    networkConfig = {
+      DHCP = "yes";
+      MulticastDNS = "yes";
+      DNSOverTLS = "opportunistic";
+      IPv6AcceptRA = "yes";
+      IPv6PrivacyExtensions = "yes";
+      LinkLocalAddressing = "yes";
     };
+  in {
+    "30-wireless" = {
+      enable = true;
+      name = "wl*";
+      inherit networkConfig;
+      dhcpV4Config.RouteMetric = 100;
+      ipv6AcceptRAConfig.RouteMetric = 100;
+      extraConfig = ''
+        [Network]
+        IgnoreCarrierLoss=3s
+      '';
+    };
+    "40-wired" = {
+      enable = true;
+      name = "en*";
+      inherit networkConfig;
+      linkConfig.RequiredForOnline = "no";
+      dhcpV4Config.RouteMetric = 200; # prefer wired
+      ipv6AcceptRAConfig.RouteMetric = 200;
+    };
+  };
   systemd.network.wait-online.anyInterface = true;
 
   # Set your time zone.
@@ -81,5 +79,5 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  nix.settings.trusted-users = [ "root" "xanderio" ];
+  nix.settings.trusted-users = ["root" "xanderio"];
 }

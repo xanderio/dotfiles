@@ -1,17 +1,17 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
 with lib; let
   cfg = config.xanderio;
-in
-{
+in {
   options.xanderio.minecraft.enable = mkEnableOption "Minecraft";
 
   config = {
     home.packages =
-      [ pkgs.polymc ]
+      [pkgs.polymc]
       ++ optional cfg.minecraft.enable pkgs.minecraft;
   };
 }

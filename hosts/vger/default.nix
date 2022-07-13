@@ -1,10 +1,10 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../configuration/laptop
   ];
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
     vaapiIntel
@@ -12,7 +12,7 @@
     vaapiVdpau
     intel-ocl
   ];
-  environment.systemPackages = [ pkgs.vial ];
+  environment.systemPackages = [pkgs.vial];
   environment.variables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
