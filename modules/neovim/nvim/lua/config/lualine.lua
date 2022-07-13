@@ -1,4 +1,4 @@
-local gps = require("nvim-gps")
+local navic = require("nvim-navic")
 require('lualine').setup({ 
   options = { 
     theme = 'dracula-nvim',
@@ -9,7 +9,11 @@ require('lualine').setup({
   sections = {
     lualine_a = { 'mode' },
     lualine_b = { {'b:gitsigns_head', icon = ''}, { 'diff', color_added = '#50fa7b' } },
-    lualine_c = { {'filename', file_status = true }, { 'diagnostics', sources = {'nvim_diagnostic'}}, { gps.get_location, cond = gps.is_available }}, 
+    lualine_c = { 
+      {'filename', file_status = true },
+      { 'diagnostics', sources = {'nvim_diagnostic'}},
+      { navic.get_location, cond = navic.is_available }
+    }, 
     lualine_x = { 'encoding', 'fileformat', 'filetype' },
     lualine_y = { 'progress' },
     lualine_z = { 'location' }

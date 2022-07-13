@@ -35,7 +35,7 @@ return require('packer').startup(function()
   use "rcarriga/nvim-dap-ui"
 
   use 'nvim-treesitter/nvim-treesitter'
-  use 'SmiteshP/nvim-gps'
+  use 'SmiteshP/nvim-navic'
   use 'mfussenegger/nvim-ts-hint-textobject'
   use 'lewis6991/spellsitter.nvim'
   use 'JoosepAlviste/nvim-ts-context-commentstring'

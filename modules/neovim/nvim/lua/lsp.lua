@@ -64,6 +64,8 @@ function M.on_attach(client, bufnr)
   --require('lsp-status').on_attach(client)
   require("fidget").setup({})
 
+  require('nvim-navic').attach(client, bufnr)
+
   -- lsp trouble
   require("trouble").setup({})
 
