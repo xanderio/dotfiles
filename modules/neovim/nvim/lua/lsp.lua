@@ -7,6 +7,7 @@ function lsp_formatting(bufnr)
       -- filter out clients that you don't want to use
       return client.name ~= "tsserver" 
         or client.name ~= "rnix"
+        or client.name ~= "null-ls"
     end,
     bufnr = bufnr,
 })

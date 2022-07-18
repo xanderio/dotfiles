@@ -1,12 +1,12 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
+{ config
+, pkgs
+, lib
+, ...
 }:
 with lib; let
   cfg = config.xanderio;
-in {
+in
+{
   options.xanderio = {
     android-studio.enable = mkEnableOption "android-studio";
     mumble.enable = mkEnableOption "mumble";
@@ -25,7 +25,7 @@ in {
         httpie
         pre-commit
 
-        thunderbird-bin
+        thunderbird
         imv
         mpv
         pdfarranger
