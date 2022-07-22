@@ -1,9 +1,8 @@
-{
-  inputs,
-  pkgs,
-  config,
-  lib,
-  ...
+{ inputs
+, pkgs
+, config
+, lib
+, ...
 }: {
   imports = [
     inputs.nix-minecraft.nixosModules.minecraft-servers
@@ -29,7 +28,7 @@
       address = "fe80::1";
       interface = "enp1s0";
     };
-    nameservers = ["2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2"];
+    nameservers = [ "2a01:4ff:ff00::add:1" "2a01:4ff:ff00::add:2" "185.12.64.1" "185.12.64.2" ];
   };
 
   services.prometheus = {
@@ -59,11 +58,12 @@
         "gim___" = "cac5d597-cd9a-43a4-9738-1f833b769ced";
         "telegnom" = "7767ea2a-4c84-4fec-a165-37161ecdf428";
         "zoneoftroll" = "2efb4d0b-6270-4038-8f01-4efa7ce7922c";
+        "xScrillexx" = "cf666d0d-524f-4c17-8989-b1fe317bb5dd";
       };
       symlinks = {
         mods =
           pkgs.linkFarmFromDrvs "mods"
-          ((
+            ((
               map pkgs.fetchurl (builtins.attrValues {
                 Carpet = {
                   url = "https://github.com/gnembon/fabric-carpet/releases/download/1.4.79/fabric-carpet-1.19-1.4.79+v220607.jar";
