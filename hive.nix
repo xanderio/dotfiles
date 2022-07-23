@@ -1,10 +1,11 @@
-{
-  inputs,
-  overlays,
+{ inputs
+, overlays
+,
 }: {
   meta = {
     specialArgs = {
       inherit inputs;
+      nixpkgs = inputs.nixpkgs;
     };
     nixpkgs = import inputs.nixpkgs {
       system = "x86_64-linux";
