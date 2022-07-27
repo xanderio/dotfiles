@@ -1,5 +1,6 @@
 { nixpkgs, ... }: {
   nix = {
+    nixPath = [ "nixpkgs=${nixpkgs}" ];
     registry.nixpkgs.flake = nixpkgs;
     gc = {
       automatic = true;

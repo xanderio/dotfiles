@@ -13,5 +13,11 @@
     {
       iwgtk = nixpkgs.iwgtk;
     })
-  (import ../pkgs { })
+  (
+    final: prev:
+      let
+        callPackage = prev.callPackage;
+      in
+      (import ../pkgs { inherit callPackage; })
+  )
 ]

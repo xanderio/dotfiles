@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home = {
     packages = with pkgs; [
       bacon
@@ -10,6 +10,8 @@
       cargo-nextest
       cargo-tarpaulin
       cargo-spellcheck
+      cargo-espflash
+      cargo-espmonitor
     ];
 
     file.".cargo/config".text = ''

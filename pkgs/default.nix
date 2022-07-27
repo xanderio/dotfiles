@@ -1,6 +1,7 @@
-{}: final: prev: {
-  nvim-ts-grammars = prev.callPackage ./nvim-ts-grammars {};
-  timewarrior-hook = prev.callPackage ./timewarrior-hook {};
-  ferium = prev.callPackage ./ferium {};
-  dioxus-cli = prev.callPackage ./dioxus-cli {};
+{ callPackage, ... }: {
+  nvim-ts-grammars = callPackage ./nvim-ts-grammars { };
+  ferium = callPackage ./ferium { };
+  dioxus-cli = callPackage ./dioxus-cli { };
+  cargo-espflash = callPackage ./cargo-espflash { };
+  cargo-espmonitor = callPackage ./cargo-espmonitor { };
 }

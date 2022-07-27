@@ -46,6 +46,8 @@
       devShells."${system}".default = pkgs.mkShellNoCC {
         buildInputs = [ pkgs.colmena ];
       };
+      packages."${system}" =
+        import ./pkgs { callPackage = pkgs.callPackage; };
       nixosConfigurations =
         let
         in
