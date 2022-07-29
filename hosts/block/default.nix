@@ -49,8 +49,9 @@
       serverProperties = {
         server-port = 25565;
         difficulty = 3;
-        max-players = 5;
+        max-players = 10;
         white-list = true;
+        spawn-protection = 0;
       };
       whitelist = {
         "xanderio" = "40470409-787b-494a-ada2-49f097e7cf50";
