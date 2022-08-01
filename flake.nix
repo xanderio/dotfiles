@@ -19,7 +19,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    polymc.url = "github:PolyMC/PolyMC";
+    polymc.url = "github:PolyMC/PolyMC?ref=1.4.1";
   };
 
   outputs =
