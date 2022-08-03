@@ -50,9 +50,6 @@ require('nvim-treesitter.configs').setup({
       "python",
       "yaml"
     }
-  },
-  context_commentstring = {
-      enable = true
   }
 })
 

@@ -38,7 +38,8 @@ return require('packer').startup(function()
   use 'SmiteshP/nvim-navic'
   use 'mfussenegger/nvim-ts-hint-textobject'
   use 'lewis6991/spellsitter.nvim'
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  -- use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'numToStr/Comment.nvim'
 
   use 'lukas-reineke/indent-blankline.nvim' 
   use 'junegunn/vim-easy-align'
@@ -83,7 +84,7 @@ return require('packer').startup(function()
 
   use 'tpope/vim-surround'
   use 'tpope/vim-repeat'
-  use 'tpope/vim-commentary'
+  -- use 'tpope/vim-commentary'
   -- use 'tpope/vim-fugitive' 
   use 'dag/vim-fish' 
   use 'kyazdani42/nvim-web-devicons'

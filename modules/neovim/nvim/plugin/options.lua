@@ -1,6 +1,4 @@
 local o, wo, bo = vim.o, vim.wo, vim.bo
-local cmd = vim.cmd
-
 o.backup = true
 o.backupdir = vim.fn.stdpath('data')..'/backup'
 o.completeopt = "menuone,noinsert,noselect"
@@ -35,17 +33,24 @@ if vim.fn.executable('rg') then
   o.grepformat = "%f:%l:%c:%m"
 end
 
-cmd [[ augroup commands ]]
-cmd [[   au! ]]
--- cmd [[   au InsertEnter,WinEnter * set nocursorline ]]
--- cmd [[   au InsertLeave,WinEnter * set cursorline ]]
-cmd [[   au TermOpen * setlocal nonumber norelativenumber ]]
-cmd [[   au FileType mail setlocal fo+=aw ]]
-cmd [[   au FileType gitcommit setlocal spell spelllang=en ]]
-cmd [[   au FileType make setlocal tabstop=8 ]]
--- cmd[[    au FileType * setlocal shiftwidth=2 ]]
+local augroup = vim.api.nvim_create_augroup("commands", {})
+vim.api.nvim_create_autocmd({"TermOpen"},
+{
+  group = augroup,
+  callback = function()
+      vim.wo.relativenumber = false
+      vim.wo.number = false
+  end,
+})
 
-cmd [[ augroup end ]]
+-- cmd [[ augroup commands ]]
+-- cmd [[   au! ]]
+-- cmd [[   au TermOpen * setlocal nonumber norelativenumber ]]
+-- cmd [[   au FileType mail setlocal fo+=aw ]]
+-- cmd [[   au FileType gitcommit setlocal spell spelllang=en ]]
+-- cmd [[   au FileType make setlocal tabstop=8 ]]
+-- cmd[[    au FileType * setlocal shiftwidth=2 ]]
+-- cmd [[ augroup end ]]
 
 local map = vim.api.nvim_set_keymap
 
