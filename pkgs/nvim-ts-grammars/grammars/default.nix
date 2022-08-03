@@ -1,5 +1,6 @@
 {
   tree-sitter-qmljs = builtins.fromJSON (builtins.readFile ./tree-sitter-qmljs.json);
+  tree-sitter-racket = builtins.fromJSON (builtins.readFile ./tree-sitter-racket.json);
   tree-sitter-scheme = builtins.fromJSON (builtins.readFile ./tree-sitter-scheme.json);
   tree-sitter-javascript = builtins.fromJSON (builtins.readFile ./tree-sitter-javascript.json);
   tree-sitter-rego = builtins.fromJSON (builtins.readFile ./tree-sitter-rego.json);
