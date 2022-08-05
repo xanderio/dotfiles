@@ -12,6 +12,9 @@
       lfs.enable = true;
       disableRegistration = true;
     };
+    openssh.extraConfig = ''
+      AcceptEnv GIT_PROTOCOL
+    '';
     nginx = {
       enable = true;
       virtualHosts.${config.services.gitea.domain} = {
