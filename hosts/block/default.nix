@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.grub.device = "/dev/sda";
 
   networking = {
@@ -104,10 +105,6 @@
               FerriteCore = {
                 id = "7epbwkFg";
                 hash = "58ab281bc8efdb1a56dff38d6f143d2e53df335656d589adff8f07d082dbea77";
-              };
-              Krypton = {
-                id = "UJ6FlFnK";
-                hash = "2383b86960752fef9f97d67f3619f7f022d824f13676bb8888db7fea4ad1f76a";
               };
             })));
       };
