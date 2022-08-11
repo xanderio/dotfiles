@@ -82,7 +82,7 @@ null_ls.setup({
 
     -- Nix
     null_ls.builtins.code_actions.statix,
-    null_ls.builtins.formatting.alejandra,
+    --null_ls.builtins.formatting.alejandra,
 
     -- python
     null_ls.builtins.formatting.black,

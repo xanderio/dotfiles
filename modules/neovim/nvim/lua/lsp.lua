@@ -6,8 +6,6 @@ function lsp_formatting(bufnr)
     filter = function(client)
       -- filter out clients that you don't want to use
       return client.name ~= "tsserver" 
-        or client.name ~= "rnix"
-        or client.name ~= "null-ls"
     end,
     bufnr = bufnr,
 })
@@ -63,7 +61,13 @@ function M.on_attach(client, bufnr)
 
   -- lsp status
   --require('lsp-status').on_attach(client)
-  require("fidget").setup({})
+  require("fidget").setup({
+    sources = {
+      ['null-ls'] = {
+        ignore = true,
+      },
+    },
+  })
 
   require('nvim-navic').attach(client, bufnr)
 
