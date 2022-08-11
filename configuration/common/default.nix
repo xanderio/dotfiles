@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  name,
-  ...
+{ config
+, pkgs
+, lib
+, name
+, ...
 }: {
   imports = [
     ./nix.nix
@@ -25,7 +24,7 @@
     kbdInteractiveAuthentication = false;
     permitRootLogin = "without-password";
   };
-  networking.firewall.allowedTCPPorts = [22];
+  networking.firewall.allowedTCPPorts = [ 22 ];
 
   environment.systemPackages = with pkgs; [
     htop

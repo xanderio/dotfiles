@@ -1,16 +1,16 @@
-{
-  nixpkgs,
-  home-manager,
-  pkgs,
-  overlays,
-  system,
-  inputs,
-  ...
+{ nixpkgs
+, home-manager
+, pkgs
+, overlays
+, system
+, inputs
+, ...
 }: {
-  mkHost = {
-    name,
-    modules,
-  }:
+  mkHost =
+    { name
+    , modules
+    ,
+    }:
     nixpkgs.lib.nixosSystem {
       inherit system pkgs;
       specialArgs = inputs;

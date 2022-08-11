@@ -1,12 +1,11 @@
-{
-  options,
-  config,
-  ...
+{ options
+, config
+, ...
 }: {
   services = {
     postgresql = {
       enable = true;
-      ensureDatabases = ["nextcloud"];
+      ensureDatabases = [ "nextcloud" ];
       ensureUsers = [
         {
           name = "nextcloud";

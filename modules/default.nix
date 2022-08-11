@@ -3,4 +3,4 @@ let
     ./games.nix
   ];
 in
-  modules
+modules

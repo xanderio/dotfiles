@@ -1,8 +1,7 @@
-{
-  pkgs,
-  lib,
-  config,
-  ...
+{ pkgs
+, lib
+, config
+, ...
 }:
 with lib; let
   fuzzelOptions = lib.strings.concatStringsSep " " [
@@ -17,7 +16,8 @@ with lib; let
     ${pkgs.fuzzel}/bin/fuzzel ${fuzzelOptions}
   '';
   background = ./background.png;
-in {
+in
+{
   options.xanderio.sway.scale = mkOption {
     default = "1";
     type = types.str;
@@ -58,7 +58,7 @@ in {
         modifier = "Mod4";
         terminal = "${pkgs.foot}/bin/foot";
         menu = toString fuzzel;
-        bars = [];
+        bars = [ ];
         input = {
           "type:keyboard" = {
             xkb_layout = "us-german-umlaut";
@@ -82,70 +82,73 @@ in {
           };
           "*".bg = "${background} fill";
         };
-        colors = let
-          red = "#FF5555";
-          blue = "#6272A4";
-          white = "#F8F8F2";
-          grey = "#BFBFBF";
-          darker_grey = "#282A36";
-          dark_grey = "#44475A";
-        in {
-          background = "#F8F8F2";
-          focused = {
-            background = blue;
-            border = blue;
-            childBorder = blue;
-            indicator = blue;
-            text = white;
+        colors =
+          let
+            red = "#FF5555";
+            blue = "#6272A4";
+            white = "#F8F8F2";
+            grey = "#BFBFBF";
+            darker_grey = "#282A36";
+            dark_grey = "#44475A";
+          in
+          {
+            background = "#F8F8F2";
+            focused = {
+              background = blue;
+              border = blue;
+              childBorder = blue;
+              indicator = blue;
+              text = white;
+            };
+            focusedInactive = {
+              background = dark_grey;
+              border = dark_grey;
+              childBorder = dark_grey;
+              indicator = dark_grey;
+              text = white;
+            };
+            placeholder = {
+              background = darker_grey;
+              border = darker_grey;
+              childBorder = darker_grey;
+              indicator = darker_grey;
+              text = white;
+            };
+            unfocused = {
+              background = darker_grey;
+              border = darker_grey;
+              childBorder = darker_grey;
+              indicator = darker_grey;
+              text = grey;
+            };
+            urgent = {
+              background = dark_grey;
+              border = red;
+              childBorder = red;
+              indicator = red;
+              text = white;
+            };
           };
-          focusedInactive = {
-            background = dark_grey;
-            border = dark_grey;
-            childBorder = dark_grey;
-            indicator = dark_grey;
-            text = white;
-          };
-          placeholder = {
-            background = darker_grey;
-            border = darker_grey;
-            childBorder = darker_grey;
-            indicator = darker_grey;
-            text = white;
-          };
-          unfocused = {
-            background = darker_grey;
-            border = darker_grey;
-            childBorder = darker_grey;
-            indicator = darker_grey;
-            text = grey;
-          };
-          urgent = {
-            background = dark_grey;
-            border = red;
-            childBorder = red;
-            indicator = red;
-            text = white;
-          };
-        };
         gaps = {
           outer = 5;
           inner = 5;
           smartGaps = true;
         };
-        keybindings = let
-          cfg = config.wayland.windowManager.sway.config;
-          mod = cfg.modifier;
+        keybindings =
+          let
+            cfg = config.wayland.windowManager.sway.config;
+            mod = cfg.modifier;
 
-          makoctl = "${pkgs.mako}/bin/makoctl";
-          playerctl = "${pkgs.playerctl}/bin/playerctl";
-          pactl = "${pkgs.pulseaudio}/bin/pactl";
-          brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
+            makoctl = "${pkgs.mako}/bin/makoctl";
+            playerctl = "${pkgs.playerctl}/bin/playerctl";
+            pactl = "${pkgs.pulseaudio}/bin/pactl";
+            brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
 
-          grim = "${pkgs.grim}/bin/grim";
-          slurp = "${pkgs.slurp}/bin/slurp";
-          pngquant = "${pkgs.pngquant}/bin/pngquant";
-          wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-        in
+            grim = "${pkgs.grim}/bin/grim";
+            slurp = "${pkgs.slurp}/bin/slurp";
+            pngquant = "${pkgs.pngquant}/bin/pngquant";
+            wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+          in
           lib.mkOptionDefault {
             "${mod}+asciicircum" = "workspace back_and_forth";
             "${mod}+Backspace" = "exec swaylock";

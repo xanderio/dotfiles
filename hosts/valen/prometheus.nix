@@ -1,7 +1,6 @@
-{
-  pkgs,
-  config,
-  ...
+{ pkgs
+, config
+, ...
 }: {
   services.prometheus = {
     enable = true;
@@ -13,7 +12,7 @@
         job_name = "prometheus";
         static_configs = [
           {
-            targets = ["localhost:${toString config.services.prometheus.port}"];
+            targets = [ "localhost:${toString config.services.prometheus.port}" ];
           }
         ];
       }
@@ -21,7 +20,7 @@
         job_name = "wireguard";
         static_configs = [
           {
-            targets = ["10.0.1.2:${toString config.services.prometheus.exporters.wireguard.port}"];
+            targets = [ "10.0.1.2:${toString config.services.prometheus.exporters.wireguard.port}" ];
           }
         ];
       }
@@ -35,12 +34,12 @@
         ];
         relabel_configs = [
           {
-            source_labels = ["__meta_hetzner_server_name"];
+            source_labels = [ "__meta_hetzner_server_name" ];
             target_label = "instance";
             replacement = "$1";
           }
           {
-            source_labels = ["__meta_hetzner_hcloud_private_ipv4_intern"];
+            source_labels = [ "__meta_hetzner_hcloud_private_ipv4_intern" ];
             target_label = "__address__";
             replacement = "$1:9100";
           }

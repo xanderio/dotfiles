@@ -1,8 +1,8 @@
-{
-  lib,
-  fetchFromGitHub,
-  rustPlatform,
-  pkg-config,
+{ lib
+, fetchFromGitHub
+, rustPlatform
+, pkg-config
+,
 }:
 rustPlatform.buildRustPackage rec {
   pname = "ferium";
@@ -17,7 +17,7 @@ rustPlatform.buildRustPackage rec {
   buildNoDefaultFeatures = true;
   doCheck = false;
 
-  nativeBuildInputs = [pkg-config];
+  nativeBuildInputs = [ pkg-config ];
 
   cargoSha256 = "llEZmgIHc/jQwFV3URoQghg/aM0qIu5wBKQQkAGoBmg=";
 }

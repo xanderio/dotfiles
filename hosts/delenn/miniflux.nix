@@ -1,4 +1,4 @@
-{lib, ...}: {
+{ lib, ... }: {
   services.miniflux = {
     enable = true;
     adminCredentialsFile = "/dev/null";

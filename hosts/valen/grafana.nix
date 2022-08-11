@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   services = {
     grafana = {
       enable = true;
@@ -10,7 +10,7 @@
         job_name = "grafana";
         static_configs = [
           {
-            targets = ["localhost:${toString config.services.grafana.port}"];
+            targets = [ "localhost:${toString config.services.grafana.port}" ];
           }
         ];
       }

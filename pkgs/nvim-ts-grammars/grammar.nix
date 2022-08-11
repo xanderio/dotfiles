@@ -1,18 +1,19 @@
-{
-  lib,
-  stdenv,
-  libcxx,
-  tree-sitter,
+{ lib
+, stdenv
+, libcxx
+, tree-sitter
+,
 }:
 # Build a parser grammar and put the resulting shared object in `$out/parser`
 {
   # language name
-  language,
-  # version of tree-sitter
-  version,
-  # source for the language grammar
-  source,
-  location ? null,
+  language
+, # version of tree-sitter
+  version
+, # source for the language grammar
+  source
+, location ? null
+,
 }:
 stdenv.mkDerivation {
   pname = "${language}-grammar";
@@ -24,7 +25,7 @@ stdenv.mkDerivation {
     else "${source}/${location}";
 
   NIX_CFLAGS_COMPILE = lib.optionalString stdenv.isDarwin "-I${lib.getDev libcxx}/include/c++/v1";
-  buildInputs = [tree-sitter];
+  buildInputs = [ tree-sitter ];
 
   dontUnpack = true;
   configurePhase = ":";

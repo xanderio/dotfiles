@@ -1,9 +1,8 @@
-{
-  config,
-  pkgs,
-  lib,
-  name,
-  ...
+{ config
+, pkgs
+, lib
+, name
+, ...
 }: {
   imports = [
     ../common

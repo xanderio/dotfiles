@@ -1,8 +1,7 @@
-{
-  name,
-  nodes,
-  pkgs,
-  ...
+{ name
+, nodes
+, pkgs
+, ...
 }: {
   imports = [
     ../../configuration/server

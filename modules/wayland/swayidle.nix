@@ -1,8 +1,10 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   swaylock = "${pkgs.swaylock}/bin/swaylock";
   swaymsg = "${pkgs.sway}/bin/swaymsg";
   pgrep = "${pkgs.busybox}/bin/pgrep";
-in {
+in
+{
   services.swayidle = {
     enable = true;
     events = [
