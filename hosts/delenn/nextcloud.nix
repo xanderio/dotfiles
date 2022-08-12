@@ -18,6 +18,7 @@
 
     nextcloud = {
       enable = true;
+      https = true;
       hostName = "cloud.xanderio.de";
       datadir = "/mnt/nextcloud";
       config = {
