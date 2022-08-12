@@ -5,4 +5,5 @@
   ];
   programs.mtr.enable = true;
   programs.adb.enable = true;
+  programs.fuse.userAllowOther = true;
 }
