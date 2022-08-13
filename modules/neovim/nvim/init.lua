@@ -125,6 +125,8 @@ require('lspconfig').cssls.setup({
 })
 
 require('lspconfig').rnix.setup({
+  autostart = true,
+  cmd = { "nil" },
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)

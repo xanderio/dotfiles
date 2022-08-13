@@ -12,7 +12,7 @@
     neovim-nightly
     lua51Packages.mpack
 
-    rnix-lsp
+    nil
     rust-analyzer-nightly
     terraform-lsp
     taplo-cli

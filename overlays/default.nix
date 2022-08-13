@@ -11,6 +11,7 @@
       nixpkgs = import inputs.iwgtk-06 { system = prev.system; };
     in
     {
+      inherit (inputs.nil.packages."x86_64-linux") nil;
       iwgtk = nixpkgs.iwgtk;
     })
   (

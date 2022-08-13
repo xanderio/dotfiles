@@ -20,6 +20,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     polymc.url = "github:PolyMC/PolyMC?ref=1.4.1";
+    nil =
+      {
+        url = "github:oxalica/nil";
+        inputs.nixpkgs.follows = "nixpkgs";
+      };
   };
 
   outputs =
