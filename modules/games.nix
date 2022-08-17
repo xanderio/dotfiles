@@ -11,7 +11,7 @@ in
 
   config = {
     home.packages =
-      [ pkgs.polymc-qt6 ]
-      ++ optional cfg.minecraft.enable pkgs.minecraft;
+      [ ]
+      ++ optional cfg.minecraft.enable pkgs.polymc;
   };
 }

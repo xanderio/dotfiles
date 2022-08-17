@@ -7,6 +7,7 @@
     ./swaylock
     ./tray-items.nix
     ./waybar
+    ./gammastep.nix
   ];
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
