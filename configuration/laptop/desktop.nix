@@ -20,6 +20,7 @@
     gnomeExtensions.appindicator
     networkmanagerapplet # needed for icons to work
     iwgtk # icons
+    gammastep
 
     gnome.gnome-system-monitor
     gnome.nautilus
