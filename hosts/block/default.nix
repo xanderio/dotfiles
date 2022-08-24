@@ -1,12 +1,9 @@
-{ inputs
-, pkgs
+{ pkgs
 , config
 , lib
 , ...
 }: {
   imports = [
-    inputs.nix-minecraft.nixosModules.minecraft-servers
-    ../../configuration/server
     ./hardware-configuration.nix
   ];
 
@@ -14,6 +11,7 @@
   boot.loader.grub.device = "/dev/sda";
 
   networking = {
+    hostName = "block";
     useDHCP = false;
     enableIPv6 = true;
 

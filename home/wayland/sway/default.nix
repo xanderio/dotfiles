@@ -78,6 +78,7 @@ in
         output = {
           eDP-1 = {
             scale = config.xanderio.sway.scale;
+            render_bit_depth = "10";
             pos = "0 0";
           };
           "*".bg = "${background} fill";

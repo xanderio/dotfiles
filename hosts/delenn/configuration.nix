@@ -1,4 +1,4 @@
-{ name, ... }: {
+{ ... }: {
   imports = [
     ./hardware-configuration.nix
     ./miniflux.nix
@@ -41,7 +41,7 @@
       backup = {
         paths = [ "/" ];
         exclude = [ "/nix" "'**/.cache'" "/proc" "/sys" ];
-        repo = "u289342@u289342.your-storagebox.de:backup/${name}";
+        repo = "u289342@u289342.your-storagebox.de:backup/delenn";
         encryption = {
           mode = "repokey-blake2";
           passCommand = "cat /var/borg/passphrase";

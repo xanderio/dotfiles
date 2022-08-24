@@ -14,7 +14,6 @@
   zramSwap.enable = true;
 
   networking = {
-    hostName = name;
     domain = "xanderio.de";
   };
 

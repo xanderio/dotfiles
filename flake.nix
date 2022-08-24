@@ -19,64 +19,53 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    polymc.url = "github:PolyMC/PolyMC?ref=1.4.1";
-    nil =
-      {
-        url = "github:oxalica/nil";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
+    nil = {
+      url = "github:oxalica/nil";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    colmena = {
+      url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
     { self
     , nixpkgs
-    , nixos-hardware
-    , home-manager
     , ...
     } @ inputs:
     let
       system = "x86_64-linux";
 
-      overlays = import ./overlays {
-        inherit pkgs inputs;
-      };
-
       pkgs = import nixpkgs {
-        inherit system overlays;
-        config.allowUnfree = true;
+        inherit system;
       };
-      lib = import ./lib { inherit nixpkgs home-manager pkgs overlays system inputs; };
     in
     {
       formatter."${system}" = pkgs.nixpkgs-fmt;
       devShells."${system}".default = pkgs.mkShellNoCC {
         buildInputs = [ pkgs.colmena ];
       };
-      packages."${system}" =
-        import ./pkgs { callPackage = pkgs.callPackage; };
-      nixosConfigurations =
+      packages."${system}" = import ./pkgs { callPackage = pkgs.callPackage; };
+      overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });
+
+      nixosConfigurations = import ./hosts inputs;
+
+      colmena =
         let
+          inherit (inputs.nixpkgs) lib;
+          hosts = lib.filterAttrs (name: value: lib.hasAttrByPath [ "config" "deployment" ] value) self.nixosConfigurations;
         in
         {
-          vger = lib.mkHost {
-            name = "vger";
-            modules = [
-              nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-              home-manager.nixosModules.home-manager
-              {
-                home-manager = {
-                  useGlobalPkgs = true;
-                  useUserPackages = true;
-                  sharedModules = import ./modules;
-                  users.xanderio = import ./home.nix;
-                };
-              }
-            ];
+          meta = {
+            specialArgs = { inherit inputs; };
+            nixpkgs = pkgs;
           };
-        };
-      colmena =
-        import
-          ./hive.nix
-          { inherit inputs overlays; };
+        } // builtins.mapAttrs
+          (name: value: {
+            nixpkgs.system = value.config.nixpkgs.system;
+            imports = value._module.args.modules;
+          })
+          hosts;
     };
 }

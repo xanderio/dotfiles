@@ -8,7 +8,6 @@
         layer = "top";
         position = "top";
         height = 25;
-        width = 2560;
         spacing = 0;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];

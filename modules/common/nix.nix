@@ -1,7 +1,7 @@
-{ nixpkgs, ... }: {
+{ inputs, ... }: {
   nix = {
-    nixPath = [ "nixpkgs=${nixpkgs}" ];
-    registry.nixpkgs.flake = nixpkgs;
+    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    registry.nixpkgs.flake = inputs.nixpkgs;
     gc = {
       automatic = true;
       dates = "weekly";

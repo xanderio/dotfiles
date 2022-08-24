@@ -4,10 +4,9 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../configuration/laptop
   ];
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  networking.hostName = "vger";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
@@ -35,5 +34,6 @@
     minecraft.enable = true;
     darktable.enable = true;
     digikam.enable = true;
+    sway.scale = "1.1";
   };
 }

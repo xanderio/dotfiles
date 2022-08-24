@@ -32,7 +32,7 @@
   networking = {
     useDHCP = false;
     useNetworkd = true;
-    usePredictableInterfaceNames = true;
+    usePredictableInterfaceNames = false;
     wireless.enable = false;
     wireless.iwd = {
       enable = true;

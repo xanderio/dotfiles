@@ -1,10 +1,8 @@
-{ name
-, nodes
-, pkgs
+{ pkgs
 , ...
 }: {
   imports = [
-    ../../configuration/server
     ./configuration.nix
   ];
+  networking.hostName = "delenn";
 }
