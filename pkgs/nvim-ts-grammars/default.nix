@@ -3,7 +3,7 @@
 , tree-sitter
 , fetchgit
 , callPackage
-,
+, linkFarm
 }:
 let
   fetchGrammar = v: fetchgit { inherit (v) url rev sha256 fetchSubmodules; };
@@ -67,5 +67,11 @@ let
         };
     in
     lib.mapAttrs buildGrammar grammars;
+
+    parsers = lib.attrsets.mapAttrsToList
+      (name: drv:
+          { name = (lib.strings.removePrefix "tree-sitter-" name) + ".so"; path = "${drv}/parser.so"; })
+      builtGrammars;
 in
-{ inherit builtGrammars; }
+linkFarm "tree-sitter-parsers" parsers
+

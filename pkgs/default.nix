@@ -1,4 +1,5 @@
-{ callPackage, ... }: {
+{ callPackage, ... }:
+{
   nvim-ts-grammars = callPackage ./nvim-ts-grammars { };
   ferium = callPackage ./ferium { };
   dioxus-cli = callPackage ./dioxus-cli { };
