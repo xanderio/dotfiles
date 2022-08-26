@@ -1,8 +1,8 @@
 { ... }:
 {
   services.gammastep = {
-    enable = true;
-    tray = true;
+    enable = false;
+    tray = false;
     latitude = "51.9";
     longitude = "8.3";
     temperature = {
