@@ -23,6 +23,7 @@
     ./neovim
     ./nix
     ./nix-utilities.nix
+    ./ntfy.nix
     ./rust.nix
     ./ssh.nix
     ./starship.nix

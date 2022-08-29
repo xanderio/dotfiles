@@ -3,6 +3,7 @@ let
   inherit (inputs) self;
   sharedModules = [
     ../modules/minimal.nix
+    ../modules/ntfy.nix
     { _module.args = { inherit inputs; }; }
     inputs.nix-minecraft.nixosModules.minecraft-servers
     inputs.home-manager.nixosModules.home-manager
