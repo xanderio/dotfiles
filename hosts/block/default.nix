@@ -38,6 +38,22 @@
     };
   };
 
+  services.promtail.configuration = {
+    scrape_configs = [
+      {
+        job_name = "minecraft";
+        static_configs = [
+          {
+            labels = {
+              job = "minecraft";
+              "__path__" = "/srv/minecraft/*/logs/latest.log";
+            };
+          }
+        ];
+      }
+    ];
+  };
+
   services.minecraft-servers = {
     enable = true;
     eula = true;
