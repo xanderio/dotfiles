@@ -42,6 +42,7 @@
       };
     in
     {
+      pkgs.${system} = pkgs;
       formatter."${system}" = pkgs.nixpkgs-fmt;
       devShells."${system}".default = pkgs.mkShellNoCC {
         buildInputs = [ pkgs.colmena ];

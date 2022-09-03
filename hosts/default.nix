@@ -20,6 +20,7 @@ let
   ];
 
   inherit (inputs.nixpkgs.lib) nixosSystem;
+  inherit (import "${self}/home/profiles" inputs) homeImports;
 in
 {
   vger = nixosSystem {
@@ -28,7 +29,7 @@ in
       ./vger
       ../modules/laptop
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-      { home-manager.users.xanderio = import "${self}/home"; }
+      { home-manager.users.xanderio.imports = homeImports."xanderio@vger"; }
     ]
     ++ sharedModules;
   };

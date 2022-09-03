@@ -5,12 +5,6 @@
   programs.fish = {
     enable = true;
     shellAliases = {
-      /*
-       ll = "ls -l";
-       */
-      /*
-       la = "ls -la";
-       */
       ssh = "TERM=xterm-256color command ssh";
       s = "${pkgs.git}/bin/git s";
       d = "${pkgs.git}/bin/git diff";
@@ -41,7 +35,6 @@
       set fish_color_history_current white
 
       set fish_cursor_unknown block
-      #set -ax NIX_PATH $HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels
       # nix
       set fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d $fish_function_path
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
@@ -55,27 +48,8 @@
     '';
 
     functions = {
-      fish_greeting = {
-        body = "";
-      };
-      /*
-       ls = {
-       body = ''
-       if type --query exa
-       exa --group-directories-first --git $argv
-       else
-       command ls --color=auto $argv
-       end'';
-       };
-       */
-      cat = {
-        body = ''
-          if type --query bat
-            bat $argv
-          else
-            command cat $argv
-          end'';
-      };
+      fish_greeting.body = "";
+      cat.body = "${pkgs.bat}/bin/bat $argv";
       fish_title = {
         body = ''
           if [ $_ = fish ]
@@ -97,9 +71,7 @@
       };
       woi_login = {
         description = "Wifi@DB / WifiOnICE login script";
-        body = ''
-          curl -vk 'https://10.101.64.10/en/' -H 'Host: wifi.bahn.de' -H 'Cookie: csrf=asdf' --data 'login=true&CSRFToken=asdf'
-        '';
+        body = " ${pkgs.curl}/bin/curl -vk 'https://10.101.64.10/en/' -H 'Host: wifi.bahn.de' -H 'Cookie: csrf=asdf' --data 'login=true&CSRFToken=asdf'";
       };
     };
     plugins = [

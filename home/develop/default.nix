@@ -1,8 +1,11 @@
 { pkgs, ... }: {
+  imports = [
+    ./neovim
+  ];
   home = {
     packages = with pkgs; [
+      # rust
       bacon
-      dioxus-cli
       cargo-watch
       cargo-edit
       cargo-cache
@@ -10,9 +13,18 @@
       cargo-nextest
       cargo-tarpaulin
       cargo-spellcheck
+      dioxus-cli
       cargo-espflash
       cargo-espmonitor
+
+      darcs
     ];
+
+    sessionVariables = {
+      DARCS_ALWAYS_COLOR = "1";
+      DARCS_ALTERNATIVE_COLOR = "1";
+      DARCS_DO_COLOR_LINES = "1";
+    };
 
     file.".cargo/config".text = ''
       [build]
@@ -25,10 +37,6 @@
       [target.x86_64-unknown-linux-gnu]
       linker = "${pkgs.clang}/bin/clang"
       rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.mold}/bin/mold"]
-
-      #[target.x86_64-unknown-linux-gnu]
-      #linker = "/usr/bin/clang"
-      #rustflags = ["-Clink-arg=-fuse-ld=lld", "-Clink-arg=-Wl,--no-rosegment"]
     '';
   };
 }

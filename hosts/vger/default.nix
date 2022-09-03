@@ -31,10 +31,6 @@
       gpgFormat = "ssh";
       signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJDvsq3ecdR4xigCpOQVfmWZYY74KnNJIJ5Fo0FsZMGW";
     };
-    mumble.enable = true;
-    minecraft.enable = true;
-    darktable.enable = true;
-    digikam.enable = true;
     sway.scale = "1.1";
   };
 }

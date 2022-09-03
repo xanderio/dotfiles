@@ -68,10 +68,10 @@ let
     in
     lib.mapAttrs buildGrammar grammars;
 
-    parsers = lib.attrsets.mapAttrsToList
-      (name: drv:
-          { name = (lib.strings.removePrefix "tree-sitter-" name) + ".so"; path = "${drv}/parser.so"; })
-      builtGrammars;
+  parsers = lib.attrsets.mapAttrsToList
+    (name: drv:
+      { name = (lib.strings.removePrefix "tree-sitter-" name) + ".so"; path = "${drv}/parser.so"; })
+    builtGrammars;
 in
 linkFarm "tree-sitter-parsers" parsers
 

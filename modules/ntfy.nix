@@ -1,9 +1,9 @@
-{pkgs, config, lib, ...}:
+{ pkgs, config, lib, ... }:
 with lib;
-let 
+let
   cfg = config.services.ntfy;
 
-  configFormat = pkgs.formats.yaml { }; 
+  configFormat = pkgs.formats.yaml { };
   configFile = configFormat.generate "server.yaml" cfg.settings;
 in
 {
@@ -18,7 +18,7 @@ in
     domain = mkOption {
       type = types.str;
     };
-  
+
     port = mkOption {
       type = types.port;
       default = 8081;
@@ -33,7 +33,7 @@ in
       type = types.path;
       default = "/var/cache/ntfy/attachments";
     };
-    
+
     cache = mkOption {
       type = types.path;
       default = "/var/cache/ntfy";
@@ -57,14 +57,14 @@ in
       listen-http = ":${builtins.toString cfg.port}";
       base-url = "https://${cfg.domain}";
     };
-    
+
     users.users.ntfy = {
       group = "ntfy";
       createHome = false;
       isSystemUser = true;
     };
 
-    users.groups.ntfy = {};
+    users.groups.ntfy = { };
 
     systemd.tmpfiles.rules = [
       "d ${cfg.cache}            0700 ntfy - - -"

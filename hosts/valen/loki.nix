@@ -1,4 +1,4 @@
-{...}:
+{ ... }:
 {
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 3030 ];
   services.loki = {
