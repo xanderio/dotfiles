@@ -1,4 +1,8 @@
 { config, ... }: {
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+    "net.ipv6.conf.all.forwarding" = 1;
+  };
   services = {
     headscale = {
       enable = true;
@@ -21,6 +25,16 @@
       port = 8085;
       serverUrl = "https://headscale.xanderio.de";
     };
+    prometheus.scrapeConfigs = [
+      {
+        job_name = "headscale";
+        static_configs = [
+          {
+            targets = [ config.services.headscale.settings.metrics_listen_addr ];
+          }
+        ];
+      }
+    ];
     nginx.virtualHosts =
       let
         location = "http://localhost:${toString config.services.headscale.port}";

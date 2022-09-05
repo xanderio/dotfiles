@@ -3,7 +3,6 @@
     ../common
     ./boot.nix
     ./desktop.nix
-    ./firewall.nix
     ./fonts.nix
     ./users.nix
     ./services.nix

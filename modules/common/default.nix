@@ -28,7 +28,6 @@
   environment.systemPackages = with pkgs; [
     htop
     neovim
-    nftables
   ];
 
   documentation.man.generateCaches = true;
