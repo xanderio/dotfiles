@@ -11,7 +11,7 @@
         spacing = 0;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "custom/spt" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
+        modules-right = [ "custom/spt" "network" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
         "sway/workspaces" = {
           disable-scroll = true;
           disable-markup = false;
@@ -26,6 +26,13 @@
           tooltip-format = "<big>{:%Y %B}</big>\n<tt>{calendar}</tt>";
           format-alt = "{:%Y-%m-%d}";
         };
+        network = {
+          interface = "wlan0";
+          format = "{ifname}";
+          format-wifi = "{essid} ({signalStrength}%) ";
+          tooltip-format = "{ifname} via {gwaddr} ";
+          tooltip-format-wifi = "{essid} ({signalStrength}%) ";
+        };
         idle_inhibitor = {
           format = "{icon}";
           format-icons = {
@@ -38,7 +45,7 @@
             pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
           in
           {
-            format = "{icon} {volume}%";
+            format = "{volume}%";
             on-click = "${pavucontrol}";
           };
         "custom/spt" =
