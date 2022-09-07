@@ -17,34 +17,26 @@
         ];
       }
       {
-        job_name = "wireguard";
+        job_name = "node";
         static_configs = [
           {
-            targets = [ "10.0.1.2:${toString config.services.prometheus.exporters.wireguard.port}" ];
-          }
-        ];
-      }
-      {
-        job_name = "node";
-        hetzner_sd_configs = [
-          {
-            authorization.credentials_file = "/var/hcloud_token";
-            role = "hcloud";
+            targets =
+              let
+                makeTarget = name: "${name}.internal.hs.xanderio.de:${toString config.services.prometheus.exporters.node.port}";
+              in
+              builtins.map makeTarget [ "valen" "delenn" "block" ];
           }
         ];
         relabel_configs = [
           {
-            source_labels = [ "__meta_hetzner_server_name" ];
+            source_labels = [ "__address__" ];
             target_label = "instance";
-            replacement = "$1";
-          }
-          {
-            source_labels = [ "__meta_hetzner_hcloud_private_ipv4_intern" ];
-            target_label = "__address__";
-            replacement = "$1:9100";
+            regex = "(.*?)\\..*";
+            replacement = "\${1}.xanderio.de";
           }
         ];
       }
     ];
   };
+  networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 9090 ];
 }

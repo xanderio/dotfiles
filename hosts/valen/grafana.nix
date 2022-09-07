@@ -3,6 +3,7 @@
     grafana = {
       enable = true;
       domain = "grafana.xanderio.de";
+      rootUrl = "https://grafana.xanderio.de";
     };
 
     prometheus.scrapeConfigs = [
