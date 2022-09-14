@@ -45,6 +45,7 @@
     ];
   };
 
+  services.borgbackup.jobs.backup.paths = [ "/srv/minecraft" ];
   services.minecraft-servers = {
     enable = true;
     eula = true;

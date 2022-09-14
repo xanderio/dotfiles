@@ -7,6 +7,8 @@ let
     { _module.args = { inherit inputs; }; }
     inputs.nix-minecraft.nixosModules.minecraft-servers
     inputs.home-manager.nixosModules.home-manager
+    inputs.agenix.nixosModule
+    ../modules/secrets.nix
     {
       home-manager = {
         useGlobalPkgs = true;

@@ -38,5 +38,6 @@
       }
     ];
   };
+  services.borgbackup.jobs.backup.exclude = [ "/var/lib/prometheus2" ];
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 9090 ];
 }

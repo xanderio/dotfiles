@@ -14,7 +14,6 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    iwgtk-06.url = "github:xanderio/nixpkgs/feat/iwgtk-0.6";
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +24,10 @@
     };
     colmena = {
       url = "github:zhaofengli/colmena";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    agenix = {
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -45,7 +48,7 @@
       pkgs.${system} = pkgs;
       formatter."${system}" = pkgs.nixpkgs-fmt;
       devShells."${system}".default = pkgs.mkShellNoCC {
-        buildInputs = [ pkgs.colmena ];
+        buildInputs = [ pkgs.colmena inputs.agenix.packages.${system}.agenix ];
       };
       packages."${system}" = import ./pkgs { callPackage = pkgs.callPackage; };
       overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });

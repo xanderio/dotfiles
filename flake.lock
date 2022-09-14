@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "agenix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1662241716,
+        "narHash": "sha256-urqPvSvvGUhkwzTDxUI8N1nsdMysbAfjmBNZaTYBZRU=",
+        "owner": "ryantm",
+        "repo": "agenix",
+        "rev": "c96da5835b76d3d8e8d99a0fec6fe32f8539ee2e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ryantm",
+        "repo": "agenix",
+        "type": "github"
+      }
+    },
     "colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -158,22 +178,6 @@
         "type": "github"
       }
     },
-    "iwgtk-06": {
-      "locked": {
-        "lastModified": 1655225664,
-        "narHash": "sha256-AXn5rSCXpkjoLW1jBdSbLDP5aRF2n+ATLaH+ZeYBxkk=",
-        "owner": "xanderio",
-        "repo": "nixpkgs",
-        "rev": "ca3c595577acfef95b4b5263408fd064509696c3",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xanderio",
-        "ref": "feat/iwgtk-0.6",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "neovim-flake": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -319,10 +323,10 @@
     },
     "root": {
       "inputs": {
+        "agenix": "agenix",
         "colmena": "colmena",
         "fenix": "fenix",
         "home-manager": "home-manager",
-        "iwgtk-06": "iwgtk-06",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nil": "nil",
         "nix-minecraft": "nix-minecraft",
