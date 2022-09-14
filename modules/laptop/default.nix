@@ -47,7 +47,7 @@
         DNSOverTLS = "opportunistic";
         IPv6AcceptRA = "yes";
         IPv6PrivacyExtensions = "yes";
-        LinkLocalAddressing = "yes";
+        # LinkLocalAddressing = "yes";
       };
     in
     {
