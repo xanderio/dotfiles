@@ -21,6 +21,7 @@
       ntfy-sh
       polymc
       bibata-cursors
+      ripdrag
     ];
   };
 
