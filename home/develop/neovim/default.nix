@@ -20,7 +20,7 @@
     terraform
 
     statix
-    alejandra
+    nixpkgs-fmt
     gitlint
     hadolint
 

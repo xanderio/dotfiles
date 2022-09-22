@@ -72,7 +72,7 @@ null_ls.setup({
   sources = {
     -- js,ts,etc.
     null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.prettier,
     null_ls.builtins.diagnostics.eslint_d,
 
     -- shell
@@ -82,7 +82,7 @@ null_ls.setup({
 
     -- Nix
     null_ls.builtins.code_actions.statix,
-    --null_ls.builtins.formatting.alejandra,
+    null_ls.builtins.formatting.nixpkgs_fmt,
 
     -- python
     null_ls.builtins.formatting.black,
