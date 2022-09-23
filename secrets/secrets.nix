@@ -12,4 +12,6 @@ in
 {
   "storagebox-sshkey.age".publicKeys = [ xanderio ] ++ servers;
   "backup-key.age".publicKeys = [ xanderio ] ++ servers;
+
+  "woodpecker.age".publicKeys = [ xanderio block ];
 }
