@@ -1,8 +1,8 @@
 { config, ... }:
 {
   age.secrets = {
-    "storagebox-sshkey".file = ../secrets/storagebox-sshkey.age;
-    "backup-key".file = ../secrets/backup-key.age;
+    "storagebox-sshkey".file = ../../secrets/storagebox-sshkey.age;
+    "backup-key".file = ../../secrets/backup-key.age;
   };
   services.borgbackup.jobs = {
     backup = {
