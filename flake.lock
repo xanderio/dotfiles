@@ -144,6 +144,36 @@
     },
     "flake-utils_4": {
       "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_5": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_6": {
+      "locked": {
         "lastModified": 1656928814,
         "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
         "owner": "numtide",
@@ -155,6 +185,28 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "graftify": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "poetry2nix": "poetry2nix"
+      },
+      "locked": {
+        "lastModified": 1664042225,
+        "narHash": "sha256-xVwYk+vnIEeY8xsgp8V8C8cam65R1EGO1O1JkU/OLvY=",
+        "ref": "refs/heads/main",
+        "rev": "3f2e7e794ce5ba37f94c82ceeb12f42ee471c8d3",
+        "revCount": 1,
+        "type": "git",
+        "url": "https://git.xanderio.de/xanderio/graftify.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.xanderio.de/xanderio/graftify.git"
       }
     },
     "home-manager": {
@@ -180,7 +232,7 @@
     },
     "neovim-flake": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils_4",
         "nixpkgs": [
           "neovim-nightly-overlay",
           "nixpkgs"
@@ -226,7 +278,7 @@
     },
     "nil": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -271,7 +323,7 @@
     },
     "nix-minecraft": {
       "inputs": {
-        "flake-utils": "flake-utils_4",
+        "flake-utils": "flake-utils_6",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -307,6 +359,21 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1664020690,
+        "narHash": "sha256-g36h+u9FZaHeHX8O8EQ9/dCJBbb9m43eiKLdKu0O8KI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9569998606020f3dd3120fdac2149b5cafca1687",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1663850217,
         "narHash": "sha256-tp9nXo1/IdN/xN9m06ryy0QUAEfoN6K56ObM/1QTAjc=",
         "owner": "NixOS",
@@ -321,17 +388,37 @@
         "type": "github"
       }
     },
+    "poetry2nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1663998703,
+        "narHash": "sha256-QqooFECK0JRUFcRBra8Gn10FXs86VS3QeiI14Xz/E4I=",
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "rev": "675a05088a53a9a2c63b848505beaba5acb49cef",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "poetry2nix",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
         "colmena": "colmena",
         "fenix": "fenix",
+        "graftify": "graftify",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nil": "nil",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "rust-analyzer-src": {
