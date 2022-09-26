@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
+    flake-utils.url = "github:numtide/flake-utils";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,8 +23,8 @@
       url = "github:oxalica/nil";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    colmena = {
-      url = "github:zhaofengli/colmena";
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
@@ -36,44 +37,28 @@
     };
   };
 
-  outputs =
-    { self
-    , nixpkgs
-    , ...
-    } @ inputs:
-    let
-      system = "x86_64-linux";
-
-      pkgs = import nixpkgs {
-        inherit system;
-      };
-    in
-    {
-      pkgs.${system} = pkgs;
-      formatter."${system}" = pkgs.nixpkgs-fmt;
-      devShells."${system}".default = pkgs.mkShellNoCC {
-        buildInputs = [ pkgs.colmena inputs.agenix.packages.${system}.agenix ];
-      };
-      packages."${system}" = import ./pkgs { callPackage = pkgs.callPackage; };
-      overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });
-
-      nixosConfigurations = import ./hosts inputs;
-
-      colmena =
+  outputs = { self, nixpkgs, flake-utils, ... } @ inputs:
+    flake-utils.lib.eachSystem [ "x86_64-linux" ]
+      (system:
         let
-          inherit (inputs.nixpkgs) lib;
-          hosts = lib.filterAttrs (name: value: lib.hasAttrByPath [ "config" "deployment" ] value) self.nixosConfigurations;
+          pkgs = import nixpkgs { inherit system; };
         in
         {
-          meta = {
-            specialArgs = { inherit inputs; };
-            nixpkgs = pkgs;
+          pkgs = pkgs;
+          formatter = pkgs.nixpkgs-fmt;
+          devShells.default = pkgs.mkShellNoCC {
+            buildInputs = [
+              inputs.deploy-rs.packages."${system}".deploy-rs
+              inputs.agenix.packages."${system}".agenix
+            ];
           };
-        } // builtins.mapAttrs
-          (name: value: {
-            nixpkgs.system = value.config.nixpkgs.system;
-            imports = value._module.args.modules;
-          })
-          hosts;
+          packages = import ./pkgs { callPackage = pkgs.callPackage; };
+        }) //
+    {
+      overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });
+
+      deploy = import ./hosts/deploy.nix inputs;
+      nixosConfigurations = import ./hosts inputs;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
     };
 }

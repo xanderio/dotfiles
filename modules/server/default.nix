@@ -18,6 +18,4 @@
   networking = {
     domain = "xanderio.de";
   };
-
-  deployment.targetHost = "${config.networking.hostName}.${config.networking.domain}";
 }

@@ -17,9 +17,7 @@ let
     }
   ];
 
-  extraModules = [
-    inputs.colmena.nixosModules.deploymentOptions
-  ];
+  extraModules = [ ];
 
   inherit (inputs.nixpkgs.lib) nixosSystem;
   inherit (import "${self}/home/profiles" inputs) homeImports;
