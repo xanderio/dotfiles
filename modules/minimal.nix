@@ -8,5 +8,5 @@
     inputs.fenix.overlay
   ];
 
-  networking.firewall.checkReversePath = "loose";
+  networking.firewall.checkReversePath = false;
 }
