@@ -20,7 +20,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     deploy-rs = {
-      url = "github:serokell/deploy-rs";
+      url = "git+https://git.xanderio.de/xanderio/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix = {
