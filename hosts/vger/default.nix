@@ -25,6 +25,7 @@
     enable = true;
     remotePlay.openFirewall = true;
   };
+  programs.gamemode.enable = true;
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
