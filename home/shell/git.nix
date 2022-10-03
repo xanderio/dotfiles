@@ -40,19 +40,7 @@ in
         c = "commit";
       };
 
-      includes = [
-        {
-          path = "~/Work/.gitconfig";
-          condition = "gitdir:~/Work/";
-        }
-      ];
-
-      ignores = [
-        ".direnv"
-        ".envrc"
-        ".env"
-        "env"
-      ];
+      ignores = [ ".direnv" ];
 
       difftastic = {
         enable = true;
@@ -81,8 +69,14 @@ in
           defaultBranch = "main";
         };
         merge = {
+          tool = "nvim";
           conflictstyle = "diff3";
         };
+        mergetool = {
+          keepBackup = false;
+          prompt = false;
+        };
+        "mergetool.nvim".cmd = "${pkgs.neovim}/bin/nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
         push.autoSetupRemote = true;
       };
 
