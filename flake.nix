@@ -29,7 +29,6 @@
     };
     graftify = {
       url = "git+https://git.xanderio.de/xanderio/graftify.git";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 

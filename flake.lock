@@ -156,9 +156,7 @@
     "graftify": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "poetry2nix": "poetry2nix"
       },
       "locked": {
@@ -281,6 +279,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1663850217,
+        "narHash": "sha256-tp9nXo1/IdN/xN9m06ryy0QUAEfoN6K56ObM/1QTAjc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ae1dc133ea5f1538d035af41e5ddbc2ebcb67b90",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1664020690,
         "narHash": "sha256-g36h+u9FZaHeHX8O8EQ9/dCJBbb9m43eiKLdKu0O8KI=",
         "owner": "NixOS",
@@ -294,7 +308,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1664370076,
         "narHash": "sha256-NDnIo0nxJozLwEw0VPM+RApMA90uTfbvaNNtC5eB7Os=",
@@ -313,7 +327,7 @@
     "poetry2nix": {
       "inputs": {
         "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
         "lastModified": 1663998703,
@@ -340,7 +354,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       }
     },
     "rust-analyzer-src": {
