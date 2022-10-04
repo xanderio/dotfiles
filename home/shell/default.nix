@@ -5,6 +5,7 @@
   ];
 
   home.packages = with pkgs; [
+    nushell
     ripgrep
     fd
     htop
