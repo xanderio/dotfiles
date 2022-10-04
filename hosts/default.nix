@@ -33,34 +33,47 @@ in
     ]
     ++ sharedModules;
   };
-
-  delenn = nixosSystem {
-    inherit extraModules;
+  hex = nixosSystem {
     system = "x86_64-linux";
     modules = [
-      ./delenn
-      ../modules/server
+      ./hex
+      ../modules/laptop
+      inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
+      { home-manager.users.xanderio.imports = homeImports."xanderio@hex"; }
     ]
     ++ sharedModules;
   };
 
-  valen = nixosSystem {
-    inherit extraModules;
-    system = "x86_64-linux";
-    modules = [
-      ./valen
-      ../modules/server
-    ]
-    ++ sharedModules;
-  };
+  delenn = nixosSystem
+    {
+      inherit extraModules;
+      system = "x86_64-linux";
+      modules = [
+        ./delenn
+        ../modules/server
+      ]
+      ++ sharedModules;
+    };
 
-  block = nixosSystem {
-    inherit extraModules;
-    system = "x86_64-linux";
-    modules = [
-      ./block
-      ../modules/server
-    ]
-    ++ sharedModules;
-  };
+  valen = nixosSystem
+    {
+      inherit extraModules;
+      system = "x86_64-linux";
+      modules = [
+        ./valen
+        ../modules/server
+      ]
+      ++ sharedModules;
+    };
+
+  block = nixosSystem
+    {
+      inherit extraModules;
+      system = "x86_64-linux";
+      modules = [
+        ./block
+        ../modules/server
+      ]
+      ++ sharedModules;
+    };
 }

@@ -14,6 +14,7 @@ let
 
   homeImports = {
     "xanderio@vger" = sharedModules ++ [ ./vger ];
+    "xanderio@hex" = sharedModules ++ [ ./hex ];
     server = sharedModules ++ [ ./server ];
   };
 in
@@ -21,6 +22,7 @@ in
   inherit homeImports;
   homeConfigurations = {
     "xanderio@vger" = mkHome { modules = homeImports."xanderio@vger"; };
+    "xanderio@hex" = mkHome { modules = homeImports."xanderio@hex"; };
     server = mkHome { modules = homeImports.server; };
   };
 }
