@@ -27,6 +27,6 @@
       gpgFormat = "ssh";
       signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSDJ6zHzaKb+bdDPm6iOplsLao/YJAepUr5Ja86gjN6";
     };
-    sway.scale = "1.1";
+    sway.scale = "1.5";
   };
 }
