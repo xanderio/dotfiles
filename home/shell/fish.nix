@@ -86,4 +86,5 @@
       }
     ];
   };
+  xdg.configFile."fish/completions/direnv.fish".source = ./direnv.fish;
 }
