@@ -34,6 +34,7 @@
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
+      email = "alexander.sieg@cyberus-technology.de";
       gpgFormat = "ssh";
       signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSDJ6zHzaKb+bdDPm6iOplsLao/YJAepUr5Ja86gjN6";
     };
