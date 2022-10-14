@@ -6,6 +6,7 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
     };
     fenix = {
       url = "github:nix-community/fenix";
@@ -18,10 +19,12 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
     };
     deploy-rs = {
       url = "git+https://git.xanderio.de/xanderio/deploy-rs";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.utils.follows = "flake-utils";
     };
     agenix = {
       url = "github:ryantm/agenix";
@@ -29,6 +32,7 @@
     };
     graftify = {
       url = "git+https://git.xanderio.de/xanderio/graftify.git";
+      inputs.flake-utils.follows = "flake-utils";
     };
   };
 
