@@ -59,5 +59,6 @@
       deploy = import ./hosts/deploy.nix inputs;
       nixosConfigurations = import ./hosts inputs;
       checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+      herculesCI.ciSystems = [ "x86_64-linux" ];
     };
 }
