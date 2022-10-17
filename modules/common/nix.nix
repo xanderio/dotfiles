@@ -11,9 +11,11 @@
       auto-optimise-store = true;
       substituters = [
         "https://nix-community.cachix.org"
+        "https://xanderio.cachix.org"
       ];
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        "xanderio.cachix.org-1:MorhZh9LUPDXE0racYZBWb2JQCWmS+r3SQo4zKn51xg="
       ];
     };
     extraOptions = ''
