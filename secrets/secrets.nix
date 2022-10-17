@@ -14,6 +14,8 @@ in
   "backup-key.age".publicKeys = [ xanderio ] ++ servers;
 
   "woodpecker.age".publicKeys = [ xanderio block ];
+  "hercules-cache.age".publicKeys = [ xanderio block ];
+  "hercules-token.age".publicKeys = [ xanderio block ];
 
   "graftify.age".publicKeys = [ xanderio valen ];
 }
