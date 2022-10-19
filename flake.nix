@@ -21,11 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    deploy-rs = {
-      url = "git+https://git.xanderio.de/xanderio/deploy-rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
-    };
+    nxy.url = "github:xanderio/nxy";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,7 +43,7 @@
           formatter = pkgs.nixpkgs-fmt;
           devShells.default = pkgs.mkShellNoCC {
             buildInputs = [
-              inputs.deploy-rs.packages."${system}".deploy-rs
+              inputs.nxy.packages."${system}".deploy-rs
               inputs.agenix.packages."${system}".agenix
             ];
           };
@@ -58,7 +54,7 @@
 
       deploy = import ./hosts/deploy.nix inputs;
       nixosConfigurations = import ./hosts inputs;
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.deploy-rs.lib;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.nxy.lib;
       herculesCI.ciSystems = [ "x86_64-linux" ];
     };
 }

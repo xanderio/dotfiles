@@ -20,29 +20,6 @@
         "type": "github"
       }
     },
-    "deploy-rs": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "utils": [
-          "flake-utils"
-        ]
-      },
-      "locked": {
-        "lastModified": 1664722042,
-        "narHash": "sha256-8aAIT1YwM+atKG83bNxSaHJCI8N9BdArRn7m3BHdmhU=",
-        "ref": "refs/heads/main",
-        "rev": "4d4d13c9a51b8f2f232116c70a7c2a5424eae1ba",
-        "revCount": 279,
-        "type": "git",
-        "url": "https://git.xanderio.de/xanderio/deploy-rs"
-      },
-      "original": {
-        "type": "git",
-        "url": "https://git.xanderio.de/xanderio/deploy-rs"
-      }
-    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -302,6 +279,41 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1664326381,
+        "narHash": "sha256-w9fbgU1Rz7tDCPe0FT3SExG4JbylR89AdaofHFkL2GA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "cd0b791eaac32aa7bf8e1958e180c1b2317f9d76",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nxy": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4",
+        "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1666030657,
+        "narHash": "sha256-h5tug5FZ7Fx37cGff3UydXp7tegqJuEOBNa8Q+veBTk=",
+        "owner": "xanderio",
+        "repo": "nxy",
+        "rev": "8ba066bd920b3542c13cf05034ba1888ab1774b2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xanderio",
+        "repo": "nxy",
+        "type": "github"
+      }
+    },
     "poetry2nix": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -324,7 +336,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "deploy-rs": "deploy-rs",
         "fenix": "fenix",
         "flake-utils": "flake-utils",
         "graftify": "graftify",
@@ -332,7 +343,8 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_3",
+        "nxy": "nxy"
       }
     },
     "rust-analyzer-src": {
@@ -349,6 +361,21 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "utils": {
+      "locked": {
+        "lastModified": 1659877975,
+        "narHash": "sha256-zllb8aq3YO3h8B/U0/J1WBgAL8EX5yWf5pMj3G0NAmc=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "c0e246b9b83f637f4681389ecabcb2681b4f3af0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
         "type": "github"
       }
     }
