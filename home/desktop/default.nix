@@ -19,7 +19,6 @@
       darktable
       xdg-utils
       ntfy-sh
-      polymc
       bibata-cursors
       ripdrag
     ];
