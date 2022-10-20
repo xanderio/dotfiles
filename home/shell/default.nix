@@ -14,6 +14,7 @@
     httpie
     any-nix-shell
     comma
+    cachix
   ];
 
   home.sessionVariables = {
