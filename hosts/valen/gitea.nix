@@ -8,9 +8,11 @@
       domain = "git.xanderio.de";
       rootUrl = "https://${domain}";
       httpPort = 3050;
-      cookieSecure = true;
       lfs.enable = true;
-      disableRegistration = true;
+      settings.service = {
+        DISABLE_REGISTRATION = true;
+        COOKIE_SECURE = true;
+      };
     };
     openssh.extraConfig = ''
       AcceptEnv GIT_PROTOCOL
