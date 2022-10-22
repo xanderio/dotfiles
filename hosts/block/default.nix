@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./hardware-configuration.nix
-    ../../modules/woodpecker
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
