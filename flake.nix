@@ -37,9 +37,10 @@
       (system:
         let
           pkgs = import nixpkgs { inherit system; };
+          inherit (pkgs) lib;
         in
-        {
-          pkgs = pkgs;
+        rec {
+          inherit pkgs;
           formatter = pkgs.nixpkgs-fmt;
           devShells.default = pkgs.mkShellNoCC {
             buildInputs = [
@@ -48,13 +49,17 @@
             ];
           };
           packages = import ./pkgs { callPackage = pkgs.callPackage; };
+          checks = lib.foldl lib.recursiveUpdate { } [
+            (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.nxy.lib.${system}.deployChecks self.deploy))
+            (lib.mapAttrs' (name: value: { name = "pkg-${name}"; inherit value; }) packages)
+            (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) devShells)
+          ];
         }) //
     {
       overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });
 
       deploy = import ./hosts/deploy.nix inputs;
       nixosConfigurations = import ./hosts inputs;
-      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) inputs.nxy.lib;
       herculesCI.ciSystems = [ "x86_64-linux" ];
     };
 }
