@@ -21,7 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    nxy.url = "github:xanderio/nxy";
+    deploy-rs.url = "github:xanderio/deploy-rs";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,13 +44,13 @@
           formatter = pkgs.nixpkgs-fmt;
           devShells.default = pkgs.mkShellNoCC {
             buildInputs = [
-              inputs.nxy.packages."${system}".deploy-rs
+              inputs.deploy-rs.packages."${system}".deploy-rs
               inputs.agenix.packages."${system}".agenix
             ];
           };
           packages = import ./pkgs { callPackage = pkgs.callPackage; };
           checks = lib.foldl lib.recursiveUpdate { } [
-            (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.nxy.lib.${system}.deployChecks self.deploy))
+            (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.deploy-rs.lib.${system}.deployChecks self.deploy))
             (lib.mapAttrs' (name: value: { name = "pkg-${name}"; inherit value; }) packages)
             (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) devShells)
           ];

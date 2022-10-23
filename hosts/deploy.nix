@@ -1,5 +1,5 @@
 inputs: {
-  nodes = with inputs.nxy.lib.x86_64-linux; {
+  nodes = with inputs.deploy-rs.lib.x86_64-linux; {
     delenn = {
       hostname = "delenn.xanderio.de";
       profiles.system = {
