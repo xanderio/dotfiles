@@ -39,4 +39,6 @@
       rustflags = ["-C", "link-arg=-fuse-ld=${pkgs.llvmPackages.bintools}/bin/ld.lld"]
     '';
   };
+
+  xdg.configFile."pgcli/config".source = ./pgcli/config;
 }
