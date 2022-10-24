@@ -30,6 +30,16 @@
     up = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
     down = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
   };
+  nix.settings = {
+    substituters = [
+      "https://binary-cache.vpn.cyberus-technology.de"
+      "http://binary-cache-v2.vpn.cyberus-technology.de"
+    ];
+    trusted-public-keys = [
+      "binary-cache.vpn.cyberus-technology.de:qhg25lVqyCT4sDOqxY6GJx8NF3F86eAJFCQjZK/db7Y="
+      "cyberus-1:0jjMD2b+guloGW27ZToxDQApCoWj+4ONW9v8VH/Bv0Q=" # v2 cache
+    ];
+  };
 
   home-manager.users.xanderio.xanderio = {
     git = {
