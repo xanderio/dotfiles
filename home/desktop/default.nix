@@ -55,7 +55,10 @@
   };
 
   programs = {
-    chromium.enable = true;
+    chromium = {
+      enable = true;
+      commandLineArgs = [ "--enable-features=UseOzonePlatform" "--ozone-platform=wayland" ];
+    };
     firefox = {
       enable = true;
       package = pkgs.firefox-wayland;
@@ -101,7 +104,6 @@
   '';
 
   nixpkgs.config = {
-    chromium.commandLineArgs = "--enable-features=UseOzonePlatform --ozone-platform=wayland";
     allowUnfree = true;
     keep-derivations = true;
     keep-outputs = true;
