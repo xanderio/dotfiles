@@ -4,6 +4,6 @@
     iwd
   ];
   programs.mtr.enable = true;
-  programs.adb.enable = true;
+  programs.adb.enable = false;
   programs.fuse.userAllowOther = true;
 }
