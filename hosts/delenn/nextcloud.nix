@@ -1,7 +1,4 @@
-{ options
-, config
-, ...
-}: {
+{ pkgs, config, ... }: {
   services = {
     postgresql = {
       enable = true;
@@ -19,6 +16,7 @@
     nextcloud = {
       enable = true;
       https = true;
+      package = pkgs.nextcloud25;
       hostName = "cloud.xanderio.de";
       datadir = "/mnt/nextcloud";
       config = {

@@ -251,6 +251,22 @@
         "type": "github"
       }
     },
+    "nixos-small": {
+      "locked": {
+        "lastModified": 1666688649,
+        "narHash": "sha256-i1Tq2VgXbEZKgjM2p2OqZdxcnK4FZjRZ9Oy4Ewx8gjA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "03a00f66fc4e893dccba1579df6d0c83852e1c2c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable-small",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1664326381,
@@ -344,6 +360,7 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-minecraft": "nix-minecraft",
         "nixos-hardware": "nixos-hardware",
+        "nixos-small": "nixos-small",
         "nixpkgs": "nixpkgs_4"
       }
     },

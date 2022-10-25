@@ -44,7 +44,7 @@ in
     ++ sharedModules;
   };
 
-  delenn = nixosSystem
+  delenn = inputs.nixos-small.lib.nixosSystem
     {
       inherit extraModules;
       system = "x86_64-linux";
@@ -55,7 +55,7 @@ in
       ++ sharedModules;
     };
 
-  valen = nixosSystem
+  valen = inputs.nixos-small.lib.nixosSystem
     {
       inherit extraModules;
       system = "x86_64-linux";
@@ -66,7 +66,7 @@ in
       ++ sharedModules;
     };
 
-  block = nixosSystem
+  block = inputs.nixos-small.lib.nixosSystem
     {
       inherit extraModules;
       system = "x86_64-linux";
