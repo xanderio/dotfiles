@@ -20,7 +20,7 @@
   };
 
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     flake = "github:xanderio/dotfiles";
     dates = "04:00";
   };
