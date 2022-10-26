@@ -41,6 +41,7 @@
     ];
   };
 
+  home-manager.users.xanderio.home.packages = with pkgs; [ glab ];
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
