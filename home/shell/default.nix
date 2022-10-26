@@ -15,6 +15,7 @@
     any-nix-shell
     comma
     cachix
+    nix-output-monitor
   ];
 
   home.sessionVariables = {
