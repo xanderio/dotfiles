@@ -85,7 +85,7 @@ search_path_filter = False
 
 # Default pager.
 # By default 'PAGER' environment variable is used
-# pager = less -SRXF
+pager = less -SRXF
 
 # Timing of sql statements and table rendering.
 timing = True
@@ -99,7 +99,7 @@ show_bottom_toolbar = True
 # sql-update-1, sql-update-2 (formatter with sql-* prefix can format query
 # output to executable insertion or updating sql).
 # Recommended: psql, fancy_grid and grid.
-table_format = psql
+table_format = psql_unicode
 
 # Syntax Style. Possible values: manni, igor, xcode, vim, autumn, vs, rrt,
 # native, perldoc, borland, tango, emacs, friendly, monokai, paraiso-dark,
