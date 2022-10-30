@@ -11,7 +11,6 @@ end
 
 vim.g.mapleader = " "
 
-require('plugins')
 require('config.notify')
 require("config.lualine")
 require('config.telescope')
@@ -33,10 +32,6 @@ require('fidget').setup({
   },
 })
 require('spellsitter').setup()
-require("docs-view").setup {
-      position = "right",
-      width = 60,
-    }
 
 vim.g.code_action_menu_show_diff = false
 
@@ -145,24 +140,6 @@ require('lspconfig').pyright.setup({
       },
     },
   }
-})
-
-require'lspconfig'.tsserver.setup({
-  init_options = require("nvim-lsp-ts-utils").init_options,
-  capabilities = require('lsp').capabilities(),
-  on_attach = function(client, bufnr)
-    local ts_utils = require("nvim-lsp-ts-utils")
-    ts_utils.setup({})
-    ts_utils.setup_client(client)
-
-    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local opts = { noremap=true, silent=true }
-    buf_set_keymap("n", "gs", ":TSLspOrganize<CR>", opts)
-    buf_set_keymap("n", "gi", ":TSLspRenameFile<CR>", opts)
-    buf_set_keymap("n", "go", ":TSLspImportAll<CR>", opts)
-
-    require('lsp').on_attach(client, bufnr)
-  end,
 })
 
 -- generate help tags for all plugins

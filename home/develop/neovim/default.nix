@@ -55,4 +55,75 @@
         source = pkgs.nvim-ts-grammars;
       };
     };
+
+  xdg.dataFile."nvim/site/pack/nix/start" = {
+    recursive = true;
+    source = pkgs.linkFarmFromDrvs "neovim-plugins" (with pkgs.vimPlugins; [
+      impatient-nvim
+
+      # LSP
+      nvim-lspconfig
+      null-ls-nvim
+      lsp_extensions-nvim
+      nvim-lsputils
+      nvim-lightbulb
+      FixCursorHold-nvim
+      trouble-nvim
+      nvim-code-action-menu
+      lspkind-nvim
+      lsp_signature-nvim
+      lsp-status-nvim
+      fidget-nvim
+
+      ## rust 
+      rust-tools-nvim
+      crates-nvim
+
+      # DAP
+      nvim-dap
+      nvim-dap-ui
+
+      # Treesitter
+      nvim-treesitter
+      nvim-navic
+      spellsitter-nvim
+      comment-nvim
+
+      # Autocompletion
+      luasnip
+      cmp_luasnip
+
+      cmp-nvim-lua
+      cmp-nvim-lsp
+      cmp-vsnip
+      cmp-path
+      cmp-emoji
+      cmp-calc
+      cmp-buffer
+      cmp-nvim-lsp-signature-help
+      nvim-cmp
+
+      # Utils
+      hydra-nvim
+      indent-blankline-nvim
+      nvim-notify
+      telescope-nvim
+      lualine-nvim
+      gitsigns-nvim
+      editorconfig-nvim
+      dracula-nvim
+      neogit
+
+      vim-easy-align
+      vim-surround
+      vim-repeat
+      vim-floaterm
+      vim-fish
+
+      # Dependencies
+      popfix # nvim-lsputils, telescope-nvim
+      plenary-nvim # crates-nvim, telescope-nvim, gitsigns-nvim, neogit
+      nvim-web-devicons
+    ]);
+  };
 }
