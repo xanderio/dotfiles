@@ -22,14 +22,6 @@
     LIBVA_DRIVER_NAME = "iHD";
   };
 
-  services.openvpn.servers.office = {
-    config = ''
-      config /var/lib/cyberus-openvpn/openvpn.conf
-    '';
-    updateResolvConf = false;
-    up = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
-    down = "${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved";
-  };
   nix.settings = {
     substituters = [
       "https://binary-cache.vpn.cyberus-technology.de"
