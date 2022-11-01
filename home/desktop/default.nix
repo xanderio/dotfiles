@@ -21,6 +21,7 @@
       ntfy-sh
       bibata-cursors
       ripdrag
+      prismlauncher
     ];
   };
 

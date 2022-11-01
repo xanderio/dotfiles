@@ -65,7 +65,7 @@
 
   services.borgbackup.jobs.backup.paths = [ "/srv/minecraft" ];
   services.minecraft-servers = {
-    enable = false;
+    enable = true;
     eula = true;
     openFirewall = true;
     servers.minecraft = {
