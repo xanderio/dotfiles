@@ -32,6 +32,11 @@
       "cyberus-1:0jjMD2b+guloGW27ZToxDQApCoWj+4ONW9v8VH/Bv0Q=" # v2 cache
     ];
   };
+  services.gnome.evolution-data-server.enable = true;
+  programs.evolution = {
+    enable = true;
+    plugins = [ pkgs.evolution-ews ];
+  };
 
   home-manager.users.xanderio.home.packages = with pkgs; [ glab ];
   home-manager.users.xanderio.xanderio = {
