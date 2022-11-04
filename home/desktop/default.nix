@@ -7,6 +7,7 @@
       BROWSER = "firefox";
       MOZ_ENABLE_WAYLAND = "1";
       MOZ_DISABLE_RDD_SANDBOX = "1";
+      NIXOS_OZONE_WL = "1";
     };
     packages = with pkgs; [
       thunderbird
@@ -22,6 +23,7 @@
       bibata-cursors
       ripdrag
       prismlauncher
+      element-desktop
     ];
   };
 

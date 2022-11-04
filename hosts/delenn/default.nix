@@ -3,6 +3,7 @@
 }: {
   imports = [
     ./configuration.nix
+    ./matrix.nix
   ];
   networking.hostName = "delenn";
 

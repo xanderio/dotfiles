@@ -18,4 +18,7 @@ in
   "hercules-token.age".publicKeys = [ xanderio block ];
 
   "graftify.age".publicKeys = [ xanderio valen ];
+
+  "synapse-signing-key.age".publicKeys = [ xanderio delenn ];
+  "synapse-registration_shared_secret.age".publicKeys = [ xanderio delenn ];
 }
