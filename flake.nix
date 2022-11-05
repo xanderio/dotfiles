@@ -27,6 +27,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    website = {
+      url = "github:xanderio/website";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     graftify = {
       url = "git+https://git.xanderio.de/xanderio/graftify.git";
       inputs.flake-utils.follows = "flake-utils";
