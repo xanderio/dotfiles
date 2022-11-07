@@ -14,10 +14,10 @@
       border-color=#282a36
 
       [urgency=normal]
-      border-color=#f1fa8c
+      border-color=#282a36
 
       [urgency=high]
-      border-color=#ff5555
+      border-color=#282a36
 
       [mode=do-not-disturb]
       invisible=1
