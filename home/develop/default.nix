@@ -10,7 +10,6 @@
       cargo-edit
       cargo-cache
       cargo-udeps
-      cargo-nextest
       cargo-tarpaulin
       cargo-spellcheck
       dioxus-cli
