@@ -14,7 +14,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay/167ec1a6047ef9051c709e4115fb5f4f90c5febd";
+      url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-minecraft = {
