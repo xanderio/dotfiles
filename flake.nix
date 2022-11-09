@@ -53,16 +53,12 @@
               inputs.agenix.packages."${system}".agenix
             ];
           };
-          packages = import ./pkgs { callPackage = pkgs.callPackage; };
           checks = lib.foldl lib.recursiveUpdate { } [
             (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.deploy-rs.lib.${system}.deployChecks self.deploy))
-            (lib.mapAttrs' (name: value: { name = "pkg-${name}"; inherit value; }) packages)
             (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) devShells)
           ];
         }) //
     {
-      overlays.default = final: prev: (import ./pkgs { inherit (prev) callPackage; });
-
       deploy = import ./hosts/deploy.nix inputs;
       nixosConfigurations = import ./hosts inputs;
       herculesCI.ciSystems = [ "x86_64-linux" ];

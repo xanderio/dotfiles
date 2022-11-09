@@ -50,10 +50,6 @@
         recursive = true;
         source = ./nvim;
       };
-      "nvim/parser/" = {
-        recursive = true;
-        source = pkgs.nvim-ts-grammars;
-      };
     };
 
   xdg.dataFile."nvim/site/pack/nix/start" = {
@@ -84,7 +80,7 @@
       nvim-dap-ui
 
       # Treesitter
-      nvim-treesitter
+      nvim-treesitter.withAllGrammars
       nvim-navic
       spellsitter-nvim
       comment-nvim
