@@ -92,6 +92,10 @@ end
 
 function M.capabilities()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = { "documentation", "detail", "additionalTextEdits" },
+  }
   capabilities = vim.tbl_extend('keep', capabilities, require('lsp-status').capabilities)
   capabilities = vim.tbl_extend('keep', capabilities, require('cmp_nvim_lsp').default_capabilities())
   return capabilities
