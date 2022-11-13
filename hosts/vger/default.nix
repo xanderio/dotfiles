@@ -17,7 +17,6 @@
     intel-ocl
   ];
   environment.etc."openal/alsoft.conf".source = pkgs.writeText "alsoft.conf" "drivers=pulse";
-  environment.systemPackages = [ pkgs.vial ];
   environment.variables = {
     LIBVA_DRIVER_NAME = "iHD";
   };
