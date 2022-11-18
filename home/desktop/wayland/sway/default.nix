@@ -78,7 +78,6 @@ in
         output = {
           eDP-1 = {
             scale = config.xanderio.sway.scale;
-            render_bit_depth = "10";
             pos = "0 0";
           };
           "*".bg = "${background} fill";
@@ -145,7 +144,7 @@ in
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
 
-            grim = "${pkgs.grim}/bin/grim";
+            wayshot = "${pkgs.wayshot}/bin/wayshot";
             slurp = "${pkgs.slurp}/bin/slurp";
             pngquant = "${pkgs.pngquant}/bin/pngquant";
             wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
@@ -174,7 +173,7 @@ in
             XF86AudioStop = "exec ${playerctl} stop";
             XF86MonBrightnessUp = "exec ${brightnessctl} set +5%";
             XF86MonBrightnessDown = "exec ${brightnessctl} set 5%-";
-            "${mod}+Shift+s" = ''exec ${grim} -g "$(${slurp})" - | ${pngquant} - | ${wl-copy} '';
+            "${mod}+Shift+s" = ''exec ${wayshot} -s "$(${slurp})" --stdout | ${pngquant} - | ${wl-copy} '';
           };
       };
       extraConfig = ''
