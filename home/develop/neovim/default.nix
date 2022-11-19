@@ -80,7 +80,16 @@
       nvim-dap-ui
 
       # Treesitter
-      nvim-treesitter.withAllGrammars
+      (nvim-treesitter.overrideAttrs (_: {
+        postPatch =
+          let
+            grammars = pkgs.tree-sitter.withPlugins (ps: (_: nvim-treesitter.allGrammars) (ps // builtGrammars));
+          in
+          ''
+            rm -r parser
+            ln -s ${grammars} parser
+          '';
+      }))
       nvim-navic
       spellsitter-nvim
       comment-nvim
