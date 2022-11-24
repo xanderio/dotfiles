@@ -5,6 +5,7 @@
     config = {
       CREATE_ADMIN = lib.mkForce "0";
       FETCH_YOUTUBE_WATCH_TIME = "on";
+      CLEANUP_REMOVE_SESSIONS_DAYS = "120";
     };
   };
   services.nginx.virtualHosts = {
