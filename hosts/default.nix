@@ -15,8 +15,6 @@ let
         useUserPackages = true;
       };
     }
-    # temporary overlay till openssl 3 patch is released
-    { nixpkgs.overlays = [ (final: prev: { nginxStable = prev.nginxStable.override { openssl = prev.openssl_1_1; }; }) ]; }
   ];
 
   extraModules = [ ];
