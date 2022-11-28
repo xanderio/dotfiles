@@ -144,7 +144,7 @@ in
             pactl = "${pkgs.pulseaudio}/bin/pactl";
             brightnessctl = "${pkgs.brightnessctl}/bin/brightnessctl";
 
-            wayshot = "${pkgs.wayshot}/bin/wayshot";
+            grim = "${pkgs.grim}/bin/grim";
             slurp = "${pkgs.slurp}/bin/slurp";
             pngquant = "${pkgs.pngquant}/bin/pngquant";
             wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
@@ -173,7 +173,7 @@ in
             XF86AudioStop = "exec ${playerctl} stop";
             XF86MonBrightnessUp = "exec ${brightnessctl} set +5%";
             XF86MonBrightnessDown = "exec ${brightnessctl} set 5%-";
-            "${mod}+Shift+s" = ''exec ${wayshot} -s "$(${slurp})" --stdout | ${pngquant} - | ${wl-copy} '';
+            "${mod}+Shift+s" = ''exec ${grim} -g "$(${slurp})" - | ${pngquant} - | ${wl-copy} '';
           };
       };
       extraConfig = ''
