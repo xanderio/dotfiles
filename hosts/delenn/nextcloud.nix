@@ -16,6 +16,7 @@
     nextcloud = {
       enable = true;
       https = true;
+      enableBrokenCiphersForSSE = false;
       package = pkgs.nextcloud25;
       hostName = "cloud.xanderio.de";
       datadir = "/mnt/nextcloud";
