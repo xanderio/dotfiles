@@ -9,6 +9,14 @@
     };
     settings = {
       auto-optimise-store = true;
+      warn-dirty = false;
+      experimental-features = "nix-command flakes";
+      fallback = true;
+      connect-timeout = 5;
+      log-lines = 25;
+      min-free = 128000000;
+      max-free = 1000000000;
+      
       substituters = [
         "https://nix-community.cachix.org"
         "https://xanderio.cachix.org"
@@ -18,9 +26,6 @@
         "xanderio.cachix.org-1:MorhZh9LUPDXE0racYZBWb2JQCWmS+r3SQo4zKn51xg="
       ];
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
   };
   nixpkgs.config.allowUnfree = true;
 }
