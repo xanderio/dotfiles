@@ -25,6 +25,7 @@
       enableACME = true;
       locations."/" = {
         proxyPass = "http://localhost:${toString config.services.outline.port}";
+        proxyWebsockets = true;
       };
     };
   };
