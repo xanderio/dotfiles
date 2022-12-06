@@ -21,4 +21,8 @@ in
 
   "synapse-signing-key.age".publicKeys = [ xanderio delenn ];
   "synapse-registration_shared_secret.age".publicKeys = [ xanderio delenn ];
+
+  "outline.age".publicKeys = [ xanderio valen ];
+  "outline-bucket-secretKey.age".publicKeys = [ xanderio valen ];
+  "outline-oidc-secretKey.age".publicKeys = [ xanderio valen ];
 }

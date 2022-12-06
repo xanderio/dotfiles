@@ -4,6 +4,7 @@
     ./gitea.nix
     ./configuration.nix
     ./loki.nix
+    ./outline.nix
   ];
   networking.hostName = "valen";
 
