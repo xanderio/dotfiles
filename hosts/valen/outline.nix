@@ -30,20 +30,16 @@
     };
   };
 
-  services.minio = {
-    enable = true;
-  };
-
   services.outline = {
     enable = true;
     port = 9080;
     publicUrl = "https://outline.xanderio.de";
     storage = {
-      accessKey = "wPUCUSZ8wbMvkyDE";
+      accessKey = "SCWTHZNVZNYBQYMN8X2S";
       secretKeyFile = config.age.secrets."outline-bucket-secretKey".path;
-      uploadBucketUrl = "http://localhost:9000";
-      uploadBucketName = "outline";
-      region = "de";
+      uploadBucketUrl = "https://s3.nl-ams.scw.cloud";
+      uploadBucketName = "xanderio-outline";
+      region = "nl-ams";
     };
 
     oidcAuthentication = {
