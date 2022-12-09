@@ -14,7 +14,7 @@
       imv
       mpv
       pdfarranger
-      freecad
+      # freecad
       mumble
       digikam
       darktable
