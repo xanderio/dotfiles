@@ -75,7 +75,7 @@ in
         }
         {
           port = 8088;
-          bind_addresses = [ "::1" "100.64.0.3" "fd7a:115c:a1e0::3" ];
+          bind_addresses = [ "::1" "100.87.136.104" "fd7a:115c:a1e0:ab12:4843:cd96:6257:8868" ];
           type = "http";
           tls = false;
           x_forwarded = true;

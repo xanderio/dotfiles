@@ -49,7 +49,7 @@ in
         metrics_path = "/_synapse/metrics";
         static_configs = [
           {
-            targets = [ "delenn.internal.hs.xanderio.de:8088" ];
+            targets = [ "delenn:8088" ];
           }
         ];
         relabel_configs = [
@@ -67,7 +67,7 @@ in
           {
             targets =
               let
-                makeTarget = name: "${name}.internal.hs.xanderio.de:${toString config.services.prometheus.exporters.node.port}";
+                makeTarget = name: "${name}:${toString config.services.prometheus.exporters.node.port}";
               in
               builtins.map makeTarget [ "valen" "delenn" "block" ];
           }
@@ -76,7 +76,7 @@ in
           {
             source_labels = [ "__address__" ];
             target_label = "instance";
-            regex = "(.*?)\\..*";
+            regex = "(.*?):.*";
             replacement = "\${1}.xanderio.de";
           }
         ];

@@ -5,7 +5,7 @@
       forceSSL = true;
       locations =
         let
-          upstream = "http://hal9000.internal.hs.xanderio.de:8123";
+          upstream = "http://hal9000:8123";
         in
         {
           "/" = {

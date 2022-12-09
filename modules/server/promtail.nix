@@ -12,7 +12,7 @@
       };
       clients = [
         {
-          url = "http://valen.internal.hs.xanderio.de:3030/loki/api/v1/push";
+          url = "http://valen:3030/loki/api/v1/push";
         }
       ];
       scrape_configs = [
