@@ -14,6 +14,9 @@ end
 function M.on_attach(client, bufnr)
   M.lsp_keybinding(bufnr)
 
+  -- disable semantic token highlighting
+  client.server_capabilities.semanticTokensProvider = nil
+
   require('cmp').setup.buffer({
     sources = {
       { name = 'nvim_lsp' },
