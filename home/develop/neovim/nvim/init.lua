@@ -75,7 +75,6 @@ null_ls.setup({
 
     -- Nix
     null_ls.builtins.code_actions.statix,
-    null_ls.builtins.formatting.nixpkgs_fmt,
 
     -- ansible
     null_ls.builtins.diagnostics.ansiblelint,
@@ -112,13 +111,19 @@ require('lspconfig').cssls.setup({
   end,
 })
 
-require('lspconfig').rnix.setup({
+require('lspconfig').nil_ls.setup({
   autostart = true,
-  cmd = { "nil" },
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
   end,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" }
+      },
+    },
+  },
 })
 
 -- generate help tags for all plugins
