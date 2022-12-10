@@ -77,11 +77,6 @@ null_ls.setup({
     null_ls.builtins.code_actions.statix,
     null_ls.builtins.formatting.nixpkgs_fmt,
 
-    -- python
-    null_ls.builtins.formatting.black,
-    null_ls.builtins.formatting.isort,
-    null_ls.builtins.diagnostics.pylama,
-
     -- ansible
     null_ls.builtins.diagnostics.ansiblelint,
 
@@ -124,20 +119,6 @@ require('lspconfig').rnix.setup({
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
   end,
-})
-require('lspconfig').pyright.setup({
-  capabilities = require('lsp').capabilities(),
-  on_attach = require('lsp').on_attach,
-  settings = {
-    python = {
-      analysis = {
-        autoSearchPaths = true,
-        diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "basic",
-        useLibraryCodeForTypes = true,
-      },
-    },
-  }
 })
 
 -- generate help tags for all plugins
