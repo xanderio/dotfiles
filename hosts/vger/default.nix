@@ -25,7 +25,6 @@
     remotePlay.openFirewall = true;
   };
   programs.gamemode.enable = true;
-  home-manager.users.xanderio.home.packages = with pkgs; [ _1password _1password-gui ];
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
