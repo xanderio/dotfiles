@@ -22,7 +22,7 @@
       ntfy-sh
       bibata-cursors
       ripdrag
-      prismlauncher
+      (prismlauncher.override { jdk = pkgs.jdk17; })
       element-desktop
     ];
   };
