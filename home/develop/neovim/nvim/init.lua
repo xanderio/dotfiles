@@ -2,6 +2,10 @@ if pcall(require, 'impatient') then
   require('impatient')
 end
 
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.g.do_filetype_lua = 1
 
 local cmd, g, b, w = vim.cmd, vim.g, vim.b, vim.w
@@ -32,6 +36,7 @@ require('fidget').setup({
   },
 })
 require('spellsitter').setup()
+require('config.nvim-tree')
 
 vim.g.code_action_menu_show_diff = false
 

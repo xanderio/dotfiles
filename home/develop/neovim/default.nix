@@ -112,6 +112,7 @@
       editorconfig-nvim
       dracula-nvim
       neogit
+      nvim-tree-lua
 
       vim-easy-align
       vim-surround
