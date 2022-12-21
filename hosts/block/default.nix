@@ -45,24 +45,6 @@
     ];
   };
 
-  age.secrets = {
-    "hercules-cache" = {
-      file = ../../secrets/hercules-cache.age;
-      owner = "hercules-ci-agent";
-    };
-    "hercules-token" = {
-      file = ../../secrets/hercules-token.age;
-      owner = "hercules-ci-agent";
-    };
-  };
-  services.hercules-ci-agent = {
-    enable = true;
-    settings = {
-      binaryCachesPath = config.age.secrets.hercules-cache.path;
-      clusterJoinTokenPath = config.age.secrets.hercules-token.path;
-    };
-  };
-
   services.borgbackup.jobs.backup.paths = [ "/srv/minecraft" ];
   services.minecraft-servers = {
     enable = true;
