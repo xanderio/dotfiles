@@ -6,6 +6,7 @@
     inputs.fenix.overlays.default
     (final: prev: {
       httpie = inputs.nixpkgs-master.legacyPackages.${final.stdenv.system}.httpie;
+      element-desktop = inputs.nixpkgs-master.legacyPackages.${final.stdenv.system}.element-desktop;
     })
   ];
 
