@@ -5,6 +5,7 @@ dracula.setup({
   overrides = {
     FidgetTitle = { fg = colors.green, bg = colors.bg },
     FidgetTask = { fg = colors.purple, bg = colors.bg },
+    ['@punctuation'] = {fg = colors.fg},
   },
 })
 vim.cmd 'colorscheme dracula'
