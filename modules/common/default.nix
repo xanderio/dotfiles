@@ -24,6 +24,7 @@
     permitRootLogin = "without-password";
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
+  networking.firewall.trustedInterfaces = [ "tailscale0" ];
 
   environment.systemPackages = with pkgs; [
     htop
