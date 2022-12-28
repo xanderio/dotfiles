@@ -33,11 +33,13 @@
     graftify.url = "git+https://git.xanderio.de/xanderio/graftify.git";
   };
 
-  outputs = { flake-parts, ... }@inputs:
+  outputs = inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
+      imports = [
+        ./hosts/deploy.nix
+      ];
       flake = {
-        deploy = import ./hosts/deploy.nix inputs;
         nixosConfigurations = import ./hosts inputs;
       };
       perSystem = { pkgs, lib, inputs', self', self, system, ... }: {
