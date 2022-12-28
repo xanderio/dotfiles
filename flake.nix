@@ -38,10 +38,8 @@
       systems = [ "x86_64-linux" ];
       imports = [
         ./hosts/deploy.nix
+        ./hosts
       ];
-      flake = {
-        nixosConfigurations = import ./hosts inputs;
-      };
       perSystem = { pkgs, lib, inputs', self', self, system, ... }: {
 
         formatter = pkgs.nixpkgs-fmt;
