@@ -4,11 +4,10 @@
     nixpkgs-master.url = "github:NixOS/nixpkgs/master";
     nixos-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.utils.follows = "flake-utils";
     };
     fenix = {
       url = "github:nix-community/fenix";
@@ -21,7 +20,6 @@
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
     };
     deploy-rs.url = "github:xanderio/deploy-rs";
     agenix = {
@@ -32,36 +30,29 @@
       url = "github:xanderio/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    graftify = {
-      url = "git+https://git.xanderio.de/xanderio/graftify.git";
-      inputs.flake-utils.follows = "flake-utils";
-    };
+    graftify.url = "git+https://git.xanderio.de/xanderio/graftify.git";
   };
 
-  outputs = { self, nixpkgs, flake-utils, ... } @ inputs:
-    flake-utils.lib.eachSystem [ "x86_64-linux" ]
-      (system:
-        let
-          pkgs = import nixpkgs { inherit system; };
-          inherit (pkgs) lib;
-        in
-        rec {
-          inherit pkgs;
-          formatter = pkgs.nixpkgs-fmt;
-          devShells.default = pkgs.mkShellNoCC {
-            buildInputs = [
-              inputs.deploy-rs.packages."${system}".deploy-rs
-              inputs.agenix.packages."${system}".agenix
-            ];
-          };
-          checks = lib.foldl lib.recursiveUpdate { } [
-            (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.deploy-rs.lib.${system}.deployChecks self.deploy))
-            (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) devShells)
+  outputs = { flake-parts, ... }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
+      flake = {
+        deploy = import ./hosts/deploy.nix inputs;
+        nixosConfigurations = import ./hosts inputs;
+      };
+      perSystem = { pkgs, lib, inputs', self', self, system, ... }: {
+
+        formatter = pkgs.nixpkgs-fmt;
+        devShells.default = pkgs.mkShellNoCC {
+          buildInputs = [
+            inputs'.deploy-rs.packages.deploy-rs
+            inputs'.agenix.packages.agenix
           ];
-        }) //
-    {
-      deploy = import ./hosts/deploy.nix inputs;
-      nixosConfigurations = import ./hosts inputs;
-      herculesCI.ciSystems = [ "x86_64-linux" ];
+        };
+        checks = lib.foldl lib.recursiveUpdate { } [
+          (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.deploy-rs.lib.${system}.deployChecks self.deploy))
+          (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) self'.devShells)
+        ];
+      };
     };
 }
