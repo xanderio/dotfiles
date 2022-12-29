@@ -49,7 +49,11 @@ lsp_status.config({
 }) 
 
 local neogit = require('neogit')
-neogit.setup({})
+neogit.setup({
+  integrations = {
+    diffview = true
+  },
+})
 
 require('Comment').setup()
 

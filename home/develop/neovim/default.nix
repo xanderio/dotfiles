@@ -113,6 +113,7 @@
       dracula-nvim
       neogit
       nvim-tree-lua
+      diffview-nvim
 
       vim-easy-align
       vim-surround
