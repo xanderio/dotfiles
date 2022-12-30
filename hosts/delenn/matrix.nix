@@ -1,6 +1,7 @@
 { lib, pkgs, config, ... }:
 let
   fqdn = "bitflip.jetzt";
+  turnRealm = "turn.${fqdn}";
   clientConfig = {
     "m.homeserver".base_url = "https://${fqdn}";
     "m.identity_server" = { };
@@ -24,7 +25,6 @@ in
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 8088 ];
 
   services.postgresql = {
@@ -51,6 +51,56 @@ in
       locations."/_matrix".proxyPass = "http://[::1]:8008";
       locations."/_synapse/client".proxyPass = "http://[::1]:8008";
     };
+    virtualHosts."${turnRealm}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".extraConfig = ''
+        return 404;
+      '';
+    };
+  };
+
+  services.coturn = {
+    enable = true;
+
+    use-auth-secret = true;
+    static-auth-secret = "842a5b19b65160f09e9bc05e244d00d50593c130dc64776854c20ca1d0a4adf4";
+    realm = turnRealm;
+
+    # VoIP traffic is all UDP. There is no reason to let users connect to arbitrary TCP endpoints via the relay.
+    no-tcp-relay = true;
+
+    extraConfig = ''
+      # don't let the relay ever try to connect to private IP address ranges within your network (if any)
+      # given the turn server is likely behind your firewall, remember to include any privileged public IPs too.
+      denied-peer-ip=10.0.0.0-10.255.255.255
+      denied-peer-ip=192.168.0.0-192.168.255.255
+      denied-peer-ip=172.16.0.0-172.31.255.255
+      allowed-peer-ip=10.67.3.13
+      # consider whether you want to limit the quota of relayed streams per user (or total) to avoid risk of DoS.
+      user-quota=12 # 4 streams per video call, so 12 streams = 3 simultaneous relayed calls per user.
+      total-quota=1200
+    '';
+    cert = "/var/lib/acme/${turnRealm}/fullchain.pem";
+    pkey = "/var/lib/acme/${turnRealm}/key.pem";
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [
+      80
+      443
+      config.services.coturn.listening-port
+      config.services.coturn.tls-listening-port
+    ];
+    allowedUDPPorts = [
+      config.services.coturn.listening-port
+      config.services.coturn.tls-listening-port
+    ];
+    allowedUDPPortRanges = [{
+      from = config.services.coturn.min-port;
+      to = config.services.coturn.max-port;
+    }];
   };
 
   services.matrix-synapse = {
@@ -86,8 +136,18 @@ in
         }
       ];
       registration_shared_secret_path = config.age.secrets.registration-shared-secret.path;
+      turn_uris = [
+        "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=udp"
+        "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=tcp"
+      ];
+      turn_shared_secret = config.services.coturn.static-auth-secret;
+      turn_user_lifetime = "86400000";
+      extraConfig = ''
+        turn_allow_guests: True
+      '';
     };
   };
+
 
   # remove chmod for signing-key file
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce [ ];
