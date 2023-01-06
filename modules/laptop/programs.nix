@@ -7,5 +7,8 @@
   programs.adb.enable = false;
   programs.fuse.userAllowOther = true;
   programs._1password.enable = true;
-  programs._1password-gui.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "xanderio" ];
+  };
 }
