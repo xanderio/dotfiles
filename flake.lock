@@ -239,7 +239,7 @@
         "flake-compat": "flake-compat",
         "neovim-flake": "neovim-flake",
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-neovim"
         ]
       },
       "locked": {
@@ -358,6 +358,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-neovim": {
+      "locked": {
+        "lastModified": 1672414655,
+        "narHash": "sha256-2F72ALq4wZQJYnHHAdwbkgGS9lu3q+M0ytS94Z+38/k=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d6f45172279af8822d44a4d748de3e3704a770b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "5d6f45172279af8822d44a4d748de3e3704a770b",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1663850217,
@@ -438,6 +454,7 @@
         "nixos-small": "nixos-small",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
+        "nixpkgs-neovim": "nixpkgs-neovim",
         "website": "website"
       }
     },
