@@ -324,6 +324,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-fish-3-6-0": {
+      "locked": {
+        "lastModified": 1673127037,
+        "narHash": "sha256-L+Nbuy7mYwaIBv2SoZJHpvov3J6iAkbat5tS8w5CRIA=",
+        "owner": "JamieMagee",
+        "repo": "nixpkgs",
+        "rev": "f43cd3743fe3d12e7e0b0c75b9c941388b7aee9e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "JamieMagee",
+        "ref": "fish-3.6.0",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "dir": "lib",
@@ -453,6 +469,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixos-small": "nixos-small",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-fish-3-6-0": "nixpkgs-fish-3-6-0",
         "nixpkgs-master": "nixpkgs-master",
         "nixpkgs-neovim": "nixpkgs-neovim",
         "website": "website"
