@@ -41,6 +41,9 @@
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
       any-nix-shell fish | source
+
+      abbr --add dotdot --regex '^\.\.+$' --function multicd
+      abbr -a !! --position anywhere --function last_history_item
     '';
 
     loginShellInit = ''
@@ -72,6 +75,13 @@
       woi_login = {
         description = "Wifi@DB / WifiOnICE login script";
         body = " ${pkgs.curl}/bin/curl -vk 'https://10.101.64.10/en/' -H 'Host: wifi.bahn.de' -H 'Cookie: csrf=asdf' --data 'login=true&CSRFToken=asdf'";
+      };
+      multicd = {
+        description = "This expands .. to cd ../, ... to cd ../../ and .... to cd ../../../ and so on.";
+        body = "echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)";
+      };
+      last_history_item = {
+        body = "echo $history[1]";
       };
     };
     plugins = [
