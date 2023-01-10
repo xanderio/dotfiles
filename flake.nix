@@ -13,7 +13,6 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-fish-3-6-0.url = "github:JamieMagee/nixpkgs/fish-3.6.0";
     nixpkgs-neovim.url = "github:nixos/nixpkgs/5d6f45172279af8822d44a4d748de3e3704a770b";
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";

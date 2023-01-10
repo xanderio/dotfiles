@@ -5,7 +5,7 @@
     inputs.nix-minecraft.overlay
     inputs.fenix.overlays.default
     (final: prev: {
-      inherit (inputs.nixpkgs-fish-3-6-0.legacyPackages.${final.stdenv.system}) fish;
+      inherit (inputs.nixos-small.legacyPackages.${final.stdenv.system}) fish;
     })
   ];
 
