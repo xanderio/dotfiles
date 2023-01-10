@@ -109,7 +109,6 @@
       telescope-nvim
       lualine-nvim
       gitsigns-nvim
-      editorconfig-nvim
       dracula-nvim
       neogit
       nvim-tree-lua
