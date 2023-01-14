@@ -23,6 +23,13 @@
           path = activate.nixos self.nixosConfigurations.block;
         };
       };
+      lobsang = {
+        hostname = "lobsang.tail2f592.ts.net";
+        profiles.system = {
+          user = "root";
+          path = activate.nixos self.nixosConfigurations.lobsang;
+        };
+      };
     };
 
     sshUser = "root";

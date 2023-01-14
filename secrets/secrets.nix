@@ -6,8 +6,9 @@ let
   delenn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlkC7H1NKn11pFzBJp2OSdnr+5AKwTLamwml4swCarT";
   valen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtwumo7Hw3P7L63i7ewipolOqP07n0vqlbXQHVX80nD";
   block = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIAzwiJ+akj5UtvvsYIjikBx6QJfyVPNGfn92eJR9mXH";
+  lobsang = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGQdBUoYJteJIa3VawSknTlhFaRFGMAyUYpFiFa2Lw0R";
 
-  servers = [ delenn valen block ];
+  servers = [ delenn valen block lobsang];
 in
 {
   "storagebox-sshkey.age".publicKeys = [ xanderio ] ++ servers;

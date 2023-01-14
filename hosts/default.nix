@@ -76,5 +76,15 @@ in
         ]
         ++ sharedModules;
       };
+    lobsang = inputs.nixos-small.lib.nixosSystem
+      {
+        inherit extraModules;
+        system = "x86_64-linux";
+        modules = [
+          ./lobsang
+          ../modules/server
+        ]
+        ++ sharedModules;
+      };
   };
 }
