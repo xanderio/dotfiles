@@ -11,7 +11,7 @@
         forceSSL = true;
         locations =
           let
-            upstream = "http://hal9000.tail2f592.ts.net:8123";
+            upstream = "http://100.97.68.57:8123";
           in
           {
             "/" = {
