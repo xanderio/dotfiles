@@ -16,8 +16,6 @@
       pdfarranger
       # freecad
       mumble
-      digikam
-      darktable
       xdg-utils
       ntfy-sh
       bibata-cursors

@@ -6,7 +6,7 @@
     inputs.fenix.overlays.default
     (final: prev: {
       inherit (inputs.nixos-small.legacyPackages.${final.stdenv.system}) fish;
-      inherit (inputs.bibata-fix.legacyPackages.${final.stdenv.system}) bibata-cursors clickgen;
+      inherit (inputs.nixos-small.legacyPackages.${final.stdenv.system}) bibata-cursors clickgen;
     })
   ];
 

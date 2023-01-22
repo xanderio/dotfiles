@@ -20,22 +20,6 @@
         "type": "github"
       }
     },
-    "bibata-fix": {
-      "locked": {
-        "lastModified": 1674042993,
-        "narHash": "sha256-uEdAOcCkWHx+DRsGkOyj8bSGCMinxf8J80f5D1Tte74=",
-        "owner": "xanderio",
-        "repo": "nixpkgs",
-        "rev": "72f6dbff3ac711936caf80204a1e2a6f713a0246",
-        "type": "github"
-      },
-      "original": {
-        "owner": "xanderio",
-        "ref": "fix-clickgen",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "deploy-rs": {
       "inputs": {
         "nixpkgs": "nixpkgs",
@@ -459,7 +443,6 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
-        "bibata-fix": "bibata-fix",
         "deploy-rs": "deploy-rs",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
