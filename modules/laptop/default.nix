@@ -7,6 +7,7 @@
     ./users.nix
     ./services.nix
     ./programs.nix
+    ./powerManagement.nix
   ];
 
   hardware = {
