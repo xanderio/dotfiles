@@ -8,29 +8,39 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/bc9a5135-bb64-441f-b483-f1643d22744b";
-      fsType = "btrfs";
-      options = [ "subvol=root" "compress=zstd" ];
+    { device = "rpool/nixos/root";
+      options = ["zfsutil" "X-mount.mkdir" ];
+      fsType = "zfs";
     };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/88a2d762-249d-44ad-87fc-17dc0dfa8386";
-
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/bc9a5135-bb64-441f-b483-f1643d22744b";
-      fsType = "btrfs";
-      options = [ "subvol=home" "compress=zstd" ];
+    { device = "rpool/nixos/home";
+      options = ["zfsutil" "X-mount.mkdir" ];
+      fsType = "zfs";
+    };
+
+  fileSystems."/var/lib" =
+    { device = "rpool/nixos/var/lib";
+      options = ["zfsutil" "X-mount.mkdir" ];
+      fsType = "zfs";
+    };
+
+  fileSystems."/var/log" =
+    { device = "rpool/nixos/var/log";
+      options = ["zfsutil" "X-mount.mkdir" ];
+      fsType = "zfs";
     };
 
   fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/bc9a5135-bb64-441f-b483-f1643d22744b";
-      fsType = "btrfs";
-      options = [ "subvol=nix" "compress=zstd" "noatime" ];
+    { device = "rpool/nixos/nix";
+      options = ["zfsutil" "X-mount.mkdir" ];
+      fsType = "zfs";
     };
 
   fileSystems."/boot" =
@@ -38,7 +48,9 @@
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/b5fbdde3-4139-43b1-ac08-cb38b01b8b4e"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -50,4 +62,5 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware; }
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+}

@@ -1,5 +1,6 @@
 { pkgs
 , lib
+, config
 , ...
 }: {
   imports = [
@@ -8,7 +9,11 @@
 
   networking.hostName = "hex";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostId = "8425e349";
   hardware.video.hidpi.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
