@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, nixosConfig, ... }: {
   services.blueman-applet.enable = true;
   systemd.user.services._1password = {
     Unit = {
@@ -10,6 +10,6 @@
 
     Install = { WantedBy = [ "graphical-session.target" ]; };
 
-    Service = { ExecStart = "1password --silent"; };
+    Service = { ExecStart = "${nixosConfig.programs._1password-gui.package}/bin/1password --silent"; };
   };
 }
