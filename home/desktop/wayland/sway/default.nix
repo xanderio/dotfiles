@@ -164,6 +164,7 @@ in
             "${mod}+Control+Shift+Down" = "move workspace to output down";
 
             "Alt+Space" = "exec ${pkgs._1password-gui}/bin/1password --quick-access";
+            "Ctrl+Shift+Space" = "exec ${pkgs._1password-gui}/bin/1password";
 
             "Alt+Backspace" = "exec ${makoctl} dismiss";
             XF86AudioLowerVolume = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
