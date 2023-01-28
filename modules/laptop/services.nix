@@ -21,12 +21,6 @@
   };
 
   services.fwupd.enable = true;
-  services.openssh = {
-    enable = true;
-    passwordAuthentication = false;
-    kbdInteractiveAuthentication = false;
-    permitRootLogin = "without-password";
-  };
   networking.firewall.allowedTCPPorts = [ 22 ];
 
   virtualisation = {
