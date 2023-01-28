@@ -4,7 +4,6 @@
     after = [ "tailscaled.service" ];
   };
   services.nginx = {
-    validateConfig = false;
     virtualHosts = {
       "home.xanderio.de" = {
         enableACME = true;
