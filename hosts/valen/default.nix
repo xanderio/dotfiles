@@ -1,7 +1,6 @@
 { config, ... }: {
   imports = [
     ./headscale.nix
-    ./gitea.nix
     ./configuration.nix
     ./loki.nix
     ./outline.nix
