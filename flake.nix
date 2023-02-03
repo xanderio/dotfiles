@@ -31,7 +31,6 @@
       url = "github:xanderio/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    graftify.url = "git+https://git.xanderio.de/xanderio/graftify.git";
   };
 
   outputs = inputs@{ flake-parts, self, ... }:
