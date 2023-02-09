@@ -18,10 +18,4 @@
   networking = {
     domain = "xanderio.de";
   };
-
-  system.autoUpgrade = {
-    enable = false;
-    flake = "github:xanderio/dotfiles";
-    dates = "04:00";
-  };
 }
