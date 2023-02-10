@@ -13,6 +13,10 @@
   boot.supportedFilesystems = [ "zfs" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.extraModprobeConfig = ''
+    # disable 802.11ax as it causes the driver to crash :(
+    options iwlwifi disable_11ax=1
+  '';
   networking.hostId = "8425e349";
   hardware.video.hidpi.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
