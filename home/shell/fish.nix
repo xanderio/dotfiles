@@ -10,6 +10,11 @@
       d = "${pkgs.git}/bin/git diff";
       ds = "${pkgs.git}/bin/git diff --cached";
     };
+    
+    interactiveShellInit = ''
+      nix-your-shell fish | source
+    '';
+
     shellInit = ''
       set fish_color_normal normal
       set fish_color_command cyan
@@ -40,7 +45,6 @@
       if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
-      any-nix-shell fish | source
 
       abbr --add dotdot --regex '^\.\.+$' --function multicd
       abbr -a !! --position anywhere --function last_history_item

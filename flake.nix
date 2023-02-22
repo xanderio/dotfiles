@@ -31,6 +31,10 @@
       url = "github:xanderio/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-your-shell = {
+      url = "github:MercuryTechnologies/nix-your-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs@{ flake-parts, self, ... }:
@@ -40,7 +44,7 @@
         ./hosts/deploy.nix
         ./hosts
       ];
-      perSystem = { pkgs, lib, inputs', self',  system, ... }: {
+      perSystem = { pkgs, lib, inputs', self', system, ... }: {
 
         formatter = pkgs.nixpkgs-fmt;
         devShells.default = pkgs.mkShellNoCC {

@@ -12,7 +12,7 @@
     file
     unzip
     httpie
-    any-nix-shell
+    nix-your-shell
     comma
     cachix
     nix-output-monitor
