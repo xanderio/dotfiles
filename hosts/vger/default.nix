@@ -28,6 +28,8 @@
 
   systemd.services.lenovo_fix.wantedBy = lib.mkForce [];
 
+  services.postgresql.enable = true;
+
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
