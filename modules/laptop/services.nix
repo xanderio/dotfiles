@@ -31,4 +31,8 @@
       defaultNetwork.settings.dns_enable = true;
     };
   };
+
+  services.postgresql = {
+    enable = true;
+  };
 }
