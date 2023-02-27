@@ -121,7 +121,7 @@ require('lspconfig').cssls.setup({
 })
 
 require('lspconfig').elixirls.setup({
-  cmd = { 'elixirls' }, 
+  cmd = { '/etc/profiles/per-user/xanderio/bin/elixir-ls' }, 
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
