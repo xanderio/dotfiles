@@ -18,6 +18,7 @@
     taplo-cli
     shellcheck
     terraform
+    elixir_ls
 
     statix
     nixpkgs-fmt

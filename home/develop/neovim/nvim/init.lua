@@ -120,6 +120,14 @@ require('lspconfig').cssls.setup({
   end,
 })
 
+require('lspconfig').elixirls.setup({
+  cmd = { 'elixirls' }, 
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
+
 require('lspconfig').nil_ls.setup({
   autostart = true,
   capabilities = require('lsp').capabilities(),
