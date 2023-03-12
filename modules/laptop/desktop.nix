@@ -45,15 +45,21 @@
     };
   };
 
-  xdg.portal.wlr = {
-    enable = true;
-    settings = {
-      screencast = {
-        exec_before = "${pkgs.mako}/bin/makoctl set-mode do-not-disturb";
-        exec_after = "${pkgs.mako}/bin/makoctl set-mode default";
-        chooser_type = "simple";
-        chooser_cmd = "''${pkgs.slurp}/bin/slurp -f %o -or";
+  xdg.portal = {
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    wlr = {
+      enable = true;
+      settings = {
+        screencast = {
+          exec_before = "${pkgs.mako}/bin/makoctl set-mode do-not-disturb";
+          exec_after = "${pkgs.mako}/bin/makoctl set-mode default";
+          chooser_type = "simple";
+          chooser_cmd = "${pkgs.slurp}/bin/slurp -f %o -or";
+        };
       };
     };
   };
+
+  # xdg-desktop-portal-wlr needs sh for exec_* to work
+  systemd.user.services.xdg-desktop-portal-wlr.path = [ pkgs.bash ];
 }
