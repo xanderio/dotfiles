@@ -2,6 +2,8 @@ require('notify').setup({
   stages = "slide"
 })
 
+vim.keymap.set('n', '<C-S-l>' , require('notify').dismiss)
+
 -- match LSP 
 -- match group 1: everthing inside [ ]
 -- match group 2: reset of input
