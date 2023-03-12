@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.mako = {
+  services.mako = {
     enable = true;
 
     margin = "17,5";
