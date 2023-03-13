@@ -7,6 +7,7 @@ let
     inputs.nix-minecraft.nixosModules.minecraft-servers
     inputs.home-manager.nixosModules.home-manager
     inputs.agenix.nixosModules.default
+    inputs.nix-index-database.nixosModules.nix-index
     {
       home-manager = {
         useGlobalPkgs = true;

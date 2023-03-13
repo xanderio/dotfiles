@@ -260,6 +260,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1678591454,
+        "narHash": "sha256-uEjRsVJIkfyRjTIYHscit8CAUw4kygdzJGplNiV25l8=",
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "rev": "caf85d1716e1ce6d7a0da2b7f1ab1c46d9497662",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Mic92",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nix-minecraft": {
       "inputs": {
         "flake-utils": "flake-utils_2",
@@ -424,6 +444,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
+        "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",
         "nix-your-shell": "nix-your-shell",
         "nixos-hardware": "nixos-hardware",
