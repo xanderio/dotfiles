@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     neovim
     iwd
+    gnome.gnome-boxes
   ];
   programs.mtr.enable = true;
   programs.adb.enable = false;
