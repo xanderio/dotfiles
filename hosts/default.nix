@@ -76,5 +76,15 @@ in
         ]
         ++ sharedModules;
       };
+    vetinari = inputs.nixos-small.lib.nixosSystem
+      {
+        inherit extraModules;
+        system = "x86_64-linux";
+        modules = [
+          ./vetinari
+          ../modules/server
+        ]
+        ++ sharedModules;
+      };
   };
 }
