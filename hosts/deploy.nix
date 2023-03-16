@@ -23,6 +23,13 @@
           path = activate.nixos self.nixosConfigurations.block;
         };
       };
+      vetinari = {
+        hostname = "vetinari.tail2f592.ts.net";
+        profiles.system = {
+          user = "root";
+          path = activate.nixos self.nixosConfigurations.vetinari;
+        };
+      };
     };
 
     sshUser = "root";
