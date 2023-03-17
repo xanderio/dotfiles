@@ -83,6 +83,7 @@ in
         modules = [
           ./vetinari
           ../modules/server
+          { home-manager.users.xanderio.imports = homeImports."server"; }
         ]
         ++ sharedModules;
       };

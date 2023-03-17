@@ -26,4 +26,7 @@ in
   "outline.age".publicKeys = [ xanderio valen ];
   "outline-bucket-secretKey.age".publicKeys = [ xanderio valen ];
   "outline-oidc-secretKey.age".publicKeys = [ xanderio valen ];
+
+  "spotify-username.age".publicKeys = [ xanderio vetinari ];
+  "spotify-password.age".publicKeys = [ xanderio vetinari ];
 }

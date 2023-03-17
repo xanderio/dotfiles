@@ -44,6 +44,14 @@
       alsa.support32Bit = true;
     };
   };
+  environment.etc."pipewire/pipewire.conf.d/99-custom.conf".source = ((pkgs.formats.json { }).generate "99-custom.json" {
+    "context.modules" = [
+      {
+        name = "libpipewire-module-zeroconf-discover";
+        args = { };
+      }
+    ];
+  });
 
   xdg.portal = {
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

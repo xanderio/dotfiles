@@ -6,7 +6,7 @@
   security.rtkit.enable = true;
   services.logind.lidSwitchDocked = "ignore";
   services.avahi = {
-    enable = false;
+    enable = true;
     nssmdns = true;
     ipv4 = true;
     publish = {
