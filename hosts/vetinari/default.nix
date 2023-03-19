@@ -3,6 +3,7 @@
     ./hardware-configuration.nix
     ./spotifyd.nix
     ./audio.nix
+    ./minecraft.nix
   ];
 
   networking.hostName = "vetinari";

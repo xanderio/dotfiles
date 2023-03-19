@@ -18,6 +18,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs-neovim";
     };
+    mms = {
+      url = "github:mkaito/nixos-modded-minecraft-servers";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-minecraft = {
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
