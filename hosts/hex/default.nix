@@ -18,7 +18,6 @@
     options iwlwifi disable_11ax=1
   '';
   networking.hostId = "8425e349";
-  hardware.video.hidpi.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
     vaapiIntel
