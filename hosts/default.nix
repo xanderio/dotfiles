@@ -9,6 +9,7 @@ let
     inputs.agenix.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
     inputs.mms.module
+    { services.modded-minecraft-servers.eula = true; }
     {
       home-manager = {
         useGlobalPkgs = true;
