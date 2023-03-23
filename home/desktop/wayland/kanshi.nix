@@ -29,6 +29,7 @@
           outputs = [
             {
               criteria = "eDP-1";
+              position = "0,0";
             }
           ];
         };
@@ -37,7 +38,7 @@
           outputs = [
             {
               criteria = "eDP-1";
-              status = "disable";
+              position = "0,1440";
             }
             {
               criteria = "Lenovo Group Limited P27h-20 V906K7HR";
