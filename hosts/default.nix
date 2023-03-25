@@ -53,6 +53,7 @@ in
         modules = [
           ./delenn
           ../modules/server
+          { home-manager.users.xanderio.imports = homeImports."server"; }
         ]
         ++ sharedModules;
       };
@@ -64,6 +65,7 @@ in
         modules = [
           ./valen
           ../modules/server
+          { home-manager.users.xanderio.imports = homeImports."server"; }
         ]
         ++ sharedModules;
       };
@@ -75,6 +77,7 @@ in
         modules = [
           ./block
           ../modules/server
+          { home-manager.users.xanderio.imports = homeImports."server"; }
         ]
         ++ sharedModules;
       };

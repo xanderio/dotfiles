@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ lib, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -24,18 +24,10 @@
       "fritz"
       "mqtt"
       "spotify"
-      "time_date"
     ];
 
     config = {
       default_config = { };
-
-      sensor = [
-        {
-          platform = "time_date";
-          display_options = [ "date_time_iso" "date" ];
-        }
-      ];
 
       group = "!include groups.yaml";
       automation = "!include automations.yaml";

@@ -4,7 +4,6 @@
     ./boot.nix
     ./desktop.nix
     ./fonts.nix
-    ./users.nix
     ./services.nix
     ./programs.nix
     ./powerManagement.nix
@@ -26,8 +25,6 @@
     };
     enableRedistributableFirmware = true;
   };
-
-  security.sudo.wheelNeedsPassword = false;
 
   networking = {
     useDHCP = false;
