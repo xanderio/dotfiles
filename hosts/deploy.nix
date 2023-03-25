@@ -16,13 +16,6 @@
           path = activate.nixos self.nixosConfigurations.valen;
         };
       };
-      block = {
-        hostname = "block.xanderio.de";
-        profiles.system = {
-          user = "root";
-          path = activate.nixos self.nixosConfigurations.block;
-        };
-      };
       vetinari = {
         hostname = "vetinari.tail2f592.ts.net";
         profiles.system = {

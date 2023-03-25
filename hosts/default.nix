@@ -70,17 +70,6 @@ in
         ++ sharedModules;
       };
 
-    block = inputs.nixos-small.lib.nixosSystem
-      {
-        inherit extraModules;
-        system = "x86_64-linux";
-        modules = [
-          ./block
-          ../modules/server
-          { home-manager.users.xanderio.imports = homeImports."server"; }
-        ]
-        ++ sharedModules;
-      };
     vetinari = inputs.nixos-small.lib.nixosSystem
       {
         inherit extraModules;
