@@ -10,6 +10,7 @@ let
     inputs.nix-index-database.nixosModules.nix-index
     inputs.mms.module
     { services.modded-minecraft-servers.eula = true; }
+    inputs.disko.nixosModules.disko
     {
       home-manager = {
         useGlobalPkgs = true;
@@ -24,6 +25,9 @@ let
   inherit (import "${self}/home/profiles" inputs) homeImports;
 in
 {
+  flake.diskoConfigurations = {
+    hex = import ./hex/disko.nix;
+  };
   flake.nixosConfigurations = {
     vger = nixosSystem {
       system = "x86_64-linux";

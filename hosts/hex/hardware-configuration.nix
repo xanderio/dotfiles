@@ -13,45 +13,6 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "rpool/nixos/root";
-      options = ["zfsutil" "X-mount.mkdir" ];
-      fsType = "zfs";
-    };
-
-  fileSystems."/home" =
-    { device = "rpool/nixos/home";
-      options = ["zfsutil" "X-mount.mkdir" ];
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/lib" =
-    { device = "rpool/nixos/var/lib";
-      options = ["zfsutil" "X-mount.mkdir" ];
-      fsType = "zfs";
-    };
-
-  fileSystems."/var/log" =
-    { device = "rpool/nixos/var/log";
-      options = ["zfsutil" "X-mount.mkdir" ];
-      fsType = "zfs";
-    };
-
-  fileSystems."/nix" =
-    { device = "rpool/nixos/nix";
-      options = ["zfsutil" "X-mount.mkdir" ];
-      fsType = "zfs";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/BBD8-6518";
-      fsType = "vfat";
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/b5fbdde3-4139-43b1-ac08-cb38b01b8b4e"; }
-    ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

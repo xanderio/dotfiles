@@ -7,6 +7,10 @@
     ./hardware-configuration.nix
   ];
 
+  disko.devices = pkgs.callPackage ./disko.nix {
+    disks = ["/dev/nvme0n1"];
+  };
+
   networking.hostName = "hex";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;

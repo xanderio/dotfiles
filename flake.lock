@@ -62,6 +62,26 @@
         "type": "github"
       }
     },
+    "disko": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1679947957,
+        "narHash": "sha256-dK1z5LlfK9ZFmvzaKyQ2Nm4R2MSPPn/0THU1E1xpUag=",
+        "owner": "nix-community",
+        "repo": "disko",
+        "rev": "3a1c23eefcb1eec4fed63039c2d5594a02351ae0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "disko",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -562,6 +582,7 @@
       "inputs": {
         "agenix": "agenix",
         "deploy-rs": "deploy-rs",
+        "disko": "disko",
         "fenix": "fenix",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
