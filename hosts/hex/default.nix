@@ -7,7 +7,7 @@
     ./hardware-configuration.nix
   ];
 
-  disko.devices = pkgs.callPackage ./disko.nix {
+  disko.devices = import ./disko.nix {
     disks = ["/dev/nvme0n1"];
   };
 
