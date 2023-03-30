@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ lib, inputs, ... }: {
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
     registry.nixpkgs.flake = inputs.nixpkgs;
@@ -16,7 +16,7 @@
       log-lines = 25;
       min-free = 128000000;
       max-free = 1000000000;
-      
+
       substituters = [
         "https://nix-community.cachix.org"
         "https://xanderio.cachix.org"
@@ -26,6 +26,9 @@
         "xanderio.cachix.org-1:MorhZh9LUPDXE0racYZBWb2JQCWmS+r3SQo4zKn51xg="
       ];
     };
+    daemonCPUSchedPolicy = lib.mkDefault "batch";
+    daemonIOSchedClass = "idle";
+    daemonIOSchedPriority = 7;
   };
   nixpkgs.config.allowUnfree = true;
 }

@@ -78,4 +78,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   nix.settings.trusted-users = [ "root" "xanderio" ];
+
+  nix.daemonCPUSchedPolicy = "idle";
 }
