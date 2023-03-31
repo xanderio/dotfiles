@@ -1,4 +1,4 @@
-{ lib, ... }: {
+{ config, lib, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -7,10 +7,18 @@
   ];
 
   networking.hostName = "vetinari";
+  networking.hostId = "8419e344";
+
+  disko.devices = import ./disko.nix {
+    disks = ["/dev/sda"];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.supportedFilesystems = [ "zfs" ];
 
   services.home-assistant = {
     enable = true;

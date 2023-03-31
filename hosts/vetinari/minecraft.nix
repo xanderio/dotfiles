@@ -1,7 +1,5 @@
 { pkgs, ... }: {
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
   services.modded-minecraft-servers = {
     eula = true;
 
