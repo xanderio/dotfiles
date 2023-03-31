@@ -27,6 +27,7 @@ in
 {
   flake.diskoConfigurations = {
     hex = import ./hex/disko.nix;
+    vetinari = import ./vetinari/disko.nix;
   };
   flake.nixosConfigurations = {
     vger = nixosSystem {
