@@ -6,7 +6,7 @@ let
   delenn = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFlkC7H1NKn11pFzBJp2OSdnr+5AKwTLamwml4swCarT";
   valen = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICtwumo7Hw3P7L63i7ewipolOqP07n0vqlbXQHVX80nD";
   block = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIAzwiJ+akj5UtvvsYIjikBx6QJfyVPNGfn92eJR9mXH";
-  vetinari = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEAfx6KdeHj5FTiUxMYdf+OdpMu2+IV7O/c1cN/7z+li";
+  vetinari = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH/AvKCMqzBG7lrietcQDy/Aqu7M+cGdUjeYv/qmfclv";
 
   servers = [ delenn valen block vetinari ];
 in
