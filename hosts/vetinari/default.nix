@@ -10,7 +10,7 @@
   networking.hostId = "8419e344";
 
   disko.devices = import ./disko.nix {
-    disks = ["/dev/sda"];
+    disks = [ "/dev/sda" ];
   };
 
   # Use the systemd-boot EFI boot loader.
