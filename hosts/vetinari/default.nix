@@ -1,4 +1,4 @@
-{ config, lib, ... }: {
+{ pkgs, config, lib, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -22,6 +22,27 @@
 
   services.home-assistant = {
     enable = true;
+
+    extraPackages = p: with p; [
+      aiogithubapi
+      (p.buildPythonPackage rec {
+        pname = "aioairctrl";
+        version = "0.2.4";
+
+        src = p.fetchPypi {
+          inherit pname version;
+          hash = "sha256-BIJWwMQq3QQjhyO0TSw+C6muyr3Oyv6UHr/Y3iYqRUM=";
+        };
+
+        buildInputs = [ setuptools ];
+
+        propagatedBuildInputs = [ pycryptodomex aiocoap ];
+
+        pythonImportsCheck = [
+          "aioairctrl"
+        ];
+      })
+    ];
 
     extraComponents = [
       "default_config"
