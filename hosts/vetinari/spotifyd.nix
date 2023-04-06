@@ -24,6 +24,10 @@
       device_type = "speaker";
 
       autoplay = true;
+
+      audio_format = "F32";
+      volume_normalisation = true;
+      normalisation_pregain = -10;
     };
   };
 }
