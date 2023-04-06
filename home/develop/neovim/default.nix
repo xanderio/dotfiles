@@ -3,6 +3,10 @@
 , lib
 , ...
 }: {
+  home.activation.nvimCacheClear = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    $DRY_RUN_CMD nvim --headless +LuaCacheClear +q!
+  '';
+
   home.sessionVariables = {
     EDITOR = "nvim";
     MANPAGER = "nvim +Man!";
