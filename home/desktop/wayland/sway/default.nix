@@ -184,6 +184,9 @@ in
         bindswitch --reload --locked lid:on output eDP-1 disable
         bindswitch --reload --locked lid:off output eDP-1 enable
 
+        bindgesture swipe:3:right workspace prev
+        bindgesture swipe:3:left workspace next
+
         # Inhibit Idle if a window is fullscreen
         for_window [class="^.*"] inhibit_idle fullscreen
         for_window [app_id="^.*"] inhibit_idle fullscreen
