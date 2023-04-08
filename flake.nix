@@ -13,11 +13,7 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixpkgs-neovim.url = "github:nixos/nixpkgs/5d6f45172279af8822d44a4d748de3e3704a770b";
-    neovim-nightly-overlay = {
-      url = "github:nix-community/neovim-nightly-overlay";
-      inputs.nixpkgs.follows = "nixpkgs-neovim";
-    };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/c60e74e86fc8c28606bf86d63c080fa8796460fa";
     mms = {
       url = "github:mkaito/nixos-modded-minecraft-servers";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +43,7 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tree-sitter-dump.url = "github:teto/nixpkgs/bump-treesitter";
   };
 
   outputs = inputs@{ flake-parts, self, ... }:

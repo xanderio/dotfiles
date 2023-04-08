@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    neovim
     iwd
     gnome.gnome-boxes
   ];
