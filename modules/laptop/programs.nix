@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     iwd
     gnome.gnome-boxes
+    signal-desktop
   ];
   programs.mtr.enable = true;
   programs.adb.enable = false;
