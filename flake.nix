@@ -43,7 +43,6 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tree-sitter-dump.url = "github:teto/nixpkgs/bump-treesitter";
   };
 
   outputs = inputs@{ flake-parts, self, ... }:

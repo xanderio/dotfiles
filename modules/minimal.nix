@@ -6,9 +6,6 @@
     inputs.fenix.overlays.default
     inputs.nix-your-shell.overlays.default
 
-    (final: prev: {
-      inherit (inputs.tree-sitter-dump.legacyPackages.${final.hostPlatform.system}) tree-sitter;
-    })
   ];
 
   networking.firewall.checkReversePath = false;

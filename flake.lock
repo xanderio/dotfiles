@@ -90,11 +90,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1680934821,
-        "narHash": "sha256-QoeIjnhIPI1AcOQhaY+gjzmBDQOlUpRoV7O7idCOUCs=",
+        "lastModified": 1681021223,
+        "narHash": "sha256-s/x/znJxrEVZqJ5zlnNscYmNQmhwc/edQ3qHEnXrLQY=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "67e853b14e1fc9ed7a5a4bff9622e91542af43ea",
+        "rev": "85be6a7f62d206184ccc0f7a51f8dc2ba64fbfd3",
         "type": "github"
       },
       "original": {
@@ -397,11 +397,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1680916956,
-        "narHash": "sha256-5AC/hH0ebzFvtqlOJVK8PTP9UIBoEx1iL+mptlhzPoc=",
+        "lastModified": 1681004036,
+        "narHash": "sha256-EpQWL541KreVSbunaoQFB1HiNWhRtA1WilZLstUv+LQ=",
         "owner": "Infinidoge",
         "repo": "nix-minecraft",
-        "rev": "f169abfc7fe5082123805be80871ed67a5f1ee24",
+        "rev": "0794d6762462c75571ec200655cd79c6fff0cd13",
         "type": "github"
       },
       "original": {
@@ -449,11 +449,11 @@
     },
     "nixos-small": {
       "locked": {
-        "lastModified": 1680909015,
-        "narHash": "sha256-p5e6C9lpchypq4DBkyDec8HXKEpPSO8TcBvjTeAHqa0=",
+        "lastModified": 1680994811,
+        "narHash": "sha256-zmjLg0oLcPW5F+Yy+4M5AwPbCWfYRFsW4DtMeQ07AXw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "db73cdeb180ba079bf91e9175fe8d72197a0156c",
+        "rev": "9c34c8adba80180608794cce600b10183b048942",
         "type": "github"
       },
       "original": {
@@ -499,11 +499,11 @@
     },
     "nixpkgs-master": {
       "locked": {
-        "lastModified": 1680947395,
-        "narHash": "sha256-2QxeCDNelyWzbJVgiMppqVbSSLPzg91XTyl427PfbSg=",
+        "lastModified": 1681038097,
+        "narHash": "sha256-2bGqAAkQj89sKS6KJg2Oj7lInvkG1HdmVi4kRGZS0hw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a50962e4c4ee491a6c706a8432c3f36693c95662",
+        "rev": "b6926131aa8d5de17b76aaa757cb13a6ae31bada",
         "type": "github"
       },
       "original": {
@@ -563,11 +563,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1680758185,
-        "narHash": "sha256-sCVWwfnk7zEX8Z+OItiH+pcSklrlsLZ4TJTtnxAYREw=",
+        "lastModified": 1680945546,
+        "narHash": "sha256-8FuaH5t/aVi/pR1XxnF0qi4WwMYC+YxlfdsA0V+TEuQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0e19daa510e47a40e06257e205965f3b96ce0ac9",
+        "rev": "d9f759f2ea8d265d974a6e1259bd510ac5844c5d",
         "type": "github"
       },
       "original": {
@@ -594,7 +594,6 @@
         "nixos-small": "nixos-small",
         "nixpkgs": "nixpkgs_4",
         "nixpkgs-master": "nixpkgs-master",
-        "tree-sitter-dump": "tree-sitter-dump",
         "website": "website"
       }
     },
@@ -612,22 +611,6 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
-        "type": "github"
-      }
-    },
-    "tree-sitter-dump": {
-      "locked": {
-        "lastModified": 1680878427,
-        "narHash": "sha256-D0DwGIvgqM88iRFZicP/CZ53+GoyJKu0c/bzy+1PBrw=",
-        "owner": "teto",
-        "repo": "nixpkgs",
-        "rev": "e169d958f139443890ffcdaf5dcc6b783be5af59",
-        "type": "github"
-      },
-      "original": {
-        "owner": "teto",
-        "ref": "bump-treesitter",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
