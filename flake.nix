@@ -22,7 +22,7 @@
       url = "github:Infinidoge/nix-minecraft";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs.url = "github:xanderio/deploy-rs";
+    deploy-rs.url = "github:serokell/deploy-rs";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
