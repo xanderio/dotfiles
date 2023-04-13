@@ -6,6 +6,7 @@
   imports = [
     ./nix.nix
     ./users.nix
+    ./upgrade-diff.nix
   ];
 
   # This value determines the NixOS release from which the default
