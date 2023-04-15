@@ -1,6 +1,5 @@
 { config, ... }: {
   boot = {
-    cleanTmpDir = true;
     extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback.out ];
     kernelModules = [
       # Virtual Camara
