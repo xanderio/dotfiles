@@ -13,7 +13,10 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/c60e74e86fc8c28606bf86d63c080fa8796460fa";
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mms = {
       url = "github:mkaito/nixos-modded-minecraft-servers";
       inputs.nixpkgs.follows = "nixpkgs";
