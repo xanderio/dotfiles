@@ -3,7 +3,7 @@
 , lib
 , ...
 }: {
-  home.activation.nvimCacheClear = lib.hm.dag.entryAfter ["writeBoundary"] ''
+  home.activation.nvimCacheClear = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     $DRY_RUN_CMD nvim --headless +LuaCacheClear +q!
   '';
 
@@ -79,16 +79,7 @@
       nvim-dap-ui
 
       # Treesitter
-      (nvim-treesitter.overrideAttrs (_: {
-        postPatch =
-          let
-            grammars = pkgs.tree-sitter.withPlugins (ps: (_: nvim-treesitter.allGrammars) (ps // builtGrammars));
-          in
-          ''
-            rm -r parser
-            ln -s ${grammars} parser
-          '';
-      }))
+      nvim-treesitter
       nvim-navic
       spellsitter-nvim
       comment-nvim
@@ -129,6 +120,6 @@
       popfix # nvim-lsputils, telescope-nvim
       plenary-nvim # crates-nvim, telescope-nvim, gitsigns-nvim, neogit
       nvim-web-devicons
-    ]);
+    ] ++ (builtins.attrValues nvim-treesitter.grammarPlugins));
   };
 }
