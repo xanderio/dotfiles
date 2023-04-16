@@ -8,7 +8,6 @@
         format = "gpt";
         partitions = [
           {
-            type = "partition";
             name = "ESP";
             start = "1MiB";
             end = "100MiB";
@@ -20,7 +19,6 @@
             };
           }
           {
-            type = "partition";
             name = "zroot";
             start = "100MiB";
             end = "-8GiB";
@@ -30,7 +28,6 @@
             };
           }
           {
-            type = "partition";
             name = "swap";
             start = "-8GiB";
             end = "100%";
@@ -63,38 +60,38 @@
 
       datasets = {
         nixos = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           options = {
             canmount = "off";
             mountpoint = "none";
           };
         };
         "nixos/root" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/";
         };
         "nixos/home" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/home";
         };
         "nixos/nix" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/nix";
         };
         "nixos/nix/store" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/nix/store";
         };
         "nixos/var" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           options.mountpoint = "none";
         };
         "nixos/var/lib" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/var/lib";
         };
         "nixos/var/log" = {
-          zfs_type = "filesystem";
+          type = "zfs_fs";
           mountpoint = "/var/log";
         };
       };
