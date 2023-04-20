@@ -27,6 +27,7 @@ require('config.hydra')
 require('config.dap')
 require('dapui').setup()
 require('config/rust-tools')
+require('config.neotest')
 require('fidget').setup({
   text = {
     spinner = "dots_negative",

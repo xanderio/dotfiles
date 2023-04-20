@@ -84,6 +84,11 @@
       spellsitter-nvim
       comment-nvim
 
+      # neotest
+      neotest
+      neotest-rust
+      neotest-elixir
+
       # Autocompletion
       luasnip
       cmp_luasnip
