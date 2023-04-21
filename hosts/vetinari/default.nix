@@ -4,6 +4,7 @@
     ./spotifyd.nix
     ./audio.nix
     ./minecraft.nix
+    ./paperless.nix
   ];
 
   networking.hostName = "vetinari";
