@@ -26,7 +26,7 @@ in
       corefonts
       freefont_ttf
       jetbrains-mono
-      (nerdfonts.override {fonts = ["NerdFontsSymbolsOnly"];})
+      (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
     ];
   };
 }

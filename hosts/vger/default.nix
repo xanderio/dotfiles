@@ -26,7 +26,7 @@
   };
   programs.gamemode.enable = true;
 
-  systemd.services.lenovo_fix.wantedBy = lib.mkForce [];
+  systemd.services.lenovo_fix.wantedBy = lib.mkForce [ ];
 
   home-manager.users.xanderio.xanderio = {
     git = {

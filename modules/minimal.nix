@@ -16,7 +16,7 @@
           sha256 = "sha256-EwBHkXFEPAEgVUGC/0e2Bae/rV5lec1ttfbJ5ce9cKw=";
         };
 
-        patches = [];
+        patches = [ ];
       });
     })
 

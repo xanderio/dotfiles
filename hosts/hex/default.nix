@@ -8,7 +8,7 @@
   ];
 
   disko.devices = import ./disko.nix {
-    disks = ["/dev/nvme0n1"];
+    disks = [ "/dev/nvme0n1" ];
   };
 
   networking.hostName = "hex";

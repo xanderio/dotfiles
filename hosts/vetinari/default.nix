@@ -22,6 +22,8 @@
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = [ "zfs" ];
 
+  boot.zfs.extraPools = [ "media" ];
+
   services.home-assistant = {
     enable = true;
 
@@ -82,6 +84,16 @@
       }
     ];
   };
+
+  services.jellyfin.enable = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-media-driver
+    vaapiIntel
+    libvdpau-va-gl
+    vaapiVdpau
+    intel-ocl
+  ];
 
   system.stateVersion = lib.mkForce "23.05";
 }

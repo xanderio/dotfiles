@@ -1,4 +1,4 @@
-{config, ...}:
+{ config, ... }:
 {
   age.secrets = {
     spotify-username = {

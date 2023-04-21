@@ -10,7 +10,7 @@
       d = "${pkgs.git}/bin/git diff";
       ds = "${pkgs.git}/bin/git diff --cached";
     };
-    
+
     interactiveShellInit = ''
       nix-your-shell fish | source
     '';

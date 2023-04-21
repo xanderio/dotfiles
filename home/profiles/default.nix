@@ -5,7 +5,7 @@ let
   sharedModules = [
     ../.
     ../shell
-    inputs.nix-index-database.hmModules.nix-index 
+    inputs.nix-index-database.hmModules.nix-index
   ];
 
   defArg = {
