@@ -20,11 +20,6 @@
     fsType = "ext4";
   };
 
-  fileSystems."/mnt/nextcloud" = {
-    device = "/dev/disk/by-uuid/23d2c8f1-662a-468e-b884-5230c9ebce6f";
-    fsType = "ext4";
-  };
-
   swapDevices = [ ];
 
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
