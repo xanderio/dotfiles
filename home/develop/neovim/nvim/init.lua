@@ -36,7 +36,6 @@ require('fidget').setup({
     blend = 0,
   },
 })
-require('spellsitter').setup()
 require('config.nvim-tree')
 
 vim.g.code_action_menu_show_diff = false

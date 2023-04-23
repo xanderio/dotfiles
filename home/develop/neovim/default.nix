@@ -81,7 +81,6 @@
       # Treesitter
       nvim-treesitter
       nvim-navic
-      spellsitter-nvim
       comment-nvim
 
       # neotest
