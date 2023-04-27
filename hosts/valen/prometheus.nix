@@ -33,6 +33,7 @@ in
     enable = true;
     enableReload = true;
 
+    retentionTime = "90d";
     ruleFiles = [ synapseRules ];
     globalConfig.scrape_interval = "15s";
     scrapeConfigs = [
