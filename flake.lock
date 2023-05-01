@@ -324,17 +324,16 @@
       "inputs": {
         "flake-utils": "flake-utils_2",
         "nixpkgs": [
-          "neovim-nightly-overlay",
           "nixpkgs"
         ]
       },
       "locked": {
         "dir": "contrib",
-        "lastModified": 1682829601,
-        "narHash": "sha256-uARJPcDqqjIiGozgIZrV07nxSIVU1D5pz3UExJmxkYE=",
+        "lastModified": 1682920343,
+        "narHash": "sha256-G/WhTxlm5BIRoXSK0zAWe+Qw8xZmdhZb+eiHIao2yB8=",
         "owner": "neovim",
         "repo": "neovim",
-        "rev": "fa20c12ba358066858d1d2cd20d21316fe4b467b",
+        "rev": "37bc73e9bc2d8af878e49b81c5f49f861bba905c",
         "type": "github"
       },
       "original": {
@@ -347,7 +346,9 @@
     "neovim-nightly-overlay": {
       "inputs": {
         "flake-compat": "flake-compat_3",
-        "neovim-flake": "neovim-flake",
+        "neovim-flake": [
+          "neovim-flake"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -587,6 +588,7 @@
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "mms": "mms",
+        "neovim-flake": "neovim-flake",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-index-database": "nix-index-database",
         "nix-minecraft": "nix-minecraft",
