@@ -37,10 +37,6 @@
       url = "github:xanderio/website";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-your-shell = {
-      url = "github:MercuryTechnologies/nix-your-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
