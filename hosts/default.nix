@@ -4,7 +4,6 @@ let
     ../modules/minimal.nix
     ../modules/ntfy.nix
     { _module.args = { inherit inputs; }; }
-    inputs.nix-minecraft.nixosModules.minecraft-servers
     inputs.home-manager.nixosModules.home-manager
     inputs.agenix.nixosModules.default
     inputs.nix-index-database.nixosModules.nix-index
