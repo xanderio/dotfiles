@@ -13,7 +13,6 @@
     unzip
     httpie
     nix-your-shell
-    comma
     cachix
     nix-output-monitor
   ];
