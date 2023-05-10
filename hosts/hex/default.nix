@@ -45,6 +45,10 @@
   };
 
   home-manager.users.xanderio.home.packages = with pkgs; [ glab ];
+  home-manager.users.xanderio.home.sessionVariables = {
+    GLAB_PAGER = "cat";
+  };
+
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
