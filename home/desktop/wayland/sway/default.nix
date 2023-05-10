@@ -74,6 +74,9 @@ in
             events = "disabled";
             pointer_accel = "0.8";
           };
+          "1267:32:Elan_TrackPoint" = {
+            pointer_accel = "0.5";
+          };
         };
         output = {
           eDP-1 = {
