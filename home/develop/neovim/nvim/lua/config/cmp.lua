@@ -49,8 +49,5 @@ cmp.setup({
     { name = 'calc' },
     { name = 'path' },
     { name = 'buffer', keyword_length = 5, max_item_count = 2},
-  },
-  experimental = {
-    ghost_text = true,
   }
 })
