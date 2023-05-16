@@ -17,7 +17,7 @@
     lua51Packages.mpack
 
     nil
-    rust-analyzer-nightly
+    rust-analyzer
     terraform-lsp
     taplo-cli
     shellcheck

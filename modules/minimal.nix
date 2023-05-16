@@ -2,7 +2,6 @@
 {
   nixpkgs.overlays = [
     inputs.neovim-nightly-overlay.overlay
-    inputs.fenix.overlays.default
   ];
 
   networking.firewall.checkReversePath = false;
