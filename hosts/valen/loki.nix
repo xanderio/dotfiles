@@ -34,13 +34,30 @@
             prefix = "index_";
             period = "24h";
           };
-        }];
+        }
+          {
+            from = "2023-05-19";
+            store = "tsdb";
+            object_store = "filesystem";
+            schema = "v12";
+            index = {
+              prefix = "index_";
+              period = "24h";
+            };
+          }];
       };
 
       storage_config = {
         boltdb_shipper = {
           active_index_directory = "/var/lib/loki/boltdb-shipper-active";
           cache_location = "/var/lib/loki/boltdb-shipper-cache";
+          cache_ttl = "24h";
+          shared_store = "filesystem";
+        };
+
+        tsdb_shipper = {
+          active_index_directory = "/var/lib/loki/tsdb-index";
+          cache_location = "/var/lib/loki/tsdb-cache";
           cache_ttl = "24h";
           shared_store = "filesystem";
         };
@@ -53,6 +70,7 @@
       limits_config = {
         reject_old_samples = true;
         reject_old_samples_max_age = "168h";
+        retention_period = "2520h"; # 15 weeks
       };
 
       chunk_store_config = {
@@ -60,11 +78,12 @@
       };
 
       table_manager = {
-        retention_deletes_enabled = false;
-        retention_period = "0s";
+        retention_deletes_enabled = true;
+        retention_period = "2520h"; # 15 weeks
       };
 
       compactor = {
+        retention_enabled = true;
         working_directory = "/var/lib/loki";
         shared_store = "filesystem";
         compactor_ring = {
