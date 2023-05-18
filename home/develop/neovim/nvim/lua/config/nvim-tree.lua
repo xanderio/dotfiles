@@ -1,5 +1,13 @@
 require('nvim-tree').setup()
-vim.keymap.set('n', '<C-n>', require('nvim-tree.api').tree.focus)
+
+vim.keymap.set('n', '<C-n>', function()
+  require('nvim-tree.api').tree.find_file({ 
+    buf = vim.fn.bufnr(), 
+    open = true, 
+    focus = true
+  })
+end
+)
 
 
 local function open_nvim_tree(data)
