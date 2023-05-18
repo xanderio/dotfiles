@@ -14,5 +14,8 @@
       auth-default-access = "deny-all";
     };
   };
-  services.borgbackup.jobs.backup.paths = [ "/mnt/paperless" "/mnt/nextcloud" ];
+
+  services.journald.extraConfig = ''
+    SystemMaxUse = 1G
+  '';
 }
