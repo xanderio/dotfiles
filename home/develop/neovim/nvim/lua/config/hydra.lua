@@ -63,7 +63,7 @@ end
 local telescope_hint = [[
                  _f_: files       _b_: buffers
    🭇🬭🬭🬭🬭🬭🬭🬭🬭🬼    _o_: old files   _g_: live grep
-  🭉🭁🭠🭘    🭣🭕🭌🬾   _/_: search in file
+  🭉🭁🭠🭘    🭣🭕🭌🬾   _/_: search in file _d_: lsp document symbols
   🭅█ ▁     █🭐
   ██🬿      🭊██   _h_: vim help    _c_: execute command
  🭋█🬝🮄🮄🮄🮄🮄🮄🮄🮄🬆█🭀  _k_: keymap      _;_: commands history
@@ -76,7 +76,7 @@ Hydra({
    name = 'Telescope',
    hint = telescope_hint,
    config = {
-      color = 'teal',
+      color = 'blue',
       invoke_on_body = true,
       hint = {
          position = 'middle',
@@ -97,6 +97,7 @@ Hydra({
       { '?', require('telescope.builtin').search_history,  { desc = 'Search history' } },
       { ';', require('telescope.builtin').command_history, { desc = 'Command-line history' } },
       { 'c', require('telescope.builtin').commands, { desc = 'Execute command' } },
+      { 'd', require('telescope.builtin').lsp_document_symbols },
       { '<Enter>', require('telescope.builtin').pickers, { exit = true, desc = 'List all pickers' } },
       { '<Esc>', nil, { exit = true, nowait = true } },
    }
