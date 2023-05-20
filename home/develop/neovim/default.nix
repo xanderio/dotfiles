@@ -1,10 +1,7 @@
-{ config
-, pkgs
-, lib
-, ...
-}: {
+{ pkgs, lib, ... }: {
   home.activation.nvimCacheClear = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    $DRY_RUN_CMD nvim --headless +LuaCacheClear +q!
+    # remove impatient.nvim cache
+    rm -rf $HOME/.cache/nvim/luacache_*
   '';
 
   home.sessionVariables = {
