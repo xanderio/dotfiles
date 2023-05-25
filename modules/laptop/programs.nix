@@ -3,6 +3,7 @@
     iwd
     gnome.gnome-boxes
     signal-desktop
+    flyctl
   ];
   programs.mtr.enable = true;
   programs.adb.enable = false;
