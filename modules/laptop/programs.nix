@@ -4,6 +4,7 @@
     gnome.gnome-boxes
     signal-desktop
     flyctl
+    just
   ];
   programs.mtr.enable = true;
   programs.adb.enable = false;
