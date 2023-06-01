@@ -1,4 +1,4 @@
-{ ... }: {
+{ inputs, ... }: {
   imports = [
     ../common
     ./boot.nix
@@ -7,6 +7,10 @@
     ./services.nix
     ./programs.nix
     ./powerManagement.nix
+  ];
+
+  nixpkgs.overlays = [
+    inputs.neovim-nightly-overlay.overlay
   ];
 
   hardware = {
