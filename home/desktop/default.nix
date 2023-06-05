@@ -22,6 +22,7 @@
       ripdrag
       prismlauncher
       element-desktop
+      wdisplays
     ];
   };
 
