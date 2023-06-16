@@ -52,7 +52,7 @@ in
       enable = true;
       # use system provided sway version, nixpkgs version is unable to create egl context
       package = null;
-      systemdIntegration = true;
+      systemd.enable = true;
       wrapperFeatures.gtk = true;
       config = {
         modifier = "Mod4";
