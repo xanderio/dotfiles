@@ -17,7 +17,7 @@
       enable = true;
       https = true;
       enableBrokenCiphersForSSE = false;
-      package = pkgs.nextcloud26;
+      package = pkgs.nextcloud27;
       hostName = "cloud.xanderio.de";
       config = {
         dbtype = "pgsql";
