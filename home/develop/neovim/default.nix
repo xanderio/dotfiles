@@ -65,7 +65,14 @@
       lspkind-nvim
       lsp_signature-nvim
       lsp-status-nvim
-      fidget-nvim
+      (fidget-nvim.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchFromGitHub {
+          owner = "j-hui";
+          repo = "fidget.nvim";
+          rev = "90c22e47be057562ee9566bad313ad42d622c1d3";
+          hash = "sha256-N3O/AvsD6Ckd62kDEN4z/K5A3SZNR15DnQeZhH6/Rr0=";
+        };
+      }))
 
       ## rust 
       rust-tools-nvim
