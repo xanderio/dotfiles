@@ -20,6 +20,7 @@
     shellcheck
     terraform
     elixir_ls
+    deno
 
     statix
     nixpkgs-fmt

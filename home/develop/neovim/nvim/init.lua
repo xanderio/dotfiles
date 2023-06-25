@@ -97,6 +97,11 @@ null_ls.setup({
   on_attach = require('lsp').on_attach
 })
 
+-- To appropriately highlight codefences returned from denols
+vim.g.markdown_fenced_languages = {
+  "ts=typescript"
+}
+
 local servers = { 
   'bashls',
   'dartls',
@@ -104,6 +109,7 @@ local servers = {
   'taplo',
   'terraform_lsp',
   'yamlls',
+  'denols',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({
