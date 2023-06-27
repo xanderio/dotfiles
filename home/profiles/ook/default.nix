@@ -3,6 +3,7 @@
     ../../shell
     ../../develop
   ];
+  xanderio.git.enable = true;
   home.username = "xanderio";
   home.homeDirectory = "/Users/xanderio";
   home.stateVersion = lib.mkForce "23.05";
