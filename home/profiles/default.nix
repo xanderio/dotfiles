@@ -25,5 +25,13 @@ in
     "xanderio@vger" = mkHome { modules = homeImports."xanderio@vger"; };
     "xanderio@hex" = mkHome { modules = homeImports."xanderio@hex"; };
     server = mkHome { modules = homeImports.server; };
+    ook = inputs.home-manager.lib.homeManagerConfiguration {
+       pkgs = import inputs.nixpkgs { 
+         system = "aarch64-darwin";
+       };
+       modules = sharedModules ++ [
+         ./ook
+       ];
+    };
   };
 }
