@@ -17,7 +17,10 @@
             {
               virtualisation.host.pkgs = pkgs;
               virtualisation.darwin-builder.workingDirectory = workingDirectory;
+              virtualisation.cores = 4;
               system.nixos.revision = lib.mkForce null;
+              security.sudo.wheelNeedsPassword = false;
+              users.groups.wheel.members = ["builder"];
 
               boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
             }
