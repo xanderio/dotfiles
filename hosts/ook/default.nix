@@ -18,6 +18,8 @@
               virtualisation.host.pkgs = pkgs;
               virtualisation.darwin-builder.workingDirectory = workingDirectory;
               system.nixos.revision = lib.mkForce null;
+
+              boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
             }
           ];
         };
@@ -41,7 +43,10 @@
             nix.buildMachines = [{
               sshUser = "builder";
               hostName = "localhost";
-              system = linuxSystem;
+              systems = [
+                linuxSystem
+                "x86_64-linux"
+              ];
               maxJobs = 4;
               supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
               sshKey = "/etc/nix/builder_ed25519";
