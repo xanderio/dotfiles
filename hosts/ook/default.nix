@@ -7,6 +7,7 @@
         inherit (darwin.lib) darwinSystem;
         system = "aarch64-darwin";
         pkgs = nixpkgs.legacyPackages."${system}";
+        workingDirectory = "/var/lib/darwin-builder";
         linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
 
         darwin-builder = nixpkgs.lib.nixosSystem {
@@ -15,6 +16,7 @@
             "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
             {
               virtualisation.host.pkgs = pkgs;
+              virtualisation.darwin-builder.workingDirectory = workingDirectory;
               system.nixos.revision = lib.mkForce null;
             }
           ];
@@ -27,13 +29,24 @@
             system.stateVersion = 4;
             programs.fish.enable = true;
             services.nix-daemon.enable = true;
-            nix.settings.experimental-features = "nix-command flakes";
+            nix.settings = {
+              experimental-features = "nix-command flakes";
+              auto-optimise-store = true;
+              sandbox = true;
+              extra-trusted-users = [ "xanderio" ];
+              builders-use-substitutes = true;
+              extra-nix-path = "nixpkgs=flake:nixpkgs";
+            };
             nix.distributedBuilds = true;
             nix.buildMachines = [{
-              hostName = "ssh://builder@localhost";
+              sshUser = "builder";
+              hostName = "localhost";
               system = linuxSystem;
               maxJobs = 4;
               supportedFeatures = [ "kvm" "benchmark" "big-parallel" ];
+              sshKey = "/etc/nix/builder_ed25519";
+              protocol = "ssh-ng";
+              publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo";
             }];
 
             launchd.daemons.darwin-builder = {
