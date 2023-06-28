@@ -24,6 +24,9 @@ let
   inherit (import "${self}/home/profiles" inputs) homeImports;
 in
 {
+  imports = [
+    ./ook
+  ];
   flake.diskoConfigurations = {
     hex = import ./hex/disko.nix;
     vetinari = import ./vetinari/disko.nix;
