@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, self, ... }: {
   flake.darwinConfigurations = {
     ook =
       let
@@ -20,24 +20,30 @@
               virtualisation.cores = 4;
               system.nixos.revision = lib.mkForce null;
               security.sudo.wheelNeedsPassword = false;
-              users.groups.wheel.members = ["builder"];
+              users.groups.wheel.members = [ "builder" ];
 
               boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
             }
           ];
         };
+
+        inherit (import "${self}/home/profiles" inputs) homeImports;
+
       in
       darwinSystem {
         inherit system;
         modules = [
+          inputs.home-manager.darwinModules.home-manager
           {
+            nixpkgs.overlays = [(final: prev: {
+              nix = final.nixVersions.nix_2_16;
+            })];
             system.stateVersion = 4;
             programs.fish.enable = true;
             services.nix-daemon.enable = true;
             nix.settings = {
               experimental-features = "nix-command flakes";
               auto-optimise-store = true;
-              sandbox = true;
               extra-trusted-users = [ "xanderio" ];
               builders-use-substitutes = true;
               extra-nix-path = "nixpkgs=flake:nixpkgs";
@@ -66,6 +72,15 @@
                 StandardErrorPath = "/var/log/darwin-builder.log";
               };
             };
+
+            users.users.xanderio = {
+              name = "xanderio";
+              home = "/Users/xanderio";
+            };
+
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.xanderio.imports = homeImports.ook;
           }
         ];
       };

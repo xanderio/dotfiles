@@ -17,6 +17,7 @@ let
     "xanderio@vger" = sharedModules ++ [ ./vger ];
     "xanderio@hex" = sharedModules ++ [ ./hex ];
     server = sharedModules ++ [ ./server ];
+    ook = sharedModules ++ [ ./ook ];
   };
 in
 {
@@ -26,12 +27,12 @@ in
     "xanderio@hex" = mkHome { modules = homeImports."xanderio@hex"; };
     server = mkHome { modules = homeImports.server; };
     ook = inputs.home-manager.lib.homeManagerConfiguration {
-       pkgs = import inputs.nixpkgs { 
-         system = "aarch64-darwin";
-       };
-       modules = sharedModules ++ [
-         ./ook
-       ];
+      pkgs = import inputs.nixpkgs {
+        system = "aarch64-darwin";
+      };
+      modules = sharedModules ++ [
+        ./ook
+      ];
     };
   };
 }
