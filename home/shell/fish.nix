@@ -46,6 +46,10 @@
           fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
       end
 
+      if test -e $HOME/.iterm2_shell_integration.fish 
+        source $HOME/.iterm2_shell_integration.fish
+      end
+
       abbr --add dotdot --regex '^\.\.+$' --function multicd
       abbr -a !! --position anywhere --function last_history_item
     '';
