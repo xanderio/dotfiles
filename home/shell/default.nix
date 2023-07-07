@@ -16,6 +16,7 @@
     comma
     cachix
     nix-output-monitor
+    gh
   ];
 
   home.sessionVariables = {
