@@ -115,7 +115,14 @@
       lualine-nvim
       gitsigns-nvim
       dracula-nvim
-      neogit
+      (neogit.overrideAttrs (oldAttrs: {
+        src = pkgs.fetchFromGitHub {
+          owner = "NeogitOrg";
+          repo = "neogit";
+          rev = "72824006f2dcf775cc498cc4a046ddd2c99d20a3";
+          hash = "sha256-1DEzVPHL+l8y2PHWcAg/bPBA+E/5riMa6pon3vvyQag=";
+        };
+      }))
       nvim-tree-lua
       diffview-nvim
 
