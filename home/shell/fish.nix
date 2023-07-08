@@ -50,6 +50,10 @@
         source $HOME/.iterm2_shell_integration.fish
       end
 
+      if test -e /opt/homebrew/bin/brew
+        eval (/opt/homebrew/bin/brew shellenv)
+      end
+
       abbr --add dotdot --regex '^\.\.+$' --function multicd
       abbr -a !! --position anywhere --function last_history_item
     '';
