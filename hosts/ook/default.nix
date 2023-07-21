@@ -15,6 +15,10 @@
           modules = [
             "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
             {
+              nix = {
+                nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+                registry.nixpkgs.flake = inputs.nixpkgs;
+              };
               virtualisation.host.pkgs = pkgs;
               virtualisation.darwin-builder.workingDirectory = workingDirectory;
               virtualisation.cores = 4;
@@ -34,11 +38,9 @@
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = [
-              (final: prev: {
-                nix = final.nixVersions.nix_2_16;
-              })
-            ];
+            nixpkgs.config.packageOverrides = pkgs: {
+              nix = pkgs.nixVersions.nix_2_16;
+            };
             system.stateVersion = 4;
             programs.fish.enable = true;
             programs.tmux.enable = true;
