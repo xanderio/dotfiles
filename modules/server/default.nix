@@ -18,4 +18,6 @@
   networking = {
     domain = "xanderio.de";
   };
+
+  documentation.nixos.enable = false;
 }
