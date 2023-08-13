@@ -8,7 +8,7 @@ in{
 
     instances = {
       vanilla = {
-        enable = true;
+        enable = false;
         inherit rsyncSSHKeys;
         jvmPackage = pkgs.jdk17;
         jvmMaxAllocation = "1G";
