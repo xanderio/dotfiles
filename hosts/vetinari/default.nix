@@ -6,6 +6,7 @@
     ./minecraft.nix
     ./paperless.nix
     ./nextcloud.nix
+    ./netatalk.nix
   ];
 
   networking.hostName = "vetinari";
