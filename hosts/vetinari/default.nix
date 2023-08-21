@@ -9,6 +9,9 @@
     ./netatalk.nix
   ];
 
+  services.aria2.enable = true;
+  services.aria2.extraArguments = "--rpc-listen-all --remote-time=true --rpc-secret=foobar";
+
   networking.hostName = "vetinari";
   networking.hostId = "8419e344";
 
