@@ -25,7 +25,7 @@
     statix
     nixpkgs-fmt
     gitlint
-    hadolint
+    #hadolint
 
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs

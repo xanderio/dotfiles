@@ -88,9 +88,6 @@ null_ls.setup({
     -- ansible
     null_ls.builtins.diagnostics.ansiblelint,
 
-    -- docker 
-    null_ls.builtins.diagnostics.hadolint,
-
     -- gitlint
     null_ls.builtins.diagnostics.gitlint,
   },
