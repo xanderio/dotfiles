@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, lib, ... }: {
   services = {
     paperless = {
       enable = true;
@@ -12,12 +12,27 @@
   };
 
   systemd.services.paperless-scheduler = {
-    serviceConfig.EnviromentFile = "${config.services.paperless.dataDir}/secret-key";
+    serviceConfig = {
+      EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
+      UMask = lib.mkForce "0022";
+    };
   };
   systemd.services.paperless-consumer = {
-    serviceConfig.EnviromentFile = "${config.services.paperless.dataDir}/secret-key";
+    serviceConfig = {
+      EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
+      UMask = lib.mkForce "0022";
+    };
   };
   systemd.services.paperless-web = {
-    serviceConfig.EnviromentFile = "${config.services.paperless.dataDir}/secret-key";
+    serviceConfig = {
+      EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
+      UMask = lib.mkForce "0022";
+    };
+  };
+  systemd.services.paperless-task-queue = {
+    serviceConfig = {
+      EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
+      UMask = lib.mkForce "0022";
+    };
   };
 }

@@ -7,7 +7,11 @@
         "mimic model" = "TimeCapsule6,106";
       };
       paperless = {
-        path = "${config.services.paperless.dataDir}";
+        path = "${config.services.paperless.mediaDir}/documents/originals";
+        "valid users" = "xanderio";
+      };
+      paperless-consume = {
+        path = "${config.services.paperless.consumptionDir}";
         "valid users" = "xanderio";
       };
       media = {
