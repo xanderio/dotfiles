@@ -1,4 +1,4 @@
-{ pkgs, config, lib, ... }: {
+{ pkgs, config, lib, inputs, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -28,6 +28,12 @@
   boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs.extraPools = [ "media" ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    python311Packages = pkgs.python311Packages.overrideScope (final: prev: {
+      gpiozero = inputs.nipxkgs-master.legacyPackages.x68_64-linux.python311Packages.gpiozero;
+    });
+  };
 
   services.home-assistant = {
     enable = true;
