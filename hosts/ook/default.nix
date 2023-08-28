@@ -91,6 +91,9 @@
                 RunAtLoad = true;
                 StandardOutPath = "/var/log/darwin-builder.log";
                 StandardErrorPath = "/var/log/darwin-builder.log";
+                EnvironmentVariables = {
+                  "NIX_SSL_CERT_FILE" = "/etc/ssl/certs/ca-certificates.crt";
+                };
               };
             };
 
