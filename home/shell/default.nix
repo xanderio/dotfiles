@@ -35,7 +35,7 @@
       enable = true;
       nix-direnv.enable = true;
     };
-    exa = {
+    eza = {
       enable = true;
       enableAliases = true;
     };
