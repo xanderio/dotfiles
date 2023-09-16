@@ -1,90 +1,65 @@
 { inputs, self, ... }:
-let
-  sharedModules = [
-    ../modules/minimal.nix
-    ../modules/ntfy.nix
-    { _module.args = { inherit inputs; }; }
-    inputs.home-manager.nixosModules.home-manager
-    inputs.agenix.nixosModules.default
-    inputs.nix-index-database.nixosModules.nix-index
-    inputs.mms.module
-    { services.modded-minecraft-servers.eula = true; }
-    inputs.disko.nixosModules.disko
-    {
-      home-manager = {
-        useGlobalPkgs = true;
-        useUserPackages = true;
-      };
-    }
-  ];
-
-  extraModules = [ ];
-
-  inherit (inputs.nixpkgs.lib) nixosSystem;
-  inherit (import "${self}/home/profiles" inputs) homeImports;
-in
 {
-  imports = [
-    ./ook
-  ];
-  flake.diskoConfigurations = {
-    hex = import ./hex/disko.nix;
-    vetinari = import ./vetinari/disko.nix;
-  };
-  flake.nixosConfigurations = {
-    vger = nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./vger
-        ../modules/laptop
-        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480s
-        { home-manager.users.xanderio.imports = homeImports."xanderio@vger"; }
-      ]
-      ++ sharedModules;
+  flake = {
+    colmena =
+      let
+        inherit (inputs.nixpkgs) lib;
+
+        isDir = _name: type: type == "directory";
+
+        hostDirs = builtins.attrNames
+          (lib.filterAttrs isDir
+            (builtins.readDir ./.)
+          );
+
+        hosts = lib.genAttrs hostDirs (name: {
+          imports = [
+            (./. + "/${name}")
+          ];
+        });
+
+      in
+      {
+        meta = {
+          nixpkgs = import inputs.nixos-small {
+            system = "x86_64-linux";
+          };
+
+          nodeNixpkgs = lib.genAttrs [ "hex" "vger" ]
+            (_: import inputs.nixpkgs {
+              system = "x86_64-linux";
+            });
+
+          specialArgs = {
+            inherit (import "${self}/home/profiles" inputs) homeImports;
+            inherit inputs;
+          } // inputs;
+        };
+
+        defaults = {
+          imports = [
+            ../modules/minimal.nix
+            ../modules/ntfy.nix
+            inputs.home-manager.nixosModules.home-manager
+            inputs.agenix.nixosModules.default
+            inputs.nix-index-database.nixosModules.nix-index
+            inputs.mms.module
+            { services.modded-minecraft-servers.eula = true; }
+            inputs.disko.nixosModules.disko
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+              };
+            }
+          ];
+        };
+      } // hosts;
+
+    diskoConfigurations = {
+      hex = import ./hex/disko.nix;
+      vetinari = import ./vetinari/disko.nix;
     };
-    hex = nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        ./hex
-        ../modules/laptop
-        inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14
-        { home-manager.users.xanderio.imports = homeImports."xanderio@hex"; }
-      ]
-      ++ sharedModules;
-    };
-
-    delenn = inputs.nixos-small.lib.nixosSystem
-      {
-        inherit extraModules;
-        system = "x86_64-linux";
-        modules = [
-          ./delenn
-          ../modules/server
-        ]
-        ++ sharedModules;
-      };
-
-    valen = inputs.nixos-small.lib.nixosSystem
-      {
-        inherit extraModules;
-        system = "x86_64-linux";
-        modules = [
-          ./valen
-          ../modules/server
-        ]
-        ++ sharedModules;
-      };
-
-    vetinari = inputs.nixos-small.lib.nixosSystem
-      {
-        inherit extraModules;
-        system = "x86_64-linux";
-        modules = [
-          ./vetinari
-          ../modules/server
-          { home-manager.users.xanderio.imports = homeImports."server"; }
-        ]
-        ++ sharedModules;
-      };
+    nixosConfigurations = (inputs.colmena.lib.makeHive self.outputs.colmena).nodes;
   };
 }

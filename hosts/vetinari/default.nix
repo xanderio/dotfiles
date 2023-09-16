@@ -1,4 +1,4 @@
-{ pkgs, config, lib, inputs, ... }: {
+{ pkgs, config, lib, inputs, homeImports, ... }: {
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -7,7 +7,12 @@
     ./paperless.nix
     ./nextcloud.nix
     ./netatalk.nix
+    ../../modules/server
+    { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
+
+  deployment.targetHost = "vetinari.tail2f592.ts.net";
+  home-manager.users.xanderio.home.stateVersion = "22.11";
 
   services.aria2.enable = true;
   services.aria2.extraArguments = "--rpc-listen-all --remote-time=true --rpc-secret=foobar";

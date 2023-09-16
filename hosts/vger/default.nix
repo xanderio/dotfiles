@@ -1,10 +1,13 @@
-{ pkgs
-, lib
-, ...
-}: {
+{ pkgs, lib, nixos-hardware, homeImports, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/laptop
+    nixos-hardware.nixosModules.lenovo-thinkpad-t480s
+    { home-manager.users.xanderio.imports = homeImports."xanderio@vger"; }
   ];
+
+  home-manager.users.xanderio.home.stateVersion = "22.11";
+  deployment.targetHost = null;
 
   networking.hostName = "vger";
   networking.firewall.allowedTCPPorts = [ 8080 ];

@@ -5,6 +5,8 @@
     nixos-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    colmena.url = "github:zhaofengli/colmena";
+    colmena.inputs."nixpkgs".follows = "nixpkgs";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +26,6 @@
       url = "github:mkaito/nixos-modded-minecraft-servers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    deploy-rs.url = "github:serokell/deploy-rs";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,8 +48,8 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" "aarch64-darwin" ];
       imports = [
-        ./hosts/deploy.nix
         ./hosts
+        ./darwin
       ];
       flake = {
         inherit (import ./home/profiles inputs) homeConfigurations;
@@ -58,14 +59,10 @@
         formatter = pkgs.nixpkgs-fmt;
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = [
-            inputs'.deploy-rs.packages.deploy-rs
+            pkgs.colmena
             inputs'.agenix.packages.agenix
           ];
         };
-        checks = lib.foldl lib.recursiveUpdate { } [
-          (lib.mapAttrs' (name: value: { name = "deploy-${name}"; inherit value; }) (inputs.deploy-rs.lib.${system}.deployChecks self.deploy))
-          (lib.mapAttrs' (name: value: { name = "devShell-${name}"; inherit value; }) self'.devShells)
-        ];
       };
     };
 }

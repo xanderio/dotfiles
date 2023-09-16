@@ -21,8 +21,8 @@ in
       enable = true;
       confPackages = [ nerdfontConfigPkg ];
     };
-    enableDefaultFonts = true;
-    fonts = with pkgs; [
+    enableDefaultPackages = true;
+    packages = with pkgs; [
       corefonts
       freefont_ttf
       jetbrains-mono

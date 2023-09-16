@@ -1,11 +1,13 @@
-{ pkgs
-, lib
-, config
-, ...
-}: {
+{ pkgs, config, nixos-hardware, homeImports, ... }: {
   imports = [
     ./hardware-configuration.nix
+    ../../modules/laptop
+    nixos-hardware.nixosModules.lenovo-thinkpad-t14
+    { home-manager.users.xanderio.imports = homeImports."xanderio@hex"; }
   ];
+
+  home-manager.users.xanderio.home.stateVersion = "22.11";
+  deployment.targetHost = null;
 
   disko.devices = import ./disko.nix {
     disks = [ "/dev/nvme0n1" ];

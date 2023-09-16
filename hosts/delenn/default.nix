@@ -1,11 +1,12 @@
-{ pkgs
-, ...
-}: {
+{
   imports = [
     ./configuration.nix
     ./matrix.nix
+    ../../modules/server
   ];
   networking.hostName = "delenn";
+
+  deployment.targetHost = "delenn.xanderio.de";
 
   services.ntfy = {
     enable = true;

@@ -1,9 +1,4 @@
-{ config
-, pkgs
-, lib
-, name
-, ...
-}: {
+{
   imports = [
     ../common
     ./backup.nix
@@ -18,6 +13,8 @@
   networking = {
     domain = "xanderio.de";
   };
+
+  deployment.tags = ["server"];
 
   documentation.nixos.enable = false;
 }
