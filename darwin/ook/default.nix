@@ -50,7 +50,7 @@
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
               settings = {
-                auto-optimise-store = true;
+                auto-optimise-store = false;
                 warn-dirty = false;
                 experimental-features = "nix-command flakes";
                 fallback = true;
