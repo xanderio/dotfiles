@@ -1,5 +1,6 @@
-{config, ...}: {
+{ config, ... }: {
   networking.firewall.allowedTCPPorts = [ config.services.netatalk.port ];
+  services.borgbackup.jobs.backup.exclude = [ "/var/lib/timemachine" ];
   services.netatalk = {
     enable = true;
     settings = {

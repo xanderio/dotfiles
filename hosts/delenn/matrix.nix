@@ -2,9 +2,11 @@
 let
   fqdn = "bitflip.jetzt";
   turnRealm = "turn.${fqdn}";
+  syncv3Domain = "syncv3.${fqdn}";
   clientConfig = {
     "m.homeserver".base_url = "https://${fqdn}";
-    "m.identity_server" = { };
+    "m.identity_server".base_url = "https://vector.im";
+    "org.matrix.msc3575.proxy".url = "https://${syncv3Domain}";
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
   mkWellKnown = data: ''
@@ -22,6 +24,9 @@ in
     registration-shared-secret = {
       owner = "matrix-synapse";
       file = ../../secrets/synapse-registration_shared_secret.age;
+    };
+    sliding-sync-secret = {
+      file = ../../secrets/synapse-sliding_sync_secret.age;
     };
   };
 
@@ -57,6 +62,11 @@ in
       locations."/".extraConfig = ''
         return 404;
       '';
+    };
+    virtualHosts."${syncv3Domain}" = {
+      enableACME = true;
+      forceSSL = true;
+      locations."/".proxyPass = "http://${config.services.matrix-synapse.sliding-sync.settings.SYNCV3_BINDADDR}";
     };
   };
 
@@ -146,8 +156,17 @@ in
         turn_allow_guests: True
       '';
     };
-  };
 
+    sliding-sync = {
+      enable = true;
+      environmentFile = config.age.secrets.sliding-sync-secret.path;
+      settings = {
+        SYNCV3_SERVER = "https://bitflip.jetzt";
+        SYNCV3_BINDADDR = "[::]:8009";
+        SYNCV3_LOG_LEVEL = "error";
+      };
+    };
+  };
 
   # remove chmod for signing-key file
   systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce [ ];
