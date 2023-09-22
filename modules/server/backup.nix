@@ -21,7 +21,7 @@
         within = "1d"; # Keep all archives from the last day
         daily = 7;
         weekly = 4;
-        monthly = -1; # Keep at least one archive for each month
+        monthly = 1; 
       };
       extraCreateArgs = "--verbose --exclude-caches --stats --checkpoint-interval 600";
       startAt = "hourly";
