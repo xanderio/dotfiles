@@ -50,6 +50,11 @@
         source $HOME/.iterm2_shell_integration.fish
       end
 
+      # setup 1password plugins
+      if test -e $HOME/.config/op/plugins.sh 
+        source $HOME/.config/op/plugins.sh
+      end
+
       if test -e /opt/homebrew/bin/brew
         eval (/opt/homebrew/bin/brew shellenv)
       end
