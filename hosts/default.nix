@@ -40,12 +40,14 @@
           imports = [
             ../modules/minimal.nix
             ../modules/ntfy.nix
+            ../modules/sops
             inputs.home-manager.nixosModules.home-manager
             inputs.agenix.nixosModules.default
             inputs.nix-index-database.nixosModules.nix-index
             inputs.mms.module
             { services.modded-minecraft-servers.eula = true; }
             inputs.disko.nixosModules.disko
+            inputs.sops.nixosModules.sops
             {
               home-manager = {
                 useGlobalPkgs = true;

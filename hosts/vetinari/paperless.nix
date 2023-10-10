@@ -15,24 +15,28 @@
     serviceConfig = {
       EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
       UMask = lib.mkForce "0022";
+      ProtectControlGroups = lib.mkForce false;
     };
   };
   systemd.services.paperless-consumer = {
     serviceConfig = {
       EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
       UMask = lib.mkForce "0022";
+      ProtectControlGroups = lib.mkForce false;
     };
   };
   systemd.services.paperless-web = {
     serviceConfig = {
       EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
       UMask = lib.mkForce "0022";
+      ProtectControlGroups = lib.mkForce false;
     };
   };
   systemd.services.paperless-task-queue = {
     serviceConfig = {
       EnvironmentFile = "${config.services.paperless.dataDir}/secret-key";
       UMask = lib.mkForce "0022";
+      ProtectControlGroups = lib.mkForce false;
     };
   };
 }

@@ -1,5 +1,6 @@
 { config, ... }:
 {
+  sops.secrets.repo_key.sopsFile = ../../secrets/all/borg_backup.yaml;
   age.secrets = {
     "storagebox-sshkey".file = ../../secrets/storagebox-sshkey.age;
     "backup-key".file = ../../secrets/backup-key.age;

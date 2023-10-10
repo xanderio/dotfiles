@@ -123,13 +123,14 @@ require('lspconfig').cssls.setup({
   end,
 })
 
-require('lspconfig').elixirls.setup({
-  cmd = { '/etc/profiles/per-user/xanderio/bin/elixir-ls' }, 
-  capabilities = require('lsp').capabilities(),
-  on_attach = function(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
-  end,
-})
+local elixir = require("elixir")
+elixir.setup {
+  nextls = {
+    enable = true,
+    capabilities = require('lsp').capabilities(),
+    on_attach =  require('lsp').on_attach
+  }
+}
 
 require('lspconfig').nil_ls.setup({
   autostart = true,

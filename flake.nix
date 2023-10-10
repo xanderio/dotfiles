@@ -26,6 +26,13 @@
       url = "github:mkaito/nixos-modded-minecraft-servers";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    next-ls.url = "github:elixir-tools/next-ls";
+    next-ls.inputs."nixpkgs".follows = "nixpkgs";
+    sops-to-age.url = "github:Mic92/ssh-to-age";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,7 +67,9 @@
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = [
             pkgs.colmena
+            pkgs.sops
             inputs'.agenix.packages.agenix
+            inputs'.sops-to-age.packages.ssh-to-age
           ];
         };
       };

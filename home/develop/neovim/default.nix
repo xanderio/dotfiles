@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ inputs, pkgs, lib, ... }: {
   home.activation.nvimCacheClear = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     # remove impatient.nvim cache
     rm -rf $HOME/.cache/nvim/luacache_*
@@ -75,6 +75,8 @@
         };
       }))
 
+      elixir-tools-nvim
+  
       ## rust 
       rust-tools-nvim
       crates-nvim

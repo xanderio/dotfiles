@@ -1,0 +1,33 @@
+keys: 
+  - &xanderio age1ftsxs8qj86g6v28f69qalwg2a85rd0vxh8zm304k3p4uv63x5yesd44w56
+  - &delenn age1hzrrta33n0rpatlu72sjdvv7r7nkaf0rjhhszue0ltr9l7c8zyuqzefgqx
+  - &valen age1su39hcctpl3fkya306zfw28h8dg869mtud07us7ynwz5xcylecrqu46cjv
+  - &vetinari age1w5u4meu5hnuwsylwnfut7le2pm5n37h8wk9mny9jw242jc9nhynq2lt7fx
+
+creation_rules:
+  - path_regex: secrets/all/[^/]+\.yaml$
+    key_groups:
+      - age:
+        - *xanderio
+        - *delenn
+        - *valen
+        - *vetinari
+
+  # hosts
+  - path_regex: secrets/hosts/delenn.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *delenn
+  - path_regex: secrets/hosts/valen.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *valen
+  - path_regex: secrets/hosts/vetinari.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *vetinari
+
+  # services
