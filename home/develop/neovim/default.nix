@@ -18,7 +18,6 @@
     terraform-lsp
     taplo-cli
     shellcheck
-    terraform
     elixir_ls
     deno
 
