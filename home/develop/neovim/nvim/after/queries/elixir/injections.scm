@@ -8,6 +8,6 @@
       (string (quoted_content) @injection.content)
     ]
   )
-  (#match? @_name "^graphql:\w?$")
+  (#match? @_name "^graphql:\s?")
   (#set! injection.language "graphql")
 )
