@@ -16,7 +16,11 @@
       cargo-espflash
       cargo-espmonitor
 
-      darcs
+      nix-update
+      nix-init
+      nixpkgs-review
+      nix-universal-prefetch
+      nix-top
     ];
 
     sessionVariables = {
