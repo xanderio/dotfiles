@@ -16,7 +16,6 @@
     nextcloud = {
       enable = true;
       https = true;
-      enableBrokenCiphersForSSE = false;
       package = pkgs.nextcloud27;
       hostName = "cloud.xanderio.de";
       caching.apcu = true;

@@ -62,7 +62,6 @@
         inherit (import ./home/profiles inputs) homeConfigurations;
       };
       perSystem = { pkgs, lib, inputs', self', system, ... }: {
-
         formatter = pkgs.nixpkgs-fmt;
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = [
