@@ -1,13 +1,14 @@
 { lib, config, ... }:
 let
-  cfg = config.secrets;
+  cfg = config.x.sops;
 in
 {
-  options.secrets = with lib; mkOption {
-    type = types.attrs;
-    default = { };
+  options.x.sops = with lib; {
+    secrets = mkOption {
+      type = types.attrs;
+      default = { };
+    };
   };
-
   config = {
     sops.secrets = lib.mapAttrs
       (name: value:
@@ -17,6 +18,6 @@ in
         {
           sopsFile = ../../secrets/${builtins.elemAt name_split 0}/${builtins.elemAt name_split 1}.yaml;
         } // value)
-      cfg;
+      cfg.secrets;
   };
 }

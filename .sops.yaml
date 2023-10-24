@@ -31,3 +31,8 @@ creation_rules:
         - *vetinari
 
   # services
+  - path_regex: secrets/services/synapse.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *delenn

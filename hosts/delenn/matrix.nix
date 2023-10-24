@@ -16,18 +16,10 @@ let
   '';
 in
 {
-  age.secrets = {
-    signing-key = {
-      owner = "matrix-synapse";
-      file = ../../secrets/synapse-signing-key.age;
-    };
-    registration-shared-secret = {
-      owner = "matrix-synapse";
-      file = ../../secrets/synapse-registration_shared_secret.age;
-    };
-    sliding-sync-secret = {
-      file = ../../secrets/synapse-sliding_sync_secret.age;
-    };
+  x.sops.secrets = {
+    "services/synapse/signing_key".owner = "matrix-synapse";
+    "services/synapse/registration_shared_secret".owner = "matrix-synapse";
+    "services/synapse/sliding_sync_env".owner = "root";
   };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 8088 ];
@@ -120,7 +112,7 @@ in
       server_name = fqdn;
       public_baseurl = "https://${fqdn}";
       enable_metrics = true;
-      signing_key_path = config.age.secrets.signing-key.path;
+      signing_key_path = config.sops.secrets."services/synapse/signing_key".path;
       listeners = [
         {
           port = 8008;
@@ -145,7 +137,7 @@ in
           }];
         }
       ];
-      registration_shared_secret_path = config.age.secrets.registration-shared-secret.path;
+      registration_shared_secret_path = config.sops.secrets."services/synapse/registration_shared_secret".path;
       turn_uris = [
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=udp"
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=tcp"
@@ -159,7 +151,7 @@ in
 
     sliding-sync = {
       enable = true;
-      environmentFile = config.age.secrets.sliding-sync-secret.path;
+      environmentFile = config.sops.secrets."services/synapse/sliding_sync_env".path;
       settings = {
         SYNCV3_SERVER = "https://bitflip.jetzt";
         SYNCV3_BINDADDR = "[::]:8009";
