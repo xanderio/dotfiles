@@ -58,8 +58,9 @@ neogit.setup({
 require('Comment').setup()
 
 require("ibl").setup {
-  show_current_context = true,
-  show_current_context_start = false,
+  scope = {
+    show_start = false
+  }
 }
 
 vim.api.nvim_set_keymap("x", "<leader>a", "<Plug>(EasyAlign)", {})
