@@ -7,14 +7,6 @@
       # rust
       bacon
       cargo-watch
-      cargo-edit
-      cargo-cache
-      cargo-udeps
-      cargo-tarpaulin
-      cargo-spellcheck
-      dioxus-cli
-      cargo-espflash
-      cargo-espmonitor
 
       nix-update
       nix-init

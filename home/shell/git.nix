@@ -43,8 +43,8 @@ in
         lg = lg1;
         pf = "push --force-with-lease";
         aa = "add .";
-        ca = "commit --ammend";
-        cae = "commit --ammend --no-edit";
+        ca = "commit --amend";
+        cae = "commit --amend --no-edit";
       };
 
       ignores = [ ".direnv" ];
