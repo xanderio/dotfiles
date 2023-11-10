@@ -73,21 +73,34 @@
       "fritz"
       "mqtt"
       "spotify"
+      "homekit"
+      "switch_as_x"
     ];
 
-    config = {
-      default_config = { };
+    config =
+      {
+        default_config = { };
 
-      group = "!include groups.yaml";
-      automation = "!include automations.yaml";
-      scene = "!include scenes.yaml";
-      script = "!include scripts.yaml";
+        group = "!include groups.yaml";
+        automation = "!include automations.yaml";
+        scene = "!include scenes.yaml";
+        script = "!include scripts.yaml";
 
-      http = {
-        use_x_forwarded_for = true;
-        trusted_proxies = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
+        http = {
+          use_x_forwarded_for = true;
+          trusted_proxies = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
+        };
+
+        zha.custom_quirks_path =
+          pkgs.fetchFromGitHub
+            {
+              owner = "jacekk015";
+              repo = "zha_quirks";
+              rev = "d539cd1df2ea58d8438080f58b011ffe82f114d1";
+              hash = "sha256-ZLaaJOJ6rkCgjhsZISnBH98DMwexrpU12XmcJJbytXk=";
+            };
+
       };
-    };
   };
 
   services.mosquitto = {
