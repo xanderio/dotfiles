@@ -86,6 +86,10 @@
               }];
             };
 
+            environment.systemPackages = with pkgs; [
+              tailscale
+            ];
+
             launchd.daemons.darwin-builder = {
               command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
               serviceConfig = {
