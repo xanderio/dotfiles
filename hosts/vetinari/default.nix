@@ -40,6 +40,16 @@
     });
   };
 
+  networking.firewall = {
+    allowedTCPPorts = [
+      #homekit
+      21063
+    ];
+    allowedUDPPorts = [
+      5353
+    ];
+  };
+
   services.home-assistant = {
     enable = true;
 
