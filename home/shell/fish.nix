@@ -1,7 +1,4 @@
-{ config
-, pkgs
-, ...
-}: {
+{ lib, pkgs, ... }: {
   programs.fish = {
     enable = true;
     shellAliases = {
@@ -88,17 +85,6 @@
               echo (status current-command)
           end'';
       };
-      vcam = {
-        description = "gphoto2 based virtual webcam";
-        body =
-          let
-            gphoto2 = "${pkgs.gphoto2}/bin/gphoto2";
-            ffmpeg = "${pkgs.ffmpeg_6-full}/bin/ffmpeg";
-          in
-          ''
-            ${gphoto2} --stdout --capture-movie | ${ffmpeg} -hwaccel vaapi -c:v mjpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 2 -f v4l2 /dev/video0
-          '';
-      };
       woi_login = {
         description = "Wifi@DB / WifiOnICE login script";
         body = " ${pkgs.curl}/bin/curl -vk 'https://10.101.64.10/en/' -H 'Host: wifi.bahn.de' -H 'Cookie: csrf=asdf' --data 'login=true&CSRFToken=asdf'";
@@ -110,7 +96,20 @@
       last_history_item = {
         body = "echo $history[1]";
       };
-    };
+    } //
+    (lib.optionalAttrs pkgs.stdenv.isLinux {
+      vcam =  {
+        description = "gphoto2 based virtual webcam";
+        body =
+          let
+            gphoto2 = "${pkgs.gphoto2}/bin/gphoto2";
+            ffmpeg = "${pkgs.ffmpeg_6-full}/bin/ffmpeg";
+          in
+          ''
+            ${gphoto2} --stdout --capture-movie | ${ffmpeg} -hwaccel vaapi -c:v mjpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 2 -f v4l2 /dev/video0
+          '';
+      };
+    });
     plugins = [
       {
         name = "fish-ssh-agent";

@@ -17,10 +17,6 @@
     cachix
     nix-output-monitor
     gh
-
-    sequoia-sq
-    sequoia-sqv
-    sequoia-sqop
   ];
 
   home.sessionVariables = {
