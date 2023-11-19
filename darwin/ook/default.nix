@@ -86,9 +86,9 @@
               }];
             };
 
-            environment.systemPackages = with pkgs; [
-              tailscale
-            ];
+            environment.shellAliases = {
+              "tailscale" = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
+            };
 
             launchd.daemons.darwin-builder = {
               command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
