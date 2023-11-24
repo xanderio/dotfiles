@@ -25,7 +25,11 @@
             system = "x86_64-linux";
           };
 
-          nodeNixpkgs = lib.genAttrs [ "hex" "vger" ]
+          nodeNixpkgs = {
+            "gregtech" = import inputs.nixos-small {
+              system = "aarch64-linux";
+            };
+          } // lib.genAttrs [ "hex" "vger" ]
             (_: import inputs.nixpkgs {
               system = "x86_64-linux";
             });
@@ -43,8 +47,6 @@
             ../modules/sops
             inputs.home-manager.nixosModules.home-manager
             inputs.nix-index-database.nixosModules.nix-index
-            inputs.mms.module
-            { services.modded-minecraft-servers.eula = true; }
             inputs.disko.nixosModules.disko
             inputs.sops.nixosModules.sops
             {

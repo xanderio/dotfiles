@@ -3,6 +3,7 @@ keys:
   - &delenn age1hzrrta33n0rpatlu72sjdvv7r7nkaf0rjhhszue0ltr9l7c8zyuqzefgqx
   - &valen age1su39hcctpl3fkya306zfw28h8dg869mtud07us7ynwz5xcylecrqu46cjv
   - &vetinari age1w5u4meu5hnuwsylwnfut7le2pm5n37h8wk9mny9jw242jc9nhynq2lt7fx
+  - &gregtech age1jnswz6rvnya72fhcq48thvgdgyzztw5yf87ku7gffvjgcrl5yews0y5qfp
 
 creation_rules:
   - path_regex: secrets/all/[^/]+\.yaml$
@@ -12,6 +13,7 @@ creation_rules:
         - *delenn
         - *valen
         - *vetinari
+        - *gregtech
 
   # hosts
   - path_regex: secrets/hosts/delenn.yaml
