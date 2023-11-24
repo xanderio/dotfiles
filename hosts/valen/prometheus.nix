@@ -70,7 +70,7 @@ in
               let
                 makeTarget = name: "${name}:${toString config.services.prometheus.exporters.node.port}";
               in
-              builtins.map makeTarget [ "valen" "delenn" "vetinari" ];
+              builtins.map makeTarget [ "valen" "delenn" "vetinari" "gregtech" ];
           }
         ];
         relabel_configs = [

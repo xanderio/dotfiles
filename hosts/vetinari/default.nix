@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     ./spotifyd.nix
     ./audio.nix
-    ./minecraft.nix
     ./paperless.nix
     ./nextcloud.nix
     ./netatalk.nix
