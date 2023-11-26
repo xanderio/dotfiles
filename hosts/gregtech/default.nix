@@ -38,7 +38,7 @@
       ];
 
       jvmMaxAllocation = "6G";
-      jvmInitialAllocation = "6G";
+      jvmInitialAllocation = "2G";
       jvmPackage = pkgs.temurin-bin-20;
 
       jvmOpts = lib.concatStringsSep " " [
