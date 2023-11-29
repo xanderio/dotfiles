@@ -13,6 +13,8 @@
       nixpkgs-review
       nix-universal-prefetch
       nix-top
+      glab
+      gh
     ];
 
     sessionVariables = {
@@ -21,6 +23,7 @@
       DARCS_DO_COLOR_LINES = "1";
       ERL_AFLAGS = "-kernel shell_history enabled";
     };
+
 
     file.".cargo/config".text =
       let
