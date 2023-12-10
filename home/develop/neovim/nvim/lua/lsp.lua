@@ -62,11 +62,11 @@ function M.on_attach(client, bufnr)
   -- lsp status
   --require('lsp-status').on_attach(client)
   require("fidget").setup({
-    sources = {
-      ['null-ls'] = {
-        ignore = true,
-      },
-    },
+    progress = {
+      ignore = {
+        'null-ls'
+      }
+    }
   })
 
   require('nvim-navic').attach(client, bufnr)

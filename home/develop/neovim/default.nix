@@ -65,14 +65,7 @@
       lspkind-nvim
       lsp_signature-nvim
       lsp-status-nvim
-      (fidget-nvim.overrideAttrs (oldAttrs: {
-        src = pkgs.fetchFromGitHub {
-          owner = "j-hui";
-          repo = "fidget.nvim";
-          rev = "90c22e47be057562ee9566bad313ad42d622c1d3";
-          hash = "sha256-N3O/AvsD6Ckd62kDEN4z/K5A3SZNR15DnQeZhH6/Rr0=";
-        };
-      }))
+      fidget-nvim
 
       elixir-tools-nvim
   
@@ -116,14 +109,7 @@
       lualine-nvim
       gitsigns-nvim
       dracula-nvim
-      (neogit.overrideAttrs (oldAttrs: {
-        src = pkgs.fetchFromGitHub {
-          owner = "NeogitOrg";
-          repo = "neogit";
-          rev = "72824006f2dcf775cc498cc4a046ddd2c99d20a3";
-          hash = "sha256-1DEzVPHL+l8y2PHWcAg/bPBA+E/5riMa6pon3vvyQag=";
-        };
-      }))
+      neogit      
       nvim-tree-lua
       diffview-nvim
 

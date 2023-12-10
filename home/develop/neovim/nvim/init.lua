@@ -29,12 +29,11 @@ require('dapui').setup()
 require('config/rust-tools')
 require('config.neotest')
 require('fidget').setup({
-  text = {
-    spinner = "dots_negative",
-  },
-  window = {
-    blend = 0,
-  },
+  notification = {
+    window = {
+      winblend = 0
+    }
+  }
 })
 require('config.nvim-tree')
 
@@ -51,6 +50,7 @@ lsp_status.config({
 local neogit = require('neogit')
 neogit.setup({
   integrations = {
+    telescope = true,
     diffview = true
   },
 })
