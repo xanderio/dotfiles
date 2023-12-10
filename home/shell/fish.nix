@@ -3,9 +3,21 @@
     enable = true;
     shellAliases = {
       ssh = "TERM=xterm-256color command ssh";
-      s = "${pkgs.git}/bin/git s";
-      d = "${pkgs.git}/bin/git diff";
-      ds = "${pkgs.git}/bin/git diff --cached";
+    };
+
+    shellAbbrs = {
+      g = "git";
+      s = "git s";
+      d = "git diff";
+      ds = "git diff --cached";
+      "dotdot" = {
+        regex = "^\\.\\.+$";
+        function = "multicd";
+      };
+      "!!" = {
+        position = "anywhere";
+        function = "last_history_item";
+      };
     };
 
     interactiveShellInit = ''
@@ -56,8 +68,6 @@
         eval (/opt/homebrew/bin/brew shellenv)
       end
 
-      abbr --add dotdot --regex '^\.\.+$' --function multicd
-      abbr -a !! --position anywhere --function last_history_item
     '';
 
     loginShellInit = ''
