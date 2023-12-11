@@ -15,6 +15,7 @@
       nix-top
       glab
       gh
+      ast-grep
     ];
 
     sessionVariables = {

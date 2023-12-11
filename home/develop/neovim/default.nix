@@ -25,6 +25,7 @@
     nixpkgs-fmt
     gitlint
     #hadolint
+    emmet-ls
 
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs

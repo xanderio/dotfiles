@@ -124,12 +124,31 @@ require('lspconfig').cssls.setup({
   end,
 })
 
+require('lspconfig').emmet_ls.setup({
+  capabilities = require('lsp').capabilities(),
+  filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "heex" },
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
+
 local elixir = require("elixir")
+local elixirls = require("elixir.elixirls")
 elixir.setup {
-  nextls = {
-    enable = true,
+  elixirls = {
     capabilities = require('lsp').capabilities(),
-    on_attach =  require('lsp').on_attach
+    on_attach = function(client, bufnr)
+      vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+      vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+      vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+      require('lsp').on_attach(client, bufnr)
+    end,
+    settings = elixirls.settings {
+      dialyzerEnabled = true,
+      fetchDeps = true,
+      enableTestLenses = false,
+      suggestSpecs = true,
+    },
   }
 }
 
