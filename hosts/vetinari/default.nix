@@ -49,6 +49,12 @@
     ];
   };
 
+  # remove after home-assistant-chip-core has upgrade to openssl 3 
+  # https://github.com/project-chip/connectedhomeip/issues/25688
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
+
   services.home-assistant = {
     enable = true;
 
