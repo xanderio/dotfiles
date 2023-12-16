@@ -137,6 +137,7 @@ function M.lsp_keybinding(bufnr)
 
   buf_set_keymap('n', '<C-t>', '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>', opts)
   buf_set_keymap('n', '<leader>m', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<CR>', opts)
+  buf_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.codelens.run()<CR>', opts)
 
   if vim.bo.filetype == "rust" then
     -- buf_set_keymap('n', 'ga', '<cmd>RustCodeAction<CR>', opts)
