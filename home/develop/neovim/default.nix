@@ -56,7 +56,7 @@
 
       # LSP
       nvim-lspconfig
-      null-ls-nvim
+      none-ls-nvim
       lsp_extensions-nvim
       nvim-lsputils
       nvim-lightbulb
