@@ -81,7 +81,7 @@
         description = "sops wrapper to extract age key from 1password";
         body = ''
           if string match -q -- "op://*" $SOPS_AGE_KEY
-            op run --no-masking sops $argv
+            op run --no-masking -- sops $argv
           else
             command sops $argv
           end
