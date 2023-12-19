@@ -28,6 +28,7 @@ require('config.dap')
 require('dapui').setup()
 require('config/rust-tools')
 require('config.neotest')
+require('config.neorg')
 require('fidget').setup({
   notification = {
     window = {
@@ -36,6 +37,7 @@ require('fidget').setup({
   }
 })
 require('config.nvim-tree')
+require("headlines").setup()
 
 vim.g.code_action_menu_show_diff = false
 

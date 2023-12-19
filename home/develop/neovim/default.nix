@@ -69,7 +69,7 @@
       fidget-nvim
 
       elixir-tools-nvim
-  
+
       ## rust 
       rust-tools-nvim
       crates-nvim
@@ -82,6 +82,20 @@
       nvim-treesitter
       nvim-navic
       comment-nvim
+
+      # neorg
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "neorg";
+        version = inputs.neorg.rev;
+        src = inputs.neorg;
+      })
+      (pkgs.vimUtils.buildVimPlugin {
+        pname = "neorg-telescope";
+        version = inputs.neorg-telescope.rev;
+        src = inputs.neorg-telescope;
+      })
+      headlines-nvim
+      vim-table-mode
 
       # neotest
       neotest
@@ -110,7 +124,7 @@
       lualine-nvim
       gitsigns-nvim
       dracula-nvim
-      neogit      
+      neogit
       nvim-tree-lua
       diffview-nvim
 
@@ -124,6 +138,18 @@
       popfix # nvim-lsputils, telescope-nvim
       plenary-nvim # crates-nvim, telescope-nvim, gitsigns-nvim, neogit
       nvim-web-devicons
-    ] ++ (builtins.attrValues nvim-treesitter.grammarPlugins));
+    ]
+    ++ (builtins.attrValues (nvim-treesitter.grammarPlugins // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) {
+      norg = pkgs.tree-sitter.buildGrammar { 
+        language = "norg";
+        version = inputs.norg.rev;
+        src = inputs.norg;
+      };
+      norg-meta = pkgs.tree-sitter.buildGrammar { 
+        language = "norg-meta";
+        version = inputs.norg-meta.rev;
+        src = inputs.norg-meta;
+      };
+    })));
   };
 }

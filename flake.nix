@@ -45,6 +45,19 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    norg.url = "github:nvim-neorg/tree-sitter-norg/dev";
+    norg.flake = false;
+    norg-meta.url = "github:nvim-neorg/tree-sitter-norg-meta";
+    norg-meta.flake = false;
+
+    neorg = {
+      url = "github:nvim-neorg/neorg";
+      flake = false;
+    };
+    neorg-telescope = {
+      url = "github:nvim-neorg/neorg-telescope";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ flake-parts, self, ... }:

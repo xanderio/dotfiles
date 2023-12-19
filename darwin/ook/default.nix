@@ -39,6 +39,9 @@
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
+            nixpkgs.overlays = [
+              inputs.neovim-nightly-overlay.overlay
+            ];
             nixpkgs.config.packageOverrides = pkgs: {
               nix = pkgs.nixVersions.nix_2_18;
             };
@@ -110,6 +113,7 @@
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.xanderio.imports = homeImports.ook;
           }
         ];
