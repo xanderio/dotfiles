@@ -14,6 +14,7 @@ local function map(lhs, rhs)
 end
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 require('config.notify')
 require("config.lualine")

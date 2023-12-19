@@ -19,7 +19,7 @@
     taplo-cli
     shellcheck
     elixir_ls
-    deno
+    #deno
 
     statix
     nixpkgs-fmt
