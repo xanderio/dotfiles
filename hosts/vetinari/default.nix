@@ -130,6 +130,21 @@
   };
 
   services.jellyfin.enable = true;
+
+  services.syncthing = {
+    enable = true;
+    relay.enable = true;
+    openDefaultPorts = true;
+    settings = {
+      options = {
+        urAccepted = -1;
+        localAnnounceEnabled = true;
+      };
+    };
+    overrideDevices = false;
+    overrideFolders = false;
+  };
+
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
