@@ -94,7 +94,6 @@
         version = inputs.neorg-telescope.rev;
         src = inputs.neorg-telescope;
       })
-      headlines-nvim
       vim-table-mode
 
       # neotest
