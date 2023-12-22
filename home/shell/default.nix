@@ -30,7 +30,7 @@
       includes = [ "~/.ssh/private_ssh_config" ];
       matchBlocks.all.extraOptions.SetEnv = "TERM=xterm-256color";
     };
-    gpg.enable = true;
+    gpg.enable = false;
     direnv = {
       enable = true;
       nix-direnv.enable = true;
@@ -67,7 +67,7 @@
   };
 
   services.gpg-agent = {
-    enable = true;
+    enable = false;
     pinentryFlavor = "curses";
   };
 }

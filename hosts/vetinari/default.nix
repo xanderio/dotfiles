@@ -4,6 +4,7 @@
     ./spotifyd.nix
     ./audio.nix
     ./paperless.nix
+    ./audiobookshelf.nix
     ./nextcloud.nix
     ./netatalk.nix
     ../../modules/server
