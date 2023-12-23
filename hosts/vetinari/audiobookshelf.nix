@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, ... }: {
   config = {
     services.nginx = {
       enable = true;
@@ -14,6 +14,7 @@
 
     fileSystems."/var/lib/audiobookshelf/libary" = {
       device = "/media/audiobooks";
+      depends = [ "/media/audiobooks" ];
       options = [ "bind" ];
     };
 
