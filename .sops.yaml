@@ -38,3 +38,9 @@ creation_rules:
       - age:
         - *xanderio
         - *delenn
+
+  - path_regex: secrets/services/ddclient.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *vetinari

@@ -1,0 +1,13 @@
+diff --git a/ddclient.in b/ddclient.in
+index 715f201..6a67bb0 100755
+--- a/ddclient.in
++++ b/ddclient.in
+@@ -3954,7 +3954,7 @@ sub nic_dyndns2_update {
+         $url .= "&myip=";
+         $url .= $ipv4 if $ipv4;
+         if ($ipv6) {
+-            $url .= "," if $ipv4;
++            $url .= "&myipv6=" if $ipv4;
+             $url .= $ipv6;
+         }
+ 
