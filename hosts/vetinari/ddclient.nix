@@ -30,7 +30,6 @@ in
       server = "dyndns.inwx.com";
       username = "xanderio_fritzbox";
       passwordFile = config.sops.secrets."services/ddclient/password".path;
-      verbose = true;
       extraConfig = ''
         usev4=cmdv4, cmdv4=${fetchFritzBox}/bin/fetch-ip-from-fritz-box
         usev6=ifv6, ifv6=eno1
