@@ -58,6 +58,11 @@
       url = "github:nvim-neorg/neorg-telescope";
       flake = false;
     };
+    authentik = {
+      url = "github:nix-community/authentik-nix";
+      inputs."nixpkgs".follows = "nixos-small";
+      inputs."flake-parts".follows = "flake-parts";
+    };
   };
 
   outputs = inputs@{ flake-parts, self, ... }:
