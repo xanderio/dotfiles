@@ -1,4 +1,4 @@
-{ pkgs, config, nixos-hardware, homeImports, ... }: {
+{ inputs, pkgs, config, nixos-hardware, homeImports, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../modules/laptop
@@ -51,6 +51,7 @@
     GLAB_PAGER = "cat";
   };
 
+  home-manager.extraSpecialArgs = { inherit inputs; };
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;
