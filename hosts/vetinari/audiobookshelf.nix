@@ -1,5 +1,6 @@
 { config, ... }: {
   config = {
+    services.borgbackup.jobs.backup.exclude = [ "/var/lib/audiobookshelf/libary" "/var/lib/audiobookshelf/metadata/cache" ];
     services.nginx = {
       enable = true;
       virtualHosts."audiobook.xanderio.de" = {
