@@ -9,6 +9,7 @@
     ./hass.nix
     ./nextcloud.nix
     ./netatalk.nix
+    ./jellyfin.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
@@ -36,7 +37,6 @@
 
   boot.zfs.extraPools = [ "media" ];
 
-
   services.mosquitto = {
     enable = true;
     listeners = [
@@ -47,8 +47,6 @@
       }
     ];
   };
-
-  services.jellyfin.enable = true;
 
   services.syncthing = {
     enable = true;
