@@ -1,4 +1,4 @@
-{ inputs, config, ... }: {
+{ inputs, config, lib, ... }: {
   imports = [
     inputs.authentik.nixosModules.default
   ];
@@ -12,6 +12,10 @@
     sops.templates."authentik-env".content = ''
       AUTHENTIK_SECRET_KEY="${config.sops.placeholder."services/authentik/secret_key"}"
       AUTHENTIK_EMAIL__PASSWORD="${config.sops.placeholder."services/authentik/email_password"}"
+    '';
+
+    systemd.services.authentik-worker.preStart = ''
+      ln -svf ${config.services.authentik.authentikComponents.staticWorkdirDeps}/* /run/authentik/
     '';
 
     services.authentik = {
