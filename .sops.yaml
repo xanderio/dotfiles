@@ -45,6 +45,12 @@ creation_rules:
         - *xanderio
         - *delenn
 
+  - path_regex: secrets/services/miniflux.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *delenn
+
   - path_regex: secrets/services/ddclient.yaml
     key_groups:
       - age:
