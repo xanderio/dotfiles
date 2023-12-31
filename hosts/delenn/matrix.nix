@@ -105,9 +105,42 @@ in
     }];
   };
 
+
+  x.sops.secrets = {
+    "services/synapse/oidc_secret" = { };
+  };
+
+  sops.templates."synapse-oidc" = {
+    owner = "matrix-synapse";
+    content = builtins.toJSON {
+      oidc_providers = [
+        {
+          idp_id = "authentik";
+          idp_name = "authentik";
+          discover = true;
+          issuer = "https://sso.xanderio.de/application/o/synapse/";
+          client_id = "synapse";
+          client_secret = config.sops.placeholder."services/synapse/oidc_secret";
+          scopes = [ "openid" "profile" "email" ];
+          user_mapping_provider.config = {
+            localpart_template = "{{ user.username }}";
+            display_name_template = "{{ user.preferred_username }}";
+          };
+          allow_existing_users = true;
+        }
+      ];
+    };
+  };
+
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
+    extraConfigFiles = [
+      config.sops.templates."synapse-oidc".path
+    ];
+    extras = [
+      "oidc"
+    ];
     settings = {
       server_name = fqdn;
       public_baseurl = "https://${fqdn}";
@@ -144,6 +177,7 @@ in
       ];
       turn_shared_secret = config.services.coturn.static-auth-secret;
       turn_user_lifetime = "86400000";
+      password_config.enabled = false;
       extraConfig = ''
         turn_allow_guests: True
       '';
