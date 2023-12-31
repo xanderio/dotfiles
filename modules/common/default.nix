@@ -7,6 +7,7 @@
     ./nix.nix
     ./users.nix
     ./upgrade-diff.nix
+    ../authentik-proxy
   ];
 
   # This value determines the NixOS release from which the default

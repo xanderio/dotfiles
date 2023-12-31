@@ -3,7 +3,6 @@
     ./hardware-configuration.nix
     ./miniflux.nix
     ./nextcloud.nix
-    ./paperless.nix
     ./hass.nix
     ./website.nix
     ./postgresql.nix

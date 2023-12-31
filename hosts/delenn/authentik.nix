@@ -1,4 +1,4 @@
-{ inputs, config, lib, ... }: {
+{ inputs, config, ... }: {
   imports = [
     inputs.authentik.nixosModules.default
   ];
