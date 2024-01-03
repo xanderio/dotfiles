@@ -18,12 +18,41 @@
       ln -svf ${config.services.authentik.authentikComponents.staticWorkdirDeps}/* /run/authentik/
     '';
 
+    systemd.tmpfiles.rules = [
+      "d /var/lib/authentik/media - authentik authentik"
+    ];
+
+    systemd.services.authentik.serviceConfig = {
+      BindPaths = [
+        "/var/lib/authentik"
+        "/run/redis-authentik"
+        "/run/postgresql"
+      ];
+      BindReadOnlyPaths = [
+        builtins.storeDir
+        "/etc"
+      ];
+    };
+    systemd.services.authentik-worker.serviceConfig = {
+      BindPaths = [
+        "/var/lib/authentik"
+        "/run/redis-authentik"
+        "/run/postgresql"
+      ];
+      BindReadOnlyPaths = [
+        builtins.storeDir
+        "/etc"
+      ];
+    };
+
     services.authentik = {
       enable = true;
       environmentFile = config.sops.templates."authentik-env".path;
       settings = {
         disable_startup_analytics = true;
         avatars = "initials";
+        paths.media = "/var/lib/authentik/media";
+        media.enable_upload = true;
         email = {
           host = "smtp.mailbox.org";
           port = 587;
