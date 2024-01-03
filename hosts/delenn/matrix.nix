@@ -58,7 +58,7 @@ in
     virtualHosts."${syncv3Domain}" = {
       enableACME = true;
       forceSSL = true;
-      locations."/".proxyPass = "http://${config.services.matrix-synapse.sliding-sync.settings.SYNCV3_BINDADDR}";
+      locations."/".proxyPass = "http://${config.services.matrix-sliding-sync.settings.SYNCV3_BINDADDR}";
     };
   };
 
@@ -182,15 +182,15 @@ in
         turn_allow_guests: True
       '';
     };
+  };
 
-    sliding-sync = {
-      enable = true;
-      environmentFile = config.sops.secrets."services/synapse/sliding_sync_env".path;
-      settings = {
-        SYNCV3_SERVER = "https://bitflip.jetzt";
-        SYNCV3_BINDADDR = "[::]:8009";
-        SYNCV3_LOG_LEVEL = "error";
-      };
+  services.matrix-sliding-sync = {
+    enable = true;
+    environmentFile = config.sops.secrets."services/synapse/sliding_sync_env".path;
+    settings = {
+      SYNCV3_SERVER = "https://bitflip.jetzt";
+      SYNCV3_BINDADDR = "[::]:8009";
+      SYNCV3_LOG_LEVEL = "error";
     };
   };
 

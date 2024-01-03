@@ -22,6 +22,13 @@
       "d /var/lib/authentik/media - authentik authentik"
     ];
 
+    users.users.authentik = {
+      isSystemUser = true;
+      group = "authentik";
+    };
+
+    users.groups.authentik = {};
+
     systemd.services.authentik.serviceConfig = {
       BindPaths = [
         "/var/lib/authentik"
