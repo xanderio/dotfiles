@@ -57,6 +57,7 @@
         "spotify"
         "homekit"
         "switch_as_x"
+        "wled"
       ];
 
       config =
