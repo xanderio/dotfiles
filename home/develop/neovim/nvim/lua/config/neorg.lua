@@ -17,7 +17,6 @@ require('neorg').setup {
     ["core.concealer"] = {},
     ["core.summary"] = {},
     ["core.export"] = {},
-    ["core.ui.calendar"] = {},
     ["core.integrations.telescope"] = {},
   }
 }

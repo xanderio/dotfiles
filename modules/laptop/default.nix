@@ -9,10 +9,6 @@
     ./powerManagement.nix
   ];
 
-  nixpkgs.overlays = [
-    inputs.neovim-nightly-overlay.overlay
-  ];
-
   hardware = {
     logitech.wireless = {
       enable = true;

@@ -39,11 +39,8 @@
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
-            nixpkgs.overlays = [
-              inputs.neovim-nightly-overlay.overlay
-            ];
             nixpkgs.config.packageOverrides = pkgs: {
-              nix = pkgs.nixVersions.nix_2_18;
+              nix = pkgs.nixVersions.nix_2_19;
             };
             system.stateVersion = 4;
             programs.fish.enable = true;
