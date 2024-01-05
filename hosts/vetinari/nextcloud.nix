@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   services = {
     postgresql = {
       enable = true;
@@ -25,8 +25,15 @@
         dbtype = "pgsql";
         dbhost = "/run/postgresql";
         adminpassFile = "/etc/nixos/nextcloud-adminpass";
-        trustedProxies = [ "fd7a:115c:a1e0:ab12:4843:cd96:6257:8868" ];
         defaultPhoneRegion = "DE";
+      };
+    };
+
+    nginx = {
+      enable = true;
+      virtualHosts."${config.services.nextcloud.hostName}" = {
+        enableACME = true;
+        forceSSL = true;
       };
     };
   };
