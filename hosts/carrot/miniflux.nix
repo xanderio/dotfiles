@@ -1,12 +1,12 @@
 { config, lib, ... }: {
   config = {
-    x.sops.secrets."services/miniflux/env" = {};
-    
+    x.sops.secrets."services/miniflux/env" = { };
+
     services.miniflux = {
       enable = true;
       adminCredentialsFile = config.sops.secrets."services/miniflux/env".path;
       config = {
-        LOG_LEVEL="debug";
+        LOG_LEVEL = "debug";
         CREATE_ADMIN = lib.mkForce "0";
         FETCH_YOUTUBE_WATCH_TIME = "1";
         FETCH_ODYSEE_WATCH_TIME = "1";
@@ -18,12 +18,15 @@
         OAUTH2_USER_CREATION = "1";
       };
     };
-    services.nginx.virtualHosts = {
-      "miniflux.xanderio.de" = {
-        enableACME = true;
-        forceSSL = true;
-        locations."/" = {
-          proxyPass = "http://localhost:8080/";
+    services.nginx = {
+      enable = true;
+      virtualHosts = {
+        "miniflux.xanderio.de" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/" = {
+            proxyPass = "http://localhost:8080/";
+          };
         };
       };
     };

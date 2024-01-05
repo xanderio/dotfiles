@@ -4,6 +4,7 @@ keys:
   - &valen age1su39hcctpl3fkya306zfw28h8dg869mtud07us7ynwz5xcylecrqu46cjv
   - &vetinari age1w5u4meu5hnuwsylwnfut7le2pm5n37h8wk9mny9jw242jc9nhynq2lt7fx
   - &gregtech age1jnswz6rvnya72fhcq48thvgdgyzztw5yf87ku7gffvjgcrl5yews0y5qfp
+  - &carrot age1vnu25nrzx8535t2x9exp8uger5x25tj4ak309rdjfw6mhetqeekqu6c0cc
 
 creation_rules:
   - path_regex: secrets/all/[^/]+\.yaml$
@@ -14,6 +15,7 @@ creation_rules:
         - *valen
         - *vetinari
         - *gregtech
+        - *carrot
 
   # hosts
   - path_regex: secrets/hosts/delenn.yaml
@@ -38,18 +40,21 @@ creation_rules:
       - age:
         - *xanderio
         - *delenn
+        - *carrot
 
   - path_regex: secrets/services/authentik.yaml
     key_groups:
       - age:
         - *xanderio
         - *delenn
+        - *carrot
 
   - path_regex: secrets/services/miniflux.yaml
     key_groups:
       - age:
         - *xanderio
         - *delenn
+        - *carrot
 
   - path_regex: secrets/services/ddclient.yaml
     key_groups:

@@ -1,7 +1,6 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./miniflux.nix
     ./nextcloud.nix
     ./hass.nix
     ./website.nix

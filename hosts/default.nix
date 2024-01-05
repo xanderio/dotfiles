@@ -29,6 +29,9 @@
             "gregtech" = import inputs.nixos-small {
               system = "aarch64-linux";
             };
+            "carrot" = import inputs.nixos-small {
+              system = "aarch64-linux";
+            };
           } // lib.genAttrs [ "hex" "vger" ]
             (_: import inputs.nixpkgs {
               system = "x86_64-linux";
