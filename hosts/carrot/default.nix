@@ -5,6 +5,7 @@
 
     ./miniflux.nix
     ./ntfy.nix
+    ./website.nix
 
     ./disko-config.nix
   ];
