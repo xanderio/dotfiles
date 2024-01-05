@@ -4,6 +4,7 @@
     ../../profiles/hetzner_vm
 
     ./miniflux.nix
+    ./ntfy.nix
 
     ./disko-config.nix
   ];
