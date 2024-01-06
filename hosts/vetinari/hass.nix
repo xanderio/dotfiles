@@ -16,6 +16,18 @@
       ];
     };
 
+    services.nginx = {
+      enable = true;
+      virtualHosts."hass.xanderio.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:8123";
+          proxyWebsockets = true;
+        };
+      };
+    };
+
     # remove after home-assistant-chip-core has upgrade to openssl 3 
     # https://github.com/project-chip/connectedhomeip/issues/25688
     nixpkgs.config.permittedInsecurePackages = [
@@ -71,7 +83,7 @@
 
           http = {
             use_x_forwarded_for = true;
-            trusted_proxies = [ "100.64.0.0/10" "fd7a:115c:a1e0::/48" ];
+            trusted_proxies = [ "127.0.0.1" "::1" ];
           };
 
           zha.custom_quirks_path =
