@@ -6,6 +6,8 @@
     ./miniflux.nix
     ./ntfy.nix
     ./website.nix
+    ./authentik.nix
+    ./postgresql.nix
 
     ./disko-config.nix
   ];

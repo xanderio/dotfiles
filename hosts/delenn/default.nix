@@ -3,7 +3,6 @@
     ./configuration.nix
     ./matrix.nix
     ../../modules/server
-    ./authentik.nix
   ];
   networking.hostName = "delenn";
 
