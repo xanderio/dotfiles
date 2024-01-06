@@ -1,10 +1,6 @@
 { ... }: {
   imports = [
     ./hardware-configuration.nix
-    ./nextcloud.nix
-    ./hass.nix
-    ./website.nix
-    ./postgresql.nix
   ];
 
   boot.loader.grub.device = "/dev/sda";

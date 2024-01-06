@@ -8,6 +8,7 @@
     ./website.nix
     ./authentik.nix
     ./postgresql.nix
+    ./matrix.nix
 
     ./disko-config.nix
   ];
