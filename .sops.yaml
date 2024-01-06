@@ -61,3 +61,9 @@ creation_rules:
       - age:
         - *xanderio
         - *vetinari
+
+  - path_regex: secrets/services/grafana.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *valen
