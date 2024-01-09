@@ -1,6 +1,10 @@
 { config, ... }: {
   networking.firewall.allowedTCPPorts = [ config.services.netatalk.port ];
   services.borgbackup.jobs.backup.exclude = [ "/var/lib/timemachine" ];
+  systemd.services.netatalk.serviceConfig = {
+    After = [ "avahi-daemon.service" ];
+    Wants = [ "avahi-daemon.service" ];
+  };
   services.netatalk = {
     enable = true;
     settings = {
