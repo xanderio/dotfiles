@@ -18,39 +18,9 @@
       ln -svf ${config.services.authentik.authentikComponents.staticWorkdirDeps}/* /run/authentik/
     '';
 
-    systemd.tmpfiles.rules = [
-      "d /var/lib/authentik/media - authentik authentik"
-    ];
-
-    users.users.authentik = {
-      isSystemUser = true;
-      group = "authentik";
-    };
-
-    users.groups.authentik = {};
-
-    systemd.services.authentik.serviceConfig = {
-      BindPaths = [
-        "/var/lib/authentik"
-        "/run/redis-authentik"
-        "/run/postgresql"
-      ];
-      BindReadOnlyPaths = [
-        builtins.storeDir
-        "/etc"
-      ];
-    };
-    systemd.services.authentik-worker.serviceConfig = {
-      BindPaths = [
-        "/var/lib/authentik"
-        "/run/redis-authentik"
-        "/run/postgresql"
-      ];
-      BindReadOnlyPaths = [
-        builtins.storeDir
-        "/etc"
-      ];
-    };
+    systemd.services.authentik.preStart = ''
+      mkdir -p /var/lib/authentik/media
+    '';
 
     services.authentik = {
       enable = true;
