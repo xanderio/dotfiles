@@ -3,6 +3,7 @@
     enable = true;
     shellAliases = {
       ssh = "TERM=xterm-256color command ssh";
+      journal = ''nvim +"Neorg journal today"'';
     };
 
     shellAbbrs = {
