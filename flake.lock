@@ -16,16 +16,15 @@
         "poetry2nix": "poetry2nix"
       },
       "locked": {
-        "lastModified": 1705335022,
+        "lastModified": 1705353058,
         "narHash": "sha256-R5KVfgMdzssVyEx+62duNOm+MC9IQZ//Sp5RwM7q4Eg=",
-        "owner": "xanderio",
+        "owner": "nix-community",
         "repo": "authentik-nix",
-        "rev": "8e23ad0cefb00523dbeb4d4d0b104e7aff1702e0",
+        "rev": "d5e41d40fadcdefce10734f4bcc72ea0eac09a5c",
         "type": "github"
       },
       "original": {
-        "owner": "xanderio",
-        "ref": "media_upload",
+        "owner": "nix-community",
         "repo": "authentik-nix",
         "type": "github"
       }

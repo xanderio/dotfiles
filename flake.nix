@@ -59,7 +59,7 @@
       flake = false;
     };
     authentik = {
-      url = "github:xanderio/authentik-nix/media_upload";
+      url = "github:nix-community/authentik-nix";
       inputs."nixpkgs".follows = "nixos-small";
       inputs."flake-parts".follows = "flake-parts";
     };
