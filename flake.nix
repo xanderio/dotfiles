@@ -63,6 +63,11 @@
       inputs."nixpkgs".follows = "nixos-small";
       inputs."flake-parts".follows = "flake-parts";
     };
+    nix-fast-build = {
+      url = "github:Mic92/nix-fast-build"; 
+      inputs."nixpkgs".follows = "nixpkgs";
+      inputs."flake-parts".follows = "flake-parts";
+    };
   };
 
   outputs = inputs@{ flake-parts, self, ... }:

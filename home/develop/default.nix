@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, inputs, ... }: {
   imports = [
     ./neovim
   ];
@@ -16,6 +16,7 @@
       glab
       gh
       ast-grep
+      inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build
     ];
 
     sessionVariables = {
