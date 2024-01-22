@@ -14,9 +14,7 @@
       AUTHENTIK_EMAIL__PASSWORD="${config.sops.placeholder."services/authentik/email_password"}"
     '';
 
-    systemd.services.authentik.preStart = ''
-      mkdir -p /var/lib/authentik/media
-    '';
+    systemd.services.authentik.requires = [ "network-online.target" ];
 
     services.authentik = {
       enable = true;
