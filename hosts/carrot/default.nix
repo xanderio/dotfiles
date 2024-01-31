@@ -1,4 +1,4 @@
-{config, ...}: {
+{ config, lib, pkgs, ... }: {
   imports = [
     ../../modules/server
     ../../profiles/hetzner_vm
@@ -34,7 +34,7 @@
   services.borgbackup.jobs = {
     borgbase = {
       paths = [ "/var/lib" "/home" "/root" ];
-      exclude = [ "'**/.cache'" ];
+      exclude = [ "'**/.cache'" "/var/lib/postgresql/" ];
       repo = "ssh://j11x0ojk@j11x0ojk.repo.borgbase.com/./repo::root";
       encryption = {
         mode = "repokey-blake2";
@@ -47,5 +47,24 @@
       extraCreateArgs = "--verbose --exclude-caches --stats --checkpoint-interval 600";
       startAt = "hourly";
     };
-  };
+  } // (lib.listToAttrs (map
+    (name:
+      lib.nameValuePair "psql-${name}" {
+        dumpCommand = pkgs.writeShellScript "psql-backup-${name}"
+        "${pkgs.sudo}/bin/sudo -u postgres ${config.services.postgresql.package}/bin/pg_dump -Cc -d ${name}";
+        repo = "ssh://j11x0ojk@j11x0ojk.repo.borgbase.com/./repo::psql";
+        encryption = {
+          mode = "repokey-blake2";
+          passCommand = "cat ${config.sops.secrets."all/borg_backup/repo_key".path}";
+        };
+        environment = {
+          BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key";
+        };
+        compression = "auto,zstd,10";
+        extraCreateArgs = "--verbose --exclude-caches --stats --checkpoint-interval 600";
+        startAt = "hourly";
+      }
+    )
+    (config.services.postgresql.ensureDatabases ++ ["matrix-synapse"])))
+  ;
 }
