@@ -56,6 +56,11 @@
             "aioairctrl"
           ];
         })
+        pyatv
+        aiohomekit
+        python-otbr-api
+        pyunifiprotect
+        unifi-discovery
       ];
 
       extraComponents = [
@@ -86,13 +91,25 @@
             trusted_proxies = [ "127.0.0.1" "::1" ];
           };
 
+          logger = {
+            default = "warning";
+          };
+
+          homekit = {
+            ip_address = "192.168.178.33";
+            filter = {
+              include_domains = ["light" "media_player" "climate" "switch"];
+               exclude_entity_globs = [ "switch.*_internet_access" ];
+            };
+          };
+
           zha.custom_quirks_path =
             pkgs.fetchFromGitHub
               {
                 owner = "jacekk015";
                 repo = "zha_quirks";
-                rev = "d539cd1df2ea58d8438080f58b011ffe82f114d1";
-                hash = "sha256-ZLaaJOJ6rkCgjhsZISnBH98DMwexrpU12XmcJJbytXk=";
+                rev = "69c906bb16b43f1e2d9de6a610066f5b06063710";
+                hash = "sha256-T9vbqH7fKcS2pqbpmMp0zgg15qD2gVojSAaQOjffFtA=";
               };
 
         };
