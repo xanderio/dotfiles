@@ -10,6 +10,8 @@
       allowedTCPPorts = [
         #homekit
         21063
+        #mqtt
+        1883
       ];
       allowedUDPPorts = [
         5353
@@ -26,6 +28,22 @@
           proxyWebsockets = true;
         };
       };
+    };
+
+    services.mosquitto = {
+      enable = true;
+      settings = {
+        sys_interval = 10;        
+      };
+      listeners = [
+        {
+          acl = [ "pattern readwrite #" "pattern readwrite $SYS/#"];
+          omitPasswordAuth = true;
+          
+            settings.allow_anonymous = true;
+          
+        }
+      ];
     };
 
     # remove after home-assistant-chip-core has upgrade to openssl 3 
@@ -98,8 +116,8 @@
           homekit = {
             ip_address = "192.168.178.33";
             filter = {
-              include_domains = ["light" "media_player" "climate" "switch"];
-               exclude_entity_globs = [ "switch.*_internet_access" ];
+              include_domains = [ "light" "media_player" "climate" "switch" ];
+              exclude_entity_globs = [ "switch.*_internet_access" ];
             };
           };
 

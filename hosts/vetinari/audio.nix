@@ -1,9 +1,12 @@
 { pkgs, ... }: {
   services.pipewire = {
     enable = true;
+    systemWide = true;
+    socketActivation = false;
     pulse.enable = true;
     alsa.enable = true;
   };
+
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -16,7 +19,5 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [
-    4713 # pulseaudio
-  ];
+  users.users.xanderio.extraGroups = [ "pipewire" ];
 }

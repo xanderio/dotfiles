@@ -10,6 +10,7 @@
     ./nextcloud.nix
     ./netatalk.nix
     ./jellyfin.nix
+    ./shairport.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
@@ -35,17 +36,6 @@
   boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs.extraPools = [ "media" ];
-
-  services.mosquitto = {
-    enable = true;
-    listeners = [
-      {
-        acl = [ "pattern readwrite #" ];
-        omitPasswordAuth = true;
-        settings.allow_anonymous = true;
-      }
-    ];
-  };
 
   services.syncthing = {
     enable = true;
