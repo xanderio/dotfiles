@@ -4,39 +4,34 @@
       device = builtins.elemAt disks 0;
       type = "disk";
       content = {
-        type = "table";
-        format = "gpt";
-        partitions = [
-          {
-            name = "ESP";
+        type = "gpt";
+        partitions = {
+          ESP = {
             start = "1MiB";
             end = "100MiB";
-            bootable = true;
             content = {
               type = "filesystem";
               format = "vfat";
               mountpoint = "/boot";
             };
-          }
-          {
-            name = "zroot";
+          };
+          zroot = {
             start = "100MiB";
             end = "-8GiB";
             content = {
               type = "zfs";
               pool = "zroot";
             };
-          }
-          {
-            name = "swap";
+          };
+          swap = {
             start = "-8GiB";
             end = "100%";
             content = {
               type = "swap";
               randomEncryption = true;
             };
-          }
-        ];
+          };
+        };
       };
     };
   };
