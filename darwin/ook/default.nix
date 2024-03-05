@@ -18,6 +18,11 @@
               nix = {
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
                 registry.nixpkgs.flake = inputs.nixpkgs;
+                gc = {
+                  automatic = true;
+                  dates = "hourly";
+                  persistent = false;
+                };
               };
               virtualisation.host.pkgs = pkgs;
               virtualisation.darwin-builder.workingDirectory = workingDirectory;
@@ -48,7 +53,7 @@
             security.pam.enableSudoTouchIdAuth = true;
             services.nix-daemon.enable = true;
             nix = {
-              package = pkgs.nixVersions.nix_2_18;
+              package = pkgs.nixVersions.nix_2_19;
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
               settings = {
