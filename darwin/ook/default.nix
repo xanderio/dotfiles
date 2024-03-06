@@ -45,7 +45,7 @@
           inputs.home-manager.darwinModules.home-manager
           {
             nixpkgs.config.packageOverrides = pkgs: {
-              nix = pkgs.nixVersions.nix_2_19;
+              #nix = pkgs.nixVersions.nix_2_19;
             };
             system.stateVersion = 4;
             programs.fish.enable = true;
@@ -53,7 +53,7 @@
             security.pam.enableSudoTouchIdAuth = true;
             services.nix-daemon.enable = true;
             nix = {
-              package = pkgs.nixVersions.nix_2_19;
+              #package = pkgs.nixVersions.nix_2_19;
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
               settings = {
