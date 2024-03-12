@@ -36,6 +36,7 @@ in
 
       aliases = rec {
         s = "status -s";
+        ss = "status";
         a = "add";
         c = "commit";
         lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
@@ -43,12 +44,14 @@ in
         lg = lg1;
         pf = "push --force-with-lease";
         p = "push";
+        P = "pull";
+        pr = "pull -r";
         aa = "add .";
         ca = "commit --amend";
         cae = "commit --amend --no-edit";
       };
 
-      ignores = [ ".direnv" ];
+      ignores = [ ".direnv" ".worktree" ];
 
       difftastic = {
         enable = true;
