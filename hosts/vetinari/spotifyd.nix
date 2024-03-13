@@ -1,6 +1,6 @@
 {
   home-manager.users.xanderio.services.spotifyd = {
-    enable = true;
+    enable = false;
     settings.global = {
       bitrate = 320;
       backend = "pulseaudio";

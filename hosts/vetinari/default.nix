@@ -15,6 +15,11 @@
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
 
+  # remove once reinstalled. workaround for disko changes.
+  fileSystems = {
+    "/boot".device = lib.mkForce "/dev/disk/by-partlabel/ESP";
+  };
+
   deployment.targetHost = "vetinari.tail2f592.ts.net";
   home-manager.users.xanderio.home.stateVersion = "22.11";
 
