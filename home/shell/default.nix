@@ -37,7 +37,6 @@
     };
     eza = {
       enable = true;
-      enableAliases = true;
     };
     jq.enable = true;
     bat = {
