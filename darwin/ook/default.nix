@@ -26,6 +26,7 @@
               virtualisation.host.pkgs = pkgs;
               virtualisation.darwin-builder.workingDirectory = workingDirectory;
               virtualisation.cores = 4;
+              virtualisation.memorySize = lib.mkForce (1024 * 8);
               system.nixos.revision = lib.mkForce null;
 
               system.stateVersion = "23.11";
@@ -44,7 +45,7 @@
           inputs.home-manager.darwinModules.home-manager
           {
             nixpkgs.config.packageOverrides = pkgs: {
-              nix = pkgs.nixVersions.nix_2_21;
+              nix = pkgs.nixVersions.nix_2_19;
             };
             system.stateVersion = 4;
             programs.fish.enable = true;
@@ -52,7 +53,7 @@
             security.pam.enableSudoTouchIdAuth = true;
             services.nix-daemon.enable = true;
             nix = {
-              package = pkgs.nixVersions.nix_2_21;
+              package = pkgs.nixVersions.nix_2_19;
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
               settings = {

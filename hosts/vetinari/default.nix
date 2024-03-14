@@ -19,6 +19,12 @@
   fileSystems = {
     "/boot".device = lib.mkForce "/dev/disk/by-partlabel/ESP";
   };
+  swapDevices = lib.mkForce [
+    {
+      device = "/dev/disk/by-partlabel/swap";
+      randomEncryption.enable = true;
+    }
+  ];
 
   deployment.targetHost = "vetinari.tail2f592.ts.net";
   home-manager.users.xanderio.home.stateVersion = "22.11";
