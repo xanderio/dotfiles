@@ -30,6 +30,7 @@
   };
   networking.firewall.allowedTCPPorts = [ 22 ];
   networking.firewall.trustedInterfaces = [ "tailscale0" ];
+  systemd.network.wait-online.ignoredInterfaces = [ "tailscale0" ];
 
   environment.systemPackages = with pkgs; [
     htop
