@@ -177,7 +177,7 @@ in
       ];
       turn_shared_secret = config.services.coturn.static-auth-secret;
       turn_user_lifetime = "86400000";
-      password_config.enabled = false;
+      password_config.enabled = true;
       extraConfig = ''
         turn_allow_guests: True
       '';
