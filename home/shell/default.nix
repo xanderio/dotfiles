@@ -67,6 +67,6 @@
 
   services.gpg-agent = {
     enable = false;
-    pinentryFlavor = "curses";
+    pinentryPackage = pkgs.pinentry-curses;
   };
 }

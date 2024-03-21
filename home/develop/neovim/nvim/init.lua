@@ -83,7 +83,6 @@ null_ls.setup({
     -- shell
     null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.formatting.fish_indent,
-    null_ls.builtins.diagnostics.shellcheck,
 
     -- Nix
     null_ls.builtins.code_actions.statix,
