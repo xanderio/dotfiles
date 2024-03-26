@@ -27,6 +27,10 @@
     #hadolint
     emmet-ls
 
+    python3Packages.python-lsp-server
+    python3Packages.python-lsp-ruff
+    ruff
+
     nodePackages.bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript

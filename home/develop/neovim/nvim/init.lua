@@ -132,6 +132,13 @@ require('lspconfig').emmet_ls.setup({
   end,
 })
 
+require('lspconfig').pylsp.setup({
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
+
 local elixir = require("elixir")
 local elixirls = require("elixir.elixirls")
 elixir.setup {
