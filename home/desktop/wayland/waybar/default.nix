@@ -11,7 +11,7 @@
         spacing = 0;
         modules-left = [ "sway/workspaces" "sway/mode" ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "custom/spt" "network" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
+        modules-right = [ "network" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
         "sway/workspaces" = {
           disable-scroll = true;
           disable-markup = false;
@@ -47,20 +47,6 @@
           {
             format = "{volume}%";
             on-click = "${pavucontrol}";
-          };
-        "custom/spt" =
-          let
-            spt = "${pkgs.spotify-tui}/bin/spt";
-            pgrep = "${pkgs.busybox}/bin/pgrep";
-          in
-          {
-            format = "{}";
-            max-length = 40;
-            interval = 10;
-            exec = "${spt} pb --status";
-            exec-if = "${pgrep} spt";
-            on-click = "${spt} pb --toggle";
-            escape = true;
           };
         battery = {
           states = {
