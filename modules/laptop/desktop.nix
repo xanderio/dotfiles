@@ -28,7 +28,7 @@
 
   gtk.iconCache.enable = true;
 
-  programs.gnupg.agent.pinentryFlavor = "gnome3";
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome;
   services = {
     udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
     gvfs.enable = true;
