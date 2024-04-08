@@ -29,7 +29,6 @@ require('config.dap')
 require('dapui').setup()
 require('config/rust-tools')
 require('config.neotest')
-require('config.neorg')
 require('fidget').setup({
   notification = {
     window = {
