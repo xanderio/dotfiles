@@ -106,7 +106,6 @@ local servers = {
   'taplo',
   'terraform_lsp',
   'yamlls',
-  'denols',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({
@@ -129,6 +128,26 @@ require('lspconfig').emmet_ls.setup({
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
   end,
+})
+
+require('lspconfig').tsserver.setup({
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+})
+
+require('lspconfig').volar.setup({
+  capabilities = require('lsp').capabilities(),
+  on_attach = function(client, bufnr)
+    require('lsp').on_attach(client, bufnr)
+  end,
+  init_options = {
+    vue = {
+      hybridMode = false,
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
 })
 
 require('lspconfig').pylsp.setup({

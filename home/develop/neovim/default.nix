@@ -19,7 +19,6 @@
     taplo-cli
     shellcheck
     elixir_ls
-    deno
 
     statix
     nixpkgs-fmt
@@ -35,6 +34,7 @@
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
+    nodePackages.volar
     nodePackages.yaml-language-server
     nodePackages.vscode-css-languageserver-bin
     nodePackages.prettier
