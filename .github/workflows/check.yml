@@ -23,7 +23,7 @@ jobs:
         use-flakehub: false
     - uses: cachix/cachix-action@v14
       with:
-        name: entropia
+        name: xanderio
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         extraPullNames: nix-community
         useDaemon: false
@@ -45,7 +45,7 @@ jobs:
         use-flakehub: false
     - uses: cachix/cachix-action@v14
       with:
-        name: entropia
+        name: xanderio
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         extraPullNames: nix-community
         useDaemon: false
