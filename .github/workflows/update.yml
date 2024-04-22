@@ -10,7 +10,7 @@ jobs:
     name: "Update the flake.lock"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: "${{secrets.PAT}}"
       - uses: cachix/install-nix-action@v20
