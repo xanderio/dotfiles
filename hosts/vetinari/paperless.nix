@@ -8,14 +8,8 @@
         PAPERLESS_URL = "https://paper.xanderio.de";
         PAPERLESS_OCR_LANGUAGE = "deu";
 
-        PAPERLESS_ENABLE_HTTP_REMOTE_USER = true;
-        PAPERLESS_HTTP_REMOTE_USER_HEADER_NAME = "HTTP_X_AUTHENTIK_USERNAME";
+        PAPERLESS_APPS = "allauth.socialaccount.providers.openid_connect";
       };
-    };
-
-    authentik-proxy = {
-      enable = true;
-      domains = [ "paper.xanderio.de" ];
     };
 
     nginx.virtualHosts."paper.xanderio.de" = {
@@ -28,6 +22,28 @@
       extraConfig = ''
         client_max_body_size 1G;
       '';
+    };
+  };
+
+  x.sops.secrets = {
+    "services/paperless/oidc_secret" = {};
+  };
+
+  sops.templates."paperless-socialaccount-providers" = {
+    owner = "paperless";
+    content = builtins.toJSON {
+      openid_connect = {
+        OAUTH_PKCE_ENABLED = "True";
+        APPS = [
+          {
+            provider_id = "authentik";
+            name = "Authentik";
+            client_id = "paperless";
+            secret = config.sops.placeholder."services/paperless/oidc_secret";
+            settings.server_url = "https://sso.xanderio.de/application/o/paperless/.well-known/openid-configuration";
+          }
+        ];
+      };
     };
   };
 
@@ -51,6 +67,9 @@
       UMask = lib.mkForce "0022";
       ProtectControlGroups = lib.mkForce false;
     };
+    script = lib.mkBefore ''
+      export PAPERLESS_SOCIALACCOUNT_PROVIDERS=$(< ${config.sops.templates."paperless-socialaccount-providers".path})
+    '';
   };
   systemd.services.paperless-task-queue = {
     serviceConfig = {

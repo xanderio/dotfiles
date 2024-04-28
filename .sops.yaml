@@ -72,3 +72,9 @@ creation_rules:
       - age:
         - *xanderio
         - *valen
+
+  - path_regex: secrets/services/paperless.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *vetinari
