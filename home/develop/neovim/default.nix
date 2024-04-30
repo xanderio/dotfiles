@@ -13,7 +13,7 @@
     neovim
     neovim.unwrapped.lua.pkgs.mpack
 
-    nil
+    nixd
     rust-analyzer
     terraform-lsp
     taplo-cli

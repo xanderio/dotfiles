@@ -177,14 +177,17 @@ elixir.setup {
   }
 }
 
-require('lspconfig').nil_ls.setup({
+require('lspconfig').nixd.setup({
   autostart = true,
   capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
   end,
   settings = {
-    ['nil'] = {
+    nixd = {
+      nixpkgs = {
+        expr = "import <nixpkgs> { }",
+      },
       formatting = {
         command = { "nixpkgs-fmt" }
       },
