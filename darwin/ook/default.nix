@@ -44,9 +44,6 @@
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
-            nixpkgs.config.packageOverrides = pkgs: {
-              nix = pkgs.nixVersions.nix_2_19;
-            };
             system.stateVersion = 4;
             programs.fish.enable = true;
             programs.tmux.enable = true;
