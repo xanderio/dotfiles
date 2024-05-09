@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, ... }: {
+{ pkgs, lib, ... }: {
   home.activation.nvimCacheClear = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     # remove impatient.nvim cache
     rm -rf $HOME/.cache/nvim/luacache_*
@@ -55,7 +55,7 @@
 
   xdg.dataFile."nvim/site/pack/nix/start" = {
     recursive = true;
-    source = pkgs.linkFarmFromDrvs "neovim-plugins" (with pkgs.vimPlugins; [
+    source = pkgs.linkFarmFromDrvs "neovim-plugins" ((with pkgs.vimPlugins; [
       impatient-nvim
 
       # LSP
@@ -131,7 +131,7 @@
       popfix # nvim-lsputils, telescope-nvim
       plenary-nvim # crates-nvim, telescope-nvim, gitsigns-nvim, neogit
       nvim-web-devicons
-    ]
-    ++ (builtins.attrValues (nvim-treesitter.grammarPlugins // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) { })));
+    ])
+    ++ (builtins.attrValues (pkgs.vimPlugins.nvim-treesitter.grammarPlugins // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) { })));
   };
 }

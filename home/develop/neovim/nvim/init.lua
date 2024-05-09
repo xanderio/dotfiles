@@ -106,6 +106,7 @@ local servers = {
   'taplo',
   'terraform_lsp',
   'yamlls',
+  'ruff',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({
