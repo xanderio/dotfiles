@@ -50,6 +50,7 @@ in
 
     wayland.windowManager.sway = {
       enable = true;
+      checkConfig = false;
       # use system provided sway version, nixpkgs version is unable to create egl context
       package = null;
       systemd.enable = true;
