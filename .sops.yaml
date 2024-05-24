@@ -78,3 +78,9 @@ creation_rules:
       - age:
         - *xanderio
         - *vetinari
+
+  - path_regex: secrets/services/outline.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *carrot

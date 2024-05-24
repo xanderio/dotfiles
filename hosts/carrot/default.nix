@@ -9,6 +9,7 @@
     ./authentik.nix
     ./postgresql.nix
     ./matrix.nix
+    ./outline.nix
 
     ./disko-config.nix
   ];
