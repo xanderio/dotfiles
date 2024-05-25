@@ -5,7 +5,6 @@
     ./node_exporter.nix
     ./nginx.nix
     ./wireguard.nix
-    ./promtail.nix
   ];
 
   zramSwap.enable = true;

@@ -1,7 +1,6 @@
 {
   imports = [
     ./configuration.nix
-    ./loki.nix
     ../../modules/server
   ];
   deployment.targetHost = "valen.xanderio.de";
