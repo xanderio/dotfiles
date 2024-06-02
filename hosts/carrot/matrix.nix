@@ -123,7 +123,7 @@ in
           client_secret = config.sops.placeholder."services/synapse/oidc_secret";
           scopes = [ "openid" "profile" "email" ];
           user_mapping_provider.config = {
-            localpart_template = "{{ user.username }}";
+            localpart_template = "{{ user.preferred_username }}";
             display_name_template = "{{ user.preferred_username }}";
           };
           allow_existing_users = true;
