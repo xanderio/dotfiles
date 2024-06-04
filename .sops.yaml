@@ -84,3 +84,9 @@ creation_rules:
       - age:
         - *xanderio
         - *carrot
+
+  - path_regex: secrets/services/stalwart.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *carrot

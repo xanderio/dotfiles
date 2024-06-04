@@ -10,6 +10,7 @@
     ./postgresql.nix
     ./matrix.nix
     ./outline.nix
+    ./mail.nix
 
     ./disko-config.nix
   ];
