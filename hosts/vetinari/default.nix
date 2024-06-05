@@ -11,9 +11,13 @@
     ./netatalk.nix
     ./jellyfin.nix
     ./shairport.nix
+    ./incus.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
+  
+  networking.nftables.enable = true;
+
 
   # remove once reinstalled. workaround for disko changes.
   fileSystems = {
