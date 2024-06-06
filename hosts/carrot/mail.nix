@@ -2,14 +2,14 @@
 let
   domain = "mail.xanderio.de";
   credPath = "/run/credentials/stalwart-mail.service";
-  configFormat = pkgs.formats.toml { };
-  configFile = configFormat.generate "stalwart-mail.toml" config.services.stalwart-mail.settings;
 in
 {
   config = {
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
-    security.acme.certs."${domain}" = { };
+    security.acme.certs."${domain}" = {
+      extraDomainNames = [ "autoconfig.bitflip.jetzt" "autodiscovery.bitflip.jetzt" ];
+    };
 
     systemd.services.stalwart-mail = {
       wants = [ "acme-${domain}.service" ];
@@ -32,12 +32,23 @@ in
       4190 # manage sieve
     ];
 
-    services.nginx.virtualHosts."${domain}" = {
-      forceSSL = true;
-      enableACME = true;
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8119";
-        proxyWebsockets = true;
+    services.nginx.virtualHosts = {
+      "autoconfig.*" = {
+        serverAliases = [ "autodiscovery.*" ];
+        forceSSL = true;
+        useACMEHost = "${domain}";
+        locations."/" = {
+          proxyPass = "http://[::1]:8119";
+          proxyWebsockets = true;
+        };
+      };
+      "${domain}" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://[::1]:8119";
+          proxyWebsockets = true;
+        };
       };
     };
 
@@ -52,7 +63,7 @@ in
           default = true;
         };
 
-        lookup.default.hostname = config.networking.fqdn;
+        lookup.default.hostname = "mail.xanderio.de";
         server = {
           listener = {
             smtp = {
@@ -64,13 +75,18 @@ in
               protocol = "smtp";
               tls.implicit = true;
             };
+            jmap = {
+              bind = [ "[::]:993" ];
+              protocol = "imap";
+              tls.implicit = true;
+            };
             imaptls = {
               bind = [ "[::]:993" ];
               protocol = "imap";
               tls.implicit = true;
             };
             management = {
-              bind = [ "127.0.0.1:8119" ];
+              bind = [ "[::1]:8119" ];
               protocol = "http";
             };
           };
