@@ -25,11 +25,11 @@
         paths.media = "/var/lib/authentik/media";
         media.enable_upload = true;
         email = {
-          host = "smtp.mailbox.org";
-          port = 587;
-          username = "alex@xanderio.de";
-          use_tls = true;
-          use_ssl = false;
+          host = "mail.xanderio.de";
+          port = 465;
+          username = "authentik";
+          use_tls = false; # STARTTLS
+          use_ssl = true; # implicited SSL/TLS
           from = "authentik@xanderio.de";
         };
       };

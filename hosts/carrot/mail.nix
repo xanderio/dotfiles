@@ -8,7 +8,7 @@ in
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
     security.acme.certs."${domain}" = {
-      extraDomainNames = [ "autoconfig.bitflip.jetzt" "autodiscovery.bitflip.jetzt" ];
+      extraDomainNames = [ "autoconfig.bitflip.jetzt" "autodiscovery.bitflip.jetzt" "autoconfig.xanderio.de" "autodiscovery.xanderio.de" ];
     };
 
     systemd.services.stalwart-mail = {
