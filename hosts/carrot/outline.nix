@@ -6,6 +6,11 @@
       inherit (config.services.outline) group;
     };
 
+    x.sops.secrets."services/outline/mailPwd" = {
+      owner = config.services.outline.user;
+      inherit (config.services.outline) group;
+    };
+
     services.nginx = {
       enable = true;
       virtualHosts."outline.xanderio.de" = {
@@ -36,6 +41,16 @@
         userinfoUrl = "https://sso.xanderio.de/application/o/userinfo/";
         displayName = "xanderio SSO";
         scopes = [ "openid" "profile" "email" ];
+      };
+
+      smtp = {
+        host = "mail.xanderio.de";
+        port = 465;
+        username = "outline";
+        passwordFile = config.sops.secrets."services/outline/mailPwd".path;
+        fromEmail = "Outline <outline@xanderio.de>";
+        replyEmail = "noreply@xanderio.de";
+        secure = true;
       };
 
       # nginx already handels this
