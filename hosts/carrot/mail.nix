@@ -85,6 +85,11 @@ in
               protocol = "imap";
               tls.implicit = true;
             };
+            sieve = {
+              bind = [ "[::1]:4190" ];
+              protocol = "managesieve";
+              tls.implicit = true;
+            };
             management = {
               bind = [ "[::1]:8119" ];
               protocol = "http";
@@ -113,6 +118,25 @@ in
           secret = "%{file:${credPath}/adminPwd}%";
         };
       };
+    };
+
+    services.roundcube = {
+      enable = true;
+      package = pkgs.roundcube.withPlugins (plugins: [ plugins.persistent_login ]);
+      dicts = with pkgs.aspellDicts; [ en de ];
+      hostName = "cube.xanderio.de";
+      plugins = [
+        "archive"
+        "zipdownload"
+        "managesieve"
+        "acl"
+        "persistent_login"
+      ];
+      extraConfig = ''
+        $config['imap_host'] = 'ssl://mail.xanderio.de:993';
+        $config['smtp_host'] = 'ssl://%h:465';
+        $config['managesieve_host'] = 'ssl://%h';
+      '';
     };
   };
 }
