@@ -195,5 +195,13 @@ in
   };
 
   # remove chmod for signing-key file
-  systemd.services.matrix-synapse.serviceConfig.ExecStartPre = lib.mkForce [ ];
+  systemd.services.matrix-synapse.serviceConfig.ExecStartPre =
+    let
+      waitForIdP = pkgs.writeShellScript "waitForIdP" ''
+        until ${lib.getExe pkgs.curl} -q "https://sso.xanderio.de/application/o/synapse/.well-known/openid-configuration"; do 
+          sleep 0.5
+        done
+      '';
+    in
+    lib.mkForce [ waitForIdP ];
 }
