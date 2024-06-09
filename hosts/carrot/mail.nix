@@ -28,6 +28,7 @@ in
       preStart = lib.mkForce ''
       '';
       serviceConfig = {
+        LogsDirectory = "stalwart-mail";
         LoadCredential = [
           "cert.pem:${config.security.acme.certs.${domain}.directory}/cert.pem"
           "key.pem:${config.security.acme.certs.${domain}.directory}/key.pem"
@@ -61,8 +62,10 @@ in
             serverAliases = [ "autoconfig.${d}" "autodiscovery.${d}" ];
             forceSSL = true;
             enableACME = true;
-            locations."/" = {
-              proxyPass = "http://[::1]:8119";
+            locations = {
+              "= /mail/config-v1.1.xml".proxyPass = "http://[::1]:8119";
+              "= /autodiscovery/autodiscovery.xml".proxyPass = "http://[::1]:8119";
+              "= /.well-known/mta-sts.txt".proxyPass = "http://[::1]:8119";
             };
           };
         })
@@ -91,11 +94,6 @@ in
               protocol = "smtp";
               tls.implicit = true;
             };
-            jmap = {
-              bind = [ "[::]:993" ];
-              protocol = "imap";
-              tls.implicit = true;
-            };
             imaptls = {
               bind = [ "[::]:993" ];
               protocol = "imap";
@@ -110,6 +108,19 @@ in
               bind = [ "[::1]:8119" ];
               protocol = "http";
             };
+          };
+          http = {
+            use-x-forwarded = true;
+          };
+        };
+
+        tracer = {
+          log = {
+            enable = true;
+            type = "log";
+            path = "%{env:LOGS_DIRECTORY}%";
+            prefix = "stalwart-mail.log";
+            level = "info";
           };
         };
 
