@@ -2,14 +2,25 @@
 let
   domain = "mail.xanderio.de";
   credPath = "/run/credentials/stalwart-mail.service";
+  domains = [
+    "xanderio.de"
+    "bitflip.jetzt"
+    "sieg.contact"
+  ];
 in
 {
   config = {
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
-    security.acme.certs."${domain}" = {
-      extraDomainNames = [ "autoconfig.bitflip.jetzt" "autodiscovery.bitflip.jetzt" "autoconfig.xanderio.de" "autodiscovery.xanderio.de" ];
-    };
+    security.acme.certs = { "${domain}" = { }; }
+      // lib.listToAttrs (map
+      (d: {
+        name = "mta-sts.${d}";
+        value = {
+          extraDomainNames = [ "autoconfig.${d}" "autodiscovery.${d}" ];
+        };
+      })
+      domains);
 
     systemd.services.stalwart-mail = {
       wants = [ "acme-${domain}.service" ];
@@ -32,26 +43,31 @@ in
       4190 # manage sieve
     ];
 
-    services.nginx.virtualHosts = {
-      "autoconfig.*" = {
-        serverAliases = [ "autodiscovery.*" ];
-        forceSSL = true;
-        useACMEHost = "${domain}";
-        locations."/" = {
-          proxyPass = "http://[::1]:8119";
-          proxyWebsockets = true;
+    services.nginx = {
+      enable = true;
+      virtualHosts = {
+        "${domain}" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://[::1]:8119";
+            proxyWebsockets = true;
+          };
         };
-      };
-      "${domain}" = {
-        forceSSL = true;
-        enableACME = true;
-        locations."/" = {
-          proxyPass = "http://[::1]:8119";
-          proxyWebsockets = true;
-        };
-      };
+      } // lib.listToAttrs (map
+        (d: {
+          name = "mta-sts.${d}";
+          value = {
+            serverAliases = [ "autoconfig.${d}" "autodiscovery.${d}" ];
+            forceSSL = true;
+            enableACME = true;
+            locations."/" = {
+              proxyPass = "http://[::1]:8119";
+            };
+          };
+        })
+        domains);
     };
-
 
     services.stalwart-mail = {
       enable = true;
