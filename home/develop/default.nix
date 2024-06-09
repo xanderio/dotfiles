@@ -15,17 +15,7 @@
       nix-top
       glab
       gh
-      (git-town.overrideAttrs (old: {
-        postInstall = ''
-          installShellCompletion --cmd git-town \
-            --bash <($out/bin/git-town completions bash) \
-            --fish <($out/bin/git-town completions fish) \
-            --zsh <($out/bin/git-town completions zsh)
-
-          wrapProgram $out/bin/git-town --prefix PATH : ${lib.makeBinPath [ git ]}
-
-        '';
-      }))
+      git-town
     ]) ++ [
       inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build
     ];
