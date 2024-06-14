@@ -161,7 +161,23 @@ require('lspconfig').pylsp.setup({
 local elixir = require("elixir")
 local elixirls = require("elixir.elixirls")
 elixir.setup {
+  nextls = {
+    enable = true,
+    experimental = {
+      completions = {
+        enable = true 
+      }
+    },
+    capabilities = require('lsp').capabilities(),
+    on_attach = function(client, bufnr)
+      vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
+      vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
+      vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
+      require('lsp').on_attach(client, bufnr)
+    end,
+  },
   elixirls = {
+    tag = "v0.22.0",
     capabilities = require('lsp').capabilities(),
     on_attach = function(client, bufnr)
       vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
