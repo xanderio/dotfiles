@@ -11,6 +11,7 @@
     ./matrix.nix
     ./outline.nix
     ./mail.nix
+    ./grist.nix
 
     ./disko-config.nix
   ];

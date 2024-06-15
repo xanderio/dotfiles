@@ -90,3 +90,9 @@ creation_rules:
       - age:
         - *xanderio
         - *carrot
+
+  - path_regex: secrets/services/grist.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *carrot
