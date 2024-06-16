@@ -30,7 +30,7 @@
     }
   ];
 
-  deployment.targetHost = "vetinari.tail2f592.ts.net";
+  deployment.targetHost = "vetinari.xanderio.de";
   home-manager.users.xanderio.home.stateVersion = "22.11";
 
   networking.hostName = "vetinari";
