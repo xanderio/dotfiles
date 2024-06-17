@@ -30,7 +30,7 @@
     python3Packages.python-lsp-ruff
     ruff
 
-    nodePackages.bash-language-server
+    bash-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
