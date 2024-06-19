@@ -1,9 +1,11 @@
-{ pkgs
-, lib
-, config
-, ...
+{
+  pkgs,
+  lib,
+  config,
+  ...
 }:
-with lib; let
+with lib;
+let
   fuzzelOptions = lib.strings.concatStringsSep " " [
     ''--font="JetBrains Mono"''
     "--background-color=282a36ee"

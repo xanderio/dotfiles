@@ -1,7 +1,6 @@
-{ inputs, config, ... }: {
-  imports = [
-    inputs.authentik.nixosModules.default
-  ];
+{ inputs, config, ... }:
+{
+  imports = [ inputs.authentik.nixosModules.default ];
 
   config = {
     x.sops.secrets = {

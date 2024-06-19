@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   config = {
     x.sops.secrets."services/grist/env" = {
       group = "${config.virtualisation.oci-containers.backend}";
@@ -14,9 +15,7 @@
         GRIST_OIDC_IDP_CLIENT_ID = "grist";
         GRIST_FORCE_LOGIN = "1";
       };
-      environmentFiles = [
-        config.sops.secrets."services/grist/env".path
-      ];
+      environmentFiles = [ config.sops.secrets."services/grist/env".path ];
 
       volumes = [ "/var/lib/grist:/persist" ];
       ports = [ "8484:8484" ];

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.waybar = {
     enable = true;
     systemd.enable = true;
@@ -9,9 +10,19 @@
         position = "top";
         height = 25;
         spacing = 0;
-        modules-left = [ "sway/workspaces" "sway/mode" ];
+        modules-left = [
+          "sway/workspaces"
+          "sway/mode"
+        ];
         modules-center = [ "sway/window" ];
-        modules-right = [ "network" "idle_inhibitor" "pulseaudio" "battery" "clock" "tray" ];
+        modules-right = [
+          "network"
+          "idle_inhibitor"
+          "pulseaudio"
+          "battery"
+          "clock"
+          "tray"
+        ];
         "sway/workspaces" = {
           disable-scroll = true;
           disable-markup = false;
@@ -55,7 +66,13 @@
             critical = 15;
           };
           format = "{icon} {capacity}%";
-          format-icons = [ "" "" "" "" "" ];
+          format-icons = [
+            ""
+            ""
+            ""
+            ""
+            ""
+          ];
         };
       };
     };

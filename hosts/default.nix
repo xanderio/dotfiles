@@ -7,35 +7,26 @@
 
         isDir = _name: type: type == "directory";
 
-        hostDirs = builtins.attrNames
-          (lib.filterAttrs isDir
-            (builtins.readDir ./.)
-          );
+        hostDirs = builtins.attrNames (lib.filterAttrs isDir (builtins.readDir ./.));
 
         hosts = lib.genAttrs hostDirs (name: {
-          imports = [
-            (./. + "/${name}")
-          ];
+          imports = [ (./. + "/${name}") ];
         });
 
       in
       {
         meta = {
-          nixpkgs = import inputs.nixos-small {
-            system = "x86_64-linux";
-          };
+          nixpkgs = import inputs.nixos-small { system = "x86_64-linux"; };
 
-          nodeNixpkgs = {
-            "gregtech" = import inputs.nixos-small {
-              system = "aarch64-linux";
-            };
-            "carrot" = import inputs.nixos-small {
-              system = "aarch64-linux";
-            };
-          } // lib.genAttrs [ "hex" "vger" ]
-            (_: import inputs.nixpkgs {
-              system = "x86_64-linux";
-            });
+          nodeNixpkgs =
+            {
+              "gregtech" = import inputs.nixos-small { system = "aarch64-linux"; };
+              "carrot" = import inputs.nixos-small { system = "aarch64-linux"; };
+            }
+            // lib.genAttrs [
+              "hex"
+              "vger"
+            ] (_: import inputs.nixpkgs { system = "x86_64-linux"; });
 
           specialArgs = {
             inherit (import "${self}/home/profiles" inputs) homeImports;
@@ -60,7 +51,8 @@
             }
           ];
         };
-      } // hosts;
+      }
+      // hosts;
 
     diskoConfigurations = {
       hex = import ./hex/disko.nix;

@@ -1,4 +1,11 @@
-{ pkgs, config, lib, homeImports, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  homeImports,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ./spotifyd.nix
@@ -15,9 +22,8 @@
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
-  
-  networking.nftables.enable = true;
 
+  networking.nftables.enable = true;
 
   # remove once reinstalled. workaround for disko changes.
   fileSystems = {
@@ -36,9 +42,7 @@
   networking.hostName = "vetinari";
   networking.hostId = "8419e344";
 
-  disko.devices = import ./disko.nix {
-    disks = [ "/dev/sda" ];
-  };
+  disko.devices = import ./disko.nix { disks = [ "/dev/sda" ]; };
 
   networking.useNetworkd = true;
 
@@ -65,7 +69,6 @@
     overrideDevices = false;
     overrideFolders = false;
   };
-
 
   hardware.opengl.enable = true;
   hardware.opengl.extraPackages = with pkgs; [

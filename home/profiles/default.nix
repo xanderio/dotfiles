@@ -27,12 +27,8 @@ in
     "xanderio@hex" = mkHome { modules = homeImports."xanderio@hex"; };
     server = mkHome { modules = homeImports.server; };
     ook = inputs.home-manager.lib.homeManagerConfiguration {
-      pkgs = import inputs.nixpkgs {
-        system = "aarch64-darwin";
-      };
-      modules = sharedModules ++ [
-        ./ook
-      ];
+      pkgs = import inputs.nixpkgs { system = "aarch64-darwin"; };
+      modules = sharedModules ++ [ ./ook ];
     };
   };
 }

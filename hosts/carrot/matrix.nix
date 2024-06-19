@@ -1,4 +1,9 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
   fqdn = "bitflip.jetzt";
   turnRealm = "turn.${fqdn}";
@@ -42,9 +47,9 @@ in
       forceSSL = true;
       locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
       locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-      locations."/".extraConfig = '' 
-          return 404;
-        '';
+      locations."/".extraConfig = ''
+        return 404;
+      '';
       locations."/_matrix".proxyPass = "http://[::1]:8008";
       locations."/_synapse/client".proxyPass = "http://[::1]:8008";
     };
@@ -99,12 +104,13 @@ in
       config.services.coturn.listening-port
       config.services.coturn.tls-listening-port
     ];
-    allowedUDPPortRanges = [{
-      from = config.services.coturn.min-port;
-      to = config.services.coturn.max-port;
-    }];
+    allowedUDPPortRanges = [
+      {
+        from = config.services.coturn.min-port;
+        to = config.services.coturn.max-port;
+      }
+    ];
   };
-
 
   x.sops.secrets = {
     "services/synapse/oidc_secret" = { };
@@ -121,7 +127,11 @@ in
           issuer = "https://sso.xanderio.de/application/o/synapse/";
           client_id = "synapse";
           client_secret = config.sops.placeholder."services/synapse/oidc_secret";
-          scopes = [ "openid" "profile" "email" ];
+          scopes = [
+            "openid"
+            "profile"
+            "email"
+          ];
           user_mapping_provider.config = {
             localpart_template = "{{ user.preferred_username }}";
             display_name_template = "{{ user.preferred_username }}";
@@ -135,12 +145,8 @@ in
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
-    extraConfigFiles = [
-      config.sops.templates."synapse-oidc".path
-    ];
-    extras = [
-      "oidc"
-    ];
+    extraConfigFiles = [ config.sops.templates."synapse-oidc".path ];
+    extras = [ "oidc" ];
     settings = {
       server_name = fqdn;
       public_baseurl = "https://${fqdn}";
@@ -153,24 +159,36 @@ in
           type = "http";
           tls = false;
           x_forwarded = true;
-          resources = [{
-            names = [ "client" "federation" ];
-            compress = true;
-          }];
+          resources = [
+            {
+              names = [
+                "client"
+                "federation"
+              ];
+              compress = true;
+            }
+          ];
         }
         {
           port = 8088;
-          bind_addresses = [ "::1" "100.73.157.55" "fd7a:115c:a1e0::d309:9d37" ];
+          bind_addresses = [
+            "::1"
+            "100.73.157.55"
+            "fd7a:115c:a1e0::d309:9d37"
+          ];
           type = "http";
           tls = false;
           x_forwarded = true;
-          resources = [{
-            names = [ "metrics" ];
-            compress = true;
-          }];
+          resources = [
+            {
+              names = [ "metrics" ];
+              compress = true;
+            }
+          ];
         }
       ];
-      registration_shared_secret_path = config.sops.secrets."services/synapse/registration_shared_secret".path;
+      registration_shared_secret_path =
+        config.sops.secrets."services/synapse/registration_shared_secret".path;
       turn_uris = [
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=udp"
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=tcp"

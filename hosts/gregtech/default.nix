@@ -1,4 +1,11 @@
-{ inputs, lib, pkgs, config, ... }: {
+{
+  inputs,
+  lib,
+  pkgs,
+  config,
+  ...
+}:
+{
   imports = [
     inputs.mms.module
     ../../modules/server
@@ -61,7 +68,6 @@
         "-XX:+PerfDisableSharedMem"
         "-XX:MaxTenuringThreshold=1"
       ];
-
 
       serverConfig = {
         server-port = 25565;

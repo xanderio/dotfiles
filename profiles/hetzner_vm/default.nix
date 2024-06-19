@@ -1,4 +1,9 @@
-{ config, modulesPath, lib, ... }:
+{
+  config,
+  modulesPath,
+  lib,
+  ...
+}:
 {
   imports = [
     "${modulesPath}/installer/scan/not-detected.nix"
@@ -23,7 +28,10 @@
       configurationLimit = 10;
     };
 
-    fileSystems."/" = lib.mkDefault { device = "/dev/sda1"; fsType = "ext4"; };
+    fileSystems."/" = lib.mkDefault {
+      device = "/dev/sda1";
+      fsType = "ext4";
+    };
 
     networking.useNetworkd = true;
     networking.useDHCP = false;

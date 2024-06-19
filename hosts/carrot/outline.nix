@@ -40,7 +40,11 @@
         tokenUrl = "https://sso.xanderio.de/application/o/token/";
         userinfoUrl = "https://sso.xanderio.de/application/o/userinfo/";
         displayName = "xanderio SSO";
-        scopes = [ "openid" "profile" "email" ];
+        scopes = [
+          "openid"
+          "profile"
+          "email"
+        ];
       };
 
       smtp = {

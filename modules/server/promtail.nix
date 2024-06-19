@@ -10,11 +10,7 @@
       positions = {
         filename = "/tmp/positions.yaml";
       };
-      clients = [
-        {
-          url = "http://valen:3030/loki/api/v1/push";
-        }
-      ];
+      clients = [ { url = "http://valen:3030/loki/api/v1/push"; } ];
       scrape_configs = [
         {
           job_name = "journal";

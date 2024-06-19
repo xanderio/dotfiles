@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   networking.firewall.allowedTCPPorts = [ config.services.netatalk.port ];
   services.borgbackup.jobs.backup.exclude = [ "/var/lib/timemachine" ];
   systemd.services.netatalk.serviceConfig = {

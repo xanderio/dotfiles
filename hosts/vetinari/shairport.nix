@@ -16,14 +16,23 @@
       ];
       allowedTCPPortRanges = [
         # AirPlay 2 
-        { from = 32768; to = 60999; }
+        {
+          from = 32768;
+          to = 60999;
+        }
       ];
       allowedUDPPortRanges = [
         # AirPlay 1
-        { from = 6000; to = 6009; }
+        {
+          from = 6000;
+          to = 6009;
+        }
 
         # AirPlay 2
-        { from = 32768; to = 60999; }
+        {
+          from = 32768;
+          to = 60999;
+        }
       ];
     };
 
@@ -40,7 +49,6 @@
       wantedBy = [ "multi-user.target" ];
     };
 
-
     systemd.services.nqptp = {
       wantedBy = [ "aerosound.target" ];
       serviceConfig = {
@@ -53,8 +61,17 @@
     systemd.services.shairport-sync = {
       wantedBy = [ "aerosound.target" ];
       wants = [ "avahi-daemon.service" ];
-      requires = [ "nqptp.service" "mosquitto.service" "pipewire.service" ];
-      after = [ "network-online.target" "avahi-daemon.service" "nqptp.service" "pipewire.service" ];
+      requires = [
+        "nqptp.service"
+        "mosquitto.service"
+        "pipewire.service"
+      ];
+      after = [
+        "network-online.target"
+        "avahi-daemon.service"
+        "nqptp.service"
+        "pipewire.service"
+      ];
 
       serviceConfig =
         let
@@ -62,10 +79,14 @@
             (pkgs.shairport-sync.override {
               enableMetadata = true;
               enableAirplay2 = true;
-            }).overrideAttrs (old: {
-              configureFlags = old.configureFlags ++ [ "--with-mqtt-client" ];
-              buildInputs = old.buildInputs ++ [ pkgs.mosquitto.lib pkgs.mosquitto.dev ];
-            });
+            }).overrideAttrs
+              (old: {
+                configureFlags = old.configureFlags ++ [ "--with-mqtt-client" ];
+                buildInputs = old.buildInputs ++ [
+                  pkgs.mosquitto.lib
+                  pkgs.mosquitto.dev
+                ];
+              });
 
           shairportConfigFile = pkgs.writeText "shairport.conf" ''
             general = {

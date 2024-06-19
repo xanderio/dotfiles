@@ -13,7 +13,7 @@
     domain = "xanderio.de";
   };
 
-  deployment.tags = ["server"];
+  deployment.tags = [ "server" ];
 
   documentation.nixos.enable = false;
 }

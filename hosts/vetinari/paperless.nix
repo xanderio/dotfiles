@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   services = {
     paperless = {
       enable = true;
@@ -26,7 +32,7 @@
   };
 
   x.sops.secrets = {
-    "services/paperless/oidc_secret" = {};
+    "services/paperless/oidc_secret" = { };
   };
 
   sops.templates."paperless-socialaccount-providers" = {
@@ -68,7 +74,9 @@
       ProtectControlGroups = lib.mkForce false;
     };
     script = lib.mkBefore ''
-      export PAPERLESS_SOCIALACCOUNT_PROVIDERS=$(< ${config.sops.templates."paperless-socialaccount-providers".path})
+      export PAPERLESS_SOCIALACCOUNT_PROVIDERS=$(< ${
+        config.sops.templates."paperless-socialaccount-providers".path
+      })
     '';
   };
   systemd.services.paperless-task-queue = {

@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 with lib;
 let
   cfg = config.services.ntfy;
@@ -15,9 +20,7 @@ in
       default = pkgs.ntfy-sh;
     };
 
-    domain = mkOption {
-      type = types.str;
-    };
+    domain = mkOption { type = types.str; };
 
     port = mkOption {
       type = types.port;

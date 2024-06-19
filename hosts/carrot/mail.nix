@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   domain = "mail.xanderio.de";
   credPath = "/run/credentials/stalwart-mail.service";
@@ -12,21 +17,26 @@ in
   config = {
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
-    security.acme.certs = { "${domain}" = { }; }
-      // lib.listToAttrs (map
-      (d: {
-        name = "mta-sts.${d}";
-        value = {
-          extraDomainNames = [ "autoconfig.${d}" "autodiscovery.${d}" ];
-        };
-      })
-      domains);
+    security.acme.certs =
+      {
+        "${domain}" = { };
+      }
+      // lib.listToAttrs (
+        map (d: {
+          name = "mta-sts.${d}";
+          value = {
+            extraDomainNames = [
+              "autoconfig.${d}"
+              "autodiscovery.${d}"
+            ];
+          };
+        }) domains
+      );
 
     systemd.services.stalwart-mail = {
       wants = [ "acme-${domain}.service" ];
       after = [ "acme-${domain}.service" ];
-      preStart = lib.mkForce ''
-      '';
+      preStart = lib.mkForce '''';
       serviceConfig = {
         LogsDirectory = "stalwart-mail";
         LoadCredential = [
@@ -46,30 +56,35 @@ in
 
     services.nginx = {
       enable = true;
-      virtualHosts = {
-        "${domain}" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://[::1]:8119";
-            proxyWebsockets = true;
-          };
-        };
-      } // lib.listToAttrs (map
-        (d: {
-          name = "mta-sts.${d}";
-          value = {
-            serverAliases = [ "autoconfig.${d}" "autodiscovery.${d}" ];
+      virtualHosts =
+        {
+          "${domain}" = {
             forceSSL = true;
             enableACME = true;
-            locations = {
-              "= /mail/config-v1.1.xml".proxyPass = "http://[::1]:8119";
-              "= /autodiscovery/autodiscovery.xml".proxyPass = "http://[::1]:8119";
-              "= /.well-known/mta-sts.txt".proxyPass = "http://[::1]:8119";
+            locations."/" = {
+              proxyPass = "http://[::1]:8119";
+              proxyWebsockets = true;
             };
           };
-        })
-        domains);
+        }
+        // lib.listToAttrs (
+          map (d: {
+            name = "mta-sts.${d}";
+            value = {
+              serverAliases = [
+                "autoconfig.${d}"
+                "autodiscovery.${d}"
+              ];
+              forceSSL = true;
+              enableACME = true;
+              locations = {
+                "= /mail/config-v1.1.xml".proxyPass = "http://[::1]:8119";
+                "= /autodiscovery/autodiscovery.xml".proxyPass = "http://[::1]:8119";
+                "= /.well-known/mta-sts.txt".proxyPass = "http://[::1]:8119";
+              };
+            };
+          }) domains
+        );
     };
 
     services.stalwart-mail = {
@@ -150,7 +165,10 @@ in
     services.roundcube = {
       enable = true;
       package = pkgs.roundcube.withPlugins (plugins: [ plugins.persistent_login ]);
-      dicts = with pkgs.aspellDicts; [ en de ];
+      dicts = with pkgs.aspellDicts; [
+        en
+        de
+      ];
       hostName = "cube.xanderio.de";
       plugins = [
         "archive"

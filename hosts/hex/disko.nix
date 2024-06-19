@@ -1,4 +1,8 @@
-{ disks ? [ "/dev/vdb" ], ... }: {
+{
+  disks ? [ "/dev/vdb" ],
+  ...
+}:
+{
   disk = {
     nvme0n1 = {
       device = builtins.elemAt disks 0;

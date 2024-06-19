@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.mako = {
     enable = true;
 
@@ -27,11 +28,16 @@
   systemd.user.services.mako = {
     Unit = {
       Description = "Mako Notification daemon";
-      After = [ "graphical-session-pre.target" "tray.target" ];
+      After = [
+        "graphical-session-pre.target"
+        "tray.target"
+      ];
       PartOf = [ "graphical-session.target" ];
     };
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = {
+      WantedBy = [ "graphical-session.target" ];
+    };
 
     Service = {
       ExecStart = "${pkgs.mako}/bin/mako";

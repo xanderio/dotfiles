@@ -1,7 +1,4 @@
-{ pkgs
-, config
-, ...
-}:
+{ pkgs, config, ... }:
 let
   synapseRules = pkgs.writeText "" ''
     groups:
@@ -39,20 +36,12 @@ in
     scrapeConfigs = [
       {
         job_name = "prometheus";
-        static_configs = [
-          {
-            targets = [ "localhost:${toString config.services.prometheus.port}" ];
-          }
-        ];
+        static_configs = [ { targets = [ "localhost:${toString config.services.prometheus.port}" ]; } ];
       }
       {
         job_name = "synapse";
         metrics_path = "/_synapse/metrics";
-        static_configs = [
-          {
-            targets = [ "delenn:8088" ];
-          }
-        ];
+        static_configs = [ { targets = [ "delenn:8088" ]; } ];
         relabel_configs = [
           {
             source_labels = [ "__address__" ];
@@ -70,7 +59,13 @@ in
               let
                 makeTarget = name: "${name}:${toString config.services.prometheus.exporters.node.port}";
               in
-              builtins.map makeTarget [ "valen" "delenn" "vetinari" "gregtech" "carrot" ];
+              builtins.map makeTarget [
+                "valen"
+                "delenn"
+                "vetinari"
+                "gregtech"
+                "carrot"
+              ];
           }
         ];
         relabel_configs = [

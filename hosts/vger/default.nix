@@ -1,4 +1,12 @@
-{ inputs, pkgs, lib, nixos-hardware, homeImports, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  nixos-hardware,
+  homeImports,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../modules/laptop
@@ -31,7 +39,9 @@
 
   systemd.services.lenovo_fix.wantedBy = lib.mkForce [ ];
 
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+  };
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;

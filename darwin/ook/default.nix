@@ -1,4 +1,5 @@
-{ inputs, self, ... }: {
+{ inputs, self, ... }:
+{
   flake.darwinConfigurations = {
     ook =
       let
@@ -40,7 +41,9 @@
       in
       darwinSystem {
         inherit system;
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+        };
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
@@ -60,7 +63,10 @@
                 fallback = true;
                 connect-timeout = 5;
                 log-lines = 25;
-                trusted-users = [ "root" "xanderio" ];
+                trusted-users = [
+                  "root"
+                  "xanderio"
+                ];
                 builders-use-substitutes = true;
 
                 substituters = [
@@ -73,19 +79,21 @@
                 ];
               };
               distributedBuilds = true;
-              buildMachines = [{
-                sshUser = "builder";
-                hostName = "linux-builder";
-                systems = [
-                  linuxSystem
-                  "x86_64-linux"
-                ];
-                maxJobs = 4;
-                supportedFeatures = [ "big-parallel" ];
-                sshKey = "/etc/nix/builder_ed25519";
-                protocol = "ssh-ng";
-                publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo";
-              }];
+              buildMachines = [
+                {
+                  sshUser = "builder";
+                  hostName = "linux-builder";
+                  systems = [
+                    linuxSystem
+                    "x86_64-linux"
+                  ];
+                  maxJobs = 4;
+                  supportedFeatures = [ "big-parallel" ];
+                  sshKey = "/etc/nix/builder_ed25519";
+                  protocol = "ssh-ng";
+                  publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo";
+                }
+              ];
             };
 
             environment.shellAliases = {
@@ -112,7 +120,9 @@
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = {
+              inherit inputs;
+            };
             home-manager.users.xanderio.imports = homeImports.ook;
           }
         ];

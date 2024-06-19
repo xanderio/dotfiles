@@ -1,4 +1,12 @@
-{ inputs, pkgs, config, nixos-hardware, homeImports, ... }: {
+{
+  inputs,
+  pkgs,
+  config,
+  nixos-hardware,
+  homeImports,
+  ...
+}:
+{
   imports = [
     ./hardware-configuration.nix
     ../../modules/laptop
@@ -9,9 +17,7 @@
   home-manager.users.xanderio.home.stateVersion = "22.11";
   deployment.targetHost = null;
 
-  disko.devices = import ./disko.nix {
-    disks = [ "/dev/nvme0n1" ];
-  };
+  disko.devices = import ./disko.nix { disks = [ "/dev/nvme0n1" ]; };
 
   networking.hostName = "hex";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -38,9 +44,7 @@
   };
 
   nix.settings = {
-    substituters = [
-      "http://binary-cache-v2.vpn.cyberus-technology.de"
-    ];
+    substituters = [ "http://binary-cache-v2.vpn.cyberus-technology.de" ];
     trusted-public-keys = [
       "cyberus-1:0jjMD2b+guloGW27ZToxDQApCoWj+4ONW9v8VH/Bv0Q=" # v2 cache
     ];
@@ -51,7 +55,9 @@
     GLAB_PAGER = "cat";
   };
 
-  home-manager.extraSpecialArgs = { inherit inputs; };
+  home-manager.extraSpecialArgs = {
+    inherit inputs;
+  };
   home-manager.users.xanderio.xanderio = {
     git = {
       enable = true;

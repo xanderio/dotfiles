@@ -1,4 +1,5 @@
-{ config, ... }: {
+{ config, ... }:
+{
   x.sops.secrets."services/grafana/client_secret" = {
     owner = "grafana";
   };
@@ -40,9 +41,7 @@
       {
         job_name = "grafana";
         static_configs = [
-          {
-            targets = [ "localhost:${toString config.services.grafana.settings.server.http_port}" ];
-          }
+          { targets = [ "localhost:${toString config.services.grafana.settings.server.http_port}" ]; }
         ];
       }
     ];

@@ -47,15 +47,20 @@
       inputs."flake-parts".follows = "flake-parts";
     };
     nix-fast-build = {
-      url = "github:Mic92/nix-fast-build"; 
+      url = "github:Mic92/nix-fast-build";
       inputs."nixpkgs".follows = "nixpkgs";
       inputs."flake-parts".follows = "flake-parts";
     };
   };
 
-  outputs = inputs@{ flake-parts, self, ... }:
+  outputs =
+    inputs@{ flake-parts, self, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
-      systems = [ "x86_64-linux" "aarch64-linux" "aarch64-darwin" ];
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
       imports = [
         ./hosts
         ./darwin
@@ -64,15 +69,24 @@
       flake = {
         inherit (import ./home/profiles inputs) homeConfigurations;
       };
-      perSystem = { pkgs, lib, inputs', self', system, ... }: {
-        formatter = pkgs.nixpkgs-fmt;
-        devShells.default = pkgs.mkShellNoCC {
-          buildInputs = [
-            pkgs.colmena
-            pkgs.sops
-            inputs'.sops-to-age.packages.ssh-to-age
-          ];
+      perSystem =
+        {
+          pkgs,
+          lib,
+          inputs',
+          self',
+          system,
+          ...
+        }:
+        {
+          formatter = pkgs.nixfmt-rfc-style;
+          devShells.default = pkgs.mkShellNoCC {
+            buildInputs = [
+              pkgs.colmena
+              pkgs.sops
+              inputs'.sops-to-age.packages.ssh-to-age
+            ];
+          };
         };
-      };
     };
 }

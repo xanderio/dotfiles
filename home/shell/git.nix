@@ -1,9 +1,11 @@
-{ config
-, pkgs
-, lib
-, ...
+{
+  config,
+  pkgs,
+  lib,
+  ...
 }:
-with lib; let
+with lib;
+let
   cfg = config.xanderio.git;
 in
 {
@@ -51,7 +53,10 @@ in
         cae = "commit --amend --no-edit";
       };
 
-      ignores = [ ".direnv" ".worktree" ];
+      ignores = [
+        ".direnv"
+        ".worktree"
+      ];
 
       difftastic = {
         enable = true;

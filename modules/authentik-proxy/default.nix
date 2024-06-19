@@ -70,7 +70,5 @@ in
       description = "Domains with should be protected by authentik";
     };
   };
-  config = lib.mkIf cfg.enable {
-    services.nginx.virtualHosts = genAttrs cfg.domains mkVirtualHosts;
-  };
+  config = lib.mkIf cfg.enable { services.nginx.virtualHosts = genAttrs cfg.domains mkVirtualHosts; };
 }

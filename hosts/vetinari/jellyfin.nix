@@ -14,7 +14,7 @@
         '';
       };
     };
-      
+
     services.jellyfin.enable = true;
   };
 }

@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./ook
-  ];
-}
+{ imports = [ ./ook ]; }

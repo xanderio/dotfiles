@@ -1,24 +1,28 @@
-{ pkgs, lib, inputs, ... }: {
-  imports = [
-    ./neovim
-  ];
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
+  imports = [ ./neovim ];
   home = {
-    packages = (with pkgs; [
-      # rust
-      bacon
-      cargo-watch
+    packages =
+      (with pkgs; [
+        # rust
+        bacon
+        cargo-watch
 
-      nix-update
-      nix-init
-      nixpkgs-review
-      nix-universal-prefetch
-      nix-top
-      glab
-      gh
-      git-town
-    ]) ++ [
-      inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build
-    ];
+        nix-update
+        nix-init
+        nixpkgs-review
+        nix-universal-prefetch
+        nix-top
+        glab
+        gh
+        git-town
+      ])
+      ++ [ inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build ];
 
     sessionVariables = {
       DARCS_ALWAYS_COLOR = "1";
@@ -27,7 +31,6 @@
       ERL_AFLAGS = "-kernel shell_history enabled";
     };
 
-
     file.".cargo/config".text =
       let
         bintools-wrapper = "${pkgs.path}/pkgs/build-support/bintools-wrapper";
@@ -35,7 +38,17 @@
           name = "mold";
           paths = [ pkgs.mold ];
           nativeBuildInputs = [ pkgs.makeWrapper ];
-          suffixSalt = lib.replaceStrings [ "-" "." ] [ "_" "_" ] pkgs.stdenv.targetPlatform.config;
+          suffixSalt =
+            lib.replaceStrings
+              [
+                "-"
+                "."
+              ]
+              [
+                "_"
+                "_"
+              ]
+              pkgs.stdenv.targetPlatform.config;
           postBuild = ''
             for bin in ${pkgs.mold}/bin/*; do
               rm $out/bin/"$(basename "$bin")"

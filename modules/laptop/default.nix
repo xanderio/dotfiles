@@ -1,4 +1,5 @@
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   imports = [
     ../common
     ./boot.nix
@@ -81,7 +82,10 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
-  nix.settings.trusted-users = [ "root" "xanderio" ];
+  nix.settings.trusted-users = [
+    "root"
+    "xanderio"
+  ];
 
   nix.daemonCPUSchedPolicy = "idle";
 }

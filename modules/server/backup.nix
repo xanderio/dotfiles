@@ -6,7 +6,11 @@
   };
   services.borgbackup.jobs = {
     backup = {
-      paths = [ "/var/lib" "/home" "/root" ];
+      paths = [
+        "/var/lib"
+        "/home"
+        "/root"
+      ];
       exclude = [ "'**/.cache'" ];
       repo = "u289342@u289342.your-storagebox.de:backup/${config.networking.hostName}";
       encryption = {
@@ -14,7 +18,9 @@
         passCommand = "cat ${config.sops.secrets."all/borg_backup/repo_key".path}";
       };
       environment = {
-        BORG_RSH = "ssh -p 23 -o 'StrictHostKeyChecking=no' -i ${config.sops.secrets."all/borg_backup/ssh_key".path}";
+        BORG_RSH = "ssh -p 23 -o 'StrictHostKeyChecking=no' -i ${
+          config.sops.secrets."all/borg_backup/ssh_key".path
+        }";
       };
       compression = "auto,zstd,10";
       prune.keep = {

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs = {
     sway.enable = true;
     fish = {
@@ -43,10 +44,12 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       extraConfig.pipewire = {
-        "context.modules" = [{
-          name = "libpipewire-module-zeroconf-discover";
-          args = { };
-        }];
+        "context.modules" = [
+          {
+            name = "libpipewire-module-zeroconf-discover";
+            args = { };
+          }
+        ];
       };
     };
   };
@@ -79,7 +82,6 @@
       TimeoutStopSec = 10;
     };
   };
-
 
   # xdg-desktop-portal-wlr needs sh for exec_* to work
   systemd.user.services.xdg-desktop-portal-wlr.path = [ pkgs.bash ];

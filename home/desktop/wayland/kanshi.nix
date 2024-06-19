@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.kanshi =
     let
       swaymsg = "${pkgs.sway}/bin/swaymsg";

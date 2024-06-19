@@ -1,4 +1,5 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   config = {
     x.sops.secrets."services/miniflux/env" = { };
 
