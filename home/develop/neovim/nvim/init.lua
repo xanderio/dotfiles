@@ -206,7 +206,7 @@ require('lspconfig').nixd.setup({
         expr = "import <nixpkgs> { }",
       },
       formatting = {
-        command = { "nixpkgs-fmt" }
+        command = { "nixfmt-rfc-style" }
       },
     },
   },

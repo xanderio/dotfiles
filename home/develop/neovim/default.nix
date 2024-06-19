@@ -22,7 +22,7 @@
     elixir_ls
 
     statix
-    nixpkgs-fmt
+    nixfmt-rfc-style
     gitlint
     #hadolint
     emmet-ls
