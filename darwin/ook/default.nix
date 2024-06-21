@@ -8,33 +8,6 @@
         inherit (darwin.lib) darwinSystem;
         system = "aarch64-darwin";
         pkgs = nixpkgs.legacyPackages."${system}";
-        workingDirectory = "/var/lib/darwin-builder";
-        linuxSystem = builtins.replaceStrings [ "darwin" ] [ "linux" ] system;
-        darwin-builder = nixpkgs.lib.nixosSystem {
-          system = linuxSystem;
-          modules = [
-            "${nixpkgs}/nixos/modules/profiles/macos-builder.nix"
-            {
-              nix = {
-                nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-                registry.nixpkgs.flake = inputs.nixpkgs;
-                gc = {
-                  automatic = true;
-                  dates = "hourly";
-                  persistent = false;
-                };
-              };
-              virtualisation.host.pkgs = pkgs;
-              virtualisation.darwin-builder.workingDirectory = workingDirectory;
-              virtualisation.cores = 4;
-              virtualisation.memorySize = lib.mkForce (1024 * 8);
-              system.nixos.revision = lib.mkForce null;
-
-              system.stateVersion = "23.11";
-              boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-            }
-          ];
-        };
 
         inherit (import "${self}/home/profiles" inputs) homeImports;
 
@@ -56,6 +29,29 @@
               package = pkgs.lix;
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
+              linux-builder = {
+                enable = true;
+
+                systems = [ "x86_64-linux" "aarch64-linux" ];
+
+                config = {
+                  nix = {
+                    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+                    registry.nixpkgs.flake = inputs.nixpkgs;
+                    gc = {
+                      automatic = true;
+                      dates = "hourly";
+                      persistent = false;
+                    };
+                  };
+                  virtualisation.cores = 4;
+                  virtualisation.memorySize = lib.mkForce (1024 * 8);
+                  # system.nixos.revision = lib.mkForce null;
+                  #
+                  # system.stateVersion = "23.11";
+                  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
+                };
+              };
               settings = {
                 auto-optimise-store = false;
                 warn-dirty = false;
@@ -78,39 +74,10 @@
                   "xanderio.cachix.org-1:MorhZh9LUPDXE0racYZBWb2JQCWmS+r3SQo4zKn51xg="
                 ];
               };
-              distributedBuilds = true;
-              buildMachines = [
-                {
-                  sshUser = "builder";
-                  hostName = "linux-builder";
-                  systems = [
-                    linuxSystem
-                    "x86_64-linux"
-                  ];
-                  maxJobs = 4;
-                  supportedFeatures = [ "big-parallel" ];
-                  sshKey = "/etc/nix/builder_ed25519";
-                  protocol = "ssh-ng";
-                  publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUpCV2N4Yi9CbGFxdDFhdU90RStGOFFVV3JVb3RpQzVxQkorVXVFV2RWQ2Igcm9vdEBuaXhvcwo";
-                }
-              ];
             };
 
             environment.shellAliases = {
               "tailscale" = "/Applications/Tailscale.app/Contents/MacOS/Tailscale";
-            };
-
-            launchd.daemons.darwin-builder = {
-              command = "${darwin-builder.config.system.build.macos-builder-installer}/bin/create-builder";
-              serviceConfig = {
-                KeepAlive = true;
-                RunAtLoad = true;
-                StandardOutPath = "/var/log/darwin-builder.log";
-                StandardErrorPath = "/var/log/darwin-builder.log";
-                EnvironmentVariables = {
-                  "NIX_SSL_CERT_FILE" = "/etc/ssl/certs/ca-certificates.crt";
-                };
-              };
             };
 
             users.users.xanderio = {
