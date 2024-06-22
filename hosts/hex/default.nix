@@ -67,4 +67,6 @@
     };
     sway.scale = "1.5";
   };
+
+  system.stateVersion = "22.05";
 }

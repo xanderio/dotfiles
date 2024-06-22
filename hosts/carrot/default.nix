@@ -99,4 +99,6 @@
         }
       ) (config.services.postgresql.ensureDatabases ++ [ "matrix-synapse" ])
     ));
+
+  system.stateVersion = "22.05";
 }

@@ -50,4 +50,6 @@
     };
     sway.scale = "1.1";
   };
+
+  system.stateVersion = "22.05";
 }

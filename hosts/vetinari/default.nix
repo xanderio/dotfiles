@@ -79,5 +79,5 @@
     intel-ocl
   ];
 
-  system.stateVersion = lib.mkForce "23.05";
+  system.stateVersion = "23.05";
 }
