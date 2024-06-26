@@ -9,15 +9,9 @@
   home = {
     packages =
       (with pkgs; [
-        # rust
-        bacon
-        cargo-watch
-
         nix-update
         nix-init
         nixpkgs-review
-        nix-universal-prefetch
-        nix-top
         glab
         gh
         git-town

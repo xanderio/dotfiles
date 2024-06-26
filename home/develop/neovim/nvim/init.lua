@@ -177,6 +177,7 @@ elixir.setup {
     end,
   },
   elixirls = {
+    enable = false,
     tag = "v0.22.0",
     capabilities = require('lsp').capabilities(),
     on_attach = function(client, bufnr)
