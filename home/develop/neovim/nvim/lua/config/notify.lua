@@ -23,6 +23,10 @@ function notify_filter(msg, log_level, opts)
     -- this error is emited on every startup, just ignore it -.-
     return
   end
+  
+  if msg:find("is now deprecated, please define highlight") then
+    return
+  end
 
   local lsp, message = string.match(msg, lsp_pattern)
   if lsp and message then
