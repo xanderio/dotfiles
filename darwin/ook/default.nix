@@ -3,11 +3,9 @@
   flake.darwinConfigurations = {
     ook =
       let
-        inherit (inputs) darwin nixpkgs;
-        inherit (nixpkgs) lib;
+        inherit (inputs) darwin;
         inherit (darwin.lib) darwinSystem;
         system = "aarch64-darwin";
-        pkgs = nixpkgs.legacyPackages."${system}";
 
         inherit (import "${self}/home/profiles" inputs) homeImports;
 
@@ -26,32 +24,24 @@
             security.pam.enableSudoTouchIdAuth = true;
             services.nix-daemon.enable = true;
             nix = {
-              package = pkgs.lix;
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
-              linux-builder = {
-                enable = true;
-
-                systems = [ "x86_64-linux" "aarch64-linux" ];
-
-                config = {
-                  nix = {
-                    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
-                    registry.nixpkgs.flake = inputs.nixpkgs;
-                    gc = {
-                      automatic = true;
-                      dates = "hourly";
-                      persistent = false;
-                    };
-                  };
-                  virtualisation.cores = 4;
-                  virtualisation.memorySize = lib.mkForce (1024 * 8);
-                  # system.nixos.revision = lib.mkForce null;
-                  #
-                  # system.stateVersion = "23.11";
-                  boot.binfmt.emulatedSystems = [ "x86_64-linux" ];
-                };
-              };
+              distributedBuilds = true;
+              buildMachines = [
+                {
+                  sshUser = "xanderio";
+                  hostName = "192.168.64.4";
+                  systems = [
+                    "aarch64-linux"
+                    "x86_64-linux"
+                  ];
+                  maxJobs = 4;
+                  supportedFeatures = [ "big-parallel" ];
+                  sshKey = "/etc/nix/builder_ed25519";
+                  protocol = "ssh-ng";
+                  publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUdMNEpxUXVvTEJKaTRYa1Rab0k5SFhoM2o2dEM1M0luYTJiYU1BMi96MWMK";
+                }
+              ];
               settings = {
                 auto-optimise-store = false;
                 warn-dirty = false;
