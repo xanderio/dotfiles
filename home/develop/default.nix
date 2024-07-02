@@ -14,7 +14,6 @@
         nixpkgs-review
         glab
         gh
-        git-town
       ])
       ++ [ inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build ];
 
@@ -25,7 +24,7 @@
       ERL_AFLAGS = "-kernel shell_history enabled";
     };
 
-    file.".cargo/config".text =
+    file.".cargo/config.toml".text =
       let
         bintools-wrapper = "${pkgs.path}/pkgs/build-support/bintools-wrapper";
         mold' = pkgs.symlinkJoin {
