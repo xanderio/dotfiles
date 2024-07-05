@@ -35,9 +35,8 @@
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
-    nodePackages.volar
+    nodePackages.vue-language-server
     nodePackages.yaml-language-server
-    nodePackages.vscode-css-languageserver-bin
     nodePackages.prettier
   ];
 
