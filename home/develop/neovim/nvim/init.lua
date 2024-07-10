@@ -162,7 +162,7 @@ local elixir = require("elixir")
 local elixirls = require("elixir.elixirls")
 elixir.setup {
   nextls = {
-    enable = true,
+    enable = false,
     experimental = {
       completions = {
         enable = true 
@@ -177,7 +177,7 @@ elixir.setup {
     end,
   },
   elixirls = {
-    enable = false,
+    enable = true,
     tag = "v0.22.0",
     capabilities = require('lsp').capabilities(),
     on_attach = function(client, bufnr)
