@@ -1,24 +1,28 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
+let
+  stablePkgs = import inputs.nixos-stable { inherit (pkgs) system; };
+in
 {
   imports = [
     ./fish.nix
     ./git.nix
   ];
 
-  home.packages = with pkgs; [
-    nushell
-    ripgrep
-    fd
-    htop
-    file
-    unzip
-    httpie
-    nix-your-shell
-    comma
-    cachix
-    nix-output-monitor
-    gh
-  ];
+  home.packages =
+    (with pkgs; [
+      nushell
+      ripgrep
+      fd
+      htop
+      file
+      unzip
+      nix-your-shell
+      comma
+      cachix
+      nix-output-monitor
+      gh
+    ])
+    ++ [ stablePkgs.httpie ];
 
   home.sessionVariables = {
     PAGER = "less";
