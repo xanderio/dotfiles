@@ -45,6 +45,7 @@
             inputs.sops.nixosModules.sops
             {
               home-manager = {
+                extraSpecialArgs = { inherit inputs; };
                 useGlobalPkgs = true;
                 useUserPackages = true;
               };
