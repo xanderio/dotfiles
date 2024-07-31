@@ -107,6 +107,10 @@ local servers = {
   'terraform_lsp',
   'yamlls',
   'ruff',
+  'vuels',
+  'astro',
+  'tsserver',
+  'pylsp',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({
@@ -126,33 +130,6 @@ require('lspconfig').cssls.setup({
 require('lspconfig').emmet_ls.setup({
   capabilities = require('lsp').capabilities(),
   filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "heex" },
-  on_attach = function(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
-  end,
-})
-
-require('lspconfig').tsserver.setup({
-  capabilities = require('lsp').capabilities(),
-  on_attach = function(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
-  end,
-})
-
-require('lspconfig').volar.setup({
-  capabilities = require('lsp').capabilities(),
-  on_attach = function(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
-  end,
-  init_options = {
-    vue = {
-      hybridMode = false,
-    },
-  },
-  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
-})
-
-require('lspconfig').pylsp.setup({
-  capabilities = require('lsp').capabilities(),
   on_attach = function(client, bufnr)
     require('lsp').on_attach(client, bufnr)
   end,
