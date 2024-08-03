@@ -119,14 +119,6 @@ for _, lsp in ipairs(servers) do
   })
 end
 
-require('lspconfig').cssls.setup({
-  cmd = { "css-languageserver", "--stdio" }, 
-  capabilities = require('lsp').capabilities(),
-  on_attach = function(client, bufnr)
-    require('lsp').on_attach(client, bufnr)
-  end,
-})
-
 require('lspconfig').emmet_ls.setup({
   capabilities = require('lsp').capabilities(),
   filetypes = { "astro", "css", "eruby", "html", "htmldjango", "javascriptreact", "less", "pug", "sass", "scss", "svelte", "typescriptreact", "vue", "heex" },
@@ -138,24 +130,9 @@ require('lspconfig').emmet_ls.setup({
 local elixir = require("elixir")
 local elixirls = require("elixir.elixirls")
 elixir.setup {
-  nextls = {
-    enable = false,
-    experimental = {
-      completions = {
-        enable = true 
-      }
-    },
-    capabilities = require('lsp').capabilities(),
-    on_attach = function(client, bufnr)
-      vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-      vim.keymap.set("n", "<leader>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-      vim.keymap.set("v", "<leader>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
-      require('lsp').on_attach(client, bufnr)
-    end,
-  },
   elixirls = {
     enable = true,
-    tag = "v0.22.0",
+    tag = "v0.22.1",
     capabilities = require('lsp').capabilities(),
     on_attach = function(client, bufnr)
       vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
