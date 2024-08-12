@@ -63,3 +63,9 @@ vim.keymap.set('v', 'm',
     require("tsht").nodes()
   end
 ) 
+
+---@see https://github.com/nvim-treesitter/nvim-treesitter#adding-parsers
+require('nvim-treesitter.parsers').get_parser_configs().nu = {
+  -- Default settings.
+  install_info = {},
+}

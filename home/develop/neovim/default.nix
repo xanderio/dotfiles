@@ -134,7 +134,14 @@
       ])
       ++ (builtins.attrValues (
         pkgs.vimPlugins.nvim-treesitter.grammarPlugins
-        // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) { }
+        // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) {
+          tree-sitter-nu = pkgs.tree-sitter.builtGrammars.tree-sitter-nu.overrideAttrs {
+            postInstall = ''
+              mv -v $out/queries/nu/* $out/queries/
+              rm -rf $out/queries/nu
+            '';
+          };
+        }
       ))
     );
   };

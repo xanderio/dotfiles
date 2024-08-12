@@ -111,6 +111,7 @@ local servers = {
   'astro',
   'tsserver',
   'pylsp',
+  'nushell',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({
