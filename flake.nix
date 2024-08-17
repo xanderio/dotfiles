@@ -55,7 +55,7 @@
   };
 
   outputs =
-    inputs@{ flake-parts, self, ... }:
+    inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [
         "x86_64-linux"
@@ -71,14 +71,7 @@
         inherit (import ./home/profiles inputs) homeConfigurations;
       };
       perSystem =
-        {
-          pkgs,
-          lib,
-          inputs',
-          self',
-          system,
-          ...
-        }:
+        { pkgs, inputs', ... }:
         {
           formatter = pkgs.nixfmt-rfc-style;
           devShells.default = pkgs.mkShellNoCC {

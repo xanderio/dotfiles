@@ -18,11 +18,15 @@
         modules = [
           inputs.home-manager.darwinModules.home-manager
           {
+            imports = [ ./libvirt.nix ];
             system.stateVersion = 4;
             programs.fish.enable = true;
             programs.tmux.enable = true;
             security.pam.enableSudoTouchIdAuth = true;
             services.nix-daemon.enable = true;
+            nixpkgs.config.packageOverrides = {
+              nix-init = inputs.nixpkgs-master.legacyPackages.${system}.nix-init;
+            };
             nix = {
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
