@@ -131,7 +131,7 @@ local elixirls = require("elixir.elixirls")
 elixir.setup {
   elixirls = {
     enable = true,
-    tag = "v0.22.1",
+    tag = "v0.23.0",
     capabilities = require('lsp').capabilities(),
     on_attach = function(client, bufnr)
       vim.keymap.set("n", "<leader>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
