@@ -38,8 +38,6 @@ require('fidget').setup({
 })
 require('config.nvim-tree')
 
-vim.g.code_action_menu_show_diff = false
-
 local lsp_status = require('lsp-status')
 lsp_status.register_progress() 
 lsp_status.config({

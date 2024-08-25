@@ -66,7 +66,7 @@
         nvim-lightbulb
         FixCursorHold-nvim
         trouble-nvim
-        nvim-code-action-menu
+        actions-preview-nvim
         lspkind-nvim
         lsp_signature-nvim
         lsp-status-nvim

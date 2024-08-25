@@ -140,11 +140,10 @@ function M.lsp_keybinding(bufnr)
   buf_set_keymap('n', '<leader>c', '<cmd>lua vim.lsp.codelens.run()<CR>', opts)
 
   if vim.bo.filetype == "rust" then
-    -- buf_set_keymap('n', 'ga', '<cmd>RustCodeAction<CR>', opts)
     buf_set_keymap('n', 'J', '<cmd>RustJoinLines<CR>', opts)
   end
-  buf_set_keymap('n', 'ga', '<cmd>CodeActionMenu<CR>', opts)
 
+  vim.keymap.set({ "v", "n" }, "ga", require("actions-preview").code_actions, { buffer = bufnr})
 end
 
 return M
