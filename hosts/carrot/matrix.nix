@@ -51,7 +51,7 @@ in
         return 404;
       '';
       locations."/_matrix".proxyPass = "http://[::1]:8008";
-      locations."/_synapse/client".proxyPass = "http://[::1]:8008";
+      locations."/_synapse".proxyPass = "http://[::1]:8008";
     };
     virtualHosts."${turnRealm}" = {
       enableACME = true;
