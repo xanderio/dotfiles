@@ -18,6 +18,7 @@
     ./jellyfin.nix
     ./shairport.nix
     ./incus.nix
+    ./libvirt.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
