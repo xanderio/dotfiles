@@ -22,6 +22,8 @@
           "-f"
           "/etc/libvirt/libvirtd.conf"
           "-v"
+          "-p"
+          "/run/libvirt/libvirtd.pid"
         ];
         WorkingDirectory = "/var/lib/libvirt";
         StandardOutPath = "/var/log/libvirt/libvirt.log";
@@ -36,6 +38,8 @@
         ProgramArguments = [
           "${pkgs.libvirt}/bin/virtlogd"
           "-d"
+          "-p"
+          "/run/libvirt/virtlogd.pid"
         ];
         StandardOutPath = "/var/log/libvirt/virtlogd.log";
         StandardErrorPath = "/var/log/libvirt/virtlogd-error.log";
