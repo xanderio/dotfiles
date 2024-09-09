@@ -20,7 +20,7 @@
   networking.hostName = "vger";
   networking.firewall.allowedTCPPorts = [ 8080 ];
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     vaapiIntel
     libvdpau-va-gl

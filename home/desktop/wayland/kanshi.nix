@@ -24,37 +24,43 @@
     {
       enable = true;
 
-      profiles = {
-        undocked = {
-          exec = [ "${undocked-script}" ];
-          outputs = [
-            {
-              criteria = "eDP-1";
-              position = "0,0";
-            }
-          ];
-        };
-        docked = {
-          exec = [ "${docked-script}" ];
-          outputs = [
-            {
-              criteria = "eDP-1";
-              position = "0,1440";
-            }
-            {
-              criteria = "Lenovo Group Limited P27h-20 V906K7HR";
-              status = "enable";
-              mode = "2560x1440";
-              position = "0,0";
-            }
-            {
-              criteria = "Lenovo Group Limited P27q-20 V9064YE0";
-              status = "enable";
-              mode = "2560x1440";
-              position = "2560,0";
-            }
-          ];
-        };
-      };
+      settings = [
+        {
+          profile = {
+            name = "undocked";
+            exec = [ "${undocked-script}" ];
+            outputs = [
+              {
+                criteria = "eDP-1";
+                position = "0,0";
+              }
+            ];
+          };
+        }
+        {
+          profile = {
+            name = "docked";
+            exec = [ "${docked-script}" ];
+            outputs = [
+              {
+                criteria = "eDP-1";
+                position = "0,1440";
+              }
+              {
+                criteria = "Lenovo Group Limited P27h-20 V906K7HR";
+                status = "enable";
+                mode = "2560x1440";
+                position = "0,0";
+              }
+              {
+                criteria = "Lenovo Group Limited P27q-20 V9064YE0";
+                status = "enable";
+                mode = "2560x1440";
+                position = "2560,0";
+              }
+            ];
+          };
+        }
+      ];
     };
 }

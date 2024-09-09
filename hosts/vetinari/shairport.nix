@@ -62,6 +62,7 @@
       wantedBy = [ "aerosound.target" ];
       wants = [ "avahi-daemon.service" ];
       requires = [
+        "network-online.target"
         "nqptp.service"
         "mosquitto.service"
         "pipewire.service"

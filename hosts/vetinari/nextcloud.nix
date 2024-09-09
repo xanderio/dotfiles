@@ -19,14 +19,14 @@
       hostName = "cloud.xanderio.de";
       caching.apcu = true;
       caching.redis = true;
-      extraOptions = {
-        "memcache.local" = ''\OC\Memcache\APCu'';
-      };
       config = {
         dbtype = "pgsql";
         dbhost = "/run/postgresql";
         adminpassFile = "/etc/nixos/nextcloud-adminpass";
-        defaultPhoneRegion = "DE";
+      };
+      settings = {
+        default_phone_region = "DE";
+        "memcache.local" = ''\OC\Memcache\APCu'';
       };
     };
 

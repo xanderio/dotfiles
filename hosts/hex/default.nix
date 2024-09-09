@@ -31,7 +31,7 @@
     options iwlwifi disable_11ax=1
   '';
   networking.hostId = "8425e349";
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
     vaapiIntel
     libvdpau-va-gl

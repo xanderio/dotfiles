@@ -10,7 +10,7 @@
       enable = true;
       package = pkgs.paperless-ngx;
       address = "[::]";
-      extraConfig = {
+      settings = {
         PAPERLESS_URL = "https://paper.xanderio.de";
         PAPERLESS_OCR_LANGUAGE = "deu";
 

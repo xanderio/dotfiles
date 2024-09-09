@@ -15,23 +15,23 @@
     swaylock
     gnome-icon-theme
     hicolor-icon-theme # default fallback for icons
-    gnome.adwaita-icon-theme
-    gnome.gnome-themes-extra
+    adwaita-icon-theme
+    gnome-themes-extra
 
     gnomeExtensions.appindicator
     networkmanagerapplet # needed for icons to work
     iwgtk # icons
     gammastep
 
-    gnome.gnome-system-monitor
-    gnome.nautilus
+    gnome-system-monitor
+    nautilus
   ];
 
   gtk.iconCache.enable = true;
 
   programs.gnupg.agent.pinentryPackage = pkgs.pinentry-gnome;
   services = {
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    udev.packages = with pkgs; [ gnome-settings-daemon ];
     gvfs.enable = true;
     gnome = {
       gnome-keyring.enable = true;

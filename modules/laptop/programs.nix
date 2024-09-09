@@ -2,7 +2,7 @@
 {
   environment.systemPackages = with pkgs; [
     iwd
-    gnome.gnome-boxes
+    gnome-boxes
     signal-desktop
     flyctl
     just
