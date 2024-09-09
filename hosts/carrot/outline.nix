@@ -1,16 +1,16 @@
 { config, pkgs, ... }:
 let
   outline = pkgs.outline.overrideAttrs rec {
-    version = "0.79.0";
+    version = "0.79.1";
     src = pkgs.fetchFromGitHub {
       owner = "outline";
       repo = "outline";
       rev = "v${version}";
-      hash = "sha256-uu0HlQ3LaVBjSharROKv+mS8/qONV5qND/5kMTsaGeQ=";
+      hash = "sha256-UDbeflLX51bfE7OJehqP6uFa0lnV7wi2T5DZiQrll4g=";
     };
     yarnOfflineCache = pkgs.fetchYarnDeps {
       yarnLock = "${src}/yarn.lock";
-      hash = "sha256-S2vKYVIFsSlPqFbpLhBH9S43Invo3hsNLvfLX98922Y=";
+      hash = "sha256-BfWc0EjT3YEPK6wYayYbp66M/hj2J0zrWYvljvCFcH4=";
     };
   };
 
