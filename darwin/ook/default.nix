@@ -17,7 +17,7 @@
         };
         modules = [
           inputs.home-manager.darwinModules.home-manager
-          {
+            ({lib, ...}: {
             imports = [ ./libvirt.nix ];
             system.stateVersion = 4;
             programs.fish.enable = true;
@@ -30,11 +30,12 @@
             nix = {
               nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
               registry.nixpkgs.flake = inputs.nixpkgs;
+              registry.nixpkgs.to.path = lib.mkForce inputs.nixpkgs.outPath;
               distributedBuilds = true;
               buildMachines = [
                 {
                   sshUser = "xanderio";
-                  hostName = "192.168.64.4";
+                  hostName = "192.168.64.6";
                   systems = [
                     "aarch64-linux"
                     "x86_64-linux"
@@ -85,7 +86,7 @@
               inherit inputs;
             };
             home-manager.users.xanderio.imports = homeImports.ook;
-          }
+          })
         ];
       };
   };

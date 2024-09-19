@@ -107,7 +107,7 @@ local servers = {
   'ruff',
   'vuels',
   'astro',
-  'tsserver',
+  'ts_ls',
   'pylsp',
   'nushell',
 };
