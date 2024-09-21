@@ -15,6 +15,23 @@ let
 in
 {
   config = {
+    nixpkgs.config.packageOverrides = pkgs: {
+      stalwart-mail = pkgs.stalwart-mail.overrideAttrs (old: rec {
+        version = "0.10.0";
+        src = pkgs.fetchFromGitHub {
+          owner = "stalwartlabs";
+          repo = "mail-server";
+          rev = "refs/tags/v${version}";
+          hash = "sha256-9qk7+LJntEmCIuxp0707OOHBVkywlAJA1QmWllR9ZHg=";
+          fetchSubmodules = true;
+        };
+        cargoDeps = old.cargoDeps.overrideAttrs (_: {
+          inherit src;
+          outputHash = "sha256-ziy4nrdrA+KUnXmXpLVZUUpNYy1fJm+NDqJlcezxhec=";
+        });
+      });
+    };
+
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
     security.acme.certs =
