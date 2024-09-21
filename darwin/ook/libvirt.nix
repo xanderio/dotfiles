@@ -8,21 +8,21 @@
     ];
 
     launchd.daemons.libvirt = {
-      path = [
-        pkgs.gcc
-        pkgs.qemu
-        pkgs.dnsmasq
-        pkgs.libvirt
+      path = with pkgs; [
+        gcc
+        qemu
+        dnsmasq
+        libvirt
       ];
       serviceConfig = {
         KeepAlive = true;
         RunAtLoad = true;
         ProgramArguments = [
           "${pkgs.libvirt}/bin/libvirtd"
-          "-f"
+          "--config"
           "/etc/libvirt/libvirtd.conf"
-          "-v"
-          "-p"
+          "--verbose"
+          "--pid-file"
           "/run/libvirt/libvirtd.pid"
         ];
         WorkingDirectory = "/var/lib/libvirt";
@@ -37,8 +37,8 @@
         WorkingDirectory = "/var/lib/libvirt";
         ProgramArguments = [
           "${pkgs.libvirt}/bin/virtlogd"
-          "-d"
-          "-p"
+          "--daemon"
+          "--pid-file"
           "/run/libvirt/virtlogd.pid"
         ];
         StandardOutPath = "/var/log/libvirt/virtlogd.log";
@@ -60,6 +60,7 @@
       security_driver = "none"
       dynamic_ownership = 0
       remember_owner = 0
+      dump_guest_core = 1
     '';
   };
 }
