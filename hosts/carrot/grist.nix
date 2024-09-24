@@ -11,9 +11,14 @@
       autoStart = true;
       environment = {
         APP_HOME_URL = "https://grist.xanderio.de";
+
+        GRIST_HIDE_UI_ELEMENTS = "billing,sendToDrive,supportGrist";
+
+        GRIST_SANDBOX_FLAVOR = "gvisor";
+
         GRIST_OIDC_IDP_ISSUER = "https://sso.xanderio.de/application/o/grist/.well-known/openid-configuration";
         GRIST_OIDC_IDP_CLIENT_ID = "grist";
-        GRIST_FORCE_LOGIN = "1";
+        GRIST_FORCE_LOGIN = "true";
       };
       environmentFiles = [ config.sops.secrets."services/grist/env".path ];
 

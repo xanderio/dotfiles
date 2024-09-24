@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 let
@@ -16,20 +17,23 @@ in
 {
   config = {
     nixpkgs.config.packageOverrides = pkgs: {
-      stalwart-mail = pkgs.stalwart-mail.overrideAttrs (old: rec {
-        version = "0.10.0";
-        src = pkgs.fetchFromGitHub {
-          owner = "stalwartlabs";
-          repo = "mail-server";
-          rev = "refs/tags/v${version}";
-          hash = "sha256-9qk7+LJntEmCIuxp0707OOHBVkywlAJA1QmWllR9ZHg=";
-          fetchSubmodules = true;
-        };
-        cargoDeps = old.cargoDeps.overrideAttrs (_: {
-          inherit src;
-          outputHash = "sha256-ziy4nrdrA+KUnXmXpLVZUUpNYy1fJm+NDqJlcezxhec=";
-        });
-      });
+      stalwart-mail =
+        inputs.nixpkgs-master.legacyPackages.${pkgs.system}.stalwart-mail.overrideAttrs
+          (old: {
+            passthru.webadmin = old.passthru.webadmin.overrideAttrs (old: rec {
+              version = "0.1.15";
+              src = pkgs.fetchFromGitHub {
+                owner = "stalwartlabs";
+                repo = "webadmin";
+                rev = "refs/tags/v${version}";
+                hash = "sha256-YglpdxZT5CyFLla6uXTKPtq9EbA9SEQacyR9KNToYT0=";
+              };
+              cargoDeps = old.cargoDeps.overrideAttrs {
+                inherit src;
+                outputHash = "sha256-nKtbqXaU1TOJlSSWQhnp1BKeTcbIcKdnwnfpDbRv3SM=";
+              };
+            });
+          });
     };
 
     x.sops.secrets."services/stalwart/adminPwd" = { };
