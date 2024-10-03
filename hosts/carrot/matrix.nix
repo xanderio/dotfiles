@@ -7,11 +7,9 @@
 let
   fqdn = "bitflip.jetzt";
   turnRealm = "turn.${fqdn}";
-  syncv3Domain = "syncv3.${fqdn}";
   clientConfig = {
     "m.homeserver".base_url = "https://${fqdn}";
     "m.identity_server".base_url = "https://vector.im";
-    "org.matrix.msc3575.proxy".url = "https://${syncv3Domain}";
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
   mkWellKnown = data: ''
@@ -24,7 +22,6 @@ in
   x.sops.secrets = {
     "services/synapse/signing_key".owner = "matrix-synapse";
     "services/synapse/registration_shared_secret".owner = "matrix-synapse";
-    "services/synapse/sliding_sync_env".owner = "root";
   };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 8088 ];
@@ -59,11 +56,6 @@ in
       locations."/".extraConfig = ''
         return 404;
       '';
-    };
-    virtualHosts."${syncv3Domain}" = {
-      enableACME = true;
-      forceSSL = true;
-      locations."/".proxyPass = "http://${config.services.matrix-sliding-sync.settings.SYNCV3_BINDADDR}";
     };
   };
 
@@ -199,16 +191,6 @@ in
       extraConfig = ''
         turn_allow_guests: True
       '';
-    };
-  };
-
-  services.matrix-sliding-sync = {
-    enable = true;
-    environmentFile = config.sops.secrets."services/synapse/sliding_sync_env".path;
-    settings = {
-      SYNCV3_SERVER = "https://bitflip.jetzt";
-      SYNCV3_BINDADDR = "[::]:8009";
-      SYNCV3_LOG_LEVEL = "error";
     };
   };
 
