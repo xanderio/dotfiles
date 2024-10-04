@@ -19,6 +19,7 @@
     ./shairport.nix
     ./incus.nix
     ./libvirt.nix
+    ./immich.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."server"; }
   ];
