@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }:
 let
@@ -16,26 +15,6 @@ let
 in
 {
   config = {
-    nixpkgs.config.packageOverrides = pkgs: {
-      stalwart-mail =
-        inputs.nixpkgs-master.legacyPackages.${pkgs.system}.stalwart-mail.overrideAttrs
-          (old: {
-            passthru.webadmin = old.passthru.webadmin.overrideAttrs (old: rec {
-              version = "0.1.15";
-              src = pkgs.fetchFromGitHub {
-                owner = "stalwartlabs";
-                repo = "webadmin";
-                rev = "refs/tags/v${version}";
-                hash = "sha256-YglpdxZT5CyFLla6uXTKPtq9EbA9SEQacyR9KNToYT0=";
-              };
-              cargoDeps = old.cargoDeps.overrideAttrs {
-                inherit src;
-                outputHash = "sha256-nKtbqXaU1TOJlSSWQhnp1BKeTcbIcKdnwnfpDbRv3SM=";
-              };
-            });
-          });
-    };
-
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
     security.acme.certs =
