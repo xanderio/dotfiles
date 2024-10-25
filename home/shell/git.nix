@@ -26,6 +26,9 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [
+      pkgs.git-branchless
+    ];
     programs.git = {
       enable = true;
       userName = "Alexander Sieg";
