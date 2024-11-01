@@ -6,7 +6,7 @@
     nixos-small.url = "github:NixOS/nixpkgs/nixos-unstable-small";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     flake-parts.url = "github:hercules-ci/flake-parts";
-    colmena.url = "github:zhaofengli/colmena";
+    colmena.url = "github:zhaofengli/colmena/direct-flake-eval";
     colmena.inputs."nixpkgs".follows = "nixpkgs";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
@@ -76,7 +76,18 @@
           formatter = pkgs.nixfmt-rfc-style;
           devShells.default = pkgs.mkShellNoCC {
             buildInputs = [
-              pkgs.colmena
+              (inputs'.colmena.packages.colmena.overrideAttrs (old: {
+                patches = (
+                  old.patches or [ ]
+                  ++ [
+                    (pkgs.fetchpatch {
+                      url = "https://github.com/zhaofengli/colmena/pull/233.patch";
+                      hash = "sha256-uwL3u0gO708bzV2NV8sTt10WHaCL3HykJNqSZNp9EtA=";
+                    })
+                  ]
+                );
+              }))
+
               pkgs.sops
               inputs'.sops-to-age.packages.ssh-to-age
             ];

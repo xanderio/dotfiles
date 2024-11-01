@@ -59,6 +59,7 @@
       hex = import ./hex/disko.nix;
       vetinari = import ./vetinari/disko.nix;
     };
-    nixosConfigurations = (inputs.colmena.lib.makeHive self.outputs.colmena).nodes;
+    colmenaHive = inputs.colmena.lib.makeHive self.outputs.colmena;
+    nixosConfigurations = self.colmenaHive.nodes;
   };
 }
