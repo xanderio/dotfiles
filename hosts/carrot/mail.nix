@@ -15,6 +15,17 @@ let
 in
 {
   config = {
+    nixpkgs.config.packageOverrides = pkgs: {
+      stalwart-mail = pkgs.stalwart-mail.overrideAttrs (old: {
+        passthru.webadmin = pkgs.stalwart-mail.webadmin.override {
+          wasm-bindgen-cli = pkgs.wasm-bindgen-cli.override {
+            version = "0.2.93";
+            hash = "sha256-DDdu5mM3gneraM85pAepBXWn3TMofarVR4NbjMdz3r0=";
+            cargoHash = "sha256-birrg+XABBHHKJxfTKAMSlmTVYLmnmqMDfRnmG6g/YQ=";
+          };
+        };
+      });
+    };
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
     security.acme.certs =
