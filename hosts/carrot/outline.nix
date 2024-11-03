@@ -1,20 +1,4 @@
-{ config, pkgs, ... }:
-let
-  outline = pkgs.outline.overrideAttrs rec {
-    version = "0.79.1";
-    src = pkgs.fetchFromGitHub {
-      owner = "outline";
-      repo = "outline";
-      rev = "v${version}";
-      hash = "sha256-UDbeflLX51bfE7OJehqP6uFa0lnV7wi2T5DZiQrll4g=";
-    };
-    yarnOfflineCache = pkgs.fetchYarnDeps {
-      yarnLock = "${src}/yarn.lock";
-      hash = "sha256-BfWc0EjT3YEPK6wYayYbp66M/hj2J0zrWYvljvCFcH4=";
-    };
-  };
-
-in
+{ config, ... }:
 {
   config = {
     x.sops.secrets."services/outline/oidc-client-secret" = {
@@ -43,7 +27,6 @@ in
 
     services.outline = {
       enable = true;
-      package = outline;
       port = 9021;
       publicUrl = "https://outline.xanderio.de";
       storage = {
