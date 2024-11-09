@@ -1,7 +1,4 @@
-{ pkgs, inputs, ... }:
-let
-  stablePkgs = import inputs.nixos-stable { inherit (pkgs) system; };
-in
+{ pkgs, ... }:
 {
   imports = [
     ./fish.nix
@@ -9,7 +6,7 @@ in
   ];
 
   home.packages =
-    (with pkgs; [
+    with pkgs; [
       nushell
       ripgrep
       fd
@@ -21,8 +18,9 @@ in
       cachix
       nix-output-monitor
       gh
-    ])
-    ++ [ stablePkgs.httpie ];
+      httpie 
+    ];
+    
 
   home.sessionVariables = {
     PAGER = "less";
