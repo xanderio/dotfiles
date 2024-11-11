@@ -15,7 +15,7 @@
     nextcloud = {
       enable = true;
       https = true;
-      package = pkgs.nextcloud29;
+      package = pkgs.nextcloud30;
       hostName = "cloud.xanderio.de";
       caching.apcu = true;
       caching.redis = true;

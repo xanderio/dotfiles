@@ -55,16 +55,15 @@
         "stable": "stable"
       },
       "locked": {
-        "lastModified": 1731019880,
-        "narHash": "sha256-2fF9fF/Kin0M7Th1ovdjKhZoi5QGfiVu86KCuMkS8rw=",
+        "lastModified": 1731093438,
+        "narHash": "sha256-n1UeNT2PrbOlLNa+EhFMrniUN4BtGqCw9R9/qWpzNEA=",
         "owner": "zhaofengli",
         "repo": "colmena",
-        "rev": "a4604f33719eeb4fee048b0313e909c8b9c8af71",
+        "rev": "c4d72269affff3abbe7175d363e6c0edf1b0e167",
         "type": "github"
       },
       "original": {
         "owner": "zhaofengli",
-        "ref": "direct-flake-eval",
         "repo": "colmena",
         "type": "github"
       }
