@@ -1,7 +1,6 @@
 {
   pkgs,
   lib,
-  inputs,
   ...
 }:
 {
@@ -14,8 +13,8 @@
         nixpkgs-review
         glab
         gh
-      ])
-      ++ [ inputs.nix-fast-build.packages.${pkgs.system}.nix-fast-build ];
+        nix-fast-build
+      ]);
 
     sessionVariables = {
       DARCS_ALWAYS_COLOR = "1";
