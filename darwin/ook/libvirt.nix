@@ -1,11 +1,6 @@
 { pkgs, ... }:
 {
   config = {
-    nixpkgs.config.packageOverrides =
-    {
-      inherit ((builtins.getFlake "github:wegank/nixpkgs/7b6b730345cc762e8658543254aabc57ca2af04a").legacyPackages.${pkgs.system}) libvirt virt-manager;
-    };
-
     environment.systemPackages = with pkgs; [
       qemu
       libvirt
