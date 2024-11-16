@@ -20,16 +20,10 @@
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mms = {
-      url = "github:mkaito/nixos-modded-minecraft-servers";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     sops = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    next-ls.url = "github:elixir-tools/next-ls";
-    next-ls.inputs."nixpkgs".follows = "nixpkgs";
     sops-to-age.url = "github:Mic92/ssh-to-age";
     website = {
       url = "github:xanderio/website";
