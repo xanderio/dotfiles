@@ -10,6 +10,7 @@
       nushell
       ripgrep
       fd
+      sd
       htop
       file
       unzip
