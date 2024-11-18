@@ -110,6 +110,7 @@ local servers = {
   'ts_ls',
   'pylsp',
   'nushell',
+  'svelte',
 };
 for _, lsp in ipairs(servers) do
   require('lspconfig')[lsp].setup({

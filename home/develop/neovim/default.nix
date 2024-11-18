@@ -32,6 +32,7 @@
     ruff
 
     bash-language-server
+    svelte-language-server
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
