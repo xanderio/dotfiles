@@ -4,7 +4,7 @@
     enable = true;
     shellAliases = {
       ssh = "TERM=xterm-256color command ssh";
-      journal = ''nvim +"Neorg journal today"'';
+      cat = "${pkgs.bat}";
     };
 
     shellAbbrs = {
@@ -12,6 +12,7 @@
       s = "git s";
       d = "git diff";
       ds = "git diff --cached";
+      sl = "git sl";
       "dotdot" = {
         regex = "^\\.\\.+$";
         function = "multicd";
@@ -79,7 +80,6 @@
     functions =
       {
         fish_greeting.body = "";
-        cat.body = "${pkgs.bat}/bin/bat $argv";
         sops = {
           description = "sops wrapper to extract age key from 1password";
           body = ''
@@ -135,5 +135,4 @@
       }
     ];
   };
-  xdg.configFile."fish/completions/direnv.fish".source = ./direnv.fish;
 }
