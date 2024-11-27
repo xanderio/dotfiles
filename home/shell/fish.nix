@@ -4,7 +4,7 @@
     enable = true;
     shellAliases = {
       ssh = "TERM=xterm-256color command ssh";
-      cat = "${pkgs.bat}";
+      cat = "${lib.getExe pkgs.bat}";
     };
 
     shellAbbrs = {
