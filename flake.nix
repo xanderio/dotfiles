@@ -24,6 +24,8 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-review.url = "github:Mic92/nixpkgs-review";
+    nixpkgs-review.inputs.nixpkgs.follows = "nixpkgs";
     sops-to-age.url = "github:Mic92/ssh-to-age";
     website = {
       url = "github:xanderio/website";

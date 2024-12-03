@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
@@ -10,11 +11,10 @@
       (with pkgs; [
         nix-update
         nix-init
-        nixpkgs-review
         glab
         gh
         nix-fast-build
-      ]);
+      ]) ++ [ inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review ];
 
     sessionVariables = {
       DARCS_ALWAYS_COLOR = "1";
