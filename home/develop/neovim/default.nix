@@ -27,8 +27,7 @@
     #hadolint
     emmet-ls
 
-    python3Packages.python-lsp-server
-    python3Packages.python-lsp-ruff
+    pyright
     ruff
 
     bash-language-server

@@ -108,7 +108,7 @@ local servers = {
   'vuels',
   'astro',
   'ts_ls',
-  'pylsp',
+  'pyright',
   'nushell',
   'svelte',
 };
