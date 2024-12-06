@@ -47,7 +47,12 @@ in
       locations."/".extraConfig = ''
         return 404;
       '';
-      locations."/_matrix".proxyPass = "http://[::1]:8008";
+      locations."/_matrix" = {
+        proxyPass = "http://[::1]:8008";
+        extraConfig = ''
+          client_max_body_size 1G;
+        '';
+      };
       locations."/_synapse".proxyPass = "http://[::1]:8008";
     };
     virtualHosts."${turnRealm}" = {
