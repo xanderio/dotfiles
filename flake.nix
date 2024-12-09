@@ -15,6 +15,10 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     neovim-nightly-overlay = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -47,6 +51,7 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      debug = true;
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -56,6 +61,7 @@
         ./hosts
         ./darwin
         ./checks
+        ./nixvim
       ];
       flake = {
         inherit (import ./home/profiles inputs) homeConfigurations;
