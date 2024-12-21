@@ -136,6 +136,12 @@
         pkgs.vimPlugins.nvim-treesitter.grammarPlugins
         // lib.mapAttrs (_: pkgs.neovimUtils.grammarToPlugin) {
           tree-sitter-nu = pkgs.tree-sitter.builtGrammars.tree-sitter-nu.overrideAttrs {
+            src = pkgs.fetchFromGitHub {
+              owner = "nushell";
+              repo = "tree-sitter-nu";
+              rev = "ac878320cd624b3402a50fa875ad5f90bf6dd6d7";
+              hash = "sha256-KKX1eoRCGFzp9mt7ugzK1M/CAy6jGS8jcLU/HpEQXWc=";
+            };
             postInstall = ''
               mv -v $out/queries/nu/* $out/queries/
               rm -rf $out/queries/nu
