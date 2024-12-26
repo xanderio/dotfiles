@@ -35,7 +35,7 @@
     nodePackages.dockerfile-language-server-nodejs
     nodePackages.typescript
     nodePackages.typescript-language-server
-    nodePackages.vue-language-server
+    # nodePackages.vue-language-server
     nodePackages.yaml-language-server
     nodePackages.prettier
   ];

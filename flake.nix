@@ -46,6 +46,7 @@
       url = "github:nix-community/authentik-nix";
       inputs."flake-parts".follows = "flake-parts";
     };
+    catppuccin.url = "github:catppuccin/nix";
   };
 
   outputs =

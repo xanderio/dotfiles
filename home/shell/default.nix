@@ -1,27 +1,28 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     ./fish.nix
     ./git.nix
+    inputs.catppuccin.homeManagerModules.catppuccin
   ];
 
-  home.packages =
-    with pkgs; [
-      nushell
-      ripgrep
-      fd
-      sd
-      htop
-      file
-      unzip
-      nix-your-shell
-      comma
-      cachix
-      nix-output-monitor
-      gh
-      httpie 
-    ];
-    
+  catppuccin.enable = true;
+
+  home.packages = with pkgs; [
+    nushell
+    ripgrep
+    fd
+    sd
+    htop
+    file
+    unzip
+    nix-your-shell
+    comma
+    cachix
+    nix-output-monitor
+    gh
+    httpie
+  ];
 
   home.sessionVariables = {
     PAGER = "less";
@@ -45,9 +46,6 @@
     jq.enable = true;
     bat = {
       enable = true;
-      config = {
-        theme = "Dracula";
-      };
     };
     home-manager.enable = true;
     nix-index.enable = true;

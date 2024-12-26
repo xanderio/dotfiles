@@ -5,7 +5,6 @@
   ...
 }:
 {
-  imports = [ ./neovim ];
   home = {
     packages =
       (with pkgs; [
@@ -14,7 +13,10 @@
         glab
         gh
         nix-fast-build
-      ]) ++ [ inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review ];
+      ]) ++ [ 
+        inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review 
+        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
+      ];
 
     sessionVariables = {
       DARCS_ALWAYS_COLOR = "1";
