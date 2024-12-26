@@ -4,7 +4,6 @@
       capabilities = require('blink.cmp').get_lsp_capabilities()
     '';
 
-
   plugins.blink-cmp = {
     enable = true;
     settings = {

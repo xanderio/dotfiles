@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       friendly-snippets = true;
+      create_cmp_source = false;
     };
   };
 
