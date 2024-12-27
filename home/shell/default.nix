@@ -1,12 +1,9 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./fish.nix
     ./git.nix
-    inputs.catppuccin.homeManagerModules.catppuccin
   ];
-
-  catppuccin.enable = true;
 
   home.packages = with pkgs; [
     nushell
