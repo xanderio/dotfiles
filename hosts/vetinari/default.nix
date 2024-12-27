@@ -7,7 +7,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./spotifyd.nix
     ./audio.nix
     ./paperless.nix
     ./audiobookshelf.nix
@@ -16,7 +15,6 @@
     ./nextcloud.nix
     ./netatalk.nix
     ./jellyfin.nix
-    ./shairport.nix
     ./incus.nix
     ./libvirt.nix
     ./immich.nix
@@ -56,20 +54,6 @@
   boot.supportedFilesystems = [ "zfs" ];
 
   boot.zfs.extraPools = [ "media" ];
-
-  services.syncthing = {
-    enable = true;
-    relay.enable = true;
-    openDefaultPorts = true;
-    settings = {
-      options = {
-        urAccepted = -1;
-        localAnnounceEnabled = true;
-      };
-    };
-    overrideDevices = false;
-    overrideFolders = false;
-  };
 
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
