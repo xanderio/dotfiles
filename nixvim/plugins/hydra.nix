@@ -10,18 +10,20 @@
             position = "bottom";
           };
           invoke_on_body = true;
-          on_enter = ''
+          on_enter = #lua 
+            ''
             function()
               vim.bo.modifiable = false
-              gitsigns.toggle_signs(true)
-              gitsigns.toggle_linehl(true)
+              require("gitsigns").toggle_signs(true)
+              require("gitsigns").toggle_linehl(true)
             end
           '';
-          on_exit = ''
+          on_exit = #lua 
+            ''
               function()
-            	gitsigns.toggle_signs(false)
-            	gitsigns.toggle_linehl(false)
-            	gitsigns.toggle_deleted(false)
+            	require("gitsigns").toggle_signs(false)
+            	require("gitsigns").toggle_linehl(false)
+            	require("gitsigns").toggle_deleted(false)
             	vim.cmd("echo") -- clear the echo area
             end
           '';
@@ -36,7 +38,7 @@
                     return "]c"
                   end
                   vim.schedule(function()
-                    gitsigns.next_hunk()
+                    require("gitsigns").next_hunk()
                   end)
                   return "<Ignore>"
                 end
@@ -55,7 +57,7 @@
                     return "[c"
                   end
                   vim.schedule(function()
-                    gitsigns.prev_hunk()
+                    require("gitsigns").prev_hunk()
                   end)
                   return "<Ignore>"
                 end
@@ -110,7 +112,7 @@
             {
               __raw = ''
                 function()
-                  gitsigns.blame_line({ full = true })
+                  require("gitsigns").blame_line({ full = true })
                 end,
               '';
             }
