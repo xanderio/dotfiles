@@ -12,7 +12,6 @@
     ../authentik-proxy
   ];
 
-
   boot.tmp.cleanOnBoot = true;
 
   services.openssh = {

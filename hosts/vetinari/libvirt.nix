@@ -2,6 +2,6 @@
   config = {
     virtualisation.libvirtd.enable = true;
     security.polkit.enable = true;
-    users.users.xanderio.extraGroups = ["libvirtd"];
+    users.users.xanderio.extraGroups = [ "libvirtd" ];
   };
 }

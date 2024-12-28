@@ -3,7 +3,7 @@
   # https://nix-community.github.io/nixvim/plugins/treesitter/index.html
   plugins.treesitter = {
     enable = true;
-    
+
     gccPackage = null;
     nodejsPackage = null;
     treesitterPackage = null;

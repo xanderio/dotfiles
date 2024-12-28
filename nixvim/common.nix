@@ -211,7 +211,6 @@
     };
   };
 
-
   # The line beneath this is called `modeline`. See `:help modeline`
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraconfigluapost
   extraConfigLuaPost = ''

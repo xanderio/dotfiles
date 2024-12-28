@@ -1,4 +1,5 @@
-{config, ...}:{
+{ config, ... }:
+{
   config = {
     services.immich = {
       enable = true;

@@ -74,7 +74,7 @@
 
         elixir-tools-nvim
 
-        ## rust 
+        ## rust
         rust-tools-nvim
         crates-nvim
 

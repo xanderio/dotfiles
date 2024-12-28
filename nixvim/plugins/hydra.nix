@@ -10,23 +10,23 @@
             position = "bottom";
           };
           invoke_on_body = true;
-          on_enter = #lua 
-            ''
-            function()
-              vim.bo.modifiable = false
-              require("gitsigns").toggle_signs(true)
-              require("gitsigns").toggle_linehl(true)
-            end
-          '';
-          on_exit = #lua 
+          on_enter = # lua
             ''
               function()
-            	require("gitsigns").toggle_signs(false)
-            	require("gitsigns").toggle_linehl(false)
-            	require("gitsigns").toggle_deleted(false)
-            	vim.cmd("echo") -- clear the echo area
-            end
-          '';
+                vim.bo.modifiable = false
+                require("gitsigns").toggle_signs(true)
+                require("gitsigns").toggle_linehl(true)
+              end
+            '';
+          on_exit = # lua
+            ''
+                function()
+              	require("gitsigns").toggle_signs(false)
+              	require("gitsigns").toggle_linehl(false)
+              	require("gitsigns").toggle_deleted(false)
+              	vim.cmd("echo") -- clear the echo area
+              end
+            '';
         };
         heads = [
           [

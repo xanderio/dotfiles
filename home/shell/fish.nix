@@ -114,7 +114,7 @@
     ];
   };
 
-  xdg.configFile."fish/themes/Catppuccin Mocha.theme".text = # fish 
+  xdg.configFile."fish/themes/Catppuccin Mocha.theme".text = # fish
     ''
       # name: 'Catppuccin Mocha'
       # url: 'https://github.com/catppuccin/fish'

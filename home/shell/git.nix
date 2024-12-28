@@ -96,7 +96,8 @@ in
           prompt = false;
         };
         rebase.autosquash = true;
-        "mergetool.nvim".cmd = "${pkgs.neovim}/bin/nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
+        "mergetool.nvim".cmd =
+          "${pkgs.neovim}/bin/nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
         push.autoSetupRemote = true;
       };
 

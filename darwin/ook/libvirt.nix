@@ -1,5 +1,5 @@
 { pkgs, ... }:
-let 
+let
   patched = builtins.getFlake "github:gador/nixpkgs/7054001387eebc73f2232ae35b92288e58ddd2dc";
 in
 {
