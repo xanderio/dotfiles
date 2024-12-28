@@ -23,6 +23,7 @@
       DARCS_ALTERNATIVE_COLOR = "1";
       DARCS_DO_COLOR_LINES = "1";
       ERL_AFLAGS = "-kernel shell_history enabled";
+      EDITOR = "nvim";
     };
 
     file.".cargo/config.toml".text =

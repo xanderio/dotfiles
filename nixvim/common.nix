@@ -1,10 +1,13 @@
 {
   imports = [
+    ./plugins/diffview.nix
     ./plugins/gitsigns.nix
     ./plugins/hydra.nix
     ./plugins/indent-blanklines.nix
     ./plugins/lualine.nix
     ./plugins/neogit.nix
+    ./plugins/neotest.nix
+    ./plugins/telescope.nix
   ];
 
   withRuby = false;
@@ -212,7 +215,7 @@
   # The line beneath this is called `modeline`. See `:help modeline`
   # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugins#extraconfigluapost
   extraConfigLuaPost = ''
-    cmd 'unmap Y'
+    vim.cmd([[unmap Y]])
     -- vim: ts=2 sts=2 sw=2 et
   '';
 }

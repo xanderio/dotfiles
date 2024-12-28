@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ./fish.nix
@@ -49,6 +49,7 @@
     starship = {
       enable = true;
       settings = {
+        palette = "catppuccin_mocha";
         command_timeout = 100;
         add_newline = false;
         directory = {
@@ -60,7 +61,7 @@
           symbol = "🚨";
         };
         git_status.conflicted = "🤯";
-      };
+      } // lib.importTOML ./starship_mocha.toml;
     };
   };
 
