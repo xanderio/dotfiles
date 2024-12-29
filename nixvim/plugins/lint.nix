@@ -3,6 +3,7 @@
 
   extraPackages = with pkgs; [
     deadnix
+    markdownlint-cli
   ];
 
   # Linting
