@@ -4,6 +4,11 @@
   inputs,
   ...
 }:
+let
+  neovim = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim.extend {
+    nixpkgs.pkgs = pkgs;
+  };
+in
 {
   home = {
     packages =
@@ -16,8 +21,9 @@
       ])
       ++ [
         inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review
-        inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim
-      ];
+        neovim
+      ]
+      ++ neovim.config.extraPackages;
 
     sessionVariables = {
       DARCS_ALWAYS_COLOR = "1";
