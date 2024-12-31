@@ -1,13 +1,6 @@
 { pkgs, ... }:
-let
-  patched = builtins.getFlake "github:gador/nixpkgs/7054001387eebc73f2232ae35b92288e58ddd2dc";
-in
 {
   config = {
-    nixpkgs.config.packageOverrides = _: {
-      spice-gtk = patched.legacyPackages.${pkgs.system}.spice-gtk;
-    };
-
     environment.systemPackages = with pkgs; [
       qemu
       libvirt
