@@ -6,7 +6,6 @@
     ./plugins/indent-blanklines.nix
     ./plugins/lualine.nix
     ./plugins/neogit.nix
-    ./plugins/neotest.nix
     ./plugins/telescope.nix
   ];
 

@@ -10,6 +10,7 @@
     ./plugins/lsp.nix
     ./plugins/mini.nix
     ./plugins/neo-tree.nix
+    ./plugins/neotest.nix
     ./plugins/nvim-snippets.nix
     ./plugins/conform.nix
     ./plugins/treesitter.nix
