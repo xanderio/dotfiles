@@ -36,6 +36,7 @@
 
         defaults = {
           imports = [
+            ../profiles/base
             ../modules/minimal.nix
             ../modules/ntfy.nix
             ../modules/sops

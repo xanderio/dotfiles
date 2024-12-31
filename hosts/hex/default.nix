@@ -21,7 +21,6 @@
 
   networking.hostName = "hex";
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.supportedFilesystems = [ "zfs" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 5;
