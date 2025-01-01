@@ -47,7 +47,7 @@
         theme = "Catppuccin Mocha";
       };
       themes = {
-        "Catppuccin_Mocha" = {
+        "Catppuccin Mocha" = {
           src = pkgs.fetchFromGitHub {
             owner = "catppuccin";
             repo = "bat";

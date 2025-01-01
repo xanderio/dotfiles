@@ -21,10 +21,4 @@
     nvimRuntime = true;
     plugins = true;
   };
-
-  plugins = {
-    web-devicons = {
-      enable = true;
-    };
-  };
 }
