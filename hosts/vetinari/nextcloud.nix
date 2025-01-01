@@ -16,9 +16,10 @@
       enable = true;
       https = true;
       package = pkgs.nextcloud30;
+      appstoreEnable = true;
       hostName = "cloud.xanderio.de";
-      caching.apcu = true;
-      caching.redis = true;
+      phpOptions."opcache.interned_strings_buffer" = "32";
+      configureRedis = true;
       config = {
         dbtype = "pgsql";
         dbhost = "/run/postgresql";
@@ -26,7 +27,7 @@
       };
       settings = {
         default_phone_region = "DE";
-        "memcache.local" = ''\OC\Memcache\APCu'';
+        "maintenance_window_start" = "1";
       };
     };
 

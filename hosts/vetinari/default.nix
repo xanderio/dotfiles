@@ -1,6 +1,5 @@
 {
   pkgs,
-  config,
   lib,
   homeImports,
   ...
@@ -43,6 +42,10 @@
   networking.hostId = "8419e344";
 
   disko.devices = import ./disko.nix { disks = [ "/dev/sda" ]; };
+
+  services.postgresql = {
+    package = pkgs.postgresql_16;
+  };
 
   networking.useNetworkd = true;
 
