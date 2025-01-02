@@ -1,7 +1,5 @@
 {
-  config,
   pkgs,
-  lib,
   ...
 }:
 {
@@ -28,7 +26,6 @@
 
   environment.systemPackages = with pkgs; [
     htop
-    neovim
   ];
 
   documentation.man.generateCaches = true;

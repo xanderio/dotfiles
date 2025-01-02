@@ -1,3 +1,9 @@
+{inputs, pkgs, ...}:
+let 
+  neovim = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim-server.extend {
+    nixpkgs.pkgs = pkgs;
+  };
+in 
 {
   imports = [
     ../common
@@ -13,14 +19,9 @@
     domain = "xanderio.de";
   };
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    viAlias = true;
-    vimAlias = true;
-    withRuby = false;
-    withPython3 = false;
-  };
+  environment.systemPackages = [
+    neovim 
+  ] ++ neovim.config.extraPackages;
 
   deployment.tags = [ "server" ];
 
