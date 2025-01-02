@@ -4,6 +4,11 @@
       capabilities = require('blink.cmp').get_lsp_capabilities()
     '';
 
+  plugins.mini = {
+    enable = true;
+    modules.icons = {};
+  };
+
   plugins.blink-cmp = {
     enable = true;
     settings = {
@@ -22,7 +27,23 @@
         list.selection = "auto_insert";
         # Shows after typing a trigger character, defined by the sources
         trigger.show_on_trigger_character = true;
+        menu.draw.components.kind_icon = {
+          ellipsis = false;
+          text.__raw = ''
+            function(ctx)
+              local kind_icon, _, _ = require('mini.icons').get('lsp', ctx.kind)
+              return kind_icon
+            end
+          '';
+          highlight.__raw = ''
+            function(ctx)
+              local _, hl, _ = require('mini.icons').get('lsp', ctx.kind)
+              return hl
+            end
+          '';
+        };
       };
+      signature.enabled = true;
       sources = {
         default = [
           "lsp"
