@@ -10,6 +10,10 @@ let
   clientConfig = {
     "m.homeserver".base_url = "https://${fqdn}";
     "m.identity_server".base_url = "https://vector.im";
+    "org.matrix.msc2965.authentication" = {
+      issuer = "https://auth-matrix.cyberus-technology.de/";
+      account = "https://auth-matrix.cyberus-technology.de/account";
+    };
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
   mkWellKnown = data: ''
@@ -19,6 +23,10 @@ let
   '';
 in
 {
+  imports = [
+    ./matrix-authentication-services.nix
+  ];
+
   nixpkgs.overlays = [
     (_final: prev: {
       matrix-synapse-unwrapped = prev.matrix-synapse-unwrapped.overridePythonAttrs (old: {
@@ -30,7 +38,10 @@ in
 
   x.sops.secrets = {
     "services/synapse/signing_key".owner = "matrix-synapse";
+    "services/synapse/macaroon_secret_key" = { };
     "services/synapse/registration_shared_secret".owner = "matrix-synapse";
+    "services/mas-synapse/client_secret" = { };
+    "services/mas-synapse/homeserver_secret" = { };
   };
 
   networking.firewall.interfaces."tailscale0".allowedTCPPorts = [ 8088 ];
@@ -56,6 +67,12 @@ in
       locations."/".extraConfig = ''
         return 404;
       '';
+      locations."~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+        proxyPass = "http://[::]:8085";
+        extraConfig = ''
+          proxy_http_version 1.1;
+        '';
+      };
       locations."/_matrix" = {
         proxyPass = "http://[::1]:8008";
         extraConfig = ''
@@ -122,36 +139,52 @@ in
     "services/synapse/oidc_secret" = { };
   };
 
-  sops.templates."synapse-oidc" = {
+  sops.templates."synapse-mas" = {
     owner = "matrix-synapse";
     content = builtins.toJSON {
-      oidc_providers = [
-        {
-          idp_id = "authentik";
-          idp_name = "authentik";
-          discover = true;
-          issuer = "https://sso.xanderio.de/application/o/synapse/";
-          client_id = "synapse";
-          client_secret = config.sops.placeholder."services/synapse/oidc_secret";
-          scopes = [
-            "openid"
-            "profile"
-            "email"
-          ];
-          user_mapping_provider.config = {
-            localpart_template = "{{ user.preferred_username }}";
-            display_name_template = "{{ user.preferred_username }}";
-          };
-          allow_existing_users = true;
-        }
-      ];
+      macaroon_secret_key = config.sops.placeholder."services/synapse/macaroon_secret_key";
+      experimental_features.msc3861 = {
+        enabled = true;
+        client_id = "0000000000000000000SYNAPSE";
+        issuer = "https://mas.bitflip.jetzt/";
+        client_auth_method = "client_secret_basic";
+        client_secret = config.sops.placeholder."services/mas-synapse/client_secret";
+        admin_token = config.sops.placeholder."services/mas-synapse/homeserver_secret";
+        account_management_url = "https://mas.bitflip.jetzt/account";
+      };
     };
   };
+
+  # sops.templates."synapse-oidc" = {
+  #   owner = "matrix-synapse";
+  #   content = builtins.toJSON {
+  #     oidc_providers = [
+  #       {
+  #         idp_id = "authentik";
+  #         idp_name = "authentik";
+  #         discover = true;
+  #         issuer = "https://sso.xanderio.de/application/o/synapse/";
+  #         client_id = "synapse";
+  #         client_secret = config.sops.placeholder."services/synapse/oidc_secret";
+  #         scopes = [
+  #           "openid"
+  #           "profile"
+  #           "email"
+  #         ];
+  #         user_mapping_provider.config = {
+  #           localpart_template = "{{ user.preferred_username }}";
+  #           display_name_template = "{{ user.preferred_username }}";
+  #         };
+  #         allow_existing_users = true;
+  #       }
+  #     ];
+  #   };
+  # };
 
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
-    extraConfigFiles = [ config.sops.templates."synapse-oidc".path ];
+    extraConfigFiles = [ config.sops.templates."synapse-mas".path ];
     extras = [ "oidc" ];
     settings = {
       server_name = fqdn;
@@ -199,23 +232,15 @@ in
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=udp"
         "turn:${turnRealm}:${toString config.services.coturn.listening-port}?transport=tcp"
       ];
+      turn_allow_guests = true;
       turn_shared_secret = config.services.coturn.static-auth-secret;
       turn_user_lifetime = "86400000";
-      password_config.enabled = true;
-      extraConfig = ''
-        turn_allow_guests: True
-      '';
+      password_config.enabled = false;
+
+      user_directory = {
+        search_all_users = true;
+        prefer_local_users = true;
+      };
     };
   };
-
-  # remove chmod for signing-key file
-  systemd.services.matrix-synapse.serviceConfig.ExecStartPre =
-    let
-      waitForIdP = pkgs.writeShellScript "waitForIdP" ''
-        until ${lib.getExe pkgs.curl} -q "https://sso.xanderio.de/application/o/synapse/.well-known/openid-configuration"; do 
-          sleep 0.5
-        done
-      '';
-    in
-    lib.mkForce [ waitForIdP ];
 }

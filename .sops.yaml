@@ -44,7 +44,12 @@ creation_rules:
     key_groups:
       - age:
         - *xanderio
-        - *delenn
+        - *carrot
+
+  - path_regex: secrets/services/mas-synapse.yaml
+    key_groups:
+      - age:
+        - *xanderio
         - *carrot
 
   - path_regex: secrets/services/authentik.yaml

@@ -11,6 +11,7 @@ in
     ./node_exporter.nix
     ./nginx.nix
     ./wireguard.nix
+    ../matrix-authentication-service
   ];
 
   zramSwap.enable = true;
