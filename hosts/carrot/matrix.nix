@@ -13,12 +13,21 @@ let
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
   mkWellKnown = data: ''
-    add_header Content-Type application/json;
+    default_type application/json;
     add_header Access-Control-Allow-Origin *;
     return 200 '${builtins.toJSON data}';
   '';
 in
 {
+  nixpkgs.overlays = [
+    (_final: prev: {
+      matrix-synapse-unwrapped = prev.matrix-synapse-unwrapped.overridePythonAttrs (old: {
+        doCheck = false;
+        nativeBuildInputs = builtins.filter (p: p.name != "pysaml2") old.nativeBuildInputs;
+      });
+    })
+  ];
+
   x.sops.secrets = {
     "services/synapse/signing_key".owner = "matrix-synapse";
     "services/synapse/registration_shared_secret".owner = "matrix-synapse";
