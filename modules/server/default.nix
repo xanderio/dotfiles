@@ -1,9 +1,9 @@
-{inputs, pkgs, ...}:
-let 
+{ inputs, pkgs, ... }:
+let
   neovim = inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.neovim-server.extend {
     nixpkgs.pkgs = pkgs;
   };
-in 
+in
 {
   imports = [
     ../common
@@ -20,8 +20,12 @@ in
     domain = "xanderio.de";
   };
 
+  environment.variables = {
+    EDITOR = "nvim";
+  };
+
   environment.systemPackages = [
-    neovim 
+    neovim
   ] ++ neovim.config.extraPackages;
 
   deployment.tags = [ "server" ];
