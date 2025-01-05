@@ -102,14 +102,13 @@
   };
 
   systemd.services.matrix-authentication-service.serviceConfig.LoadCredential = [
-    "mas-secrets.yaml:${config.sops.templates."mas-secrets".path}"
     "signing_key_ec:${config.sops.secrets."services/mas-synapse/signing_key_ec".path}"
     "signing_key_rsa:${config.sops.secrets."services/mas-synapse/signing_key_rsa".path}"
   ];
 
   services.matrix-authentication-service = {
     enable = true;
-    extraConfigFiles = [ "/run/credentials/matrix-authentication-service.service/mas-secrets.yaml" ];
+    extraConfigFiles = [ config.sops.templates."mas-secrets".path ];
     settings = {
       http = {
         public_base = "https://mas.bitflip.jetzt";
