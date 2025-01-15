@@ -24,7 +24,10 @@
         ];
       };
       completion = {
-        list.selection = "auto_insert";
+        list.selection = { 
+          preselect = true;
+          auto_insert = true; 
+        };
         # Shows after typing a trigger character, defined by the sources
         trigger.show_on_trigger_character = true;
         menu.draw.components.kind_icon = {
