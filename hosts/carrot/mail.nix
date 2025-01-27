@@ -12,15 +12,9 @@ let
     "bitflip.jetzt"
     "sieg.contact"
   ];
-  pinned-nixpkgs = builtins.getFlake "github:nixos/nixpkgs/7eeab251bbb9af3835f60106a7a407e9cc0998fe";
 in
 {
   config = {
-    nixpkgs.overlays = [
-      (_prev: _final: {
-        inherit (pinned-nixpkgs.legacyPackages.${pkgs.system}) stalwart-mail foundationdb;
-      })
-    ];
     x.sops.secrets."services/stalwart/adminPwd" = { };
 
     security.acme.certs =
