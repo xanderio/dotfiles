@@ -25,8 +25,16 @@
       };
       completion = {
         list.selection = { 
-          preselect = true;
-          auto_insert = true; 
+          preselect.__raw = ''
+            function(ctx) 
+              return ctx.mode ~= 'cmdline' 
+            end
+          '';
+          auto_insert.__raw = ''
+            function(ctx) 
+              return ctx.mode ~= 'cmdline' 
+            end
+          '';
         };
         # Shows after typing a trigger character, defined by the sources
         trigger.show_on_trigger_character = true;

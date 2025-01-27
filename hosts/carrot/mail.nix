@@ -107,26 +107,26 @@ in
         server = {
           listener = {
             smtp = {
-              bind = [ "[::]:25" ];
+              bind = [ "[::]:25" "0.0.0.0:25" ];
               protocol = "smtp";
             };
             submissions = {
-              bind = [ "[::]:465" ];
+              bind = [ "[::]:465" "0.0.0.0:465" ];
               protocol = "smtp";
               tls.implicit = true;
             };
             imaptls = {
-              bind = [ "[::]:993" ];
+              bind = [ "[::]:993" "0.0.0.0:993"];
               protocol = "imap";
               tls.implicit = true;
             };
             sieve = {
-              bind = [ "[::1]:4190" ];
+              bind = [ "[::1]:4190" "0.0.0.0:4190"];
               protocol = "managesieve";
               tls.implicit = true;
             };
             management = {
-              bind = [ "[::1]:8119" ];
+              bind = [ "[::1]:8119" "0.0.0.0:8119"];
               protocol = "http";
             };
           };

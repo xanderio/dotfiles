@@ -10,18 +10,25 @@
 
     services.nginx = {
       enable = true;
-      virtualHosts."hass.xanderio.de" = {
+      proxyResolveWhileRunning = true;
+      resolver.addresses = [
+        "127.0.0.53:53"
+      ];
+      upstreams."hass".servers = {
+        "homeassistant.local:8123" = { };
+      };
+      virtualHosts."hass.blatory.de" = {
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "http://home-assistant.incus.home.xanderio.de:8123";
+          proxyPass = "http://hass";
           proxyWebsockets = true;
         };
       };
     };
 
     services.mosquitto = {
-      enable = true;
+      enable = false;
       settings = {
         sys_interval = 10;
       };

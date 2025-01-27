@@ -141,45 +141,23 @@ in
 
   sops.templates."synapse-mas" = {
     owner = "matrix-synapse";
+    restartUnits = [ "matrix-synapse.service" ];
     content = builtins.toJSON {
       macaroon_secret_key = config.sops.placeholder."services/synapse/macaroon_secret_key";
-      experimental_features.msc3861 = {
-        enabled = true;
-        client_id = "0000000000000000000SYNAPSE";
-        issuer = "https://mas.bitflip.jetzt/";
-        client_auth_method = "client_secret_basic";
-        client_secret = config.sops.placeholder."services/mas-synapse/client_secret";
-        admin_token = config.sops.placeholder."services/mas-synapse/homeserver_secret";
-        account_management_url = "https://mas.bitflip.jetzt/account";
+      experimental_features = {
+        msc4108_enabled = true;
+        msc3861 = {
+          enabled = true;
+          client_id = "0000000000000000000SYNAPSE";
+          issuer = "https://mas.bitflip.jetzt/";
+          client_auth_method = "client_secret_basic";
+          client_secret = config.sops.placeholder."services/mas-synapse/client_secret";
+          admin_token = config.sops.placeholder."services/mas-synapse/homeserver_secret";
+          account_management_url = "https://mas.bitflip.jetzt/account";
+        };
       };
     };
   };
-
-  # sops.templates."synapse-oidc" = {
-  #   owner = "matrix-synapse";
-  #   content = builtins.toJSON {
-  #     oidc_providers = [
-  #       {
-  #         idp_id = "authentik";
-  #         idp_name = "authentik";
-  #         discover = true;
-  #         issuer = "https://sso.xanderio.de/application/o/synapse/";
-  #         client_id = "synapse";
-  #         client_secret = config.sops.placeholder."services/synapse/oidc_secret";
-  #         scopes = [
-  #           "openid"
-  #           "profile"
-  #           "email"
-  #         ];
-  #         user_mapping_provider.config = {
-  #           localpart_template = "{{ user.preferred_username }}";
-  #           display_name_template = "{{ user.preferred_username }}";
-  #         };
-  #         allow_existing_users = true;
-  #       }
-  #     ];
-  #   };
-  # };
 
   services.matrix-synapse = {
     enable = true;
