@@ -27,14 +27,14 @@ in
     ./matrix-authentication-services.nix
   ];
 
-  nixpkgs.overlays = [
-    (_final: prev: {
-      matrix-synapse-unwrapped = prev.matrix-synapse-unwrapped.overridePythonAttrs (old: {
-        doCheck = false;
-        nativeBuildInputs = builtins.filter (p: p.name != "pysaml2") old.nativeBuildInputs;
-      });
-    })
-  ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    coturn = pkgs.coturn.overrideAttrs (_: {
+      dontCheckForBrokenSymlinks = true;
+    });
+    roundcube = pkgs.roundcube.overrideAttrs (_: {
+      dontCheckForBrokenSymlinks = true;
+    });
+  };
 
   x.sops.secrets = {
     "services/synapse/signing_key".owner = "matrix-synapse";
@@ -145,6 +145,7 @@ in
     content = builtins.toJSON {
       macaroon_secret_key = config.sops.placeholder."services/synapse/macaroon_secret_key";
       experimental_features = {
+        msc4076_enabled = true;
         msc4108_enabled = true;
         msc3861 = {
           enabled = true;

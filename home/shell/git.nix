@@ -7,6 +7,7 @@
 with lib;
 let
   cfg = config.xanderio.git;
+  jujutsu-update = builtins.getFlake "github:xanderio/nixpkgs/b5707879922630226773033478ce726a12de2160";
 in
 {
   options.xanderio.git = {
@@ -28,7 +29,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       git-branchless
-      jujutsu
+      jujutsu-update.legacyPackages.${pkgs.stdenv.system}.jujutsu
     ];
     programs.git = {
       enable = true;

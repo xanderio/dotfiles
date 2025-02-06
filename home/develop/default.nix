@@ -18,6 +18,7 @@ in
         glab
         gh
         nix-fast-build
+        hydra-check
       ])
       ++ [
         inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review
