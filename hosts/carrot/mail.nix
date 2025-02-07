@@ -115,12 +115,12 @@ in
               tls.implicit = true;
             };
             sieve = {
-              bind = [ "[::1]:4190" "0.0.0.0:4190"];
+              bind = [ "[::]:4190" "0.0.0.0:4190"];
               protocol = "managesieve";
               tls.implicit = true;
             };
             management = {
-              bind = [ "[::1]:8119" "0.0.0.0:8119"];
+              bind = [ "[::1]:8119" ];
               protocol = "http";
             };
           };

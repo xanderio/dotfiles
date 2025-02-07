@@ -29,7 +29,14 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       git-branchless
-      jujutsu-update.legacyPackages.${pkgs.stdenv.system}.jujutsu
+      (jujutsu-update.legacyPackages.${pkgs.stdenv.system}.jujutsu.overrideAttrs (old: {
+        patches = old.patches or [] ++ [
+          (pkgs.fetchpatch2 {
+            url = "https://patch-diff.githubusercontent.com/raw/jj-vcs/jj/pull/5612.patch";
+            hash = "sha256-FAi9oKtGjBAKgOl4xVga9F7uywPPSATHFx+6URydC/8=";
+          })
+        ];
+      }))
     ];
     programs.git = {
       enable = true;
