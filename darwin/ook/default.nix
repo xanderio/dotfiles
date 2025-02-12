@@ -25,7 +25,6 @@
               programs.fish.enable = true;
               programs.tmux.enable = true;
               security.pam.enableSudoTouchIdAuth = true;
-              services.nix-daemon.enable = true;
               nix = {
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
                 registry.nixpkgs.flake = inputs.nixpkgs;
