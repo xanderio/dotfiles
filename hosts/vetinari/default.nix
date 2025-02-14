@@ -19,7 +19,7 @@
     ./libvirt.nix
     ./immich.nix
     ../../modules/server
-    { home-manager.users.xanderio.imports = homeImports."server"; }
+    { home-manager.users.xanderio.imports = homeImports."vetinari"; }
   ];
 
   networking.nftables.enable = true;
