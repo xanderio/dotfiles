@@ -29,6 +29,7 @@ in
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       git-branchless
+      watchman
       (jujutsu-update.legacyPackages.${pkgs.stdenv.system}.jujutsu.overrideAttrs (old: {
         patches = old.patches or [] ++ [
           (pkgs.fetchpatch2 {
