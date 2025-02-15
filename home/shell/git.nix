@@ -46,6 +46,7 @@ in
 
       signing = {
         key = cfg.signingKey;
+        format = "ssh";
         signByDefault = true;
       };
 
@@ -90,7 +91,6 @@ in
         };
       };
       extraConfig = {
-        gpg.format = cfg.gpgFormat;
         core = {
           editor = "nvim";
         };
