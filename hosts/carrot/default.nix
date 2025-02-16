@@ -18,6 +18,7 @@
     ./outline.nix
     ./mail.nix
     ./grist.nix
+    ./mealie.nix
 
     ./disko-config.nix
   ];
