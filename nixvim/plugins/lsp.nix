@@ -70,6 +70,7 @@
       ruff.enable = true;
       astro.enable = true;
       nushell.enable = true;
+      terraform_lsp.enable = true;
 
       nixd = {
         enable = true;
