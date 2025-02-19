@@ -112,6 +112,7 @@
           };
           git_branch = {
             when = true;
+            ignore_timeout = true;
             command = "jj root >/dev/null 2>&1 || starship module git_branch";
             description = "Only show git_branch if we're not in a jj repo";
           };
