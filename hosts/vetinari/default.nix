@@ -13,7 +13,7 @@
     ./ddclient.nix
     ./hass.nix
     ./nextcloud.nix
-    ./netatalk.nix
+    ./smb.nix
     ./jellyfin.nix
     ./incus.nix
     ./libvirt.nix
