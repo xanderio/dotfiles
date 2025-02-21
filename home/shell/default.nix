@@ -16,6 +16,7 @@
     nix-your-shell
     comma
     cachix
+    attic-client
     nix-output-monitor
     gh
     httpie
