@@ -23,6 +23,9 @@ in
         locations = {
           "/" = {
             proxyPass = "http://localhost:${toString config.services.mealie.port}";
+            extraConfig = ''
+              client_max_body_size 500m;
+            '';
           };
         };
       };
