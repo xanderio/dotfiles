@@ -18,6 +18,7 @@
     ./incus.nix
     ./libvirt.nix
     ./immich.nix
+    ./plex.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."vetinari"; }
   ];
