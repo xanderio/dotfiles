@@ -7,6 +7,29 @@
   # https://nix-community.github.io/nixvim/plugins/dap/index.html
   plugins.dap = {
     enable = true;
+    adapters = {
+      executables = {
+        mix_task = {
+          command = "elixir-debug-adapter";
+          args = [ ];
+        };
+      };
+    };
+    configurations.elixir = [
+      {
+        type = "mix_task";
+        name = "mix test";
+        task = "test";
+        taskArgs = [ "--trace" ];
+        request = "launch";
+        startApps = true;
+        projectDir = "\${workspaceFolder}";
+        requireFiles = [
+          "test/**/test_helper.exs"
+          "test/**/*_test.exs"
+        ];
+      }
+    ];
   };
 
   plugins.dap-ui = {

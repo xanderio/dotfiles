@@ -24,7 +24,12 @@
               system.stateVersion = 4;
               programs.fish.enable = true;
               programs.tmux.enable = true;
-              security.pam.enableSudoTouchIdAuth = true;
+              security.pam.services.sudo_local = {
+                enable = true;
+                reattach = true;
+                touchIdAuth = true;
+                watchIdAuth = true;
+              };
               nix = {
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
                 registry.nixpkgs.flake = inputs.nixpkgs;
