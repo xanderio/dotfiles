@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   config = {
     services.samba = {
       enable = true;
@@ -7,7 +8,7 @@
         global = {
           "workgroup" = "WORKGROUP";
           "server string" = "vetinari";
-          "netbios name" = "vetinari";
+          "netbios name" = "VETINARI";
           "security" = "user";
           #"use sendfile" = "yes";
           #"max protocol" = "smb2";
@@ -25,7 +26,7 @@
           "create mask" = "0644";
           "directory mask" = "0755";
           "force user" = "xanderio";
-          "force group" = "xanderio";
+          "force group" = "users";
         };
         "paperless" = {
           "path" = "${config.services.paperless.mediaDir}/documents/originals";
@@ -55,8 +56,18 @@
           "guest ok" = "yes";
           "create mask" = "0644";
           "directory mask" = "0755";
-          "force user" = "paperless";
-          "force group" = "paperless";
+          "force user" = "xanderio";
+          "force group" = "users";
+        };
+        "hass_backup" = {
+          "path" = "/srv/hass_backup";
+          "browseable" = "no";
+          "read only" = "no";
+          "guest ok" = "no";
+          "create mask" = "0640";
+          "directory mask" = "0750";
+          "force user" = "hass_backup";
+          "force group" = "users";
         };
         "timemachine" = {
           "path" = "/var/lib/timemachine";
@@ -73,16 +84,27 @@
       };
     };
 
+    users.users.hass_backup = {
+      isNormalUser = true;
+      home = "/srv/hass_backup";
+    };
+
     services.samba-wsdd = {
       enable = true;
       openFirewall = true;
     };
+
+    services.resolved.extraConfig = ''
+      # conflicts with avahi for mdns service registration
+      MulticastDNS=resolve
+    '';
 
     services.avahi = {
       publish.enable = true;
       publish.userServices = true;
       nssmdns4 = true;
       enable = true;
+      allowInterfaces = [ "br0" ];
       openFirewall = true;
       extraServiceFiles = {
         timemachine = ''

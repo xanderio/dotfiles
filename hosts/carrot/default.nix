@@ -38,6 +38,7 @@
 
   x.sops.secrets = {
     "hosts/carrot/backup/repo_key".owner = "root";
+    "all/borg_backup/repo_key".owner = "root";
   };
   programs.ssh.knownHosts = {
     "j11x0ojk.repo.borgbase.com" = {

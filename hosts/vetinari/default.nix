@@ -6,6 +6,7 @@
 }:
 {
   imports = [
+    ./backup.nix
     ./hardware-configuration.nix
     ./audio.nix
     ./paperless.nix
@@ -19,6 +20,7 @@
     ./libvirt.nix
     ./immich.nix
     ./plex.nix
+    ./tdarr.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."vetinari"; }
   ];

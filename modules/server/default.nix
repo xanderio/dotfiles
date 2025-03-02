@@ -7,7 +7,6 @@ in
 {
   imports = [
     ../common
-    ./backup.nix
     ./node_exporter.nix
     ./nginx.nix
     ./wireguard.nix

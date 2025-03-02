@@ -2,6 +2,7 @@
   imports = [
     ./configuration.nix
     ../../modules/server
+    ./backup.nix
   ];
   deployment.targetHost = "valen.xanderio.de";
   networking.hostName = "valen";
