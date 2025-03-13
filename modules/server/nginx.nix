@@ -16,6 +16,7 @@
         recommendedTlsSettings = true;
         appendHttpConfig = ''
           access_log /var/log/nginx/$server_name-access.log combined;
+          add_header X-Clacks-Overhead "GNU Terry Pratchett";
         '';
       };
     };
