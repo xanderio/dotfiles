@@ -28,10 +28,14 @@
     };
     nixpkgs-review.url = "github:Mic92/nixpkgs-review";
     nixpkgs-review.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs-review.inputs.flake-parts.follows = "flake-parts";
     sops-to-age.url = "github:Mic92/ssh-to-age";
+    sops-to-age.inputs.flake-parts.follows = "flake-parts";
+    sops-to-age.inputs.nixpkgs.follows = "nixpkgs";
     website = {
       url = "github:xanderio/website";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
     };
     nix-index-database = {
       url = "github:Mic92/nix-index-database";
