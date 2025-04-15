@@ -20,7 +20,6 @@
 
           nodeNixpkgs =
             {
-              "gregtech" = import inputs.nixos-small { system = "aarch64-linux"; };
               "carrot" = import inputs.nixos-small { system = "aarch64-linux"; };
             }
             // lib.genAttrs [

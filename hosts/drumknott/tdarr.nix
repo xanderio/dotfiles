@@ -16,8 +16,8 @@
         internalNode = "true";
         inContainer = "true";
         ffmpegVersion = "7";
-        nodeName = "athenaNode";
-        TZ = "America/New_York";
+        nodeName = "drumknott";
+        TZ = "Europa/Berlin";
       };
       volumes = [
         "/var/lib/tdarr/data/configs:/app/configs"
