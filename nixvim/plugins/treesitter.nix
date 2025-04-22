@@ -4,10 +4,6 @@
   plugins.treesitter = {
     enable = true;
 
-    gccPackage = null;
-    nodejsPackage = null;
-    treesitterPackage = null;
-
     settings = {
       highlight = {
         enable = true;
@@ -16,5 +12,11 @@
         enable = true;
       };
     };
+  };
+
+  dependencies = {
+    tree-sitter.enable = false;
+    gcc.enable = false;
+    nodejs.enable = false;
   };
 }

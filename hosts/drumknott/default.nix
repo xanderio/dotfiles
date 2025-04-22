@@ -8,7 +8,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/server
-    # { home-manager.users.xanderio.imports = homeImports."vetinari"; }
+    { home-manager.users.xanderio.imports = homeImports."vetinari"; }
     ./audiobookshelf.nix
     ./plex.nix
   ];
