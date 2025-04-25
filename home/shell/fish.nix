@@ -13,6 +13,7 @@
       d = "git diff";
       ds = "git diff --cached";
       sl = "git sl";
+      st = "jj st";
       "dotdot" = {
         regex = "^\\.\\.+$";
         function = "multicd";
