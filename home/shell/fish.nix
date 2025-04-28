@@ -24,37 +24,37 @@
       };
     };
 
-    interactiveShellInit = ''
-      nix-your-shell fish | source
-    '';
+    interactiveShellInit = # fish
+      ''
+        nix-your-shell fish | source
+      '';
 
-    shellInit = ''
-      fish_config theme choose "Catppuccin Mocha"
-      set fish_cursor_unknown block
-      # nix
-      set fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d $fish_function_path
-      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-          fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-      end
+    shellInit = # fish
+      ''
+        fish_config theme choose "Catppuccin Mocha"
+        set fish_cursor_unknown block
+        # nix
+        set fish_function_path ${pkgs.fishPlugins.foreign-env}/share/fish/vendor_functions.d $fish_function_path
+        if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+            fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+        end
 
-      if test -e $HOME/.iterm2_shell_integration.fish 
-        source $HOME/.iterm2_shell_integration.fish
-      end
+        if test -e $HOME/.iterm2_shell_integration.fish 
+          source $HOME/.iterm2_shell_integration.fish
+        end
 
-      # setup 1password plugins
-      if test -e $HOME/.config/op/plugins.sh 
-        source $HOME/.config/op/plugins.sh
-      end
+        # setup 1password plugins
+        if test -e $HOME/.config/op/plugins.sh 
+          source $HOME/.config/op/plugins.sh
+        end
+      '';
 
-      if test -e /opt/homebrew/bin/brew
-        eval (/opt/homebrew/bin/brew shellenv)
-      end
-
-    '';
-
-    # loginShellInit = ''
-    #   ssh-add
-    # '';
+    loginShellInit = # fish
+      ''
+        if test -e /opt/homebrew/bin/brew
+          eval (/opt/homebrew/bin/brew shellenv)
+        end
+      '';
 
     functions =
       {

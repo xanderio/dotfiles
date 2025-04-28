@@ -79,7 +79,12 @@ in
           client_max_body_size 1G;
         '';
       };
-      locations."/_synapse".proxyPass = "http://[::1]:8008";
+      locations."/_synapse" = {
+        proxyPass = "http://[::1]:8008";
+        extraConfig = ''
+          gzip off;
+        '';
+      };
     };
     virtualHosts."${turnRealm}" = {
       enableACME = true;

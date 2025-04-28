@@ -10,17 +10,13 @@
     ./hardware-configuration.nix
     ./audio.nix
     ./paperless.nix
-    ./audiobookshelf.nix
     ./ddclient.nix
     ./hass.nix
     ./nextcloud.nix
     ./smb.nix
-    ./jellyfin.nix
     ./incus.nix
     ./libvirt.nix
     ./immich.nix
-    ./plex.nix
-    ./tdarr.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."vetinari"; }
   ];
