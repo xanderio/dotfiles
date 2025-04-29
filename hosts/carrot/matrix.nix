@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -25,16 +26,8 @@ in
 {
   imports = [
     ./matrix-authentication-services.nix
+    (inputs.draupnir + "/nixos/modules/services/matrix/draupnir.nix")
   ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    coturn = pkgs.coturn.overrideAttrs (_: {
-      dontCheckForBrokenSymlinks = true;
-    });
-    roundcube = pkgs.roundcube.overrideAttrs (_: {
-      dontCheckForBrokenSymlinks = true;
-    });
-  };
 
   x.sops.secrets = {
     "services/synapse/signing_key".owner = "matrix-synapse";
@@ -142,6 +135,7 @@ in
 
   x.sops.secrets = {
     "services/synapse/oidc_secret" = { };
+    "services/synapse/draupnir_access_token" = { };
   };
 
   sops.templates."synapse-mas" = {
@@ -169,11 +163,38 @@ in
     };
   };
 
+  services.draupnir = {
+    enable = true;
+    package = inputs.draupnir-update.legacyPackages.${pkgs.hostPlatform.system}.draupnir;
+    accessTokenFile = config.sops.secrets."services/synapse/draupnir_access_token".path;
+    homeserverUrl = "https://bitflip.jetzt";
+    settings = {
+      managementRoom = "#moderation:bitflip.jetzt";
+      autojoinOnlyIfManager = true;
+      admin.enabelMakeRoomAdminCommand = true;
+      roomStateBackingStore.enabled = true;
+      commands = {
+        allowNoPrefix = true;
+      };
+      web = {
+        enabled = true;
+        port = 8087;
+        address = "localhost";
+        abuseReporting.enabled = true;
+        synapseHTTPAntispam = {
+          enabled = true;
+          authorization = "synapse";
+        };
+      };
+   };
+  };
+
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
     extraConfigFiles = [ config.sops.templates."synapse-mas".path ];
     extras = [ "oidc" ];
+    plugins = [ pkgs.matrix-synapse-plugins.synapse-http-antispam ];
     settings = {
       server_name = fqdn;
       public_baseurl = "https://${fqdn}";
@@ -212,6 +233,22 @@ in
               compress = true;
             }
           ];
+        }
+      ];
+      modules = [
+        {
+          module = "synapse_http_antispam.HTTPAntispam";
+          config = {
+            base_url = "http://localhost:${toString config.services.draupnir.settings.web.port}/api/1/spam_check";
+            authorization = "synapse";
+            enabled_callbacks = ["check_event_for_spam" "user_may_invite" "user_may_join_room"];
+            fail_open = {
+              check_event_for_spam = true;
+              user_may_invite = true;
+              user_may_join_room = true;
+            };
+            async.check_event_for_spam = true;
+          };
         }
       ];
       registration_shared_secret_path =

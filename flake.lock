@@ -107,6 +107,38 @@
         "type": "github"
       }
     },
+    "draupnir": {
+      "locked": {
+        "lastModified": 1744859637,
+        "narHash": "sha256-aBC43eomBgw1/iJqLC9PlQ8t85orUzto4ONL//J3KVc=",
+        "owner": "TheArcaneBrony",
+        "repo": "nixpkgs",
+        "rev": "eb6abb00725eea8b969dfd6402496c14ff84cf3a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TheArcaneBrony",
+        "ref": "module/draupnir",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "draupnir-update": {
+      "locked": {
+        "lastModified": 1745958456,
+        "narHash": "sha256-dbOHVk8mnhIl5BUPPcH4RyMT+vUZTnWyxxrm6z2HdGc=",
+        "owner": "xanderio",
+        "repo": "nixpkgs",
+        "rev": "9e3e3bfc93f46fa52e567119d0633eb1afc2754b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "xanderio",
+        "ref": "push-pwzyqzymowns",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -566,6 +598,8 @@
         "colmena": "colmena",
         "darwin": "darwin",
         "disko": "disko",
+        "draupnir": "draupnir",
+        "draupnir-update": "draupnir-update",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
