@@ -11,8 +11,8 @@ let
     "m.homeserver".base_url = "https://${fqdn}";
     "m.identity_server".base_url = "https://vector.im";
     "org.matrix.msc2965.authentication" = {
-      issuer = "https://auth-matrix.cyberus-technology.de/";
-      account = "https://auth-matrix.cyberus-technology.de/account";
+      issuer = "https://mas.bitflip.jetzt/";
+      account = "https://mas.bitflip.jetzt/account";
     };
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
@@ -150,8 +150,12 @@ in
     content = builtins.toJSON {
       macaroon_secret_key = config.sops.placeholder."services/synapse/macaroon_secret_key";
       experimental_features = {
+        # Add `disable_badge_count`` to pusher configuration
         msc4076_enabled = true;
+        # qr code login
         msc4108_enabled = true;
+        # MSC4133: Custom profile fields
+        msc4133_enabled = true;
         msc3861 = {
           enabled = true;
           client_id = "0000000000000000000SYNAPSE";
