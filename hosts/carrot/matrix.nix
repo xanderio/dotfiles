@@ -55,28 +55,50 @@ in
     virtualHosts."${fqdn}" = {
       enableACME = true;
       forceSSL = true;
-      locations."= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
-      locations."= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
-      locations."/".extraConfig = ''
-        return 404;
-      '';
-      locations."~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
-        proxyPass = "http://[::]:8085";
-        extraConfig = ''
-          proxy_http_version 1.1;
-        '';
-      };
-      locations."/_matrix" = {
-        proxyPass = "http://[::1]:8008";
-        extraConfig = ''
-          client_max_body_size 1G;
-        '';
-      };
-      locations."/_synapse" = {
-        proxyPass = "http://[::1]:8008";
-        extraConfig = ''
-          gzip off;
-        '';
+      locations = {
+        "= /.well-known/matrix/server".extraConfig = mkWellKnown serverConfig;
+        "= /.well-known/matrix/client".extraConfig = mkWellKnown clientConfig;
+        "/".return = "404";
+        "~ ^/_matrix/client/(.*)/(login|logout|refresh)" = {
+          proxyPass = "http://[::]:8085";
+          extraConfig = # nginx
+            ''
+              proxy_http_version 1.1;
+            '';
+        };
+        "~ ^/_matrix/client/(r0|v3)/rooms/(?<room_id>[^/\\s]+)/report/(?<event_id>[^\\s]+)$" = {
+          extraConfig = # nginx
+            ''
+              mirror /report_mirror;
+              # add_header 'Access-Control-Allow-Credentials' 'true' always;
+              # add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS' always;
+              # add_header 'Access-Control-Allow-Headers' 'Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,Keep-Alive,X-Requested-With,If-Modified-Since' always;
+              # add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range' always;
+              # add_header 'Access-Control-Max-Age' 1728000; # cache preflight value for 20 days
+
+              proxy_pass http://[::1]:${toString config.services.draupnir.settings.web.port}/api/1/report/$room_id/$event_id;
+            '';
+        };
+        "/report-mirror".extraConfig = # nginx
+          ''
+            internal;
+            proxy_pass http://[::1]:8008/$request_uri;
+          '';
+
+        "/_matrix" = {
+          proxyPass = "http://[::1]:8008";
+          extraConfig = # nginx
+            ''
+            client_max_body_size 1G;
+          '';
+        };
+        "/_synapse" = {
+          proxyPass = "http://[::1]:8008";
+          extraConfig = # nginx
+            ''
+              gzip off;
+            '';
+        };
       };
     };
     virtualHosts."${turnRealm}" = {
@@ -186,7 +208,7 @@ in
           authorization = "synapse";
         };
       };
-   };
+    };
   };
 
   services.matrix-synapse = {
@@ -241,7 +263,11 @@ in
           config = {
             base_url = "http://localhost:${toString config.services.draupnir.settings.web.port}/api/1/spam_check";
             authorization = "synapse";
-            enabled_callbacks = ["check_event_for_spam" "user_may_invite" "user_may_join_room"];
+            enabled_callbacks = [
+              "check_event_for_spam"
+              "user_may_invite"
+              "user_may_join_room"
+            ];
             fail_open = {
               check_event_for_spam = true;
               user_may_invite = true;
