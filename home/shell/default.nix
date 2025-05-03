@@ -20,6 +20,7 @@
     nix-output-monitor
     gh
     httpie
+    mergiraf
   ];
 
   home.sessionVariables = {
@@ -124,6 +125,6 @@
 
   services.gpg-agent = {
     enable = false;
-    pinentryPackage = pkgs.pinentry-curses;
+    pinentry.package = pkgs.pinentry-curses;
   };
 }
