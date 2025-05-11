@@ -7,7 +7,6 @@
     ./nix.nix
     ./users.nix
     ./upgrade-diff.nix
-    ../authentik-proxy
   ];
 
   boot.tmp.cleanOnBoot = true;

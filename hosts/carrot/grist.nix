@@ -18,7 +18,7 @@
 
         GRIST_OIDC_IDP_ISSUER = "https://sso.xanderio.de/application/o/grist/.well-known/openid-configuration";
         GRIST_OIDC_IDP_CLIENT_ID = "grist";
-        GRIST_FORCE_LOGIN = "true";
+        GRIST_ANON_PLAYGROUND = "false";
       };
       environmentFiles = [ config.sops.secrets."services/grist/env".path ];
 
