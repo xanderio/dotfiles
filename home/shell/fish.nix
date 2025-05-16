@@ -47,6 +47,8 @@
         if test -e $HOME/.config/op/plugins.sh 
           source $HOME/.config/op/plugins.sh
         end
+
+        set -x LS_COLORS "(${lib.getExe pkgs.vivid} generate catppuccin-mocha)"
       '';
 
     loginShellInit = # fish

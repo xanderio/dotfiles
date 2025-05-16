@@ -15,6 +15,8 @@
         n_lines = 500;
       };
 
+      splitjoin = { };
+
       # Add/delete/replace surroundings (brackets, quotes, etc.)
       #
       # Examples:
