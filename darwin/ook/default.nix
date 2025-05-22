@@ -38,7 +38,7 @@
                 buildMachines = [
                   {
                     sshUser = "xanderio";
-                    hostName = "192.168.65.5";
+                    hostName = "192.168.66.2";
                     systems = [
                       "aarch64-linux"
                       "x86_64-linux"

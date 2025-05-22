@@ -11,6 +11,7 @@
     { home-manager.users.xanderio.imports = homeImports."vetinari"; }
     ./audiobookshelf.nix
     ./plex.nix
+    ./tdarr.nix
   ];
 
 

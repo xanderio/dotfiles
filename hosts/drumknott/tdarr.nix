@@ -24,7 +24,7 @@
         "/var/lib/tdarr/data/logs:/app/logs"
         "/var/lib/tdarr/data/server:/app/server"
         "/var/lib/tdarr/data/cache:/temp"
-        "/media:/media"
+        "/tank:/tank"
       ];
       extraOptions = [
         "--device=/dev/dri:/dev/dri"
