@@ -9,19 +9,6 @@
     enable = true;
   };
 
-  # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugi#extraplugins
-  extraPlugins = with pkgs.vimPlugins; [
-    # NOTE: This is how you would ad a vim plugin that is not implemented in Nixvim, also see extraConfigLuaPre below
-    # `neodev` configure Lua LSP for your Neovim config, runtime and plugins
-    # used for completion, annotations, and signatures of Neovim apis
-    neodev-nvim
-  ];
-
-  # https://nix-community.github.io/nixvim/NeovimOptions/index.html?highlight=extraplugi#extraconfigluapre
-  extraConfigLuaPre = ''
-    require('neodev').setup {}
-  '';
-
   # https://nix-community.github.io/nixvim/NeovimOptions/autoGroups/index.html
   autoGroups = {
     "kickstart-lsp-attach" = {
