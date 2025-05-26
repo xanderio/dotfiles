@@ -211,6 +211,8 @@ in
     };
   };
 
+  services.synapse-auto-compressor.enable = true;
+
   services.matrix-synapse = {
     enable = true;
     withJemalloc = true;
