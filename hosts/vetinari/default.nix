@@ -55,8 +55,6 @@
 
   boot.supportedFilesystems = [ "zfs" ];
 
-  boot.zfs.extraPools = [ "media" ];
-
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
