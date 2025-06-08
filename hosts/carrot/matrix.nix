@@ -26,7 +26,6 @@ in
 {
   imports = [
     ./matrix-authentication-services.nix
-    (inputs.draupnir + "/nixos/modules/services/matrix/draupnir.nix")
   ];
 
   x.sops.secrets = {

@@ -109,22 +109,6 @@
         "type": "github"
       }
     },
-    "draupnir": {
-      "locked": {
-        "lastModified": 1749216933,
-        "narHash": "sha256-Q7ppkHFODNNw6I92aImmcan+yAz7tI/bqaju/2LrEsI=",
-        "owner": "TheArcaneBrony",
-        "repo": "nixpkgs",
-        "rev": "d6413ba43682273de9595d4193f64209ff8d770e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TheArcaneBrony",
-        "ref": "module/draupnir",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "draupnir-update": {
       "locked": {
         "lastModified": 1745958456,
@@ -598,7 +582,6 @@
         "colmena": "colmena",
         "darwin": "darwin",
         "disko": "disko",
-        "draupnir": "draupnir",
         "draupnir-update": "draupnir-update",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
