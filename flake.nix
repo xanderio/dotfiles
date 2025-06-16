@@ -49,7 +49,6 @@
       url = "github:nix-community/authentik-nix";
       inputs."flake-parts".follows = "flake-parts";
     };
-    draupnir-update.url = "github:xanderio/nixpkgs?ref=push-pwzyqzymowns";
   };
 
   outputs =

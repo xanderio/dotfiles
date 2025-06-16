@@ -186,10 +186,9 @@ in
 
   services.draupnir = {
     enable = true;
-    package = inputs.draupnir-update.legacyPackages.${pkgs.hostPlatform.system}.draupnir;
     accessTokenFile = config.sops.secrets."services/synapse/draupnir_access_token".path;
-    homeserverUrl = "https://bitflip.jetzt";
     settings = {
+      homeserverUrl = "https://bitflip.jetzt";
       managementRoom = "#moderation:bitflip.jetzt";
       autojoinOnlyIfManager = true;
       admin.enabelMakeRoomAdminCommand = true;
