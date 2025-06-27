@@ -16,11 +16,10 @@
     };
     nixvim = {
       url = "github:nix-community/nixvim";
-      inputs = 
-        {
-          nixpkgs.follows = "nixpkgs";
-          flake-parts.follows = "flake-parts";
-        };
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
     sops = {
       url = "github:Mic92/sops-nix";

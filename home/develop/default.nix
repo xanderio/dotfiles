@@ -16,7 +16,7 @@ in
         nix-init
         glab
         gh
-        nix-fast-build
+        lixPackageSets.latest.nix-fast-build
         hydra-check
       ])
       ++ [
