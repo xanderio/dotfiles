@@ -4,5 +4,5 @@
     ./zfs.nix
   ];
 
-  nix.package = pkgs.lixPackageSets.latest.lix;
+  # nix.package = pkgs.lixPackageSets.latest.lix;
 }

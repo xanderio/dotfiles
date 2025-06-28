@@ -186,7 +186,7 @@ in
 
   services.draupnir = {
     enable = true;
-    accessTokenFile = config.sops.secrets."services/synapse/draupnir_access_token".path;
+    secrets.accessToken = config.sops.secrets."services/synapse/draupnir_access_token".path;
     settings = {
       homeserverUrl = "https://bitflip.jetzt";
       managementRoom = "#moderation:bitflip.jetzt";
@@ -256,6 +256,14 @@ in
             }
           ];
         }
+        # {
+        #   port = 9796;
+        #   bind_addresses = [
+        #     "::1"
+        #   ];
+        #   type = "manhole";
+        #   resources = [];
+        # }
       ];
       modules = [
         {
