@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   imports = [
     ../../shell
@@ -10,4 +10,6 @@
   home.stateVersion = lib.mkForce "23.05";
 
   services.gpg-agent.enable = lib.mkForce false;
+
+  home.packages = [ pkgs.incus.client ];
 }
