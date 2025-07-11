@@ -12,6 +12,7 @@
     ./audiobookshelf.nix
     ./plex.nix
     ./tdarr.nix
+    ./garage.nix
   ];
 
 
