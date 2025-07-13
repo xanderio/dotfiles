@@ -13,6 +13,7 @@
     ./plex.nix
     ./tdarr.nix
     ./garage.nix
+    ./transmission.nix
   ];
 
 

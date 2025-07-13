@@ -21,6 +21,7 @@
     gh
     httpie
     mergiraf
+    glow
   ];
 
   home.sessionVariables = {
