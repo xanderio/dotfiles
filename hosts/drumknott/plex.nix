@@ -2,9 +2,11 @@
   config = {
     services.plex = {
       enable = true;
-      openFirewall = true;
+      openFirewall = false;
       user = "xanderio";
     };
+
+    networking.firewall.allowedTCPPorts = [ 32400 ];
 
     services.nginx = {
       enable = true;
