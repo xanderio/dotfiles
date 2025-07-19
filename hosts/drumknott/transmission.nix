@@ -137,6 +137,10 @@
     enable = true;
     group = "media";
   };
+  services.bazarr = {
+    enable = true;
+    group = "media";
+  };
   services.prowlarr = {
     enable = true;
   };
@@ -144,6 +148,13 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
+      "bazarr.xanderio.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:${toString config.services.bazarr.listenPort}";
+        };
+      };
       "sonarr.xanderio.de" = {
         forceSSL = true;
         enableACME = true;
