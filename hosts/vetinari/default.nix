@@ -10,7 +10,7 @@
     ./hardware-configuration.nix
     ./audio.nix
     ./paperless.nix
-    ./ddclient.nix
+    # ./ddclient.nix
     ./hass.nix
     ./nextcloud.nix
     ./smb.nix

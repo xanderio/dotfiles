@@ -23,7 +23,7 @@
       forceSSL = true;
       locations."/" = {
         proxyWebsockets = true;
-        proxyPass = "http://${config.services.paperless.address}:${toString config.services.paperless.port}";
+        proxyPass = "http://[${config.services.paperless.address}]:${toString config.services.paperless.port}";
       };
       extraConfig = ''
         client_max_body_size 1G;
