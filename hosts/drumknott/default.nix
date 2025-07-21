@@ -16,11 +16,14 @@
     ./transmission.nix
   ];
 
-
   networking.nftables.enable = true;
 
   networking = {
-    interfaces."enp3s0" = {
+    vlans."enp3s0.1104" = {
+      id = 1104;
+      interface = "enp3s0";
+    };
+    interfaces."enp3s0.1104" = {
       ipv4.addresses = [
         {
           address = "45.140.180.76";
@@ -36,11 +39,11 @@
     };
     defaultGateway = {
       address = "45.140.180.73";
-      interface = "enp3s0";
+      interface = "enp3s0.1104";
     };
     defaultGateway6 = {
       address = "2a0e:c5c0:0:304::1";
-      interface = "enp3s0";
+      interface = "enp3s0.1104";
     };
   };
 

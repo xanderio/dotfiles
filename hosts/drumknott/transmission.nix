@@ -17,34 +17,30 @@
     };
   };
 
-  systemd.services.wg = {
-    description = "wg network interface";
-    bindsTo = [ "netns@wg.service" ];
+  systemd.services.ffka = {
+    description = "ffka network interface";
+    bindsTo = [ "netns@ffka.service" ];
     requires = [ "network-online.target" ];
-    after = [ "netns@wg.service" ];
+    after = [ "netns@ffka.service" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart =
         with pkgs;
-        writers.writeBash "wg-up" ''
+        writers.writeBash "ffka-up" ''
           set -e
-          ${pkgs.iproute2}/bin/ip link add wg0 netns wg type wireguard
-          ${pkgs.iproute2}/bin/ip -n wg address add 10.70.132.89/32 dev wg0
-          ${pkgs.iproute2}/bin/ip -n wg -6 address add fc00:bbbb:bbbb:bb01::7:8458/128 dev wg0
-          ${pkgs.iproute2}/bin/ip netns exec wg ${pkgs.wireguard-tools}/bin/wg setconf wg0 /root/mullvad.conf
-          ${pkgs.iproute2}/bin/ip -n wg link set wg0 up
+          ${pkgs.iproute2}/bin/ip link add link enp3s0 name enp3s0.1007 type vlan id 1007
+          ${pkgs.iproute2}/bin/ip link set enp3s0.1007 netns ffka
+          ${pkgs.iproute2}/bin/ip netns exec ffka ${pkgs.dhcpcd}/bin/dhcpcd enp3s0.1007 
           # need to set lo up as network namespace is started with lo down
-          ${pkgs.iproute2}/bin/ip -n wg link set lo up
-          ${pkgs.iproute2}/bin/ip -n wg route add default dev wg0
-          ${pkgs.iproute2}/bin/ip -n wg -6 route add default dev wg0
+          ${pkgs.iproute2}/bin/ip -n ffka link set lo up
         '';
       ExecStop =
         with pkgs;
-        writers.writeBash "wg-down" ''
-          ${pkgs.iproute2}/bin/ip -n wg route del default dev wg0
-          ${pkgs.iproute2}/bin/ip -n wg -6 route del default dev wg0
-          ${pkgs.iproute2}/bin/ip -n wg link del wg0
+        writers.writeBash "ffka-down" ''
+          ${pkgs.iproute2}/bin/ip -n ffka route del default dev enp3s0.1007
+          ${pkgs.iproute2}/bin/ip -n ffka -6 route del default dev enp3s0.1007
+          ${pkgs.iproute2}/bin/ip -n ffka link del enp3s0.1007
         '';
     };
   };
@@ -80,20 +76,24 @@
     };
   };
 
-  environment.etc."netns/wg/resolv.conf".text = ''
-    nameserver 10.64.0.1
+  environment.etc."netns/ffka/resolv.conf".text = ''
+    nameserver 2001:678:6e3:40d::64:64
+    nameserver 2001:678:6e3:40d::2
+    nameserver 45.140.183.40
+    nameserver 45.140.183.41
+
   '';
 
-  systemd.services.transmission.bindsTo = [ "netns@wg.service" ];
+  systemd.services.transmission.bindsTo = [ "netns@ffka.service" ];
   systemd.services.transmission.requires = [
     "network-online.target"
-    "wg.service"
+    "ffka.service"
   ];
   systemd.services.transmission.serviceConfig =
     {
-      NetworkNamespacePath = [ "/var/run/netns/wg" ];
+      NetworkNamespacePath = [ "/var/run/netns/ffka" ];
       PrivateMounts = true;
-      BindReadOnlyPaths = [ "/etc/netns/wg/resolv.conf:/etc/resolv.conf:norbind" ];
+      BindReadOnlyPaths = [ "/etc/netns/ffka/resolv.conf:/etc/resolv.conf:norbind" ];
     };
 
   systemd.tmpfiles.settings."10-downloads"."/tank/downloads".d = {
