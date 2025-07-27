@@ -17,6 +17,7 @@
         };
         modules = [
           inputs.home-manager.darwinModules.home-manager
+          inputs.virby.darwinModules.default
           (
             { pkgs, ... }:
             {
@@ -30,27 +31,41 @@
                 touchIdAuth = true;
                 watchIdAuth = true;
               };
+              services.virby = {
+                enable = true;
+                diskSize = "60GiB";
+                rosetta = true;
+                onDemand = {
+                  enable = true;
+                  ttl = 15;
+                };
+                allowUserSsh = true;
+                debug = true;
+              };
               nix = {
                 package = pkgs.lixPackageSets.latest.lix;
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
                 registry.nixpkgs.flake = inputs.nixpkgs;
                 # registry.nixpkgs.to.path = lib.mkForce inputs.nixpkgs.outPath;
                 distributedBuilds = true;
-                buildMachines = [
-                  {
-                    sshUser = "xanderio";
-                    hostName = "192.168.66.2";
-                    systems = [
-                      "aarch64-linux"
-                      "x86_64-linux"
-                    ];
-                    maxJobs = 4;
-                    supportedFeatures = [ "big-parallel" ];
-                    sshKey = "/etc/nix/builder_ed25519";
-                    protocol = "ssh-ng";
-                    publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUdMNEpxUXVvTEJKaTRYa1Rab0k5SFhoM2o2dEM1M0luYTJiYU1BMi96MWMK";
-                  }
-                ];
+                # buildMachines = [
+                #   {
+                #     sshUser = "xanderio";
+                #     hostName = "192.168.66.2";
+                #     systems = [
+                #       "aarch64-linux"
+                #       "x86_64-linux"
+                #     ];
+                #     maxJobs = 4;
+                #     supportedFeatures = [
+                #       "big-parallel"
+                #       "kvm"
+                #     ];
+                #     sshKey = "/etc/nix/builder_ed25519";
+                #     protocol = "ssh-ng";
+                #     publicHostKey = "c3NoLWVkMjU1MTkgQUFBQUMzTnphQzFsWkRJMU5URTVBQUFBSUdMNEpxUXVvTEJKaTRYa1Rab0k5SFhoM2o2dEM1M0luYTJiYU1BMi96MWMK";
+                #   }
+                # ];
                 settings = {
                   auto-optimise-store = false;
                   warn-dirty = false;
@@ -67,10 +82,12 @@
                   substituters = [
                     "https://nix-community.cachix.org"
                     "https://xanderio.cachix.org"
+                    "https://virby-nix-darwin.cachix.org"
                   ];
                   trusted-public-keys = [
                     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
                     "xanderio.cachix.org-1:MorhZh9LUPDXE0racYZBWb2JQCWmS+r3SQo4zKn51xg="
+                    "virby-nix-darwin.cachix.org-1:z9GiEZeBU5bEeoDQjyfHPMGPBaIQJOOvYOOjGMKIlLo="
                   ];
                 };
               };
