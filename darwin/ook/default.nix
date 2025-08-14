@@ -31,7 +31,7 @@
                 watchIdAuth = true;
               };
               nix = {
-                package = pkgs.lixPackageSets.latest.lix;
+                package = pkgs.nixVersions.nix_2_29;
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
                 registry.nixpkgs.flake = inputs.nixpkgs;
                 # registry.nixpkgs.to.path = lib.mkForce inputs.nixpkgs.outPath;
