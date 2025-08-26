@@ -61,6 +61,7 @@ in
       ignores = [
         ".direnv"
         ".worktree"
+        ".jj"
       ];
 
       difftastic = {
