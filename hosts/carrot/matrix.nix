@@ -1,8 +1,6 @@
 {
-  lib,
   pkgs,
   config,
-  inputs,
   ...
 }:
 let
@@ -88,8 +86,8 @@ in
           proxyPass = "http://[::1]:8008";
           extraConfig = # nginx
             ''
-            client_max_body_size 1G;
-          '';
+              client_max_body_size 1G;
+            '';
         };
         "/_synapse" = {
           proxyPass = "http://[::1]:8008";
@@ -157,6 +155,19 @@ in
   x.sops.secrets = {
     "services/synapse/oidc_secret" = { };
     "services/synapse/draupnir_access_token" = { };
+    "services/synapse/restic/password" = {
+      owner = "matrix-synapse";
+    };
+    "services/synapse/restic/s3/key_id" = { };
+    "services/synapse/restic/s3/secret_key" = { };
+  };
+
+  sops.templates."matrix-restic-env" = {
+    owner = "matrix-synapse";
+    content = ''
+      AWS_ACCESS_KEY_ID = ${config.sops.placeholder."services/synapse/restic/s3/key_id"}
+      AWS_SECRET_ACCESS_KEY = ${config.sops.placeholder."services/synapse/restic/s3/secret_key"}
+    '';
   };
 
   sops.templates."synapse-mas" = {
@@ -300,6 +311,34 @@ in
         search_all_users = true;
         prefer_local_users = true;
       };
+    };
+  };
+
+  services.restic.backups."matrix" = {
+    initialize = true;
+    user = "matrix-synapse";
+    passwordFile = config.sops.secrets."services/synapse/restic/password".path;
+    repository = "s3:https://s3.xanderio.de/matrix-backup";
+    environmentFile = config.sops.templates."matrix-restic-env".path;
+    paths = [
+      config.services.matrix-synapse.settings.media_store_path
+      "/tmp/matrix/"
+    ];
+    backupPrepareCommand = ''
+      mkdir -p /tmp/matrix/
+      ${config.services.postgresql.package}/bin/pg_dump --create --clean --if-exists matrix-synapse > /tmp/matrix/synapse.sql
+      # todo mas backup
+      # ${config.services.postgresql.package}/bin/pg_dump --create --clean --if-exists matrix-authentication-service > /tmp/matrix/mas.sql
+    '';
+    pruneOpts = [
+      "--keep-daily 7"
+      "--keep-weekly 5"
+      "--keep-monthly 12"
+    ];
+    timerConfig = {
+      OnCalendar = "daily";
+      RandomizedDelaySec = "5h";
+      Persistent = true;
     };
   };
 }
