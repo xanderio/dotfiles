@@ -33,7 +33,20 @@
     ssh = {
       enable = true;
       includes = [ "~/.ssh/private_ssh_config" ];
-      matchBlocks.all.extraOptions.SetEnv = "TERM=xterm-256color";
+      enableDefaultConfig = false;
+      matchBlocks."*" = {
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+        extraOptions.SetEnv = "TERM=xterm-256color";
+      };
     };
     gpg.enable = false;
     direnv = {
@@ -120,7 +133,8 @@
             description = "Only show git_branch if we're not in a jj repo";
           };
         };
-      } // lib.importTOML ./starship_mocha.toml;
+      }
+      // lib.importTOML ./starship_mocha.toml;
     };
   };
 
