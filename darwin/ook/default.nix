@@ -20,7 +20,7 @@
           (
             { pkgs, ... }:
             {
-              imports = [ ./libvirt.nix ];
+              # imports = [ ./libvirt.nix ];
               system.stateVersion = 4;
               programs.fish.enable = true;
               programs.tmux.enable = true;
