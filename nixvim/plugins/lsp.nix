@@ -58,6 +58,7 @@
       astro.enable = true;
       nushell.enable = true;
       terraform_lsp.enable = true;
+      postgres_lsp.enable = true;
 
       nixd = {
         enable = true;
