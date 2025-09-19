@@ -22,6 +22,7 @@
     httpie
     mergiraf
     glow
+    rainfrog
   ];
 
   home.sessionVariables = {
