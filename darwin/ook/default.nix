@@ -21,7 +21,7 @@
             { pkgs, ... }:
             {
               # imports = [ ./libvirt.nix ];
-              system.stateVersion = 4;
+              system.stateVersion = 6;
               programs.fish.enable = true;
               programs.tmux.enable = true;
               security.pam.services.sudo_local = {
