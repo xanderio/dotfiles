@@ -29,6 +29,7 @@ in
     home.packages = with pkgs; [
       watchman
       jujutsu
+      (pkgs.callPackage ./jj-pre-push.nix {})
     ];
     programs.git = {
       enable = true;
