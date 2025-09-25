@@ -462,6 +462,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1754725699,
+        "narHash": "sha256-iAcj9T/Y+3DBy2J0N+yF9XQQQ8IEb5swLFzs23CdP88=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "85dbfc7aaf52ecb755f87e577ddbe6dbbdbc1054",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixvim": {
       "inputs": {
         "flake-parts": [
@@ -577,6 +593,7 @@
         "nixvim": "nixvim",
         "sops": "sops",
         "sops-to-age": "sops-to-age",
+        "virby": "virby",
         "website": "website"
       }
     },
@@ -727,6 +744,24 @@
       "original": {
         "owner": "pyproject-nix",
         "repo": "uv2nix",
+        "type": "github"
+      }
+    },
+    "virby": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1756625193,
+        "narHash": "sha256-UbsstuHRMC81x3NvCkcGjzzSnBxECmEYleTnVlhG0PA=",
+        "owner": "quinneden",
+        "repo": "virby-nix-darwin",
+        "rev": "9349061ed88552e4aeed9370dc0e66b5d3195251",
+        "type": "github"
+      },
+      "original": {
+        "owner": "quinneden",
+        "repo": "virby-nix-darwin",
         "type": "github"
       }
     },
