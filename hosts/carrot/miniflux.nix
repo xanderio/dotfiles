@@ -8,7 +8,7 @@
       adminCredentialsFile = config.sops.secrets."services/miniflux/env".path;
       config = {
         LOG_LEVEL = "debug";
-        CREATE_ADMIN = lib.mkForce "0";
+        CREATE_ADMIN = lib.mkForce false;
         FETCH_YOUTUBE_WATCH_TIME = "1";
         FETCH_ODYSEE_WATCH_TIME = "1";
         CLEANUP_REMOVE_SESSIONS_DAYS = "120";
