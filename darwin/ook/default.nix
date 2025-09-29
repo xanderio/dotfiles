@@ -34,6 +34,8 @@
               services.virby = {
                   enable = true;
                   debug = true;
+                  rosetta = true;
+                  allowUserSsh = false;
                   onDemand = {
                     enable = true;
                     ttl = 10;
