@@ -7,7 +7,7 @@
 
     filesystem = {
       followCurrentFile.enabled = true;
-      use_libuv_file_watcher = true;
+      useLibuvFileWatcher = true;
       window = {
         mappings = {
           "\\" = "close_window";
