@@ -5,8 +5,19 @@
   plugins.neo-tree = {
     enable = true;
 
+    extraSources = [
+      "document_symbols"
+    ];
+
+    sourceSelector = {
+      winbar = true;
+    };
+
     filesystem = {
-      followCurrentFile.enabled = true;
+      followCurrentFile = {
+        enabled = true;
+        leaveDirsOpen = true;
+      };
       useLibuvFileWatcher = true;
       window = {
         mappings = {
