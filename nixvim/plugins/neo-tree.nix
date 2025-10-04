@@ -11,6 +11,12 @@
 
     sourceSelector = {
       winbar = true;
+      sources = [
+        { source = "filesystem"; }
+        { source = "document_symbols"; }
+        { source = "buffers"; }
+        { source = "git_status"; }
+      ];
     };
 
     filesystem = {
