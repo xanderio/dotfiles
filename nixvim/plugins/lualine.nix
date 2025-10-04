@@ -4,7 +4,6 @@
     settings = {
       options = {
         disabled_filetypes = {
-          __unkeyed-2 = "neo-tree";
           statusline = [
             "dap-repl"
           ];
