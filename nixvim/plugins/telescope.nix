@@ -38,6 +38,10 @@
         mode = "n";
         action = "find_files";
       };
+      "<C-t>" = {
+        mode = "n";
+        action = "lsp_dynamic_workspace_symbols";
+      };
       "<leader>sh" = {
         mode = "n";
         action = "help_tags";
