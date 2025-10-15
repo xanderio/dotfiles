@@ -5,28 +5,26 @@
   plugins.neo-tree = {
     enable = true;
 
-    extraSources = [
-      "document_symbols"
-    ];
-
-    sourceSelector = {
-      winbar = true;
+    settings = {
       sources = [
-        { source = "filesystem"; }
-        { source = "document_symbols"; }
-        { source = "buffers"; }
-        { source = "git_status"; }
+        "document_symbols"
       ];
-    };
-
-    filesystem = {
-      followCurrentFile = {
-        enabled = true;
-        leaveDirsOpen = true;
+      source_selector = {
+        winbar = true;
+        sources = [
+          { source = "filesystem"; }
+          { source = "document_symbols"; }
+          { source = "buffers"; }
+          { source = "git_status"; }
+        ];
       };
-      useLibuvFileWatcher = true;
-      window = {
-        mappings = {
+      filesystem = {
+        use_libuv_file_watcher = true;
+        follow_current_file = {
+          enabled = true;
+          leave_dirs_open = true;
+        };
+        window.mappings = {
           "\\" = "close_window";
         };
       };
