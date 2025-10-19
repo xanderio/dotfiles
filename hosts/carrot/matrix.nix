@@ -13,6 +13,12 @@ let
       issuer = "https://mas.bitflip.jetzt/";
       account = "https://mas.bitflip.jetzt/account";
     };
+    "org.matrix.msc4143.rtc_foci" = [
+      {
+        "type" = "livekit";
+        "livekit_service_url" = "https://bitflip.jetzt/livekit/jwt";
+      }
+    ];
   };
   serverConfig."m.server" = "${config.services.matrix-synapse.settings.server_name}:443";
   mkWellKnown = data: ''
@@ -24,6 +30,7 @@ in
 {
   imports = [
     ./matrix-authentication-services.nix
+    ./livekit.nix
   ];
 
   x.sops.secrets = {
