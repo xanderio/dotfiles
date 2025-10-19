@@ -19,6 +19,7 @@
 
     services.immich = {
       enable = true;
+      database.enableVectors = false;
     };
 
     services.nginx = {
