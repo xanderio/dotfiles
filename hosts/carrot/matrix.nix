@@ -318,6 +318,14 @@ in
         search_all_users = true;
         prefer_local_users = true;
       };
+      server_notices = {
+        system_mxid_localpart = "server";
+        system_mxid_display_name = "Server Notices";
+        room_name = "Server Notices";
+        room_topic = "Room used by your server admin to notice you of important information";
+        auto_join = true;
+
+      };
     };
   };
 
