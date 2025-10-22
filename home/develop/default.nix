@@ -18,6 +18,7 @@ in
         gh
         lixPackageSets.latest.nix-fast-build
         hydra-check
+        natscli
       ])
       ++ [
         inputs.nixpkgs-review.packages.${pkgs.stdenv.hostPlatform.system}.nixpkgs-review
