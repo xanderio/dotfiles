@@ -234,7 +234,7 @@ in
     withJemalloc = true;
     extraConfigFiles = [ config.sops.templates."synapse-mas".path ];
     extras = [ "oidc" ];
-    plugins = [ pkgs.matrix-synapse-plugins.synapse-http-antispam ];
+    # plugins = [ pkgs.matrix-synapse-plugins.synapse-http-antispam ];
     settings = {
       server_name = fqdn;
       public_baseurl = "https://${fqdn}";
@@ -283,26 +283,26 @@ in
         #   resources = [];
         # }
       ];
-      modules = [
-        {
-          module = "synapse_http_antispam.HTTPAntispam";
-          config = {
-            base_url = "http://localhost:${toString config.services.draupnir.settings.web.port}/api/1/spam_check";
-            authorization = "synapse";
-            enabled_callbacks = [
-              "check_event_for_spam"
-              "user_may_invite"
-              "user_may_join_room"
-            ];
-            fail_open = {
-              check_event_for_spam = true;
-              user_may_invite = true;
-              user_may_join_room = true;
-            };
-            async.check_event_for_spam = true;
-          };
-        }
-      ];
+      # modules = [
+      #   {
+      #     module = "synapse_http_antispam.HTTPAntispam";
+      #     config = {
+      #       base_url = "http://localhost:${toString config.services.draupnir.settings.web.port}/api/1/spam_check";
+      #       authorization = "synapse";
+      #       enabled_callbacks = [
+      #         "check_event_for_spam"
+      #         "user_may_invite"
+      #         "user_may_join_room"
+      #       ];
+      #       fail_open = {
+      #         check_event_for_spam = true;
+      #         user_may_invite = true;
+      #         user_may_join_room = true;
+      #       };
+      #       async.check_event_for_spam = true;
+      #     };
+      #   }
+      # ];
       registration_shared_secret_path =
         config.sops.secrets."services/synapse/registration_shared_secret".path;
       turn_uris = [
