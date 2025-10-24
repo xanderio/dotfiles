@@ -65,7 +65,6 @@
 
       openwakeword = {
         enable = true;
-        preloadModels = [ "ok_nabu" ];
         uri = "tcp://0.0.0.0:10400";
       };
     };

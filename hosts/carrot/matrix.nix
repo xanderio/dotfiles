@@ -189,6 +189,8 @@ in
         msc4108_enabled = true;
         # MSC4133: Custom profile fields
         msc4133_enabled = true;
+        # MSC3026 (busy presence state)
+        msc3026_enabled = true;
         msc3861 = {
           enabled = true;
           client_id = "0000000000000000000SYNAPSE";
