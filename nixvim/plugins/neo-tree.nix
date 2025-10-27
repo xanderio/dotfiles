@@ -7,7 +7,10 @@
 
     settings = {
       sources = [
+        "filesystem"
         "document_symbols"
+        "buffers"
+        "git_status"
       ];
       source_selector = {
         winbar = true;

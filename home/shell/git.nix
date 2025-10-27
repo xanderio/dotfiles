@@ -29,61 +29,16 @@ in
     home.packages = with pkgs; [
       watchman
       jujutsu
-      (pkgs.callPackage ./jj-pre-push.nix {})
+      (pkgs.callPackage ./jj-pre-push.nix { })
     ];
     programs.git = {
       enable = true;
-      userName = "Alexander Sieg";
-      userEmail = cfg.email;
-
-      signing = {
-        key = cfg.signingKey;
-        format = "ssh";
-        signByDefault = true;
-      };
-
-      aliases = rec {
-        s = "status -s";
-        ss = "status";
-        a = "add";
-        c = "commit";
-        lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
-        lg2 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
-        lg = lg1;
-        pf = "push --force-with-lease";
-        p = "push";
-        P = "pull";
-        pr = "pull -r";
-        aa = "add .";
-        ca = "commit --amend";
-        cae = "commit --amend --no-edit";
-      };
-
-      ignores = [
-        ".direnv"
-        ".worktree"
-        ".jj"
-      ];
-
-      difftastic = {
-        enable = true;
-        options.background = "dark";
-      };
-
-      delta = {
-        enable = false;
-        options = {
-          syntax-theme = "Dracula";
-          features = "side-by-side line-numbers decorations";
-          whitespace-error-style = "22 reverse";
-          decorations = {
-            commit-decoration-style = "bold yellow box ul";
-            file-style = "bold yellow ul";
-            file-decoration-style = "none";
-          };
+      settings = {
+        user = {
+          name = "Alexander Sieg";
+          email = cfg.email;
         };
-      };
-      extraConfig = {
+
         core = {
           editor = "nvim";
         };
@@ -102,9 +57,58 @@ in
         "mergetool.nvim".cmd =
           "${pkgs.neovim}/bin/nvim -d -c \"wincmd l\" -c \"norm ]c\" \"$LOCAL\" \"$MERGED\" \"$REMOTE\"";
         push.autoSetupRemote = true;
+
+        alias = rec {
+          s = "status -s";
+          ss = "status";
+          a = "add";
+          c = "commit";
+          lg1 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all";
+          lg2 = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
+          lg = lg1;
+          pf = "push --force-with-lease";
+          p = "push";
+          P = "pull";
+          pr = "pull -r";
+          aa = "add .";
+          ca = "commit --amend";
+          cae = "commit --amend --no-edit";
+        };
       };
 
+      signing = {
+        key = cfg.signingKey;
+        format = "ssh";
+        signByDefault = true;
+      };
+
+      ignores = [
+        ".direnv"
+        ".worktree"
+        ".jj"
+      ];
+
       lfs.enable = true;
+    };
+
+    programs.difftastic = {
+      enable = true;
+      git.enable = true;
+      options.background = "dark";
+    };
+
+    programs.delta = {
+      enable = false;
+      options = {
+        syntax-theme = "Dracula";
+        features = "side-by-side line-numbers decorations";
+        whitespace-error-style = "22 reverse";
+        decorations = {
+          commit-decoration-style = "bold yellow box ul";
+          file-style = "bold yellow ul";
+          file-decoration-style = "none";
+        };
+      };
     };
   };
 }
