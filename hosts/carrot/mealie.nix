@@ -1,23 +1,9 @@
 { pkgs, config, ... }:
 let
-  mealie-update = builtins.getFlake "github:antonmosich/nixpkgs/51f4f417a89727abd52bb807552ffdfe652d1942";
+  mealie-update = builtins.getFlake "github:xanderio/nixpkgs/be40e631a9f8bed0ef16e772cd4c5791173d3742";
 in
 {
-  imports = [ (mealie-update + "/nixos/modules/services/web-apps/mealie.nix") ];
-  disabledModules = [ "services/web-apps/mealie.nix" ];
   config = {
-    nixpkgs.overlays = [(
-      self: super: {
-        nltk-data = super.nltk-data.overrideScope (
-          self': super': {
-            inherit (mealie-update.legacyPackages.${pkgs.hostPlatform.system}.nltk-data)
-              averaged_perceptron_tagger_eng
-              ;
-          }
-        );
-      }
-    )];
-
     services.postgresql = {
       enable = true;
       ensureUsers = [
@@ -69,6 +55,7 @@ in
         OIDC_ADMIN_GROUP = "mealie-admin";
         OIDC_PROVIDER_NAME = "Authentik";
         OIDC_REMEMBER_ME = true;
+        ALLOW_PASSWORD_LOGIN = "false";
       };
     };
   };
