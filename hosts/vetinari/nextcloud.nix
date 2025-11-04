@@ -15,7 +15,7 @@
     nextcloud = {
       enable = true;
       https = true;
-      package = pkgs.nextcloud31;
+      package = pkgs.nextcloud32;
       appstoreEnable = true;
       hostName = "cloud.xanderio.de";
       phpOptions."opcache.interned_strings_buffer" = "32";

@@ -59,9 +59,9 @@
   hardware.graphics.enable = true;
   hardware.graphics.extraPackages = with pkgs; [
     intel-media-driver
-    vaapiIntel
     libvdpau-va-gl
-    vaapiVdpau
+    intel-vaapi-driver
+    libva-vdpau-driver
     intel-ocl
   ];
 
