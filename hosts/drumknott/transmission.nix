@@ -29,18 +29,18 @@
         with pkgs;
         writers.writeBash "ffka-up" ''
           set -e
-          ${pkgs.iproute2}/bin/ip link add link enp3s0 name enp3s0.1007 type vlan id 1007
-          ${pkgs.iproute2}/bin/ip link set enp3s0.1007 netns ffka
-          ${pkgs.iproute2}/bin/ip netns exec ffka ${pkgs.dhcpcd}/bin/dhcpcd enp3s0.1007 
+          ${pkgs.iproute2}/bin/ip link add link enp4s0 name enp4s0.1007 type vlan id 1007
+          ${pkgs.iproute2}/bin/ip link set enp4s0.1007 netns ffka
+          ${pkgs.iproute2}/bin/ip netns exec ffka ${pkgs.dhcpcd}/bin/dhcpcd enp4s0.1007 
           # need to set lo up as network namespace is started with lo down
           ${pkgs.iproute2}/bin/ip -n ffka link set lo up
         '';
       ExecStop =
         with pkgs;
         writers.writeBash "ffka-down" ''
-          ${pkgs.iproute2}/bin/ip -n ffka route del default dev enp3s0.1007
-          ${pkgs.iproute2}/bin/ip -n ffka -6 route del default dev enp3s0.1007
-          ${pkgs.iproute2}/bin/ip -n ffka link del enp3s0.1007
+          ${pkgs.iproute2}/bin/ip -n ffka route del default dev enp4s0.1007
+          ${pkgs.iproute2}/bin/ip -n ffka -6 route del default dev enp4s0.1007
+          ${pkgs.iproute2}/bin/ip -n ffka link del enp4s0.1007
         '';
     };
   };
