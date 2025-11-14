@@ -1,6 +1,6 @@
 { pkgs, config, ... }:
 let
-  mealie-update = builtins.getFlake "github:xanderio/nixpkgs/be40e631a9f8bed0ef16e772cd4c5791173d3742";
+  mealie-update = builtins.getFlake "github:nixos/nixpkgs/f2fe4a8f8fe44cc2b185a83d23987fa35311f77a";
 in
 {
   config = {
@@ -41,7 +41,7 @@ in
 
     services.mealie = {
       enable = true;
-      package = mealie-update.legacyPackages.${pkgs.system}.mealie;
+      package = mealie-update.legacyPackages.${pkgs.hostPlatform.system}.mealie;
       credentialsFile = config.sops.templates."mealie-env".path;
       listenAddress = "[::]";
       port = 9003;
