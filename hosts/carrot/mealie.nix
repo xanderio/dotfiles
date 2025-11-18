@@ -41,7 +41,7 @@ in
 
     services.mealie = {
       enable = true;
-      package = mealie-update.legacyPackages.${pkgs.hostPlatform.system}.mealie;
+      package = mealie-update.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mealie;
       credentialsFile = config.sops.templates."mealie-env".path;
       listenAddress = "[::]";
       port = 9003;

@@ -8,7 +8,7 @@
           enableACME = true;
           forceSSL = true;
           locations."/" = {
-            root = "${inputs.website.packages.${pkgs.system}.website}";
+            root = "${inputs.website.packages.${pkgs.stdenv.hostPlatform.system}.website}";
           };
         };
       };

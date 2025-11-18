@@ -2,7 +2,7 @@
 let
   inherit (inputs.nixpkgs) lib;
 
-  filterSystem = system: lib.filterAttrs (_: nixos: nixos.pkgs.hostPlatform.system == system);
+  filterSystem = system: lib.filterAttrs (_: nixos: nixos.pkgs.stdenv.hostPlatform.system == system);
 in
 {
   perSystem =

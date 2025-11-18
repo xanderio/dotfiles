@@ -2,7 +2,7 @@
 let
   inherit (inputs.nixpkgs) lib;
 
-  filterSystem = system: lib.filterAttrs (_: darwin: darwin.pkgs.hostPlatform.system == system);
+  filterSystem = system: lib.filterAttrs (_: darwin: darwin.pkgs.stdenv.hostPlatform.system == system);
 in
 {
   perSystem =
