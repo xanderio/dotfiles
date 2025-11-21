@@ -45,32 +45,32 @@
     };
   };
 
-  systemd.sockets."proxy-to-transmission" = {
+  systemd.sockets."proxy-to-qbittorrent" = {
     enable = true;
-    description = "Socket for Proxy to Transmission Daemon";
-    listenStreams = [ "9091" ];
+    description = "Socket for Proxy to QBitTorrent Daemon";
+    listenStreams = [ "${toString config.services.qbittorrent.webuiPort}" ];
     wantedBy = [ "sockets.target" ];
   };
 
-  systemd.services."proxy-to-transmission" = {
+  systemd.services."proxy-to-qbittorrent" = {
     enable = true;
-    description = "Proxy to Transmission Daemon in Network Namespace";
+    description = "Proxy to QBitTorrent Daemon in Network Namespace";
     requires = [
-      "transmission.service"
-      "proxy-to-transmission.socket"
+      "qbittorrent.service"
+      "proxy-to-qbittorrent.socket"
     ];
     after = [
-      "transmission.service"
-      "proxy-to-transmission.socket"
+      "qbittorrent.service"
+      "proxy-to-qbittorrent.socket"
     ];
     unitConfig = {
-      JoinsNamespaceOf = "transmission.service";
+      JoinsNamespaceOf = "qbittorrent.service";
     };
     serviceConfig = {
       Type = "notify";
-      User = config.services.transmission.user;
-      Group = config.services.transmission.group;
-      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:9091";
+      User = config.services.qbittorrent.user;
+      Group = config.services.qbittorrent.group;
+      ExecStart = "${pkgs.systemd}/lib/systemd/systemd-socket-proxyd --exit-idle-time=5min 127.0.0.1:${toString config.services.qbittorrent.webuiPort}";
       PrivateTmp = true;
       PrivateNetwork = true;
     };
@@ -84,44 +84,42 @@
 
   '';
 
-  systemd.services.transmission.bindsTo = [ "netns@ffka.service" ];
-  systemd.services.transmission.requires = [
+  systemd.services.qbittorrent.bindsTo = [ "netns@ffka.service" ];
+  systemd.services.qbittorrent.requires = [
     "network-online.target"
     "ffka.service"
   ];
-  systemd.services.transmission.serviceConfig =
-    {
-      NetworkNamespacePath = [ "/var/run/netns/ffka" ];
-      PrivateMounts = true;
-      BindReadOnlyPaths = [ "/etc/netns/ffka/resolv.conf:/etc/resolv.conf:norbind" ];
-    };
+  systemd.services.qbittorrent.serviceConfig = {
+    NetworkNamespacePath = [ "/var/run/netns/ffka" ];
+    PrivateMounts = true;
+    BindReadOnlyPaths = [ "/etc/netns/ffka/resolv.conf:/etc/resolv.conf:norbind" ];
+  };
 
   systemd.tmpfiles.settings."10-downloads"."/tank/downloads".d = {
-    user = "transmission";
-    group = "media";
+    user = "${config.services.qbittorrent.user}";
+    group = "${config.services.qbittorrent.group}";
     mode = "0775";
   };
   systemd.tmpfiles.settings."10-downloads"."/tank/incomplete".d = {
-    user = "transmission";
-    group = "media";
+    user = "${config.services.qbittorrent.user}";
+    group = "${config.services.qbittorrent.group}";
     mode = "0775";
   };
 
-  services.transmission = {
+  services.qbittorrent = {
     enable = true;
-    package = pkgs.transmission_4;
     group = "media";
-    webHome = pkgs.flood-for-transmission;
-    downloadDirPermissions = "775";
-    settings = {
-      rpc-bind-address = "0.0.0.0";
-      incomplete-dir = "/tank/incomplete";
-      download-dir = "/tank/downloads";
+    extraArgs = [ "--confirm-legal-notice" ];
+    serverConfig = {
+      LegalNotice.Accepted = true;
+      Preferences = {
+        General.Locale = "en";
+      };
     };
   };
 
-  users.users.xanderio.extraGroups = ["media"];
-  users.groups.media = {};
+  users.users.xanderio.extraGroups = [ "media" ];
+  users.groups.media = { };
 
   services.flood.enable = true;
 
@@ -188,6 +186,13 @@
         enableACME = true;
         locations."/" = {
           proxyPass = "http://localhost:3000";
+        };
+      };
+      "qbittorrent.xanderio.de" = {
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "http://localhost:${toString config.services.qbittorrent.webuiPort}";
         };
       };
     };
