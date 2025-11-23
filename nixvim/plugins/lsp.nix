@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
-  # Dependencies
-  #
+
+  imports = [
+    ./rust.nix
+  ];
+  
 
   # Useful status updates for LSP.
   # https://nix-community.github.io/nixvim/plugins/fidget/index.html
@@ -46,16 +49,10 @@
     enable = true;
 
     servers = {
-      pyright = {
-        enable = true;
-      };
-
       bashls.enable = true;
       dockerls.enable = true;
       taplo.enable = true;
       yamlls.enable = true;
-      ruff.enable = true;
-      astro.enable = true;
       nushell.enable = true;
       terraform_lsp.enable = true;
       postgres_lsp.enable = true;
@@ -68,16 +65,21 @@
         };
       };
 
-      rust_analyzer = {
-        enable = true;
-        installCargo = false;
-        installRustc = false;
-      };
+      # rust_analyzer = {
+      #   enable = true;
+      #   installCargo = false;
+      #   installRustc = false;
+      # };
 
-      ts_ls = {
-        enable = true;
-      };
+      # web dev
+      astro.enable = true;
+      cssls.enable = true;
+      html.enable = true;
+      tailwindcss.enable = true;
+      eslint.enable = true;
+      ts_ls.enable = true;
 
+      # elixir
       elixirls = {
         enable = true;
         settings = {
@@ -87,6 +89,10 @@
           suggestSpecs = true;
         };
       };
+
+      # python
+      pyright.enable = true;
+      ruff.enable = true;
 
       lua_ls = {
         enable = true;
