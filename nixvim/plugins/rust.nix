@@ -4,8 +4,13 @@
     rustaceanvim = {
       enable = true;
       settings = {
-        # Build the code for LSP on a different path to avoid blocking
-        server.default_settings.rust-analyzer.cargo.targetDir = "target/lsp";
+        server.default_settings.rust-analyzer = {
+          # Build the code for LSP on a different path to avoid blocking
+          cargo.targetDir = "target/lsp";
+          completion.excludeTraits = [
+            "color_eyre::owo_colors::OwoColorize"
+          ];
+        };
       };
     };
 
