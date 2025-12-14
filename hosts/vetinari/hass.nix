@@ -18,7 +18,7 @@
         "127.0.0.53:53"
       ];
       upstreams."hass".servers = {
-        "homeassistant.local:8123" = { };
+        "homeassistant.internal:8123" = { };
       };
       virtualHosts."hass.blatory.de" = {
         forceSSL = true;
