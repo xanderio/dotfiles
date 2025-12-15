@@ -18,6 +18,8 @@
 
   networking.nftables.enable = true;
 
+  systemd.settings.Manager.RuntimeWatchdogSec = "1min";
+
   networking = {
     vlans."enp3s0.1104" = {
       id = 1104;

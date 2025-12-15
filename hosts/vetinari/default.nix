@@ -18,6 +18,7 @@
     ./incus.nix
     ./libvirt.nix
     ./immich.nix
+    ./librenms.nix
     ../../modules/server
     { home-manager.users.xanderio.imports = homeImports."vetinari"; }
   ];
@@ -35,6 +36,8 @@
     }
   ];
 
+  time.timeZone = "Etc/UTC";
+
   deployment.targetHost = "vetinari.xanderio.de";
   home-manager.users.xanderio.home.stateVersion = "22.11";
 
@@ -48,6 +51,14 @@
   };
 
   networking.useNetworkd = true;
+
+  networking.vlans = {
+    vlan1 = {
+      id = 1;
+      interface = "br0";
+    };
+  };
+  networking.interfaces.vlan1.useDHCP = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;

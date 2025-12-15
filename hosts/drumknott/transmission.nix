@@ -109,16 +109,6 @@
     enable = true;
     group = "media";
     extraArgs = [ "--confirm-legal-notice" ];
-    serverConfig = {
-      LegalNotice.Accepted = true;
-      Preferences = {
-        WebUI = {
-          Username = "admin";
-          Password_PBKDF2 = "ZiIqcDweagHaquNrjfL+dg==:pjCtoMxb+Ez3hDDOyCtaQ0NAxjilC3ZUVGE8APPUqlg45xLPmiQVNrpTG0rp5kJne0Iw5o2GFW0EU8XK3w2H0w==";
-        };
-        General.Locale = "en";
-      };
-    };
   };
 
   users.users.xanderio.extraGroups = [ "media" ];

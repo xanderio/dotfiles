@@ -91,7 +91,7 @@
       };
 
       # python
-      pyright.enable = true;
+      basedpyright.enable = true;
       ruff.enable = true;
 
       lua_ls = {
