@@ -110,3 +110,9 @@ creation_rules:
       - age:
         - *xanderio
         - *vetinari
+
+  - path_regex: secrets/services/docs.yaml
+    key_groups:
+      - age:
+        - *xanderio
+        - *carrot

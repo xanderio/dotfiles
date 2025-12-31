@@ -19,6 +19,7 @@
     ./mail.nix
     ./grist.nix
     ./mealie.nix
+    ./docs.nix
 
     ./disko-config.nix
   ];
