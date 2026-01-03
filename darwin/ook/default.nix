@@ -32,15 +32,32 @@
                 watchIdAuth = true;
               };
               services.virby = {
+                enable = true;
+                debug = true;
+                rosetta = true;
+                allowUserSsh = false;
+                onDemand = {
                   enable = true;
-                  debug = true;
-                  rosetta = true;
-                  allowUserSsh = false;
-                  onDemand = {
-                    enable = true;
-                    ttl = 10;
-                  };
+                  ttl = 10;
+                };
               };
+              nixpkgs.overlays = [
+                (final: prev: {
+                  # drop once 4.3.2 is on unstable
+                  fish = prev.fish.overrideAttrs (
+                    finalAttrs: previousAttrs: {
+                      version = "4.3.2";
+                      src = previousAttrs.src.override {
+                        hash = "sha256-/B4U3giKGmU5B/L5HQLS1lU8f7hsfI4aCeOjWcQ1dpA=";
+                      };
+                      cargoDeps = final.rustPlatform.fetchCargoVendor {
+                        inherit (finalAttrs) src patches;
+                        hash = "sha256-/udRRs/ieLfazVTwM47ElExN40QdAG/OqQXmYurgC1I=";
+                      };
+                    }
+                  );
+                })
+              ];
               nix = {
                 package = pkgs.nixVersions.latest;
                 nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
