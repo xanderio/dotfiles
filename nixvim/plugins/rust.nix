@@ -7,9 +7,20 @@
         server.default_settings.rust-analyzer = {
           # Build the code for LSP on a different path to avoid blocking
           cargo.targetDir = "target/lsp";
+          # exclude .direnv otherwise rust-analyzer scans nixpkgs
+          files.exclude = [
+            ".direnv"
+            ".devenv"
+            ".git"
+            ".jj"
+            ".nats"
+          ];
           completion.excludeTraits = [
             "color_eyre::owo_colors::OwoColorize"
           ];
+        };
+        tools = {
+          test_executor = "neotest";
         };
       };
     };
