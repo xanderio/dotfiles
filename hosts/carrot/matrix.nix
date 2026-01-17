@@ -30,6 +30,7 @@ in
 {
   imports = [
     ./matrix-authentication-services.nix
+    ./matrix-hookshot.nix
     ./livekit.nix
   ];
 
