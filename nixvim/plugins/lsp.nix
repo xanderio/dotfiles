@@ -4,7 +4,6 @@
   imports = [
     ./rust.nix
   ];
-  
 
   # Useful status updates for LSP.
   # https://nix-community.github.io/nixvim/plugins/fidget/index.html
@@ -74,8 +73,13 @@
       # web dev
       astro.enable = true;
       cssls.enable = true;
-      html.enable = true;
-      tailwindcss.enable = true;
+      html = {
+        enable = true;
+        filetypes = [
+          "html"
+          "djangohtml"
+        ];
+      };
       eslint.enable = true;
       ts_ls.enable = true;
 
