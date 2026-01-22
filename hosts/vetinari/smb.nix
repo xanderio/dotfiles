@@ -17,6 +17,15 @@
           # "hosts deny" = "0.0.0.0/0";
           "guest account" = "nobody";
           "map to guest" = "bad user";
+          "vfs objects" = "fruit streams_xattr";
+          "fruit:metadata" = "stream";
+          "fruit:model" = "MacSamba";
+          "fruit:veto_appledouble" = "no";
+          "fruit:nfs_aces" = "no";
+          "fruit:wipe_intentionally_left_blank_rfork" = "yes";
+          "fruit:delete_empty_adfiles" = "yes";
+          "fruit:posix_rename" = "yes";
+          "fruit:copyfile" = "yes";
         };
         "public" = {
           "path" = "/var/lib/public";
@@ -94,10 +103,8 @@
       openFirewall = true;
     };
 
-    services.resolved.extraConfig = ''
-      # conflicts with avahi for mdns service registration
-      MulticastDNS=resolve
-    '';
+    # conflicts with avahi for mdns service registration
+    services.resolved.settings.Resolve.MulticastDNS = "resolve";
 
     services.avahi = {
       publish.enable = true;
