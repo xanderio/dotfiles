@@ -4,6 +4,7 @@
   extraPackages = with pkgs; [
     deadnix
     markdownlint-cli
+    djlint
   ];
 
   # Linting
@@ -18,6 +19,8 @@
         "markdownlint"
         #vale
       ];
+      "htmldjango" = [ "djlint" ];
+      "jinja" = [ "djlint" ];
       #clojure = ["clj-kondo"];
       #dockerfile = ["hadolint"];
       #inko = ["inko"];
