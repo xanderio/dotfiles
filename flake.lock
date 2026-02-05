@@ -418,11 +418,11 @@
     },
     "nixpkgs_4": {
       "locked": {
-        "lastModified": 1769018530,
-        "narHash": "sha256-MJ27Cy2NtBEV5tsK+YraYr2g851f3Fl1LpNHDzDX15c=",
+        "lastModified": 1763966396,
+        "narHash": "sha256-6eeL1YPcY1MV3DDStIDIdy/zZCDKgHdkCmsrLJFiZf0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "88d3861acdd3d2f0e361767018218e51810df8a1",
+        "rev": "5ae3b07d8d6527c42f17c876e404993199144b6a",
         "type": "github"
       },
       "original": {
@@ -667,16 +667,17 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1769277184,
-        "narHash": "sha256-6HsFJbo6PLX2NZaK183mJUcWOMWfOrfiaaWIe2Qo/N4=",
+        "lastModified": 1764921432,
+        "narHash": "sha256-kDxQICYUaN/zv5p5ELjjdp+ZdOJvIG0xnQMv22KUJJk=",
         "owner": "quinneden",
         "repo": "virby-nix-darwin",
-        "rev": "fa0cc23972723ff9572f7e4003394fa5711bfe22",
+        "rev": "be170bd7ef21ce9773e7daa646d43f5405a1bdb2",
         "type": "github"
       },
       "original": {
         "owner": "quinneden",
         "repo": "virby-nix-darwin",
+        "rev": "be170bd7ef21ce9773e7daa646d43f5405a1bdb2",
         "type": "github"
       }
     },

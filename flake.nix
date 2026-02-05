@@ -48,7 +48,7 @@
       url = "github:nix-community/authentik-nix";
       inputs."flake-parts".follows = "flake-parts";
     };
-    virby.url = "github:quinneden/virby-nix-darwin";
+    virby.url = "github:quinneden/virby-nix-darwin/be170bd7ef21ce9773e7daa646d43f5405a1bdb2";
   };
 
   outputs =
